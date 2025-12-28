@@ -154,3 +154,6 @@ cython_debug/
 .uv
 .venv
 uv.lock
+
+# Reports
+reports/*.html
