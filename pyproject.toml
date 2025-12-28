@@ -1,8 +1,7 @@
 [project]
 name = "Galileo"
 version = "0.0.1"
-description = "Galileo is an exploration data analysis platform and report generation system designed 
-to transform business inquiries into actionable insights through dynamic HTML reports."
+description = "Data analysis and automated report generation system"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

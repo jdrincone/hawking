@@ -37,10 +37,10 @@ hawking/
 ## How to use
 
 ### 1. Setup Environment
-First, ensure you have your environment variables configured. Copy the example file and fill in your credentials:
+First, ensure you have your environment variables configured.
 
 ```bash
-cp .env.example .env
+.env
 ```
 
 ### 2. Dependency Management
