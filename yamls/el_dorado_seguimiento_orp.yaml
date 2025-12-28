@@ -1,0 +1,128 @@
+titulo: "Rango óptimo de ORP en el chiller para reducir la ocurrencia de <i>Salmonella</i> y <i>Campylobacter</i>"
+lugar: "El dorado"
+descripcion: ""
+
+secciones:
+  - titulo: Punto de partida
+    contenido:
+
+      - tipo: "texto"
+        html: >
+          A partir de las mediciones fisicoquímicas registradas por sensores de
+          <strong>pH</strong>, <strong>ORP</strong> y <strong>cloro libre</strong> en la salida del chiller,
+          junto con los resultados microbiológicos obtenidos en ese mismo punto durante el presente año,
+          se busca determinar el rango de operación óptimo que minimice la prevalencia de
+          <i>Salmonella</i> y <i>Campylobacter</i> y, con ello, estimar los valores promedio de pH y cloro libre
+          en los que deberían mantenerse estos parámetros.
+          <br><br>
+          Para ello, primero se consolidaron y depuraron los registros de los sensores en la salida del chiller,
+          agregando las mediciones de <strong>pH</strong>, <strong>ORP</strong> y <strong>cloro libre</strong> 
+          por día y vinculándolas con los resultados microbiológicos diarios en la salida del chiller para
+          <i>Salmonella</i> y <i>Campylobacter</i>.
+          Posteriormente, el valor medio diario de <strong>ORP</strong> se segmenta en intervalos de operación
+          igualmente espaciados (bins) y, para cada intervalo, se calcularon la prevalencia observada de
+          ambos microorganismos junto a los valores promedio asociados de pH y cloro libre.
+          De esta forma se obtienen rangos de <strong>ORP</strong> candidatos como posibles
+          <strong>rangos HACCP</strong>, junto con las prevalencias estimadas en cada intervalo según los
+          resultados obtenidos en los meses analizados.
+          <br><br>
+          Los resultados presentados se sustentan en 646 análisis microbiológicos para
+          <i>Salmonella</i> y 245 para <i>Campylobacter</i> realizados a lo largo del año tomados en la salida
+          del chiller, junto con más de 4.200 mediciones fisicoquímicas válidas de <strong>pH</strong>, <strong>ORP</strong> y 
+          <strong>cloro libre</strong>. Este volumen de información otorga solidez estadística a las
+          conclusiones del informe y respalda los rangos de operación estimados como referencia
+          para la gestión HACCP del proceso.
+
+  - titulo: Rangos HACCP óptimos de operación
+    contenido:
+      - tipo: "tabla"
+        src: "orp_bin.csv"
+
+
+  - titulo: Comportamiento de las medidas fisicoquímicas día a día
+    contenido:
+      - tipo: "texto"
+        html: >
+          Las figuras siguientes muestran, para cada una de las variables
+          <strong>ORP medio diario (mV)</strong>, <strong>pH medio diario</strong> y
+          <strong>cloro libre medio diario (ppm)</strong>, su evolución a lo largo del año.
+          En cada gráfico, la línea verde representa el valor medio diario de la variable
+          y la banda verde clara corresponde al rango comprendido entre los percentiles P2 y P98,
+          lo que ilustra la variabilidad típica de las mediciones dentro de cada día y excluye
+          los valores más extremos.
+          <br><br>
+          En el caso específico del <strong>ORP medio diario</strong>, la franja naranja resalta la
+          <strong>zona óptima HACCP propuesta (660–690 mV)</strong>, derivada del análisis conjunto
+          de los datos de sensores y los resultados microbiológicos. Al comparar ambas bandas se
+          observa que, durante buena parte del periodo, el proceso operó con valores de ORP medios
+          por debajo de este rango óptimo, con algunos días puntuales acercándose o entrando en la
+          zona recomendada. Esta visualización permite identificar de forma clara las oportunidades
+          para ajustar el <em>set point</em> del sistema y mantener el ORP dentro del rango asociado
+          con menor probabilidad de ocurrencia de <i>Salmonella</i> y <i>Campylobacter</i>.
+      
+
+      - tipo: plotly_html
+        src: comportamiento_orp_diario.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: "texto"
+        html: >
+          El pH muestra una mayor estabilidad de las mediciones a lo largo del tiempo.
+          En conjunto, la gráfica sugiere que el pH opera habitualmente dentro o muy cerca
+          del rango óptimo definido, por lo que esta variable se encuentra mejor controlada
+          en comparación con otras medidas fisicoquímicas del chiller.
+      
+
+      - tipo: plotly_html
+        src: comportamiento_ph_diario.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+
+
+      - tipo: plotly_html
+        src: comportamiento_cloro_diario.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+      - tipo: "texto"
+        html: >
+          En este caso,el proceso suele operar en valores cercanos al rango óptimo HACCP propuesto (4.65–4.71 ppm),
+          existe una variabilidad mayor. A lo largo del año se observan varios periodos
+          con medias diarias por debajo de dicho intervalo e incluso descensos puntuales por debajo de 4 ppm,
+          lo que indica oportunidades de mejora para estabilizar la dosificación de cloro libre y mantenerla
+          de forma más consistente dentro del rango objetivo.
+
+
+  - titulo: Distribución de las medidas fisicoquímicas
+    contenido:
+      - tipo: plotly_html
+        src: histogramas_fq.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+  - titulo: Comportamiento de las medidas fisicoquímicas por hora del día
+    contenido:
+      - tipo: plotly_html
+        src: comportamiento_rango_hora_global.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+  - titulo: Comportamiento de las medidas fisicoquímicas por hora del día en los últimos meses
+    contenido:
+
+      - tipo: plotly_html
+        src: comportamiento_rango_hora_10.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: plotly_html
+        src: comportamiento_rango_hora_11.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: "lista"
+        items:
+          - 'De las gráficas de los últimos meses se concluye que:'
+          - Los valores de ORP dentro del rango óptimo se concentran principalmente entre las 0:00 y 
+            las 4:00 h, y alrededor de las 12:00–13:00 h.
+          - El cloro libre se encuentra con mayor frecuencia dentro de su rango óptimo entre las 6:00–7:00 h
+            y las 16:00–18:00 h.
+          - El pH, en promedio, se mantiene por debajo de su valor óptimo en las franjas de 4:00–8:00 h
+            y 12:00–18:00 h.
+
+
+
+

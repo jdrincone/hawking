@@ -1,0 +1,173 @@
+titulo: Impacto del Adiflow en el rendimiento en plantas de concentrado
+lugar: BIOS
+descripcion: ""
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          El presente informe se desarrolló mediante la plataforma Okuo Flow,
+          una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+          y <strong>transformación</strong> de datos asociados a la producción 
+          y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+          información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+          variables de producción (toneladas procesadas, 
+          tiempos de producción y sack-off) y de calidad (temperatura, durabilidad del pellet y humedad). 
+          Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+          de calidad, reduciendo la tensión entre los departamentos 
+          de producción y calidad, logrando un proceso más fluido y eficaz.
+
+          <br><br>
+          En este contexto, usaremos Okuo Flow para dar un entendimiento de como
+          el <strong>Adiflow</strong> impacta de forma significativa el proceso de peletizado.
+          
+
+  - titulo: Definiciones
+    contenido:
+
+      - tipo: lista
+        items:
+          - Una orden de producción peletizada <strong>con Adiflow</strong> debe haber sido generada entre el <strong>14 y el 30 de mayo</strong>, marcada como un registro típico y con una dosificación de agua mayor a cero.
+          - Una orden de producción peletizada <strong>sin Adiflow</strong> debe haber sido generada entre el <strong>31 de mayo y el 14 de junio</strong>, también marcada como un registro típico y con una dosificación de agua mayor a cero.
+          - 'El rendimiento <strong>real</strong> de una orden de producción \( i \) se calcula como:
+            \( r_i = \frac{\text{MP procesada Pel (Tons)}_i}{\text{Tiempo procesado Pel (Hrs con paros)}_i} \)'
+          - 'El rendimiento <strong>estimado</strong> de esa misma orden se define como:
+            \( r_{ie} = \frac{\text{MP procesada Pel (Tons)}_i}{\text{Tiempo procesado Pel Teo (Hrs con paros)}_i} \)'
+          - 'La <strong>eficiencia operacional</strong> de la orden se mide como la razón entre el rendimiento
+             real y el estimado:
+            \( n_i = \frac{\text{Tiempo procesado Pel (Hrs con paros)}_i}{\text{Tiempo procesado 
+            Pel Teo (Hrs con paros)}_i} \).'
+
+      - tipo: texto
+        html: >
+          A partir de estos criterios, se obtuvo una muestra representativa de 
+          <strong>15,676.8 toneladas producidas</strong>, de las cuales <strong>8,153.2 toneladas (52%)</strong> 
+          corresponden a producción <strong>con Adiflow</strong> y <strong>7,523.6 toneladas (48%)</strong> 
+          a producción <strong>sin Adiflow</strong>.
+
+     
+
+  - titulo: Resultados Globales
+    contenido:
+      - tipo: imagen
+        src: 1_base.svg
+        mime: svg
+        style: "width: 90%;"
+
+      - tipo: texto
+        html: >
+          Aplicando las condiciones mencionadas y calculando los promedios ponderados en los
+          grupos Con Adiflow y Sin Adiflow, se obtiene.
+      - tipo: tabla
+        src: sumary.csv
+      - tipo: texto
+        html: >
+          La diferencia en el rendimiento global es de <strong>0.32 Ton/Hora</strong>,
+          calculada como (7.39 - 7.07 Ton/Hora), lo que representa un incremento del
+          <strong>4.79%</strong> en eficiencia al comparar la producción con Adiflow frente a la sin Adiflow.
+          En cuanto al primer experimento, la diferencia observada en el rendimiento global fue de 
+          <strong>0.37 Ton/Hora</strong>, superior que esta segunda corrida. 
+          <br><br>
+          Un aspecto relevante es la notable reducción en el tiempo improductivo. 
+          <strong>Sin Adiflow</strong>, este correspondió al <strong>14%</strong> del tiempo total 
+          (151.91/1063.58 horas), mientras que <strong>con Adiflow</strong> se redujo a solo 
+          <strong>3.6%</strong> (40.19/1102.55 horas). Finalmente, se observa un aumento de 
+          <strong>8.5 °C</strong> en la temperatura promedio del acondicionador, lo cual refuerza 
+          la evidencia del impacto positivo de Adiflow en la eficiencia operativa del proceso.
+
+      - tipo: texto
+        html: >
+          Explorando el conjunto de parámetros que máximizan la eficiencia en el proceso,
+          la línea de porcicultura representa aproximadamente el 80 % del total producido,
+          es por esto que se detallará a continuación.
+
+  - titulo: Resultados sobre porcicultura
+    contenido:
+      - tipo: imagen
+        src: 3_base.svg
+        mime: svg
+        style: "width: 60%; display: block; margin: 0 auto;"
+
+
+      - tipo: tabla
+        src: sumary_porc.csv
+      - tipo: texto
+        html: >
+          Analizando los resultados para la línea de porcicultura, se observa que la
+          inclusión de Adiflow incrementa la eficiencia del proceso en un 12.25 %,
+          pasando de 76.21 % a 85.54 %. El rendimiento también mejora de 7.51 a
+          8.35 Ton/Hora, lo que representa un aumento del 0.84 Ton/Hora más rapido 
+          producir la producción.  
+          <br><br>
+          En términos de condiciones operativas, el tiempo de proceso se reduce
+          en 84.5 horas (842.54 h vs. 757.99 h), y la temperatura promedio del
+          acondicionador aumenta 7.15 °C, reforzando la eficiencia térmica del
+          sistema.  
+          <br><br>
+          Adicionalmente, se observa una ligera disminución en el consumo
+          energético por tonelada (15.14 a 14.65 KWh/Ton) y una presión de vapor
+          superior con Adiflow (22.43 vs. 20.18), indicadores clave de una
+          operación más eficiente. Los retornos promedio se mantienen
+          prácticamente constantes (0.15 % vs. 0.14 %).
+      
+      
+
+      #- tipo: plotly_html
+      #  src: general_experimento.html
+
+
+  - titulo: Detalle por Dosificación de agua
+    contenido:
+      #- tipo: tabla
+      #  src: general_experimento_segundo.csv
+      - tipo: plotly_html
+        src: eficiencia_dosis_agua.html
+
+
+  - titulo: Detalles por Peletizadora
+    contenido:
+      #- tipo: tabla
+      #  src: general_experimento_segundo.csv
+
+
+      - tipo: plotly_html
+        src: pel.html
+
+      - tipo: texto
+        html: >
+          En el caso del pellet 350, ambos escenarios presentan una eficiencia muy alta,
+          superior al 90 %. La eficiencia con Adiflow sigue siendo óptima, manteniendo
+          niveles sobresalientes y sin afectar
+          negativamente la operación.
+  
+  
+  
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - El uso de <strong>Adiflow</strong> generó un <strong>incremento global del 4.79 % en el 
+            eficiencia</strong> del proceso de peletizado, con mejoras superiores al <strong> 12%
+            en la línea de producción de Porcicultura</strong> la cual representa el 80% de la producción.
+
+          - La <strong>temperatura promedio del acondicionador</strong> se incrementó en
+            <strong>7.15 °C</strong>, en la línea de porcicultura, favoreciendo la calidad del pellet
+            y la estabilidad del proceso.
+
+          - Aunque en el pellet <strong>350</strong> la eficiencia sin Adiflow fue ligeramente superior,
+            en ambos escenarios se mantuvo <strong>por encima del 90%</strong>,
+            confirmando que la adición del aditivo no afecta negativamente la producción.
+
+
+
+
+
+
+
+
+
+
+
+

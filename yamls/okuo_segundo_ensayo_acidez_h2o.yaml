@@ -1,0 +1,210 @@
+titulo: "Análisis de productos acidificantes: ganancia de ORP y retención de cloro libre"
+lugar: ""
+descripcion: ""
+
+secciones:
+  - titulo: Objetivo
+    contenido:
+      - tipo: lista
+        items:
+          - Evaluar en que condición inicial por producto se logra mayor acidificación en un periodo de 24 horas.
+          - Evaluar cómo cada producto modifica el ORP y el cloro libre (FCL) al disminuir el pH.
+          - Cuantificar esas variaciones mediante modelos lineales, estimando las pendientes m_ORP (mV/pH) y m_FCL (ppm/pH).
+          - Comparar el desempeño de los productos para identificar el que más aumenta el ORP y menos altera (o conserva) el FCL al acidificar.
+          - Presentar resultados en gráficos y tabla, incluyendo R² como indicador de confianza del ajuste.
+
+  - titulo: Nivel de pH alcanzado en tiempo
+    contenido:
+      - tipo: texto
+        html: >
+          La gráfica compara la evolución del pH tres condiciones iniciales diferentes:
+          <b>pH normal</b> (entre 5.2 y 5.7) y <b>pH bajo</b> (entre 4.1 y 4.6) y <b>pH muy bajo</b> (entre 3.2 a 3.7). 
+          En estos casos, se evalúa el comportamiento de cinco productos: Citroquim Aqua, Selko pH, CLAP, 
+          Ácido Acético y Ácido Fosfórico.
+           <br><br>
+          En condiciones iniciales normales, los productos Citroquim Aqua, Selko pH y CLAP —todos ellos
+          formulaciones basadas en mezclas de ácidos— muestran una tendencia al incremento en la acidez con el
+          paso del tiempo. Esto sugiere un posible efecto de autorregulación, donde el sistema tiende a
+          recuperar las condiciones iniciales. En contraste, tanto el Ácido Acético como el Ácido Fosfórico 
+          generan una disminución sostenida del pH, lo cual es coherente con su acción acidificante directa.          
+
+      - tipo: plotly_html
+        src: ph_subplot_1x3.html
+      - tipo: texto
+        html: >
+          Ahora, en el periodo de evolución <b>¿Cuál es el pH inicial que logra acidificar más manteniendolo 
+           en el tiempo?</b>
+      - tipo: plotly_html
+        src: barras_Cambio_delta_ph.html
+
+      - tipo: texto
+        html: >
+          Para responder esta pregunta, nos fijaremos en el cambio del pH (<b>ΔpH= pH_incial- pH_final</b>) en cada condición
+          inicial. Con esto, en la anterior grafica, la mayor barra de ΔpH, representa la condición en la cual se
+          logra acidificar más el agua.
+
+      - tipo: lista
+        items:
+          - "<b>Ácido Acético</b>: Mayor poder de acidificación iniciando con un pH muy bajo (entre 3.2 a 3.7),
+             es decir, si se inicia con un pH de 3.5, se puede lograr obtener una agua acidificada en 3, logra
+             disminuir 0.5 unidades de pH."
+          - "<b>Ácido Fosfórico</b>: Mayor poder de acidificación iniciando con un pH normal (entre 5.2 a 5.7). Logrando
+             disminuir hasta 1.2 unidades de pH."
+          - "<b>CLAP</b>: No importa donde se incial, se tiene el mismo comportamiento. Logrando disminuir hasta 0.5 unidades
+            de pH."
+          - "<b>Citroquim Aqua</b>: Mayor poder de acidificación iniciando con un pH normal (entre 5.2 a 5.7).
+             Logra disminuir hasta 0.93 unidades de pH."
+          - "<b>Selko pH</b>: Mayor poder de acidificación iniciando con un pH normal (entre 5.2 a 5.7). Comportandose
+             similar al Citroquim, alcanzando hasta una reducción de 0.95 unidades de pH."
+
+
+  - titulo: Relación pH vs. ORP (Potencial de Óxido-Reducción)
+    contenido:
+
+      - tipo: plotly_html
+        src: ORP_vs_pH_separado.html
+
+      - tipo: texto
+        html: >
+          Los puntos son mediciones y la línea punteada es la regresión lineal. La
+          pendiente <i>m</i> (mV/pH) indica el cambio de ORP por cada unidad que baja
+          el pH: <b>m &lt; 0</b> ⇒ el ORP aumenta (deseable); <b>m &gt; 0</b> ⇒ el ORP disminuye.
+          <br><br>
+          Una tendencia clave al acidificar es el aumento del ORP. En la mayoría de los
+          productos (Citroquim Aqua, Ácido Acético y CLAP), al disminuir el pH el ORP
+          se incrementa. Esto es esperable: un pH más bajo desplaza el equilibrio hacia
+          el ácido hipocloroso (HOCl), oxidante más potente que el ion hipoclorito (OCl⁻),
+          elevando el ORP.
+          <br><br>
+          En el rango de pH 3.1–5.7 la relación ORP–pH puede aproximarse por una recta
+          (trazo punteado). La <i>pendiente</i> m es la clave: cuanto más negativa
+          (mayor |m|), más ORP se gana por cada unidad que baja el pH. Los ácidos puros
+          (Ácido Acético y Ácido Fosfórico) muestran pendientes más pronunciadas porque
+          reducen el pH sin consumir cloro.
+          <br><br>
+          Por otro lado, Selko pH exhibe un punto a alta acidez con ORP muy bajo; es un
+          comportamiento atípico y conviene repetir esa medición.
+
+      - tipo: lista
+        items:
+          - '<b>Ácido Acético</b>: m ≈ <b>−98.5 mV/pH</b>, rango ≈ 810–890 mV. Mayor incremento de ORP al acidificar; desempeño superior.'
+          - '<b>Ácido Fosfórico</b>: m ≈ <b>−84.4 mV/pH</b>, rango ≈ 870–890 mV (pH bajos). Incremento de ORP muy alto y consistente.'
+          - '<b>Citroquim Aqua</b>: m ≈ <b>−43.8 mV/pH</b>, rango ≈ 670–760 mV. Incremento de ORP moderado al bajar pH.'
+          - '<b>CLAP</b>: m ≈ <b>−45.5 mV/pH</b>, rango ≈ 670–780 mV. Incremento de ORP moderado, similar a Aqua.'
+          - '<b>Selko pH</b>: m ≈ <b>+117.3 mV/pH</b>, rango ≈ 400–780 mV. ORP disminuye al acidificar (comportamiento anómalo).'
+
+
+
+  - titulo: Relación pH vs. Cloro Libre
+    contenido:
+
+      - tipo: plotly_html
+        src: FCL_vs_pH_separado.html
+
+      - tipo: texto
+        html: >
+          El comportamiento del cloro libre (FCL) frente al pH es heterogéneo. Cada
+          línea punteada es la regresión lineal por producto; su pendiente <i>m</i>
+          (ppm por unidad de pH) indica cómo cambia el FCL cuando varía el pH.
+          <b>m > 0</b> ⇒ al acidificar (bajar pH) el FCL tiende a disminuir; <b>m < 0</b> ⇒ al
+          acidificar el FCL tiende a aumentar.
+
+      - tipo: lista
+        items:
+          - '<b>Citroquim Aqua</b>: m ≈ <b>+0.41ppm/pH</b> → al bajar pH, el FCL disminuye de forma
+            apreciable.'
+          - '<b>CLAP</b>: m ≈ <b>+0.30ppm/pH</b> → pérdida moderada de FCL al acidificar.'
+          - '<b>Selko pH</b>: m ≈ <b>+1.31ppm/pH</b> → la mayor pérdida de FCL al bajar pH.'
+          - '<b>Ácido Acético</b>: m ≈ <b>−0.30ppm/pH</b> → el FCL se mantiene o incluso aumenta ligeramente
+            al acidificar (mejor retención).'
+          - '<b>Ácido Fosfórico</b>: m ≈ <b>+0.17ppm/pH</b> → leve disminución de FCL con pH más bajo, aunque
+            parte de valores de FCL altos en todo el rango.'
+
+
+      #- tipo: texto
+      #  html: >
+      #    La gráfica muestra la <strong>evolución del ORP</strong>
+      #    bajo las mismas tres condiciones iniciales de pH: normal, bajo y muy bajo evaluadas arriba.
+
+      #    <br><br>
+      #    El <strong>Ácido Fosfórico</strong> y <strong>Ácido Acético</strong> mantienen consistentemente
+      #    altos valores de ORP en las tres condiciones, evidenciando una fuerte y estable capacidad oxidante.
+      #    En contraste, <strong>Citroquim Aqua</strong>, <strong>Selko pH</strong> y <strong>CLAP</strong>
+      #    presentan una disminución progresiva del ORP, especialmente en condiciones más ácidas,
+      #    lo que sugiere una mayor acción reductora o pérdida del potencial oxidante.
+
+      #    <br><br>
+      #    Los ácidos bases, Fosfórico y Acético, independiente de la condición
+      #    inicial de pH, mantienen la relación del OPR creciente en el tiempo, mientras que los demás productos
+      #    tienden a reducir el ORP.
+
+
+  - titulo: Entendimiento de las variaciones del Cloro Libre y ORP bajo una variación de pH
+    contenido:
+      - tipo: texto
+        html: >
+          A continuación se indica cómo interpretar las variaciones de <b>ORP</b> y <b>Cloro libre (FCL)</b> en función del
+          <b>pH</b> usando las <i>pendientes</i> de las rectas ajustadas.
+          <br><br>
+          <strong>¿Qué nos dicen las pendientes?</strong><br>
+          • <b>m_ORP (mV/pH)</b>: cambio del ORP por cada unidad de pH. <u>Más negativa</u> ⇒ al bajar el pH, el ORP sube más (mejor).<br>
+          • <b>m_FCL (ppm/pH)</b>: cambio del cloro libre por cada unidad de pH. <u>Cercana a 0</u> (o negativa) ⇒ el FCL se mantiene
+          (o aumenta) al acidificar (mejor).
+          <br><br>
+          <strong>Cómo elegir el mejor producto:</strong><br>
+          Si el objetivo es <b>maximizar el ORP</b> y <b>minimizar la pérdida de FCL</b> al acidificar, el producto óptimo es aquel que
+          presenta <b>m_ORP</b> con la <u>mayor magnitud negativa</u> y <b>m_FCL</b> <u>lo más próxima a cero</u> (idealmente ≤ 0).
+
+      - tipo: tabla
+        src: pendientes_y_R2_por_producto.csv
+
+      - tipo: plotly_html
+        src: subplot_abs_pendientes_selko_incluido_en_fcl.html
+
+      - tipo: lista
+        items:
+          - "Los ácidos puros muestran el mayor aumento de ORP al acidificar: <strong>destacan Ácido Acético
+             (|m_ORP|≈95.5 mV/pH) y Ácido Fosfórico (|m_ORP|≈84.4 mV/pH)</strong>."
+          - "Si el objetivo es reducir el consumo/cambio de cloro libre, <strong>el mejor comportamiento lo da 
+             Ácido Fosfórico (|m_FCL|≈0.165 ppm/pH, el más cercano a cero)</strong>."
+          - "Entre las mezclas, Citroquim Aqua y CLAP tienen incrementos de ORP similares (|m_ORP|≈43.8 y 45.5 mV/pH),
+             pero <strong>Citroquim Aqua modifica más el FCL (|m_FCL|≈0.408 ppm/pH) que CLAP (≈0.299 ppm/pH)</strong>."
+          - "Selko pH presenta un punto a alta acidez con ORP anormalmente bajo; por eso no se resalta en ORP.
+             En FCL se incluye para referencia, pero se mantiene en gris."
+          - "Sobre el error de predicción: los modelos son lineales con sólo 3 puntos por producto; use el R² como
+             guía de confiabilidad. Muy alto en Ácido Fosfórico (≈1.00) y CLAP (≈0.94–0.99); 
+             <strong>moderado en Ácido Acético para FCL (≈0.58) y bajo para Selko pH en ORP (≈0.40). 
+             En estos casos, las pendientes deben interpretarse con mayor cautela.</strong>"
+
+
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+            - "Partiendo de un pH normal, el Citroquim logra disminuir hasta 0.93 unidades de pH en el transcurso de 24 horas,
+               el ácido fosfórico es el ácido puro que más disminuye logrando acidificar hasta 1.2 unidades de pH en un periodo
+               de 24 horas."
+            - "Para el objetivo de <strong>bajar pH y maximizar ORP</strong>, el mejor desempeño lo mostró <strong>Ácido Acético</strong> (pendiente ORP/pH más negativa)."
+            - "Para <strong>minimizar el cambio de cloro libre (FCL)</strong> al acidificar, el más favorable fue <strong>Ácido Fosfórico</strong> (|m_FCL| más cercano a 0 y
+               valores absolutos de FCL altos)."
+            - "Las mezclas <strong>Citroquim Aqua</strong> y <strong>CLAP</strong> exhiben aumentos de ORP <strong>moderados</strong>; entre ellas,
+              <strong>CLAP</strong> altera menos el FCL que Citroquim Aqua."
+            - "<strong>Selko pH</strong> presenta un punto a alta acidez con ORP anormalmente bajo; se recomienda <strong>repetir esa medición</strong>
+              y revisar procedimiento/equipo."
+            - "Las conclusiones se basan en <strong>modelos lineales con ~3 puntos por producto</strong>; el <strong>R²</strong> como indicador de confianza y
+               considere la incertidumbre asociada y aunque en general es bueno, se debe realizar más muestreos."
+            - "Para <strong>mejorar las estimaciones</strong> se deben tomar más datos por producto (≥5–7 niveles de pH)."
+
+
+
+
+
+
+
+
+
+
+
+
+

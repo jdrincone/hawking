@@ -1,0 +1,90 @@
+titulo: Revisión prevalencia de  <em>Salmonella</em> para el mes de mayo
+lugar: "El Dorado"
+descripcion: ""
+
+secciones:
+  - titulo: Consideraciones
+    contenido:
+      - tipo: lista
+        items:
+            - Analizar el comportamiento de las variables físico-químicas (ORP, pH y cloro libre) entre enero y mayo,
+              y su posible relación con la prevalencia de  <em>Salmonella</em>.
+            - Identificar las granjas con mayor carga microbiológica durante el periodo evaluado.
+
+
+  - titulo: Prevalencia
+    contenido:
+      - tipo: texto
+        html: >
+          La prevalencia se define como el número de muestras microbiológicas con resultado positivo 
+          para la presencia de  <em>Salmonella</em>, dividido entre el total de muestras tomadas
+          en un periodo determinado. 
+          En este análisis, se evalúa mes a mes el valor de prevalencia en contraste con medidas promedios
+          de variables físico-químicas analizadas como:
+          <strong>pH</strong>, <strong>ORP</strong> y <strong>cloro libre</strong>. 
+          Se hace especial énfasis en los meses de <strong>mayo</strong> y <strong>abril</strong>, 
+          meses consecutivos para comparación.
+
+      - tipo: tabla
+        src: summary.csv
+      - tipo: texto
+        html: >
+              <strong>Panorama General</strong> : Con 78 muestras en mayo la prevalencia cayó 
+              de 38 % (abril) → 12 % (mayo).Un test de diferencia de proporciones confirma que 
+              la caída es estadísticamente significativa <em>z=3.72, p=0.0002</em>.
+
+  - titulo: Curvas de probabilidad acumulada
+    contenido:
+      - tipo: plotly_html
+        src: cdf_ph.html
+        style: "width: 100%; height: 500px;"
+
+      - tipo: plotly_html
+        src: cdf_cloro.html
+        style: "width: 100%; height: 700px;"
+
+      - tipo: texto
+        html: >
+          En el caso de la distribución acumulada de pH, no existe cambios significativos entre
+          los meses análizados. Para el caso de la distribución de cloro libre, la
+          separación de la curva de mayo con respeto a las demás  es “leve”, de modo que el cambio 
+          en la concentración de cloro es pequeño en relación con la variabilidad natural del 
+          proceso (≈ 0.1 ppm sobre un rango de ~3.9 – 4.8 ppm). <strong>Pero este pequeño descenso no basta
+          para justificar, por sí solo, la gran caída de la prevalencia en el mes de mayo</strong>.
+
+  - titulo: Comparativa Prevalencia por Granjas de Mayo con respecto al promedio de meses anteriores
+    contenido:
+      - tipo: tabla
+        src: delta_table.csv
+
+      - tipo: texto
+        html: >
+              La tabla anterior revela varios resultados interesantes. La columna Δ Mayo representa
+              el cambio en la prevalencia que ha obtenido una granja el mes de mayo, con respecto al 
+              valor promedio de prevalencia reportados en el último cuatrimestre. Valores positivos
+              indica cual es la reducción en prevalencia que la granja ha obtenido para el mes de mayo,
+              mientras valores positivos indica las granjas que para el mes de mayo han llegado al chiller
+              con mayor carga microbiológica comparado con el pasado. De destacar, Granjas como, <strong>SAN RAFAEL, LA ISLA,
+              LA VEGA </strong> han reducido en un 30% la presencia de <em>Salmonella</em>.En contraste,
+              TRES ESQUINAS registró un incremento del 75 %.
+          
+      
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - Las variaciones en las medidas físico-químicas no explican en mayo, la reducción en
+            la prevalencia.
+          - La baja global de prevalencia en mayo se debe, posiblemente a mejoras en granjas
+             históricamente críticas (ALTAMIRA, LA ISLA, SAN RAFAEL) o a mejores practicas de sanidad en
+            el producto antes que este ingrese al chiller.
+          - Ausencia de granjas de muy alto riesgo, las cuales aportarón mayor carga microbiologíca en abril (p.ej. BELLAVISTA, POLLILANDIA).
+          - El aumento en EL TRIUNFO y la entrada de CHIHUAHUA compensan
+            parcialmente, pero no alcanzan a revertir la tendencia.
+
+
+
+
+
+

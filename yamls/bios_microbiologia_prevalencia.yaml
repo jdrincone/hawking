@@ -1,0 +1,328 @@
+titulo: "Overview: Microbiología en el mes de Julio"
+lugar: "BIOS"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: "lista"
+        items:
+          - Evaluar la <strong>prevalencia microbiológica</strong> en las diferentes etapas del
+            proceso (materias primas <strong>MP</strong>, agua, superficies y producto terminado <strong>PT</strong>) 
+            en las plantas de <strong>BIOS</strong> durante el mes de julio 2025.
+          - Identificar <strong>patrones de similitud</strong> entre plantas y microorganismos,
+            determinando agrupaciones según quintiles de prevalencia.
+          - Analizar los <strong>cambios en prevalencia</strong> a lo largo de las etapas del proceso,
+            destacando posibles incrementos o reducciones que indiquen <strong>eficiencia o riesgo
+            de contaminación cruzada</strong>.
+          - Visualizar de forma integral las <strong>fuentes de contaminación y focos
+            críticos</strong>, facilitando la toma de decisiones interpretabilidad en los datos.
+          - Analizar en <strong>PT</strong> el comportamiento de la <strong>carga microbiológica</strong> en
+            función del <strong>volumen de producto producido</strong>, la <strong>actividad de agua
+            (aW)</strong> y la <strong>especie de microorganismo</strong>.
+
+  - titulo: Materias Primas
+    contenido:
+      - tipo: texto
+
+  - titulo: Porcentaje de análisis y prevalencias por tipo de microorganismos y origen procedencia de harinas en MP
+    contenido:
+      - tipo: texto
+        html: >
+          Se presentan dos <strong>diagramas de torta</strong> (solo para <strong>materias primas — MP</strong>) que muestran la
+          <strong>distribución de análisis</strong> por <strong>microorganismo</strong> y por <strong>origen de harina</strong>.
+          Cada diagrama indica el <strong>porcentaje de análisis</strong> por categoría y la <strong>prevalencia</strong> asociada a cada
+          segmento.
+          <br><br>
+          En el primero, la <strong>distribución de análisis por microorganismo</strong> es bastante equilibrada; no obstante,
+          las <strong>prevalencias</strong> se concentran en <strong>mesófilos</strong> (~<strong>87 %</strong>).
+          En el segundo, más del <strong>80 %</strong> de los análisis provienen de <strong>harinas de origen animal</strong>;
+          sin embargo, las <strong>prevalencias</strong> se distribuyen de forma más uniforme entre los demás <strong>orígenes</strong>
+          de materias primas.
+
+
+      #- tipo: plotly_html
+      #  src: distibucion_analysis_origen.html
+      #  style: "width: 90%; display: block; margin: 10 auto;"
+
+      #- tipo: plotly_html
+      #  src: distibucion_por_micro_mp.html
+      #  style: "width: 90%; display: block; margin: 10 auto;"
+      - tipo: plotly_html
+        src: subplot_distribuciones_mp.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+  - titulo: Distribución de la prevalencia a lo largo de diferentes puntos de control en MP
+    contenido:
+      - tipo: texto
+        html: >
+          Este gráfico de <strong>anillos concéntricos (sunburst)</strong> muestra la
+          <strong>prevalencia global en BIOS</strong> y cómo se distribuye a través de los niveles:
+          <strong>planta</strong> → <strong>proveedor</strong> → <strong>origen de harina</strong> → <strong>microorganismo</strong>.
+          Cada aro descompone el nivel anterior; el <strong>tamaño de cada sector</strong> representa su participación dentro del
+          <strong>nodo padre</strong> y, en el recuadro emergente, también su contribución al <strong>total BIOS</strong>.
+           <br><br>
+          La grafica es interactiva: <strong>doble clic</strong> en cualquier sector para hacer
+          <strong>zoom</strong> y seguir esa rama; <strong>clic en el centro</strong> para regresar al nivel anterior.
+          Para cada segmento se informa: <strong>Prevalencia</strong>, <strong>Positivos</strong> 
+          (conteo de análisis positivos),
+          <strong>n</strong> (total de análisis) y <strong>% del total</strong> (BIOS) y <strong>% del padre</strong>.
+          Con esto puedes identificar dónde se concentra el <strong>riesgo</strong> y su <strong>procedencia</strong>.
+          <br><br>
+          Esta visualización permite observar de forma clara cómo la
+          <strong>prevalencia global</strong> se distribuye en función de la planta y los
+          microorganismos, facilitando la identificación de <strong>focos específicos
+          de riesgo o áreas prioritarias de control sanitario</strong>.
+
+      #- tipo: plotly_html
+      #  src: sunburst_prev_plant_origin.html
+      #  style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: plotly_html
+        src: sunburst_planta_prov_origen_micro.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+  - titulo: Grupos de similitud en prevalencia para plantas y microorganismos en MP
+    contenido:
+      - tipo: texto
+        html: >
+          A partir de la gráfica anterior surge una pregunta: en términos de prevalencia,
+          ¿qué combinaciones <strong>planta × microorganismo</strong> muestran
+          <strong>comportamientos similares</strong>? Es decir, ¿existen grupos con un
+          patrón de prevalencia comparable al analizar por planta y microorganismo.
+          La respuesta es <strong>sí</strong>. A continuación se presentan los
+          <strong>grupos de similitud</strong> y su resumen.
+
+      - tipo: imagen
+        src: mp.svg
+        mime: svg
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          En promedio, la mayoría de las plantas presentan en sus materias primas (MP) prevalencias de
+          <strong>coliformes totales</strong>, <strong>Clostridium</strong> y
+          <strong>hongos y levaduras</strong> dentro del rango de <strong>14–32 %</strong>.
+          Ninguna planta registró prevalencia para <strong>Salmonella</strong>.
+          <strong>Bogotá</strong> constituye un <strong>caso crítico</strong>: se observaron prevalencias
+          superiores al <strong>60 %</strong> en <strong>mesófilos</strong>, <strong>coliformes totales</strong>
+          y <strong>hongos y levaduras</strong>.
+
+  - titulo: Producto Terminado
+    contenido:
+      - tipo: texto
+
+  - titulo: Porcentaje de análisis y prevalencias por tipo de microorganismos y tipo de alimento en PT
+    contenido:
+      - tipo: plotly_html
+        src: subplot_distribuciones_pt.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          Similar a <strong>MP</strong>, la <strong>distribución de análisis por microorganismo</strong> es equilibrada; sin embargo,
+          las <strong>prevalencias</strong> se concentran en <strong>mesófilos</strong> (~<strong>97%</strong>), lo que
+          supone un aumento de ~<strong>10pp</strong> respecto a <strong>MP</strong>.
+          Por <strong>tipo de alimento</strong>, alrededor del <strong>50%</strong> de los análisis en <strong>BIOS</strong>
+          corresponden a <strong>pellet</strong>; no obstante, donde se observan mayores <strong>prevalencias</strong> es en
+          <strong>harinas</strong>, alcanzando hasta ~<strong>48%</strong>.
+
+  - titulo: Distribución de la prevalencia a lo largo de diferentes puntos de control en PT
+    contenido:
+      - tipo: plotly_html
+        src: sunburst_planta_micro_pt.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+  - titulo: Grupos de similitud en prevalencia para plantas y microorganismos en PT
+    contenido:
+      - tipo: texto
+        html: >
+          Este gráfico ordena la <strong>prevalencia en PT</strong> por
+          <strong>quintiles</strong>, mostrando cómo se distribuye por
+          <strong>planta</strong> y <strong>tipo de microorganismo</strong>.
+          Cada bloque resume las plantas que caen en un mismo rango de prevalencia
+          y, al lado derecho, los <strong>microorganismos predominantes</strong>
+          en ese rango.
+          <br><br>
+          A diferencia de lo observado en <strong>MP</strong>, aquí se presenta un
+          <strong>comportamiento más alto y homogéneo</strong>: a partir de una
+          <strong>prevalencia > 9 %</strong> aparecen <strong>todas las plantas</strong>
+          con <strong>todos los microorganismos medidos</strong>.
+          Esto sugiere que el riesgo en PT está más extendido entre plantas y
+          microorganismos, especialmente en los quintiles superiores.
+
+      - tipo: imagen
+        src: pt.svg
+        mime: svg
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+
+  - titulo: Muestras de Agua en el proceso
+    contenido:
+      - tipo: texto
+
+  - titulo: Distribución de la prevalencia a lo largo de diferentes puntos de control en muestras de agua
+    contenido:
+      - tipo: texto
+        html: >
+          Este gráfico representa la <strong>prevalencia global en agua del proceso</strong>,
+          mostrando cómo se distribuye dicha prevalencia por <strong>planta</strong> y
+          <strong>microorganismo</strong>.
+          En el centro se observa la <strong>prevalencia global (25%)</strong> correspondiente
+          al conjunto de todas las plantas con mediciones. Cada anillo hacia el exterior descompone ese valor:
+          primero por <strong>planta</strong> y luego por <strong>microorganismo detectado</strong>.
+          <br><br>
+          En este caso, las plantas <strong>Buga</strong> y <strong>Cartago</strong> aportan la totalidad
+          de los análisis positivos, y ambos casos están asociados exclusivamente a
+          <strong>mesófilos</strong>, con prevalencias del <strong>33.3%</strong> y
+          <strong>100%</strong> respectivamente.
+
+      - tipo: plotly_html
+        src: sunburst_agua_process.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+  - titulo: Muestras de Superficies en el proceso
+    contenido:
+      - tipo: texto
+
+  - titulo: Distribución de la prevalencia a lo largo de diferentes puntos de control en muestras de superficie
+    contenido:
+      - tipo: texto
+          Este gráfico muestra la <strong>prevalencia global en superficies del proceso</strong>,
+          desglosada por <strong>planta</strong> y <strong>microorganismo detectado</strong>.
+          En el centro se presenta la <strong>prevalencia global (19.9%)</strong>, que resume
+          el comportamiento de todas las plantas. El primer anillo divide esa prevalencia
+          por <strong>planta</strong>, mientras que el anillo exterior representa la proporción
+          correspondiente a los <strong>microorganismos encontrados</strong> en cada una.
+          <br><br>
+          En este caso, la planta <strong>Buga</strong> concentra la mayor proporción de positivos
+          (<strong>41.7%</strong>), seguida por <strong>Cartago</strong> con una prevalencia de
+          <strong>24.4%</strong>.
+
+      - tipo: plotly_html
+        src: sunburst_superficie_process.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+
+      - tipo: texto
+        html: >
+          En el centro se presenta la <strong>prevalencia global (19.9%)</strong>, que resume
+          el comportamiento de todas las plantas. El primer anillo divide esa prevalencia
+          por <strong>planta</strong>, mientras que el anillo exterior representa la proporción
+          correspondiente a los <strong>microorganismos encontrados</strong> en cada una.
+          En este caso, la planta <strong>Buga</strong> concentra la mayor proporción de positivos
+          (<strong>41.7%</strong>), seguida por <strong>Cartago</strong> con una prevalencia de
+          <strong>24.4%</strong>. Ambas plantas aportan la totalidad de los casos detectados,
+          lo que indica que las <strong>contaminaciones en superficies</strong> se concentran
+          principalmente en estas dos plantas.
+
+  - titulo: Prevalencias por etapas del proceso por planta y microorganismos
+    contenido:
+      - tipo: plotly_html
+        src: prev_etapa_planta.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+              Se consideran como <strong>etapas del proceso</strong> las muestras tomadas en
+              <strong>MP</strong>, <strong>agua</strong>, <strong>superficies</strong> y <strong>PT</strong> para
+              cada planta. A nivel de planta, las <strong>materias primas</strong> ingresaron con una
+              <strong>carga microbiológica</strong> inicial que se refleja en prevalencias
+              <strong>> 20 %</strong>.
+              Luego se analizan las muestras de <strong>agua de proceso</strong>, disponibles
+              principalmente para <strong>Buga</strong> y <strong>Cartago</strong>.
+              Posteriormente se evalúan las <strong>superficies</strong> del proceso y, por
+              último, el <strong>producto terminado (PT)</strong>.
+              En general, se observa que las <strong>prevalencias al final del proceso</strong>
+              (PT) tienden a ser <strong>más altas hasta 10pp</strong> que al inicio (MP), lo que sugiere
+              acumulación o introducción de contaminación a lo largo de las etapas del proceso.
+      - tipo: texto
+        html: >
+          Como caso particular revisaremos las prevalencias por tipo de microorganismo y etapa
+          para Mosquera y Cartago.
+
+      - tipo: plotly_html
+        src: prev_etapa_micro_Mosquera.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+          En <strong>Mosquera</strong>, el único microorganismo con evidencia de control fue
+          <strong>Clostridium sulfitorreductor</strong>: su prevalencia disminuyó alrededor de
+          <strong>20 p.p.</strong> entre <strong>MP</strong> y <strong>PT</strong>. En contraste,
+          las demás familias de microorganismos presentaron incrementos promedio de
+          ~<strong>10 p.p.</strong> a lo largo del proceso.
+          <br><br>
+          En <strong>Cartago</strong> el comportamiento es distinto: la prevalencia
+          inicial se reduce al final del proceso (<strong>PT</strong>), con descensos de hasta
+          <strong>10 p.p.</strong>.
+      - tipo: plotly_html
+        src: prev_etapa_micro_Cartago.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+  - titulo: Comportamiento de la carga microbiológica (Log UFC/g) en función de la actividad de agua y del tipo de microorganismo
+    contenido:
+
+
+      - tipo: plotly_html
+        src: log_kg_micro.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+      - tipo: plotly_html
+        src: log_aw_micro.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          En <strong>PT</strong>, al analizar la <strong>carga microbiológica (Log<sub>10</sub> UFC/g)</strong> frente a la
+          <strong>actividad de agua (aW)</strong> y los <strong>kilogramos producidos</strong>, se observa que las
+          mayores cargas corresponden a <strong>mesófilos</strong> y <strong>hongos y levaduras</strong>.
+          Estos niveles elevados aparecen a lo largo de todo el rango de <strong>aW</strong> y de <strong>producción</strong>,
+          sin una tendencia clara con respecto a estas variables; es decir, el incremento de carga parece
+          <strong>independiente</strong> de la aW y del volumen producido. En general, para estos dos
+          grupos se registran valores iguales o superiores a ~<strong>1.5 unidades logarítmicas</strong>, mientras
+          que el resto de microorganismos presentan cargas más bajas o puntuales.
+
+
+  - titulo: Conclusiones
+    contenido:
+          - tipo: "lista"
+            items:
+              - Las <strong>materias primas (MP)</strong> ingresaron con una carga microbiológica 
+                significativa, con prevalencias superiores al <strong>20%</strong>, siendo
+                <strong>mesófilos</strong>, <strong>coliformes totales</strong> y <strong>hongos y
+                levaduras</strong> los microorganismos más frecuentes.
+              - En <strong>producto terminado (PT)</strong> se observó un <strong>aumento
+                generalizado</strong> de las prevalencias respecto a MP, alcanzando valores hasta 
+                <strong>10&nbsp;p.p.</strong> mayores, lo que sugiere <strong>acumulación o 
+                contaminación durante el proceso</strong>.
+              - Los análisis en <strong>agua de proceso</strong> evidenciaron que la contaminación está
+                concentrada en <strong>Buga</strong> y <strong>Cartago</strong>, asociada exclusivamente
+                a <strong>mesófilos</strong>, indicando un foco puntual.
+              - En <strong>superficies del proceso</strong>, las plantas <strong>Buga</strong> y 
+                <strong>Cartago</strong> también concentran los casos positivos, confirmando una posible 
+                <strong>contaminación persistente</strong>.
+              - En <strong>Mosquera</strong>, se identificó una mejora en el control de <strong>Clostridium 
+                sulfitorreductor</strong>, con una reducción de alrededor de <strong>20&nbsp;p.p.</strong> entre 
+                MP y PT, mientras que en otros microorganismos la prevalencia aumentó en promedio
+                <strong>10&nbsp;p.p.</strong>.
+              - 'En <strong>Cartago</strong>, el comportamiento fue opuesto: la carga microbiológica inicial
+                disminuyó al final del proceso, reflejando <strong>efectividad en el control microbiológico</strong>.'
+              - De forma global, las <strong>prevalencias en PT</strong> son más homogéneas entre plantas y 
+                microorganismos que en MP, lo que indica que el riesgo microbiológico final se distribuye de 
+                manera más uniforme en la cadena de producción.
+              - Al analizar la <strong>carga microbiológica (Log<sub>10</sub> UFC/g)</strong> frente a la
+                <strong>actividad de agua (aW)</strong> y los <strong>kilogramos producidos</strong>, se observa que las
+                mayores cargas corresponden a <strong>mesófilos</strong> y <strong>hongos y levaduras</strong> y estas
+                aparecen independientes del volumen producido y aW registrada.
+
+
+
+
+
+
+
+
+
+
+

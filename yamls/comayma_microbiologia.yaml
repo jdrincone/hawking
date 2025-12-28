@@ -1,0 +1,213 @@
+titulo: 'Actividad de Agua y Humedad en el Producto Terminado: Impacto en la Microbiología'
+lugar: "Okuo Analytics"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: "texto"
+        html: >
+          Partimos de las órdenes de producción (OP) con mediciones microbiológicas en
+          producto terminado. Seleccionamos únicamente aquellas OP que registran, al menos,
+          una de estas variables: <b>actividad de agua (aW)</b>, <b>humedad</b> o
+          <b>tamaño de partícula</b>. El conjunto final suma <b>228 OP</b>, correspondientes
+          al período <b>2024-01-01</b> a <b>2025-05-26</b>. Aproximadamente el <b>85%</b>
+          pertenece a productos de avicultura —principalmente <b>Ponedoras</b> y
+          <b>Broilers</b>— en las etapas de <b>Levante</b> y <b>Postura</b>, el <b>~10%</b> a ganado y
+          el <b>~5%</b> restante a cerdos. Con esta base,
+          en las siguientes secciones revisaremos:
+      
+
+      - tipo: "lista"
+        items:
+          - "Caracterizar la mediana de las unidades logarítmicas (log10 UFC/g) de las familias de microorganismos —hongos,
+             levaduras y coliformes— a lo largo de distintos niveles de actividad de agua (aW)."
+          # - "Caracterizar la mediana de log10 UFC/g en distintos rangos de humedad."
+          - "Evaluar si el tamaño de partícula influye en la retención de humedad y, en consecuencia, en el
+             estado microbiológico del producto terminado."
+          - "Detectar regiones del plano aW × humedad con mayor concentración promedio de microorganismos (hotspots),
+             para señalar zonas de mayor prevalencia."
+          - "Estimar la relación lineal entre hongos y levaduras en escala logarítmica, reportando la ecuación del 
+            modelo (pendiente e intercepto), el rango de operación y el coeficiente de determinación (R²)."
+
+
+  - titulo: Box Plot de microorganismos a diferentes niveles de actividad de agua
+    contenido:
+
+
+
+      #- tipo: plotly_html
+      #  src: boxgrid_aw_2x2.html
+        #style: "width: 100%; height: 500px;"
+
+      - tipo: plotly_html
+        src: box_hongos.html
+
+      - tipo: plotly_html
+        src: box_levaduras.html
+
+      - tipo: plotly_html
+        src: box_coliformes.html
+
+      - tipo: plotly_html
+        src: box_rat.html
+
+      - tipo: texto
+        html: >
+          En las tres familias analizadas —hongos, levaduras, y coliformes— se evidencia que, a partir de una 
+          actividad de agua (aW) ≳ 0.67, la carga microbiana central 
+          (mediana de log10&nbsp;UFC/g) tiende a ubicarse por encima de la mediana global del conjunto (OP's
+          del conjunto analizado), en el caso de los rat (Recuento Aerobios Totales), se obtiene un comportamiento
+          diferente, con aW ente 0.64 y 0.66 se obtiene mayor prevalencia. 
+
+      - tipo: texto
+        html: >
+          Si bien los documentos revisados establecen un umbral teórico en aW=0.70, 
+          la historia del comportamiento microbiogico en la planta muestran que la prevalencia de
+          microorganismos comienza a incrementarse 
+          de manera relevante desde valores cercanos a 0.67, independiente del producto.
+
+
+      #- tipo: plotly_html
+      #  src: box_rat.html
+
+      #- tipo: texto
+      #  html: >
+      #    Para el caso de familia de —hongos, levaduras y coliformes— se observa que a partir de una
+      #    actividad de agua (AW) ≳ 0.67 el valor central de la carga microbiana
+      #    (mediana de log10&nbsp;UFC/g) tiende a situarse por encima de la mediana global del conjunto.
+
+
+
+  - titulo: "Hotspots: regiones del plano AW × Humedad con mayor concentración promedio de microorganismos"
+    contenido:
+
+      - tipo: plotly_html
+        src: contornos_aw_hum_logcol_avg.html
+
+      - tipo: plotly_html
+        src: contornos_aw_hum_log_hongos_avg.html
+
+      - tipo: plotly_html
+        src: contornos_aw_hum_log_levaduras_avg.html
+
+      - tipo: lista
+        items:
+          - "<em>Boxplots por aW</em>: a partir de <b>aW > 0.67</b> la mediana de log10(UFC/g) queda de forma
+             consistente por encima de la mediana global. <b>Decisión</b>: de forma opcional se sugiere un <u>límite
+             operativo de aW ≤ 0.66</u>; si aW entra en 0.67–0.70, intentar disminuirlo en lo posible para evitar un
+              ambiente propicio para la aparición de microorganismos."
+          - "<em>Contornos/heatmap aW × Humedad</em>: las mayores cargas medias se concentran en
+             <b>aW ≈ 0.66–0.68</b> con <b>humedad ≈ 12–12.6%</b>. <b>Decisión</b>: cuando aW se acerque a 0.66,
+             se recomienda apuntar a  una <u>humedad objetivo 11.5–12.0%</u>."
+          - "<em>Coherencia biológica</em>: una aW más alta favorece la supervivencia/crecimiento microbiano, 
+            por lo que aumenta la carga medida."
+
+
+      - tipo: plotly_html
+        src: contornos_tp_hum_log_hongos_avg.html
+
+      - tipo: plotly_html
+        src: contornos_tp_hum_log_coliformes_avg.html
+
+      - tipo: plotly_html
+        src: contornos_pt_hum_log_levaduras_avg.html
+
+      - tipo: "texto"
+        html: >
+          Las figuras de contornos muestran el <b>promedio de log10(UFC/g)</b> en el plano
+          <b>Tamaño de partícula × Humedad</b>.
+          El patrón es consistente entre hongos y coliformes: las <b>zonas de mayor carga</b>
+          se agrupan cuando la <b>humedad está entre 12.0% y 12.6%</b> y el tamaño de partícula
+          se concentra en <b>dos bandas</b>: ~<b>450–900 μm</b> y ~<b>1850–2050 μm</b>.
+          
+          En humedades <b>≤ 11.2%</b> la carga promedio cae de forma notoria en casi todos los tamaños.
+
+      - tipo: "lista"
+        items:
+          - " Con lo anterior se rescata que <b>zonas de posible riesgo</b> son Humedad ≈ <b>12.0–12.6%</b> con tamaños ~<b>450–900 μm</b> o
+             ~<b>1850–2050 μm</b> → islas de contorno más densas (mayor log10). <b>Zona segura</b>: Humedad <b>≤ 11.2%</b> (ideal 11.0–11.8%) → contornos más tenues (menor log10)
+             casi independiente del tamaño."
+          #- "<b>Distribución granulométrica</b>: el efecto no es monótono; aparecen picos por bandas (rangos de tamaño
+          #   de particula)"
+
+
+  - titulo: "Relaciones entre familias de microorganismos en escala logarítmica"
+    contenido:
+
+      - tipo: plotly_html
+        src: scatter_1x2_microorganismos.html
+
+      - tipo: texto
+        html: >
+          Los diagramas de dispersión <em>hongos–coliformes</em> y <em>levaduras–coliformes</em>
+          (considerando solo muestras con detección, es decir, valores &gt; 0)
+          no evidencian una relación lineal fuerte. La nube de puntos es amplia,
+          sin una pendiente definida y con alta dispersión a lo largo de todo el
+          rango de coliformes; aumentos en coliformes no se acompañan de incrementos
+          sistemáticos en hongos o levaduras.
+
+      - tipo: texto
+        html: >
+          La falta de correlación podría estar condicionada por otras variables como AW, humedad, 
+          tipo de producto, pero se necesitan mayor cantidad de muestras dar una conclusión relevante.
+         
+
+
+      - tipo: plotly_html
+        src: reg_hongos_vs_levaduras_rango.html
+
+      - tipo: texto
+        html: >
+          Se tiene una relación entre <strong>levaduras</strong>  y <strong>hongos</strong> en
+          escala logarítmica base 10 (log10&nbsp;UFC/g). La franja verde claro indica el rango de 
+          comportamiento lineal
+          dado por log10(Hongos) = −0.056 + 0.927·log10(Levaduras).
+          El ajuste explica el 67.7 % de la variación (R² = 0.677) y n = 139 puntos muestrales.
+
+      - tipo: lista
+        items:
+          - <strong>Traducción a unidades reales:</strong> Hongos ≈ 10<sup>−0.056</sup> · Levaduras<sup>0.927</sup> ≈ <strong>0.88 · Levaduras<sup>0.927</sup></strong>.
+          - <strong>Lectura práctica (elasticidad):</strong> si las levaduras aumentan 10×, los hongos aumentan ~<strong>8.5×</strong> (10<sup>0.927</sup>).
+          - <strong>Ejemplos:</strong> 100&nbsp;UFC/g de levaduras ⇒ ~63&nbsp;UFC/g de hongos; 1 000&nbsp;UFC/g ⇒ ~530&nbsp;UFC/g; 2 510&nbsp;UFC/g ⇒ ~1 250&nbsp;UFC/g.
+          - <strong>Interpretación:</strong> relación positiva y casi proporcional en el rango 1.0–3.4; el exponente 0.927 (&lt;1) sugiere crecimiento de hongos proporcional al de levaduras.
+          - <strong>No extrapolar fuera del rango:</strong> más allá de 3.4 en log10 de levaduras la dispersión es mayor y la recta puede sobre/subestimar.
+
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: "lista"
+        items:
+          - "<strong>aW es el factor determinante</strong>: por encima de ~<b>0.67</b> aumenta el valor típico (mediana) 
+             de hongos, levaduras y coliformes. De manera opcional se sugiere mantener <u>aW ≤ 0.66</u> a la salida de enfriador."
+
+          - "<strong>Hotspots combinados</strong>: las mayores cargas se concentran en <b>aW ≈ 0.66–0.68</b> y
+             <b>humedad ≈ 12–12.6%</b>. <b>Mitigación:</b> cuando aW se acerque a 0.66, se sugiere apuntar a <u>humedad objetivo 11.0–11.8%</u> 
+             y elevar la frecuencia de muestreo, para mantener control de microorganismos."
+
+          - "<strong>Efecto de granulometría</strong>: se observan picos de carga en dos bandas de tamaño de partícula
+             <b>450–900 μm</b> y <b>1850–2050 μm</b>. Se sugiere revisar las dietas que trabajan en este rango de tamaño de partícula."
+
+          - "<strong>Relación levaduras–hongos</strong> (escala log10): en el rango de levaduras 1.0–3.4 log,
+             los hongos siguen la ley <em>Hongos ≈ 0.88·Levaduras<sup>0.927</sup></em> (R²≈0.68). <b>Implicación:</b> 
+             reducir levaduras en ese rango disminuye hongos de manera casi proporcional. <b>No extrapolar</b> fuera 
+             de 3.4 log por mayor dispersión."
+
+          - "<strong>Coliformes</strong>: no muestran relación lineal clara con hongos/levaduras; es posible qe su 
+             control dependa  más de <b>higiene, saneamiento y prevención de contaminación cruzada</b>."
+
+          - "<strong>Umbrales de alerta</strong> (para operaciones diarias): se sugiere tener cuidado si <b>0.66 < aW ≤ 0.68</b> o
+             la <b>humedad 12.0–12.6%</b>. Si se cumple <b>ambos</b> y el tamaño cae en 450–900 μm o 1850–2050 μm, según la historia
+             es muy probable que se tenga un ambiente propicio para el crecimiento de microorganismos."
+
+          - "<strong>KPI de control</strong>: % de OP en zona segura (aW ≤ 0.66 y humedad ≤ 12.0%), % de OP en celdas de
+             riesgo (aW 0.66–0.68 & humedad 12–12.6% en bandas de tamaño críticas), mediana mensual de log10 por familia, 
+            y tiempo medio de corrección al salir de zona segura."
+
+          - "<strong>Alcance y siguiente paso</strong>: resultados basados en <b>228 OP</b> (85% avicultura, 10% ganado y el 5% cerdos)."
+
+          - "<strong>Proyección</strong>: Con base en estos hallazgos, y previo a la implementación de los ajustes productivos 
+                       recomendados, un <b>ajuste dinámico pero preciso de las dosis</b> que permita <u>mantener la protección 
+                       microbiológica del producto en todo momento</u>. La meta es que este reporte sirva como guía para optimizar la 
+                       <b>eficiencia operativa</b>, garantizar la <b>estabilidad durante el almacenamiento</b> y asegurar la 
+                       <u>inocuidad del producto final</u>, evitando condiciones que favorezcan el crecimiento de <b>mohos y levaduras</b>."

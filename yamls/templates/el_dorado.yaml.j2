@@ -1,0 +1,72 @@
+titulo: "Reporte de Optimización Microbiológica - El Dorado"
+lugar: "Planta El Dorado"
+contexto: "el_dorado_rendering"
+descripcion: "{{ descripcion }}"
+
+secciones:
+  - titulo: "1. Resumen Ejecutivo y Microbiología Mensual"
+    contenido:
+      - tipo: "texto"
+        html: |
+          Este reporte detalla el desempeño microbiológico en la planta El Dorado durante el periodo <strong>{{ periodo_analisis }}</strong>, con un enfoque especial en el cierre de <strong>{{ ultimo_mes }}</strong>.
+          <br><br>
+          A continuación, se presentan las tendencias de las principales bacterias (Salmonella y Campylobacter) comparadas con el impacto en el rendimiento (Kg Descuento).
+
+      - tipo: "plotly_html"
+        src: "salmonella_line.html"
+        style: "width: 100%;"
+
+      - tipo: "plotly_html"
+        src: "campylobacter_line.html"
+        style: "width: 100%;"
+
+      - tipo: "texto"
+        html: |
+          El siguiente Heatmap resume la prevalencia microbiológica en todas las etapas del proceso para el mes de <strong>{{ ultimo_mes }}</strong>.
+          Permite identificar rápidamente puntos críticos donde la presencia bacteriana es mayor.
+
+      - tipo: "plotly_html"
+        src: "prevalencia_heatmap.html"
+        style: "width: 100%;"
+
+  - titulo: "2. Desempeño Detallado por Granjas"
+    contenido:
+      - tipo: "texto"
+        html: |
+          Se analiza el desempeño de las granjas que abastecieron a la planta en <strong>{{ ultimo_mes }}</strong>. 
+          Esto permite identificar si la carga microbiológica proviene de origen o si hay variaciones significativas entre lotes.
+
+      - tipo: "plotly_html"
+        src: "prev_last_month_Salmonella.html"
+        style: "width: 100%;"
+
+      - tipo: "plotly_html"
+        src: "prev_last_month_Campylobacter.html"
+        style: "width: 100%;"
+
+  - titulo: "3. Análisis de Control Físico-Químico"
+    contenido:
+      - tipo: "texto"
+        html: |
+          El control del Chiller es fundamental para la reducción de la carga microbiológica. 
+          Se analizan las distribuciones acumuladas (CDF) de pH, ORP y Cloro para verificar el cumplimiento de los estándares operativos.
+
+      - tipo: "plotly_html"
+        src: "cdf_ph.html"
+        style: "width: 100%;"
+
+      - tipo: "plotly_html"
+        src: "cdf_orp.html"
+        style: "width: 100%;"
+
+      - tipo: "plotly_html"
+        src: "cdf_cloro.html"
+        style: "width: 100%;"
+
+      - tipo: "texto"
+        html: |
+          Finalmente, se presenta la matriz de correlación para entender cómo las variables fisicoquímicas influyen directamente en la presencia microbiológica.
+
+      - tipo: "plotly_html"
+        src: "correlacion_chiller.html"
+        style: "width: 100%;"

@@ -1,0 +1,55 @@
+titulo: Impact of Adiflow on Production and Quality Parameters
+lugar: Okuo Analytics
+descripcion: ""
+
+secciones:
+  - titulo: Introduction
+    contenido:
+      - tipo: texto
+        html: >
+          This report was developed using the Okuo Flow platform, a tool focused on the 
+          <strong>centralization</strong>, <strong>integration</strong>, and <strong>transformation</strong> 
+          of data related to production and quality in feed plants. Thanks to this platform, 
+          it is possible to extract valuable information that facilitates decision-making by simultaneously 
+          analyzing production variables (processed tons, production times, and sack-off) and 
+          quality variables (temperature, pellet durability, and moisture). This enables 
+          <strong>performance optimization</strong> while maintaining high quality standards, 
+          reducing friction between production and quality departments, and achieving a smoother 
+          and more efficient process.
+
+          <br><br>
+          In this context, we will use Okuo Flow to provide a statistical understanding of the different 
+          parameters measured.
+
+  - titulo: Production Measurements by Pellet Machine and Adiflow
+    contenido:
+      - tipo: imagen
+        src: sumary_maquine.png
+        mime: png
+        style: "width: 90%;"
+      - tipo: texto
+        html: A systematically higher load is observed with the use of Adiflow, as well as 
+              higher pressures. In the case of temperature, significant differences are observed 
+              only for Pellet machine 1. For the others, differences should be analyzed according 
+              to the pelleted diets.
+
+  - titulo: Quality Measurements by Pellet Machine and Adiflow
+    contenido:
+      - tipo: imagen
+        src: sumary_calidad.png
+        mime: png
+        style: "width: 90%;"
+      - tipo: texto
+        html: With Adiflow, we improved pellet durability in Pellet machine 4. In Pellet machine 2 and 3, 
+              quality decreased by 0.5%. Given the magnitude of the change with and without Adiflow, 
+              we do not have statistical significance to guarantee meaningful changes in durability.
+
+  - titulo: Change in Initial and Final Moisture with Adiflow
+    contenido:
+      - tipo: imagen
+        src: sumary_hum.png
+        mime: png
+        style: "width: 90%;"
+      - tipo: texto
+        html: With Adiflow, we consistently have a moisture percentage above 10% before the pelleting 
+              process. After the process, moisture levels are maintained.

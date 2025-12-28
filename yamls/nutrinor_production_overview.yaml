@@ -1,0 +1,229 @@
+titulo: "Overview: Rendimiento en planta"
+lugar: "NUTRINOR - Alimentación Completa para Animales"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivo
+    contenido:
+      - tipo: lista
+        items:
+          - Caracterizar el comportamiento diario de las variables de proceso durante 2025 y 
+            evaluar su impacto en la producción y la calidad del alimento.
+          - Medir la correlacción entre la carga y su efecto en el rendimiento de las pellet y 
+            la calidad de los productos producidos.
+          - Cuantificar el efecto del personal/turno sobre el rendimiento de cada peletizadora.
+          - Analizar la distribución mensual de los tiempos de paro y su contribución 
+            a las pérdidas de rendimiento.
+
+  - titulo: Comportamiento diario de las variables de proceso por peletizadora
+    contenido:
+      - tipo: texto
+        html: >
+          Para cada peletizadora y variable de proceso —carga (Hz), toneladas
+          producidas (t), rendimiento (t/h) y PDI (%)— se muestra el <b>promedio
+          diario</b> y su <b>media móvil de 7 días</b>. Esta última se incluye
+          como estimación suavizada coherente asumiendo una planificación semanal de la
+          producción.
+
+      - tipo: plotly_html
+        src: carga_by_date_pellet.html
+      - tipo: texto
+        html: >
+          Analizamos el comportamiento diario de la carga por peletizadora. Con apoyo
+          de la <b>media móvil de 7 días</b>, se observa que la <b>peletizadora 420</b>
+          reduce su carga de forma progresiva a partir de junio. Por su parte, las
+          <b>peletizadoras 350 y 520</b>, aunque con dinámicas distintas, operan diariamente
+          dentro de un <b>rango de carga similar</b>.
+  
+
+      - tipo: plotly_html
+        src: rendimiento_by_date_pellet.html
+
+      - tipo: texto
+        html: >
+          En <b>rendimiento</b>, la <b>peletizadora 520</b> marca la referencia más alta: desde mayo se mantiene estable
+          en el rango de <b>7–8 t/h</b>. Le sigue la <b>peletizadora 420</b>, que desde junio muestra una caída sostenida hasta
+          <b>4–5 t/h</b>. La <b>peletizadora 350</b> es la de menor rendimiento, pero la más
+          estable desde que esta en funcionamiento, alrededor de <b>2.8–3.2 t/h</b>.<br><br>
+          Al contrastar las curvas de <i>carga</i> y <i>rendimiento</i> de la 420, surge una
+          hipótesis clara: ¿la reducción de rendimiento desde junio está asociada a la
+          disminución de carga? Si es así, <b>¿qué tan fuerte es ese efecto cuantitativamente?</b>, más adelante,
+          responderemos esta pregunta.
+      
+
+      - tipo: plotly_html
+        src: pdi_by_date_pellet.html
+
+      - tipo: texto
+        html: >
+            En <b>PDI</b>, las dietas de la peletizadora <b>420</b> muestran una
+            disminución sostenida desde mayo, con su mayor caída en junio. La
+            pérdida acumulada es de ~<b>1,0 pp</b>: el promedio pasó de
+            ><b>97,3%</b> a ~<b>96,2%</b>. En la <b>520</b> se observa un patrón
+            similar desde finales de junio, con descensos de hasta ~<b>1,5 pp</b>.
+            En contraste, la <b>350</b> mantiene una calidad estable en el rango
+            <b>95–96%</b>.
+
+      - tipo: plotly_html
+        src: toneladas_by_date_pellet.html
+
+      - tipo: texto
+        html: >
+              Por último, revisamos las <b>toneladas procesadas</b> por peletizadora.
+              La <b>520</b> es la de mayor capacidad, superando las <b>100 t/día</b>; le sigue la
+              <b>420</b>, que alcanza ~<b>80 t/día</b>, y la <b>350</b>, con hasta ~<b>45 t/día</b> y
+              un aumento progresivo en el último mes. Aunque en junio la <b>420</b> presenta
+              variaciones día a día en toneladas, estas son <b>menos marcadas</b> que las
+              observadas en su <i>carga</i> (ver primera gráfica), lo que sugiere que la caída
+              de desempeño en ese periodo se relaciona más con cambios de carga que con volumen
+              procesado.
+          
+              <br><br>
+              Para contrastar los hallazgos descriptivos con el <b>impacto</b> de las
+              variables de proceso sobre el <b>rendimiento</b> y la <b>calidad</b>, nos
+              centraremos en la <b>peletizadora 420</b>, que desde junio muestra un
+              deterioro en ambos indicadores. Este análisis se profundizará mediante
+              una <b>matriz de correlación</b>, con la que evaluaremos qué variables
+              operativas se asocian con las variaciones observadas.
+
+      #- tipo: plotly_html
+      #  src:  heatmap_pellet 520.html
+
+      #- tipo: plotly_html
+      #  src: heatmap_pellet 350.html
+
+      - tipo: plotly_html
+        src: heatmap_pellet 420.html
+
+      - tipo: texto
+        html: >
+          En la matriz se observa que <b>carga (Hz)</b> y <b>rendimiento (t/h)</b> están
+          <b>fuertemente correlacionados</b> (~0,7). ¿Cómo leerlo? Un coeficiente de 0,7
+          indica que, cuando la <i>carga</i> sube, el <i>rendimiento</i> tiende a subir en la
+          misma dirección y con alta consistencia; de forma análoga, una caída en la carga —
+          como la registrada en junio— suele venir acompañada de una caída proporcional en
+          rendimiento. En términos estadísticos, una correlación de 0,7 sugiere que la relación
+          lineal explica una fracción importante de la variabilidad. 
+          <br><br>
+          Desde el punto de vista <b>físico–de proceso</b>, al aumentar la carga se incrementa
+          el caudal a través del dado, elevando el throughput (t/h). Sin embargo, ese mayor
+          flujo puede reducir los tiempos de residencia y la energía específica por unidad de
+          producto en acondicionamiento y compactación, afectando fenómenos como la
+          gelatinización del almidón o la plastificación de la matriz. Esto explica que la
+          correlación entre <b>rendimiento</b> y <b>PDI</b> sea <b>negativa</b>: más
+          rendimiento suele implicar <i>algo menos</i> de calidad mecánica del pellet si no se
+          compensan  variables (vapor, humedad, temperatura, diseño de dado, formulación, aglutinantes,
+          grasa añadida, etc.).
+          <br><br>
+      
+      
+  - titulo: Efecto de número de dado por peletizadora en las variables de rendimiento y calidad
+    contenido:
+      - tipo: texto
+        html: >
+          Para los productos procesados este año, se analiza cómo varía el <b>rendimiento</b> de las
+          peletizadoras y la <b>calidad del producto (PDI)</b> al cambiar el <b>número de dado</b>,
+          reportando los <b>promedios</b> observados en cada configuración.
+      
+
+      - tipo: plotly_html
+        src: dado_pellet_heatmap.html
+
+      - tipo: texto
+        html: >
+          Se observa que el mayor rendimiento promedio en la pellet 350 y 530,
+          se obtiene al usar el dado número 1,
+          para la pellet 420, usando el dado número 2.
+
+      - tipo: plotly_html
+        src: dado_pellet_pdi_heatmap.html
+
+      - tipo: texto
+        html: >
+          La mejor calidad de los productos por peletizadora, se obtienen para la 350 con el dado número 2,
+          para la 420 con el dado número 1, y para la 520 con el dado número 4.
+          
+
+  - titulo: Rendimiento promedio en el año por Pelletizador en cada peletizadora
+    contenido:
+      - tipo: texto
+        html: >
+          La gráfica es un <b>heatmap</b> con el <b>rendimiento promedio anual (t/h)</b> en cada
+          intersección de <i>Pelletizador</i> (eje vertical) y <i>pellet</i> (eje horizontal: 350, 420, 520).
+          El color va de tonos <b>verdes</b> (rendimiento bajo) a <b>naranjas</b> (alto). Los números dentro
+          de cada celda son los promedios. Solo se resentan los 10 peletizadores con más registros en el año.
+
+      - tipo: plotly_html
+        src: peletizador_pellet_heatmap.html
+
+      - tipo: lista
+        items:
+        - '<b>Pellet 520</b>: línea más productiva y estable; la mayoría de equipos operan entre ~<b>7,2–7,7 t/h</b> (celdas naranjas).'
+        - '<b>Pellet 350</b>: línea menos productiva pero muy consistente; promedios alrededor de ~<b>2,8–3,0 t/h</b> (verdes).'
+        - '<b>Pellet 420</b>: rendimiento intermedio con <b>más variabilidad por operario</b>; valores desde ~<b>4,7</b> hasta ~<b>6,0 t/h</b>.'
+        - 'La variabilidad en <b>420</b> sugiere diferencias en prácticas de operación, condición del dado o lo revisado en la
+           primera sección con la carga en la maquina.'
+
+
+      - tipo: plotly_html
+        src: horas_paro_by_mes_pellet 420.html
+
+      - tipo: lista
+        items:
+          - "<b>Pellet 420</b>: Predominan <b>limpieza</b> y <b>cambio de producto</b> (≈40–55 h), 
+           con caída hacia mes 7. Hay un <b>pico de falta de producto</b> en mes 5 (~48 h). 
+           El resto (daños, vapor, silo) son menores y esporádicos."
+
+      - tipo: plotly_html
+        src: horas_paro_by_mes_pellet 520.html
+      - tipo: lista
+        items:
+          - "<b>Pellet 520</b>: El mayor contribuyente es <b>cambio de producto</b> 
+            (≈115→65→28 h del mes 1 al 7), con tendencia clara a la baja. 
+            <b>Limpieza</b> es el segundo factor (≈30→15 h). Pico puntual de <b>cambio de dado</b> en mes 6 (~28 h)."
+
+      - tipo: plotly_html
+        src: horas_paro_by_mes_pellet 350.html
+
+      - tipo: lista
+        items:
+        - "<b>Pellet 350</b>: Meses 5–6 concentran paros altos por <b>cambio de producto</b>
+           (~51→73 h) y <b>falta de producto</b> (~59→40 h)."
+
+      - tipo: texto
+        html: >
+            En conjunto, los paros <b>planeables</b> (cambio de producto, limpieza, cambio de dado) 
+            explican la mayor parte del tiempo detenido; los <b>no planeables</b> (falta de producto, 
+            atascamientos, daños) aparecen en picos específicos (meses 5–6).
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - "<b>Rendimiento por línea:</b> la <b>pellet 520</b> es la más productiva y
+             estable (≈7–8 t/h). La <b>pellet 350</b> opera con el rendimiento más bajo pero
+             consistente (≈2.8–3.2 t/h). La <b>pellet 420</b> muestra caída sostenida desde junio (≈4–5 t/h)."
+
+          - "<b>Carga vs. rendimiento:</b> existe una correlación fuerte en la 420 (<b>r≈0.7</b>): 
+            la disminución de <i>carga</i> observada desde junio explica buena parte de la pérdida de
+            <i>rendimiento</i> (relación lineal significativa)."
+
+          - "<b>Rendimiento vs. calidad (PDI):</b> se ratifica lo normalmente encontrado en la bibliografía: subir 
+            rendimiento tiende a reducir PDI si no se ajustan otras variables de proceso de forma adecuada.
+             En 420 y 520 el PDI cae ~1.0–1.5 pp desde mayo–junio."
+
+          - "<b>Número de dado óptimo (promedios 2025):</b> mayor rendimiento con <b>dado #1</b> en 350 y 520; 
+          en 420 destaca el <b>dado #2</b>. Para calidad, mejores PDI: 350→<b>#2</b>, 420→<b>#1</b>, 520→<b>#4</b>."
+
+          - "<b>Variabilidad por operador:</b> en 420 hay mayor dispersión de desempeño entre pelletizadores; 
+            sugiere oportunidad de <b>estandarizar prácticas</b>."
+
+          - "<b>Paros principales:</b> dominan los <b>planeables</b> (cambio de producto y limpieza); 
+             en 520 los cambios de producto bajan de ~115 h a ~28 h entre los primeros y últimos meses; 
+             en 350 y 420 aparecen picos de <b>falta de producto</b> (meses 5–6)."
+
+          - "<b>Foco de mejora por línea:</b> 420 → recuperar carga objetivo y uniformidad; 520 → sostener estándar
+            y reducir tiempos de cambio."
+
+          - "<b>Posibles sugerencias:</b> tener un inventario de productos a peletizar que no requieran
+           cambios de materias primas de forma drástica, asi reducir este el tipo de paro."

@@ -1,0 +1,69 @@
+titulo: Pellet Durability Efficiency
+lugar: The power of data to infer, forecast, and optimize business processes
+descripcion: ""
+
+secciones:
+  - titulo: Starting Point
+    contenido:
+      - tipo: lista
+        items:
+          - '<strong>Data</strong>: 📏 Collection, selection, and cleaning of relevant data.'
+          - '<strong>Context</strong>: 🔬 People, variables, and factors considered.'
+          - '<strong>Objectives</strong>: 🌍 Business understanding/strategy – What do we want to infer, forecast, and optimize?'
+
+  - titulo: 🔬Variables Influencing Pellet Quality 🔬
+    contenido:
+      - tipo: imagen
+        src: pel.png
+        mime: png
+        style: "width: 90%;"
+
+  - titulo: 📏 Durability Overview 📏
+    contenido:
+      #- tipo: tabla
+        #src: data.csv
+      - tipo: plotly_html
+        src: stacked_histogram_durabilidad.html
+      - tipo: texto
+        html: '<h3 style="text-align: center;">Correlation Matrix in Pelletizer</h3>'
+
+      - tipo: plotly_html
+        src: correlation_heatmap_new_green.html
+  - titulo: 🔬 Inference and Forecasting 🔬
+    contenido:
+      - tipo: imagen
+        src: ML.png
+        mime: png
+        style: "width: 90%;"
+      - tipo: texto
+        html: '<h3 style="text-align: center;">How do the predictors behave?</h3>'
+      - tipo: plotly_html
+        src: shap_importance_green_bar_chart.html
+
+      - tipo: texto
+        html: '<h3 style="text-align: center;">Behavior of each variable in the prediction</h3>'
+      - tipo: imagen
+        src: shap_scatter_Delta Temp.png
+        mime: png
+        style: "width: 90%;"
+      - tipo: imagen
+        src: shap_scatter_Hum Enfriamiento.png
+        mime: png
+        style: "width: 90%;"
+
+  - titulo: 🔬 Simulation 🔬
+    contenido:
+      - tipo: texto
+        html: '<h3 style="text-align: center;">Explore the system’s parameter space – What if...?</h3>'
+      - tipo: plotly_html
+        src: subplot_3d_contour_sin_fondo.html
+        style: "width: 100%; height: 500px;"
+
+  - titulo: We're just beginning the data journey ...
+    contenido:
+      - tipo: lista
+        items:
+          - Deeply understand the data, from production processes and measurements to business strategy.
+          - What's wrong? Fix it and learn. What's right? Keep doing it.
+          - Experiment, experiment, experiment — iterate to refine and learn from data.
+          - Dream big with feet on the ground — tame monsters with technique and brainpower.

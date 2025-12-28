@@ -1,0 +1,100 @@
+titulo: Revisión prevalencia de <em>Salmonella</em> para el mes de Julio
+lugar: "El Dorado"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: lista
+        items:
+            - Analizar el comportamiento de las variables físico-químicas (ORP, pH y cloro libre) 
+              entre enero y julio, y su posible relación con la prevalencia de <em>Salmonella</em>.
+            - Identificar las granjas con julio carga microbiológica durante el periodo evaluado.
+
+
+  - titulo: Prevalencia
+    contenido:
+      - tipo: texto
+        html: >
+          La prevalencia se define como el número de muestras microbiológicas con resultado positivo 
+          para la presencia de  <em>Salmonella</em>, dividido entre el total de muestras tomadas
+          en un periodo determinado. 
+          En este análisis, se evalúa mes a mes el valor de prevalencia en contraste con medidas promedios
+          de variables físico-químicas analizadas como:
+          <strong>pH</strong>, <strong>ORP</strong> y <strong>cloro libre</strong>. 
+
+      - tipo: tabla
+        src: summary.csv
+      - tipo: texto
+        html: >
+          <strong>Panorama general</strong>: Julio registró 80 muestras (máximo anual) y una caída
+          de prevalencia de 14% a 5% frente a junio. Las medidas fisicoquímicas se mantienen sin
+          cambios relevantes; el pH permanece estable en los últimos tres meses.
+
+      - tipo: plotly_html
+        src: prevalencia_2x2.html
+        style: "width: 100%; height: 500px;"
+
+
+  - titulo: Curvas de probabilidad acumulada
+    contenido:
+      - tipo: plotly_html
+        src: cdf_ph.html
+        style: "width: 100%; height: 500px;"
+
+      - tipo: plotly_html
+        src: cdf_cloro.html
+        style: "width: 100%; height: 500;"
+
+      - tipo: plotly_html
+        src: cdf_orp.html
+        style: "width: 100%; height: 500px;"
+
+      - tipo: texto
+        html: >
+          La <strong>distribución acumulada</strong> de las variables fisicoquímicas no muestra cambios
+          alarmantes; por el contrario, se reafirma la estabilidad del pH en los últimos meses. El ORP de junio
+          y julio —meses con menor prevalencia— se concentra entre 340–540 mV, con mayor densidad alrededor de 450 mV.
+  
+  
+
+  - titulo: Comparativa Prevalencia por Granjas de Julio con respecto al promedio de meses anteriores
+    contenido:
+      - tipo: tabla
+        src: delta_table_julio.csv
+
+      - tipo: texto
+        html: >
+          La tabla anterior revela varios resultados relevantes. La columna <strong>Δ Julio</strong>
+          se define como (Julio − promedio Ene–Jun) y representa el <strong>cambio</strong> en
+          la prevalencia por granja respecto al último semestre. <em>Valores negativos</em> indican
+          una <strong>reducción</strong> de la prevalencia en julio frente al promedio semestral,
+          mientras que <em>valores positivos</em> señalan un <strong>aumento</strong> (mayor carga
+          microbiológica al chiller). Destaca que la única granja con incremento fue
+          <strong>EL MANZANO</strong>, con +32 p.p. en la presencia de <em>Salmonella</em>.
+  
+  
+  
+  
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - La prevalencia general descendió de 14% (junio) a 5% (julio) con 80 muestras —el mayor muestreo del año—,
+            lo que aumenta la confianza estadística del resultado.
+          - Las variables fisicoquímicas se mantuvieron estables; en particular, el pH mostró consistencia en los
+            últimos tres meses. El ORP de junio y julio se concentró entre 340–540 mV, con mayor densidad alrededor
+            de 450 mV, coincidiendo con los meses de menor prevalencia.
+          - No se detectan cambios abruptos en cloro libre, pH u ORP que, por sí solos, expliquen la mejora; es 
+            probable una combinación de buenas prácticas operativas, higiene y control de proceso.
+          - A nivel de granja, la mayoría presentó Δ Julio negativo (mejora). La excepción fue <strong>EL MANZANO</strong>,
+            con +32 p.p.; se recomienda un plan de acción específico (cadena fría, tiempos de espera, 
+            limpieza y desinfección en transporte, calidad de agua y frecuencia de desinfección).
+          - En control de proceso, mantener ORP en el rango observado (340–540 mV, objetivo operativo cercano a ~450 mV) 
+            y pH estable.
+
+
+
+
+

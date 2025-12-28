@@ -1,0 +1,83 @@
+titulo: "Análisis Rehumectación"
+lugar: "Ecuador"
+descripcion: ""
+
+secciones:
+  - titulo: "Objetivo"
+    contenido:
+      - tipo: lista
+        items:
+            - Revisión del comportamiento de las variables de control en el proceso
+              de pellet
+            - Estimación del retorno de inversión ROI.
+
+  - titulo: "Comportamiento de humedad en harinas y pellet"
+    contenido:
+      - tipo: plotly_html
+        src: comparacion_rehumectante_humedad.html
+        #style: "width: 100%; height: 500px;"
+
+      - tipo: texto
+        html: >
+          En el caso de la harina, el uso del rehumectante genera un aumento del <strong>0.42%</strong> 
+          en la humedad (de 10.51% a 10.94%). Para el pellet, se observa una mejora de <strong>0.46%</strong> 
+          (de 9.50% a 9.96%) al aplicar el rehumectante.
+
+  - titulo: "Comportamiento de la Actividad del agua"
+    contenido:
+
+      - tipo: plotly_html
+        src: comparacion_rehumectante_aw.html
+        #style: "width: 60%;"
+      - tipo: texto
+        html: >
+          Aunque la actividad de agua disminuyó en 0.019 unidades, este cambio no se considera significativo,
+          ya que se encuentra dentro del margen de error del instrumento de medición.
+      
+  - titulo: "Comportamiento de la Temperatura"
+    contenido:
+      - tipo: plotly_html
+        src: comparacion_rehumectante_temp.html
+
+      - tipo: texto
+        html: >
+          En cuanto a la temperatura en la harina, con rehumectante presenta un incremento de
+          <strong>15.69°C</strong>,
+          lo que indica un mejor acondicionamiento durante el proceso de peletización.
+
+  - titulo: "Comportamiento del Sackoff"
+    contenido:
+      - tipo: plotly_html
+        src: rehu.html
+
+
+      - tipo: texto
+        html: >
+          El uso del rehumectante permitió reducir el <strong>sack-off</strong> de <strong>5.3%</strong> a <strong>1.5%</strong>, 
+          lo que representa una mejora del <strong>3.8%</strong>.
+
+  - titulo: "Cálculo del ROI"
+    contenido:
+      - tipo: texto
+        html: >
+          Esta mejora equivale a una ganancia de <strong>38.33 kilogramos por tonelada</strong> de alimento producido.
+          Si el alimento tiene un valor de venta de <strong>USD $0.50 por kilogramo</strong>, 
+          entonces los ingresos adicionales por tonelada ascienden a:
+          <br>
+          <strong>38.33 × 0.50 = USD $19.17</strong>
+          <br><br>
+          El tratamiento aplicado consistió en <strong>4 Kilos de Inhimold por Tonelada</strong>, 
+          con un costo de <strong>USD $2.35 por Kilos</strong>. Esto da un <strong>Costo Total</strong> de:
+          <br>
+          <strong>2.35 × 4 = USD $9.40 por tonelada</strong>
+          <br><br>
+          Por lo tanto, la <strong>Ganancia Neta</strong> por tonelada de alimento es:
+          <br>
+          <strong>USD $19.17 − USD $9.40 = USD $9.77</strong>
+          <br><br>
+          El retorno sobre la inversión (ROI) se calcula como:
+          <br>
+          <strong>ROI = <em>Ganancia Neta / Costo Total = </em> (19.17 − 9.40) / 9.40 ≈ 1.039</strong>
+          <br><br>
+          <em>Por cada dólar invertido, se recupera el dólar más una ganancia neta adicional de <strong>USD $1.03</strong></em>,
+          lo que indica que el uso del tratamiento es rentable.

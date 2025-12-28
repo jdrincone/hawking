@@ -1,0 +1,146 @@
+titulo: "Insight Data Cervalle"
+lugar: "Okuo Analytics"
+descripcion: ""
+secciones:
+  - titulo: "Objetivo"
+    contenido:
+      - tipo: lista
+        items:
+          - Análisis temporal de las métricas de calidad por peletizadora.
+          - Evaluciación del comportamiento de la temperatura y humedad en el enfriador.
+          - Comparación diaria entre tiempos de paro e intervalos de operación productiva.
+
+  - titulo: "Análisis temporal de las métricas de calidad por peletizadora"
+    contenido:
+      - tipo: texto
+        html: >
+          A continuación, se presenta el comportamiento de las métricas de calidad —durabilidad, finos,
+          y  temperatura en el acondicionador— para las distintas peletizadoras, donde se muestras
+          diferencias día tras día en el comportamiento y control  (valor medido por día) de las medidad
+          (variabilidad de la medida por día).
+          El análisis muestra la evolución  de estas variables a lo largo del tiempo (presente año), 
+          permitiendo identificar patrones, tendencias y posibles desviaciones en el proceso de peletizado.
+      - tipo: plotly_html
+        src: "durabilidad_pelet.html"
+
+      - tipo: plotly_html
+        src: "finos_pelet.html"
+
+      - tipo: plotly_html
+        src: "temp_acond_pelet_tiempo.html"
+
+      - tipo: texto
+        html: >
+          De forma sistemática, se observa que la peletizadora 1 (verde) presenta un mejor desempeño y mayor control
+          sobre las variables de calidad analizadas durante el periodo evaluado, en comparación con la peletizadora 2.
+          Es importante destacar que la durabilidad en la peletizadora 1 se mantiene consistentemente por encima del 99%,
+          con valores altamente estables en el tiempo, lo cual sugiere un excelente control del proceso o, alternativamente,
+          una posible sesgo en la adquisición de datos.
+          Por su parte, la peletizadora 2 exhibe un desempeño inferior, aunque su durabilidad diaria promedio supera el 96%,
+          lo cual es normal en un proceso de producción donde existen procesos manuales.
+          <br><br>
+          En el caso de la temperatura en el acondicionador, se ve un aumento progresivo en el tiempo de la 
+          temperatura en la peletizadora 2, ¿Por qué? Este aumento, no tiene impacto o no esta correlaccionado con
+          un mejoramiento en la calidad del pellet.
+          
+
+  - titulo: "Relación con los cambios de Humedad y Temperatura en el Enfriador por Peletizadora"
+    contenido:
+      - tipo: texto
+        html: >
+         Si cambio la temperatura en el enfriador, ¿Cuál es la humedad esperada en este lugar? 
+          ¿El cambio aplica para ambas peletizadoras?
+
+      - tipo: plotly_html
+        src: "relacion_temp_enfriamento_hum_enfriamiento.html"
+
+      - tipo: texto
+        html: >
+          La relación entre la humedad del producto en el enfriador y la temperatura de enfriamiento varía según la peletizadora.
+          Por cada grado adicional en la temperatura del enfriador, la humedad se reduce en un 0.65% en la peletizadora 1 y en un 0.53% en la peletizadora 2.
+          En otras palabras, la humedad responde de manera más sensible a los cambios de temperatura en la peletizadora 1, la cual es de menor tamaño.
+          <br><br>
+          ¿Qué tan significativa es esta diferencia? Por cada grado de temperatura, se observa una diferencia de hasta 1.2% en la humedad entre ambas peletizadoras,
+          lo que indica un mayor control o susceptibilidad al ajuste en la peletizadora 1 frente a la peletizadora 2.
+  
+  
+  
+
+  - titulo: "Comparación diaria entre tiempos improductivos y tiempos operación productiva."
+    contenido:
+      - tipo: texto
+        html: >
+          Partiendo de la definición de que el tiempo productivo corresponde a las actividades que contribuyen directamente 
+          a la producción y cuentan con una orden de producción activa, mientras que el tiempo improductivo comprende 
+          aquellas actividades que, aunque se realizan durante una orden de producción, no aportan directamente al proceso productivo; 
+          se observa que, en promedio diario, cada peletizadora registra alrededor de 18 horas de tiempo productivo. 
+          Este valor es coherente con la operación en tres turnos. 
+          No obstante, también se identifican pérdidas promedio de 1 hora y 30 minutos por día en actividades clasificadas como 
+          "necesarias para continuar con la producción", este tiempo por día representa del orden de un 9% de tiempo "perdido" por día.
+
+      - tipo: tabla
+        src: tiempos_avg_dia.csv
+
+      - tipo: texto
+        html: >
+          Esto plantea una pregunta clave: ¿cuáles son específicamente estas actividades improductivas y cuánto tiempo
+          demanda cada una, en promedio por día? Para responder a este interrogante, a continuación se presenta una tabla
+          con el listado de actividades clasificadas como "necesarias para continuar con la producción", ordenadas de mayor
+          a menor según su frecuencia de ocurrencia a lo largo del periodo analizado, junto con el tiempo promedio diario
+          que cada una representa.
+
+      - tipo: tabla
+        src: time_imp_avg_dep.csv
+
+      - tipo: texto
+        html: >
+          Se observa que el cambio de producto en la peletizadora 1 es la actividad más recurrente día tras día,
+          con un requerimiento promedio de aproximadamente 1 hora diaria. En el caso de la peletizadora 2, las actividades
+          que más se repiten por día son el cambio de dieta, el alistamiento y la aplicación de lubricante.
+          <br><br>
+          Si bien no son las más frecuentes, los mantenimientos correctivos, cuando ocurren, representan una demanda
+          considerable de tiempo: en la peletizadora 2 alcanzan un promedio de 1 hora y 30 minutos, mientras que en
+          la peletizadora 1 superan las 2 horas.
+          <br><br>
+          A pesar de su baja frecuencia en el histórico (solo dos eventos registrados), las contingencias externas generaron
+          más de 11 horas de paro en total. No obstante, <strong>destaca el impacto de la falta de materia prima: cada vez que ocurre,
+          demanda en promedio 8 horas de improductividad por día</strong>.
+          
+
+  - titulo: Conclusiones
+    contenido:
+        - tipo: lista
+          items:
+              - "La <strong>peletizadora 1</strong> presenta un mejor desempeño en calidad: mantiene una durabilidad
+                promedio superior al <strong>99%</strong> con baja variabilidad y menor proporción de finos,
+                a diferencia de la peletizadora 2, cuya durabilidad promedio ronda el <strong>96%</strong> y presenta
+                mayor dispersión en sus métricas."
+
+              - Se evidencia un <strong>aumento sostenido</strong> en la temperatura del acondicionador en la peletizadora 2.
+                Este cambio <strong>no se asocia con mejoras en la calidad</strong> del pellet, lo que sugiere un posible
+                desajuste en el proceso o un uso ineficiente de la energía térmica.
+
+              - En el enfriador, por cada grado adicional de temperatura, la humedad se reduce en <strong>0.65%</strong>
+                en la peletizadora 1 y en <strong>0.53%</strong> en la peletizadora 2. Esto demuestra una
+                <strong>mayor sensibilidad y capacidad de control</strong> de humedad en la peletizadora 1.
+
+              - En promedio, ambas peletizadoras trabajan alrededor de <strong>18 horas productivas por día</strong>,
+                coherente con una operación en tres turnos. Sin embargo, se pierde entre <strong>1h 30min y 1h 47min</strong>
+                diarios en actividades improductivas.
+
+              - Las principales causas de improductividad son actividades operativas clasificadas como
+                “necesarias para continuar con la producción”, como <strong>cambio de producto</strong> (peletizadora 1)
+                y <strong>cambio de dieta, alistamiento y lubricación</strong> (peletizadora 2).
+
+              - "Aunque poco frecuentes, los <strong>mantenimientos correctivos</strong> generan paros significativos:
+                hasta <strong>2 horas</strong> en peletizadora 1 y <strong>1h 30min</strong> en la peletizadora 2."
+
+              - A pesar de haberse registrado solo en dos ocasiones, las <strong>contingencias externas</strong>
+                provocaron más de <strong>11 horas de paro</strong> acumulado. Por su parte, la
+                <strong>falta de materia prima</strong> genera un impacto crítico, con pérdidas promedio de
+                <strong>8 horas diarias</strong> cada vez que ocurre.
+          
+
+
+
+

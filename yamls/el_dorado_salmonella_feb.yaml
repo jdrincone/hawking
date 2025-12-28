@@ -1,0 +1,127 @@
+titulo: Resultados estadísticos de prevalencia de <em>Salmonella</em> para el mes de febrero
+lugar: ""
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: lista
+        items:
+              - Confirmar que la reducción de la prevalencia observada en febrero 
+                es el resultado de una acción implementada en la planta 
+                y no un sesgo derivado del aumento en la cantidad de muestras tomadas.
+              - Determinar la posible causa principal en la disminución de la prevalencia 
+                a partir de los datos recolectados.
+
+  - titulo: Prevalencia
+    contenido:
+      - tipo: texto
+        html: >
+            La prevalencia se define como el número de muestras microbiológicas que dan positivas 
+            con presencia de <em>Salmonella</em> dividido entre el total de muestras tomadas en un 
+            periodo determinado. Dada la naturaleza del problema, suele ser habitual que existan 
+            más muestras negativas que positivas en un análisis microbiológico; por ello, al 
+            aumentar el número de muestras, la prevalencia podría disminuir. <strong>En febrero, 
+            se incrementó la cantidad de muestras recolectadas y se observó una reducción de la 
+            prevalencia, motivo por el cual se busca determinar si dicha disminución es real 
+            o si se debe únicamente al mayor volumen de muestreo</strong>.
+            <br><br>
+
+            Para abordar este problema usaremos un <strong>test de proporciones</strong>, 
+            el cual se aplica cuando la variable de interés es binaria (como en este caso) 
+            y se desea saber si la proporción actual, contrastada con la proporción del mes anterior, 
+            es significativamente distinta. En otras palabras, si el cambio en la proporción 
+            es real y no un efecto del muestreo estadístico.
+      - tipo: texto
+        html: <strong>Definición del problema:</strong><br>
+      - tipo: texto
+        html: "Comparar la proporción de positivos en <em>Salmonella</em> en el mes de enero 
+            (<em>p<sub>1</sub> = 0.35, n<sub>1</sub> = 60</em>) frente al mes de febrero 
+            (<em>p<sub>2</sub> = 0.14, n<sub>2</sub> = 68</em>).
+
+            <br><br>
+            <strong>Hipótesis nula (H0):</strong> p<sub>1</sub> = p<sub>2</sub> (no hay disminución 
+            en la prevalencia).<br>
+            <strong>Hipótesis alternativa (H1):</strong> p<sub>1</sub> ≠ p<sub>2</sub> 
+            (sí hay diferencia).
+
+            <br><br>
+            Aplicando un test de proporciones se obtiene un estadístico 
+            <em>Z = 2.674</em>, lo que significa que la diferencia está aproximadamente 
+            a 2.67 sigmas de la media hipotética (si no hubiera diferencia real). El valor 
+            <em>p</em> asociado es 0.0075, lo que implica que hay alrededor de un 0.75% 
+            de probabilidad de que surja una diferencia tan grande sólo por azar. 
+            <strong>Dado que este valor p es muy inferior a 0.05, se concluye que la diferencia 
+            en proporciones es estadísticamente significativa y probablemente no se deba 
+            solo al azar</strong>. En otras palabras, la reducción en prevalencia no es debido
+            al aumento del número de muestras: hubo un cambio en la planta que influyó en 
+            estos resultados.
+            <br><br>
+            El siguiente paso es identificar, entre los parámetros medidos, indicios de este cambio."
+
+
+  - titulo: Posible causa de la reducción en <em>Salmonella</em>
+    contenido:
+      - tipo: texto
+        html: Para analizar una posible causa de la reducción de prevalencia en <em>Salmonella</em>,
+              revisaremos si existe un cambio sustancial en las medidas de pH, Cloro Libre y 
+              ORP para la prevalencia entre los meses de Enero y Febrero. Se entiende por "cambio sustancial"
+              aquel en el que las medidas de centralidad de alguna de estas variables sean significativamente
+              diferentes entre los dos meses. No se realiza la comparación con el nombre de la granja porque
+              estas difieren en el periodo temporal comparado.
+      - tipo: tabla
+        src: summary_stat_salmonela_enero_feb.csv
+      - tipo: texto
+        html: "A simple vista, los valores medios cambian en cada variable, pero es necesario observar 
+              también el error estándar (SE) de cada medida, ya que representa qué tan precisa es la 
+              media calculada en relación con todas las mediciones. Al ver el SE, puede notarse 
+              si las distribuciones se superponen. Por ello, se realiza una prueba de hipótesis 
+              que garantice que las diferencias en los valores medios sean estadísticamente 
+              significativas.
+              <br><br>
+              El test de Mann-Whitney U es una prueba no paramétrica que nos permite realizar
+              esta comparación, ya que poseemos dos grupos independientes (prevalencias de enero
+              y febrero) que no cumplen criterios de normalidad y que pueden incluir valores atípicos.
+
+              Similar al caso anterior, tenemos:
+              <br>
+              <strong>Hipótesis nula (H0):</strong> media<sub>ene</sub> = media<sub>feb</sub> (las medias 
+              en enero y febrero son iguales).<br>
+              <strong>Hipótesis alternativa (H1):</strong> media<sub>ene</sub> ≠ media<sub>feb</sub> 
+              (sí hay diferencia).
+              
+              Con un estadístico Mann-Whitney U = 2533.5, lo que indica una mayor separación entre las 
+              distribuciones de enero y febrero. Con un valor p=0.0184 (< 0.05), se rechaza la hipótesis nula 
+              y se concluye que hay evidencia estadísticamente significativa de que ambas muestras provienen 
+              de distribuciones diferentes. Es decir, el pH cambió entre enero y febrero,
+              lo que respalda la hipótesis de que este cambio pudo impactar en la prevalencia 
+              de <em>Salmonella</em>, dado que en informes previos se observó la relevancia del pH
+              para predecir la probabilidad de aparición de <em>Salmonella</em>.
+
+              Otra forma de visualizar este resultado, con un argumento estadístico completamente diferente, 
+              es a través de la Distribución Acumulada Empírica (ECDF) del pH, que muestra la probabilidad 
+              de que el pH tome un valor dado en cada mes, en lugar de solo mostrar el valor promedio."
+
+      - tipo: imagen
+        src: salmonella_feb.png
+        mime: png
+        style: "width: 70%;"
+      
+      - tipo: texto
+        html:  Para febrero, se observa que el 90% de las mediciones de pH se encuentran
+               entre 6 y 6.75, mientras que en enero, para alcanzar ese mismo nivel 
+               de probabilidad, es necesario abarcar  valores de pH más altos. En síntesis,
+               en febrero el pH fue más bajo, lo que sugiere un medio acuoso más ácido.
+
+  - titulo: Conclusiones
+    contenido:
+       - tipo: lista
+         items: 
+              - La prelevancia el mes de Febrero redujo en un 57% con respecto al mes de
+                Enero, este cambio es consecuencia de acciones tomadas en producción y no
+                por un aumento de muestras en el mes.
+              - La reducción en prevalencia de <em>Salmonella</em> se ve acompañado
+                con una reducción en las medidas de pH para el mismo mes. Como sabemos
+                que la probabilidad de prevelencia se ve impactado por el pH, podemos inferir
+                que esta reducción se debe a la una reducción en el pH o un aumento de acidez 
+                en el medio acuoso.

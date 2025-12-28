@@ -1,0 +1,26 @@
+titulo: Comportamiento mensual de la Humedad en las etapas de mezcladora y producto terminado
+lugar: "Hacienda"
+descripcion: ""
+
+secciones:
+  - titulo: Evolución temporal de la humedad en la mezcladora y producto terminado
+    contenido:
+      - tipo: plotly_html
+        src: humedades_pellet_quebrantado_subplots.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+
+
+  - titulo: Comparación del cambio de humedades por etapa del proceso y periodo de tiempo
+    contenido:
+      - tipo: plotly_html
+        src: comparacion_periodos_humedad.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+  - titulo: Datos Fuente
+    contenido:
+      - tipo: tabla
+        src: humedades_quebrantado.csv
+
+      - tipo: tabla
+        src: humedades_pellet.csv

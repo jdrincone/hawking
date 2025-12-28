@@ -1,0 +1,88 @@
+  titulo: "Resultados Microbiológicos"
+  lugar: "Planta - COMAYMA"
+  descripcion: ""
+
+  secciones:
+    - titulo: Introducción
+      contenido:
+        - tipo: texto
+          html: >
+            El presente informe presenta los resultados microbiológicos obtenidos en las referencias
+            peletizadas: DESARROLLO CERDO PELLET, NUTRIMAYMA DESARROLLO CERDO PELLET,
+            FINALIZADOR CERDO PELLET y NUTRIMAYMA FINAL. CERDO PELLET. Las muestras fueron
+            analizadas por los laboratorios <strong>Okuo</strong> y <strong>Comayma</strong> y se
+            contrastaron con resultados <strong>históricos</strong> disponibles.
+
+            <br><br>
+            Para la presentación de resultados se tuvo en cuenta:
+        - tipo: "lista"
+          items:
+            - En los resultados, cuando una referencia cuenta con múltiples mediciones para el mismo tipo de microorganismo, se usa
+              como medida de centralidad el <strong>promedio de unidades formadoras de colonias (UFC/g)</strong>.
+            - Para resultados reportados como <strong>&lt;10&nbsp;UFC/g</strong>, en la escala
+              <strong>log₁₀(UFC/g)</strong> se consignan como <strong>0</strong> (convención adoptada en este informe).
+
+    - titulo: "Comportamiento de Aerofilos"
+      contenido:
+
+        - tipo: plotly_html
+          src: aerofilos.html
+          style: "width: 100%; display: block; margin: 0 auto;"
+        - tipo: texto
+          html: >
+            Hay coincidencia entre <strong>Okuo</strong> y <strong>Comayma</strong> en
+            <strong>DESARROLLO</strong> (ambos <em>bajos</em> frente al <strong>histórico</strong>).
+            En <strong>NUTRIMAYMA DESARROLLO</strong> se observa la mayor discrepancia:
+            <strong>Okuo</strong> está ≈ <em>+1.0&nbsp;log</em> por encima de
+            <strong>histórico</strong>/<strong>Comayma</strong> (<em>diferencia relevante</em>).
+            En <strong>FINALIZADOR</strong> y <strong>NUTRIMAYMA FINAL</strong> las brechas son
+            <em>moderadas</em> (~<em>0.2–0.4&nbsp;log</em>).
+    
+
+    - titulo: "Comportamiento de Coliformes totales"
+      contenido:
+
+        - tipo: plotly_html
+          src: coliformes.html
+          style: "width: 100%; display: block; margin: 0 auto;"
+
+        - tipo: texto
+          html: >
+            Los valores actuales de <strong>Okuo</strong>/<strong>Comayma</strong> se sitúan
+            <strong>sistemáticamente por debajo del histórico</strong> (brechas de
+            <em>~1.7–3.3 log</em>, es decir <em>~50×–2 000×</em>). La única detección reciente
+            aparece en <strong>NUTRIMAYMA DESARROLLO</strong>: <strong>Okuo</strong> ≈
+            <em>1.30 log</em> (~<em>20 UFC/g</em>), aún <strong>muy por debajo</strong> del
+            histórico.
+    
+    
+
+    - titulo: "Comportamiento de Hongos y Levaduras"
+      contenido:
+
+
+        - tipo: plotly_html
+          src: mohos_lev.html
+          style: "width: 100%; display: block; margin: 0 auto;"
+
+        - tipo: texto
+          html: >
+            Para comparar con <strong>Okuo</strong>, en <strong>Comayma</strong> y el
+            <strong>histórico</strong> se <em>sumaron hongos+levaduras</em>. <strong>Comayma</strong> reporta
+            <strong>valores mayores</strong> que <strong>Okuo</strong> y supera al <strong>histórico</strong> en
+            <strong>3/4</strong> productos (especialmente <em>Finalizador</em> y <em>Nutrimayma Final</em>).
+            <strong>Okuo</strong> queda <strong>por debajo del histórico</strong> en <strong>3/4</strong>; solo en
+            <em>Nutrimayma Desarrollo</em> ambos quedan <em>ligeramente</em> por encima.
+    
+
+    - titulo: "Comportamiento de E. Coli"
+      contenido:
+
+        - tipo: plotly_html
+          src: ecoli.html
+          style: "width: 100%; display: block; margin: 0 auto;"
+
+        - tipo: texto
+          html: >
+            No se ha detectado evidencia de este microorganismo en ninguno de los análisis realizados.
+

@@ -1,0 +1,91 @@
+titulo: 'Revisión Microbiología y Micotoxinas en materias primas del maiz y producto terminado'
+lugar: "Okuo Analytics"
+descripcion: ""
+
+secciones:
+  - titulo: Punto de partida
+    contenido:
+      - tipo: "lista"
+        items:
+          - "Se recopilaron todos los análisis microbiológicos de materias primas (MP) 
+             con origen en maíz y de producto terminado (PT), y se contrastaron con sus resultados
+             de concentraciones de micotoxinas."
+          - "Se realizó un proceso de depuración y limpieza de datos para garantizar la consistencia 
+             entre la información microbiológica y de micotoxinas. Tras este proceso, se obtuvieron <strong>23
+             análisis</strong> microbiológicos de MP de maíz con información de concentración de micotoxinas y <strong>67 
+             análisis</strong> de PT con información de micotoxinas."
+          - "En el análisis microbiológico se hace énfasis exclusivamente en mohos y levaduras, 
+             por ser los principales indicadores de deterioro fúngico en el maíz."
+
+
+  - titulo: Microbiología y Micotoxinas en MP
+    contenido:
+
+      - tipo: plotly_html
+        src: hongos_levaduras_por_proveedor.html
+      - tipo: "lista"
+        items:
+          - "COPROAGRO y Jose Boza presentan cargas moderadas de hongos y levaduras."
+          - "TRANS 407 muestra las cargas más altas de hongos y levaduras, siendo la procedencia de mayor riesgo microbiológico."
+      - tipo: plotly_html
+        src: micotoxinas_ppb_ppm_por_proveedor.html
+
+      - tipo: "lista"
+        items:
+          - "En todas las procedencias la micotoxina dominante en ppb es la zearalenona, con el valor más alto en Jose Boza."
+          - "Aflatoxina, T-2 y ocratoxina se mantienen en niveles muy bajos en todas las procedencias."
+          - "En ppm, la fumonisina es crítica en Jose Boza (~44 ppm), mientras que en COPROAGRO y TRANS 407 es baja o casi nula."
+          - "Jose Boza se perfila como la procedencia de mayor riesgo por micotoxinas (zearalenona + fumonisina)."
+
+      - tipo: plotly_html
+        src: correlacion_maiz.html
+
+      - tipo: "texto"
+        html: >
+          La matriz de correlación muestra que <strong>no hay una relación simple entre carga fúngica y micotoxinas</strong>:
+          más hongos (log_hongos) no implica necesariamente más toxinas y, de hecho, se asocia de forma negativa con
+          <strong>aflatoxina</strong> y <strong>T2</strong>. En cambio, se observan <strong>paquetes de co-contaminación</strong> entre
+          micotoxinas, como aflatoxina–T2–zearalenona y DON–fumonisina–ocratoxina, lo que indica que
+          es necesario monitorear cada toxina y no solo la microbiología.
+
+  - titulo: Microbiología y Micotoxinas en PT
+    contenido:
+      - tipo: plotly_html
+        src: correlacion_pt.html
+
+      - tipo: "texto"
+        html: >
+          En producto terminado, la matriz de correlación muestra que
+          <strong>la carga microbiológica (log_hongos y log_levaduras) casi no se relaciona con las micotoxinas</strong>
+          (coeficientes cercanos a 0). Sí aparecen <strong>correlaciones moderadas entre algunas toxinas</strong>, como
+          aflatoxina–T2–zearalenona y DON–fumonisina, lo que sugiere patrones de co-contaminación específicos en ciertos lotes,
+          pero sin una dependencia fuerte con la microbiología.
+
+
+      - tipo: plotly_html
+        src: zeare_afla_pt.html
+
+      - tipo: "texto"
+        html: >
+          El diagrama de dispersión muestra una relación claramente positiva entre
+          <strong>aflatoxina</strong> (eje X) y <strong>zearalenona</strong> (eje Y):
+          a mayor aflatoxina, en promedio también aumenta la zearalenona. El ajuste
+          lineal (y = 5.79x + 44.93) y el cuadrático (y = −0.333x² + 10.084x + 38.899)
+          son muy similares, lo que indica una tendencia ascendente consistente, aunque
+          con cierta dispersión entre lotes.
+
+
+      - tipo: plotly_html
+        src: clusters_carga_micro.html
+
+      - tipo: "tabla"
+        src: "clusters_carga_micro.csv"
+
+      - tipo: "texto"
+        html: >
+          Mediante un análisis de <strong>clústeres</strong> se agrupan los productos según su carga
+          microbiológica (hongos y levaduras). Cada color en el gráfico representa un grupo de
+          productos con niveles similares de contaminación, y la tabla resume qué productos
+          pertenecen a cada grupo junto con sus concentraciones promedio de micotoxinas.
+          Se puede observar que el grupo amarillo, tiene las concentraciones de micotoxinas más alto.
+

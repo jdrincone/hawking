@@ -1,0 +1,66 @@
+titulo: "Análisis del comportamiento de las variables de calidad y producción"
+lugar: "Alcon"
+descripcion: ""
+
+secciones:
+  - titulo: "Objetivo"
+    contenido:
+      - tipo: lista
+        items:
+            - Revisión del comportamiento de las variables de calidad y producción particularizando
+              entre las fechas del 15 de Mayo al 1 de Julio.
+            - Entendimiento de los datos a nivel general.
+
+  - titulo: "Comportamiento promedio de las variables en el periodo a comparar"
+    contenido:
+      - tipo: tabla
+        src: summary_alcon.csv
+
+
+      - tipo: lista
+        items:
+          - "<strong>Calidad del Pellet (Durabilidad)</strong>: Este es el punto más destacado. 
+            La durabilidad promedio aumentó notablemente de 90% a 93%, ganando 3 puntos porcentuales. Aún más importante, 
+            el proceso fue mucho más estable y consistente, ya que la variabilidad (desviación estándar)
+            de la durabilidad se redujo drásticamente de 19.1 a solo 4.0.
+            Esto indica un control de calidad mucho mejor durante este tiempo."
+
+          - "<strong>Rendimiento (Ton/hora)</strong>: El rendimiento promedio fue ligeramente inferior,
+             disminuyendo de 3.51 a 3.43 Ton/hora. La estabilidad de este parámetro se mantuvo casi igual."
+
+          - "<strong>Porcentaje de Finos</strong>: Se observó un ligero aumento en la generación de finos (de 1.8% a 2.1%),
+            lo cual es un aspecto negativo que contradice parcialmente la mejora en la durabilidad
+             y merece ser investigado."
+
+          - "<strong>Consumo Energético (Amperaje)</strong>: El consumo de los motores principales fue,
+             en promedio, menor. Sin embargo, la operación fue más inestable, con una variabilidad
+             considerablemente mayor, especialmente en el motor 1. Esto podría indicar un proceso menos homogéneo.
+             En el motor 1 se reduce el consume en un 5%, mientras en el motor dos, este llega a un 3%."
+
+          - "<strong>Temperatura</strong>: Se trabajó a una temperatura promedio más alta (75 °C vs 70 °C), pero 
+            con una variabilidad mucho mayor, lo que sugiere un control menos estricto sobre este parámetro."
+
+      - tipo: plotly_html
+        src: summary_dashboard.html
+        #style: "width: 100%; height: 500px;"
+
+  - titulo: "Comportamiento general del promedio y la desviación estándar de las variables en el tiempo y por número de dado"
+    contenido:
+
+      - tipo: plotly_html
+        src: summary_line_dashboard_by_diametro_simple_legend.html
+        #style: "width: 100%; height: 500px;"
+
+      - tipo: plotly_html
+        src: summary_line_dashboard_by_diametro_simple_legend_std.html
+        #style: "width: 100%; height: 500px;"
+
+      - tipo: lista
+        items:
+          - Los diámetros mayores permiten mayor flujo de material y menor restricción,
+            por lo que producen más toneladas por hora.
+          - Es posible que la menor restricción del dado más grande reduce la fricción interna 
+            y por tanto la temperatura de acondicionamiento.
+
+          - Todos los diámetros alcanzan niveles altos de durabilidad (>90%) después de la primera fecha.
+          - Es posible que el Dado 4.5 genera más finos por variabilidad de temperatura y menor estabilidad operativa.

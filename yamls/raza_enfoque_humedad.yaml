@@ -1,0 +1,96 @@
+titulo: Análisis de Humedad en los procesos de Peletizado y Extrusión
+lugar: Empresa Raza
+descripcion: ""
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          El presente informe se desarrolló mediante la plataforma Okuo Flow,
+          una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+          y <strong>transformación</strong> de datos asociados a la producción 
+          y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+          información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+          variables de producción (toneladas procesadas, 
+          tiempos de producción y sack-off) y de calidad (temperatura, durabilidad del pellet y humedad). 
+          Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+          de calidad, reducciendo la tensión entre los departamentos 
+          de producción y calidad, logrando un proceso más fluido y eficaz.
+
+          <br><br>
+          En este contexto, usaremos Okuo Flow para dar un entendimiento estadísticos de los diferentes parámetros
+          medidos en la empresa Raza.
+          
+
+  - titulo: Mediciones en Extrusión y Peletizado
+    contenido:
+      #- tipo: texto
+      #  html: #'<h4 style="text-align: center;">Tal vez algo</h4>'
+      - tipo: texto
+        html:
+
+            "En los procesos de extrusión y peletizado se registran las mediciones totales o promedios del 
+            <strong>% Sackoff</strong>, <strong>% Durabilidad</strong>, <strong>Actividad de Agua (AW)</strong>
+            y <strong>Porcentaje de Humedad</strong> 
+            tanto al inicio como al final de cada etapa, así como de <strong>Temperatura</strong> y <strong>Carga</strong>. 
+            A continuación se presenta la tabla con estos datos, segmentando  cada proceso por máquina de trabajo:"
+
+
+      - tipo: tabla
+        src: "data_ext_group_dep.csv"
+      - tipo: tabla
+        src: "data_pel_group_dep.csv"
+
+      - tipo: lista
+        items:
+          - En el proceso de extrusión, se recomienda realizar un análisis exhaustivo del secado,
+            dado que la actividad de agua promedio presenta margen de maniobra.
+
+          - En el proceso de peletizado, es posible rehumedecer hasta un 1,2 %; además, 
+            es fundamental recolectar y gestionar los datos de las mermas generadas en las etapas de
+            barredura, colas y limpieza.
+
+  - titulo: Comparacción de Humedad en etapa inicial y final por procesos
+    contenido:
+      #- tipo: texto
+      #  html: #'<h4 style="text-align: center;">Tal vez algo</h4>'
+      - tipo: imagen
+        src: comparacion_humedad.png
+        mime: png
+        style: "width: 80%;"
+      - tipo: texto
+        html:  Para los procesos de Extrusión, entre la etapa final e inicial no se observa un
+             aumento en el porcentaje de humedad, por el contrario, <strong>en los procesos de peletización
+             existe un aumento en el porcentaje de agua, que se ve reflejado con una actividad de 
+             agua superior a 0.6 %.</strong>
+
+      - tipo: imagen
+        src: comparacion_aw.png
+        mime: png
+        style: "width: 80%;"
+
+      - tipo: texto
+        html: También se puede observar un porcentaje de sackoff superior en los procesos de Extrusión, mientras
+              que en los procesos de peletizado su tendencia es a sackoff cero o por encima de cero.
+
+      - tipo: imagen
+        src: comparacion_sackoff.png
+        mime: png
+        style: "width: 90%;"
+      - tipo: texto
+        html:
+          Tener presente el material de inicio de los procesos de extrusión que no salen como producto conforme.
+
+  - titulo: Otras medididas en los procesos de peletización
+    contenido:
+      - tipo: imagen
+        src: other_measurement_pellet.png
+        mime: png
+        style: "width: 90%;"
+
+      - tipo: texto
+        html: Se ha detectado una notable estabilidad en las mediciones de durabilidad 
+          y temperatura, independientemente de la máquina de peletización. En cambio, 
+          la carga y la presión —al ser variables intrínsecas a cada equipo— suelen presentar variaciones. 
+          Se recomienda no procesar en la peletizadora 1 productos porcícolas que contengan melaza.

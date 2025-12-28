@@ -1,0 +1,106 @@
+titulo: "Revisión Ensayo Adipell"
+lugar: "Experimento III"
+descripcion: ""
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          El presente informe se desarrolló mediante la plataforma Okuo Flow,
+          una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+          y <strong>transformación</strong> de datos asociados a la producción 
+          y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+          información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+          variables de producción (toneladas procesadas, 
+          tiempos de producción y sack-off) y de calidad (temperatura, durabilidad del pellet y humedad). 
+          Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+          de calidad, reduciendo la tensión entre los departamentos 
+          de producción y calidad, logrando un proceso más fluido y eficaz.
+
+          <br><br>
+          En este contexto, usaremos Okuo Flow para dar un entendimiento de como
+          el <strong>Adipell</strong> impacta de forma significativa el proceso de peletización.
+          
+
+  - titulo: "Impacto de Adipell en Producción y Calidad"
+    contenido:
+
+      - tipo: plotly_html
+        src: pdi_finos_rendimiento_sultana.html
+
+      - tipo: texto
+        html: >
+          <strong>— con vs. sin Adipell</strong>:
+          el Rendimiento aumenta ~<strong>2.4%</strong>, con una reducción de 0.5 p.p en terminos de PDI
+          que no afecta de forma significativa la calidad del producto. En los finos tenemos igualmente
+          una diferencia de  0.95 p.p.
+      
+
+      - tipo: plotly_html
+        src: consumo_energia_carga_sultana.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+         El Adipell, en la prueba realizada, reduce hasta en un 1.8% el gasto energético, 
+         aumentando la carga en la misma proporción, en 
+         este caso la presión de vapor fue la misma.
+
+  - titulo: "Comportamiento de la Temperatura y Humedad en diferentes puntos de control"
+    contenido:
+
+
+
+      - tipo: plotly_html
+        src: lineas_temperaturas.html
+
+      - tipo: texto
+        html: >
+          con y sin Adipell las temperaturas son prácticamente iguales
+          (Harina ~31.7 vs 33.2 °C; Acondicionador ~82.2–82.5 °C; Peletizadora ~82.0–82.2 °C).
+          Las diferencias en etapas calientes son ≤0.3 °C, por lo que la temperatura
+          <em>no explica</em> los cambios de calidad/finos. 
+      
+      
+
+      - tipo: plotly_html
+        src: lineas_humedades.html
+      - tipo: texto
+        html: >
+          — con vs. sin Adipell</strong>:
+          Entrada ~12.9% vs 13.0% (similar); <em>Acondicionador</em> 14.7% vs 15.1%
+          (con Adipell −0.4 pp ≈ −2.6%); Producto terminado 12.5% vs 12.6% (similar).
+          La principal brecha está en el <strong>acondicionador</strong>; menor humedad,
+          esto puedo explicar el PDI levemente menor y los finos mayores. Se sugiere tener 
+          las mismas condiciones en porcentaje de humedad en el acondicionador.
+
+  - titulo: "Conclusiones"
+
+    contenido:
+      - tipo: lista
+        items:
+          - "Se tiene un impacto positivo en el rendimiento,  con un incremento hasta de un ~2.4% y una reducción en
+           el consumo de energía de al menos un 1.8%. Estos resultados estan acompañados de
+           una reducción de 0.5p.p en el PDI, sin que afecte de forma significativa la calidad. La temperatura por
+            ambos procesos son similares."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

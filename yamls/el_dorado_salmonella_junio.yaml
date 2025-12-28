@@ -1,0 +1,97 @@
+titulo: Revisión prevalencia de <em>Salmonella</em> para el mes de Junio
+lugar: "El Dorado"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: lista
+        items:
+            - Analizar el comportamiento de las variables físico-químicas (ORP, pH y cloro libre) 
+              entre enero y mayo, y su posible relación con la prevalencia de <em>Salmonella</em>.
+            - Identificar las granjas con mayor carga microbiológica durante el periodo evaluado.
+
+
+  - titulo: Prevalencia
+    contenido:
+      - tipo: texto
+        html: >
+          La prevalencia se define como el número de muestras microbiológicas con resultado positivo 
+          para la presencia de  <em>Salmonella</em>, dividido entre el total de muestras tomadas
+          en un periodo determinado. 
+          En este análisis, se evalúa mes a mes el valor de prevalencia en contraste con medidas promedios
+          de variables físico-químicas analizadas como:
+          <strong>pH</strong>, <strong>ORP</strong> y <strong>cloro libre</strong>. 
+          Se hace especial énfasis en los meses de <strong>Junio</strong> y <strong>mayo</strong>, 
+          meses consecutivos para comparación.
+
+      - tipo: tabla
+        src: summary.csv
+      - tipo: texto
+        html: >
+              <strong>Panorama General</strong> : Con 47 muestras en Junio (el mes con mejor toma de
+              muestras en el año) la prevalencia cayó de 12 % (mayo) → 9 % (Junio).
+              Un test de diferencia de proporciones confirma que 
+              la caída es estadísticamente significativa <em>z=0.54 (muy cercano a cero, indica 0.54
+              desviaciones estándar del cero, p=0.59< 0.05 </em> , indica que <strong>no hay evidencia estadística 
+              de que la prevalencia haya cambiado entre los dos meses comparados</strong>. En otras palabras,
+              no es correcto decir, que la prevalencia disminuyo 3 p.p en Junio, con respeto a Mayo. 
+
+  - titulo: Curvas de probabilidad acumulada
+    contenido:
+      - tipo: plotly_html
+        src: cdf_ph.html
+        style: "width: 100%; height: 500px;"
+
+      - tipo: plotly_html
+        src: cdf_cloro.html
+        style: "width: 100%; height: 700px;"
+
+      - tipo: plotly_html
+        src: cdf_orp.html
+        style: "width: 100%; height: 700px;"
+
+      - tipo: texto
+        html: >
+          Las distribución acumulada de las variables físico-químicas no presentan cambios alarmante, 
+          pero si una mejoría o aumento de precisión en todas las mediciones, menor dispersión en los
+          datos o rango de operación (eje horizontal en cada grafica) más acotado en el mes de Junio,
+          comparado con los meses anteriores. Es de destacar que las mediciones de orp para el mes 
+          de Junio estuvieron acotadas entre 400 y 500 mV.
+
+  - titulo: Comparativa Prevalencia por Granjas de Mayo con respecto al promedio de meses anteriores
+    contenido:
+      - tipo: tabla
+        src: delta_table_junio.csv
+
+      - tipo: texto
+        html: >
+              La tabla anterior revela varios resultados interesantes. La columna Δ Junio representa
+              el <strong>cambio</strong> en la prevalencia que ha obtenido por granja el mes de Junio, 
+              con respecto al valor promedio de prevalencia reportados en el último semestre. Valores positivos
+              indica cual es la reducción en prevalencia que la granja ha obtenido para el mes de Junio,
+              mientras valores positivos indica las granjas que para el mes de Junio han llegado al chiller
+              con mayor carga microbiológica comparado con el pasado. De destacar, Granjas como,
+              <strong>VILLA JULIANA, CHORRO DE ORO, SAN RAFAEL, POLLILANDIA</strong> han reducido en
+              30 p.p la presencia de <em>Salmonella</em>.
+              En contraste, LA ESPERANZA y  POLLILANDIA II  registraron un incremento del 10 p.p.
+          
+      
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - No hay evidencia suficiente, para garantizar que el mes de Junio se mejoró la prevalencia
+            de <em>Salmonella</em>  con respeto al mes de Mayo.
+          - La baja global de prevalencia en mayo se debe, posiblemente a mejoras en granjas
+            SAN RAFAEL, POLLILANDIA o a mejores practicas de sanidad en  el producto antes que este ingrese
+            al chiller.
+          - Se observa mayor precisión en las mediciones físico-químicas, posiblemente a una estabilización 
+            en los instrumentos de medida.
+
+
+
+
+
+

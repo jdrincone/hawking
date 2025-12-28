@@ -1,0 +1,133 @@
+titulo: Revisión prevalencia de <em>Salmonella</em> para el mes de abril
+lugar: "El Dorado"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: lista
+        items:
+            - Analizar el comportamiento de las variables físico-químicas (ORP, pH y cloro libre) 
+              entre enero y abril, y su posible relación con la prevalencia de <em>Salmonella</em>.
+            - Identificar las granjas con mayor carga microbiológica durante el periodo evaluado.
+            - Determinar posibles causas del incremento de prevalencia observado en el mes de abril.
+
+
+  - titulo: Prevalencia
+    contenido:
+      - tipo: texto
+        html: >
+          La prevalencia se define como el número de muestras microbiológicas con resultado positivo 
+          para la presencia de  <em>Salmonella</em>, dividido entre el total de muestras tomadas
+          en un periodo determinado. 
+          En este análisis, se evalúa mes a mes el valor de prevalencia en contraste con medidas promedios
+          de variables físico-químicas analizadas como:
+          <strong>pH</strong>, <strong>ORP</strong> y <strong>cloro libre</strong>. 
+          Se hace especial énfasis en los meses de <strong>febrero</strong> y <strong>abril</strong>, 
+          en los que se mantienen, en su mayoría, las mismas granjas de procedencia del producto.
+      
+
+      - tipo: tabla
+        src: summary.csv
+      - tipo: texto
+        html: >
+            
+              Las variables físico-químicas analizadas muestran una variación moderada entre los meses. 
+              El <strong>ORP</strong> promedio oscila entre 
+              <em>482.00</em> y <em>506.75</em> mV, con desviaciones estándar de <em>28.02</em> a <em>57.83</em>, 
+              lo que refleja cierta variabilidad en las condiciones redox. El <strong>pH</strong> se mantiene 
+              estable, entre <em>5.87</em> y <em>6.08</em>, con una dispersión que va de <em>0.09</em> a <em>0.47</em>,
+              aunque veremos el la próxima sección con curvas de probabilidad acumulada, que aunque se tuvo 
+              mayor precisión en su medida en el mes de abril, también se obtuvo menor rango de operacción.
+              En cuanto al <strong>cloro libre</strong>, los valores promedio fluctúan entre <em>4.34</em> 
+              y <em>4.46</em> ppm, 
+              con una variabilidad de <em>0.21</em> a <em>0.36</em>, lo cual sugiere un control aceptable 
+              con algunas inconsistencias puntuales.
+              
+              <br><br>
+              Al comparar <strong>febrero</strong> y <strong>abril</strong>, meses que comparten en su mayoría 
+              las mismas granjas, 
+              se observa un aumento notable en la prevalencia de <em>Salmonella</em>, de <em>0.14</em> a <em>0.38</em>. 
+              Aunque las condiciones de <strong>ORP</strong> (<em>494.70</em> vs. <em>506.75</em> mV) y <strong>pH</strong> 
+              (<em>5.93</em> vs. <em>5.91</em>) fueron similares, se evidencia una leve disminución del <strong>cloro libre</strong> 
+              (<em>4.46</em> vs. <em>4.34</em> ppm) y una mayor variabilidad en abril (<em>0.21</em> vs. <em>0.36</em>). 
+              <br><br>
+              Esto sugiere que el incremento en prevalencia podría estar asociado a una dosificación menos consistente
+              de cloro, 
+              más que a cambios sustanciales en el entorno químico. Una mayor dispersión en el nivel de cloro puede 
+              comprometer 
+              la eficacia de la desinfección, favoreciendo la presencia de <em>Salmonella</em> en ciertos momentos del proceso.
+              <br><br>
+              <em>Si bien no puede afirmarse con certeza que esta variabilidad sea la causa directa del aumento observado, 
+              representa una hipótesis plausible que merece seguimiento, para validar la certeza de esta hipótesis
+              deberíamos tener más información del proceso en este periodo de tiempo.</em>
+
+  - titulo: Curvas de probabilidad acumulada
+    contenido:
+      - tipo: texto
+        html: >
+         
+              Aunque los promedios de <strong>pH</strong> en <strong>febrero</strong> y <strong>abril</strong> son similares, 
+              la curva de distribución acumulada (CDF) revela diferencias importantes. 
+              En <strong>febrero</strong>, el pH presentó un rango más amplio, con mayor variabilidad en los valores registrados,
+              caso contrario en <strong>abril</strong>.
+         
+
+      - tipo: plotly_html
+        src: cdf_ph.html
+        style: "width: 100%; height: 500px;"
+      - tipo: texto
+        html: >
+              La comparación de la curva de distribución acumulada del <strong>cloro libre</strong> entre <strong>febrero</strong> y <strong>abril</strong> 
+              muestra que, aunque los valores promedio son similares, en <strong>abril</strong> hubo una mayor proporción de muestras con concentraciones 
+              más bajas, especialmente por debajo de <em>4.0 ppm</em>.
+              <br><br>
+              
+              Esta diferencia sugiere una dosificación menos uniforme en abril, lo que podría haber afectado
+              la eficacia del proceso de desinfección 
+              y contribuido al aumento de prevalencia de <em>Salmonella</em> observado en ese mes.
+
+      - tipo: plotly_html
+        src: cdf_cloro.html
+        style: "width: 100%; height: 500px;"
+
+      - tipo: texto
+        html: >
+          Interesante que se tienen 5 días consecutivos entre el 22 al 28 de abril donde las concentraciones de cloro
+          son inferiores a 4ppm.
+
+  - titulo: Comparativa Prevalencia por Granjas entre Febrero y Abril
+    contenido:
+
+
+      - tipo: tabla
+        src: comparacion_granjas_feb_abr.csv
+
+      - tipo: texto
+        html: >
+              La tabla anterior revela varios resultados interesantes. En <strong>febrero</strong> y <strong>abril</strong>, 
+              la granja <strong>SAN RAFAEL</strong> presentó la mayor carga microbiológica, con una variación de prevalencia 
+              superior al <em>50%</em>. Aunque las concentraciones de cloro fueron similares en ambos meses, esto sugiere que, 
+              en abril, la carga microbiológica previa al proceso de chiller fue significativamente mayor.
+              <br><br>
+              En las granjas <strong>POLLILANDIA</strong>, <strong>LA ESPERANZA</strong> y <strong>POLLILANDIA II</strong>, 
+              también se observa un aumento en la carga microbiológica acompañado de una reducción en las concentraciones 
+              de cloro, lo que respalda nuestra hipótesis inicial. En el resto de las granjas, los niveles de microorganismos 
+              se mantuvieron estables.
+      
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - La prevalencia de <em>Salmonella</em> mostró un aumento significativo en abril, a pesar de condiciones
+            promedio similares en pH y ORP respecto a febrero.
+          - El análisis de curvas de distribución acumulada evidenció mayor variabilidad en las concentraciones de
+            cloro en abril, incluyendo días consecutivos con valores por debajo de 4 ppm, lo que podría haber
+            comprometido la efectividad de la desinfección.
+          - Granjas como <strong>SAN RAFAEL</strong>, <strong>POLLILANDIA</strong> y <strong>LA ESPERANZA</strong> 
+            presentaron incrementos en carga microbiológica, algunos asociados a una disminución o inestabilidad en 
+            la dosificación de cloro.
+          - La hipótesis de que una dosificación inconsistente de cloro influyó en el aumento de la prevalencia es
+            plausible, aunque se requieren más datos operativos para confirmarla con certeza.
+

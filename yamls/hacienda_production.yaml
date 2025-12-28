@@ -1,0 +1,199 @@
+titulo: "Insight Data Hacienda"
+lugar: "Okuo Analytics"
+descripcion: ""
+secciones:
+  - titulo: "Objetivo"
+    contenido:
+      - tipo: lista
+        items:
+          - Revisión profunda de datos en hacienda desde la consistencia del datos
+          - Revisión de la metrica de rendimiento, eficiencia, tiempos de proceso y tiempos de paros
+          - Congruencia de las variables de producción y calidad y su congruencia con la realidad.
+
+  - titulo: "Calidad de los datos de los procesos y datos de calidad"
+    contenido:
+      - tipo: texto
+        html: >
+          En el periodo analizado, existe <strong>463</strong> OP distintas en los documentos de proceso
+          y <strong>313</strong> OP distintas en los documentos de calidad, donde, <strong>245</strong> OP's
+          en producción no se le registraron medidas de calidad y <strong>95</strong> OP's no poseen reporte en
+          producción. Esta <strong>incompletitud</strong> de la información se resume por mes del año en los siguientes
+          recuadros:
+
+      - tipo: tabla
+        src: agg_prod_without_qa.csv
+
+      - tipo: tabla
+        src: agg_qa_without_prod.csv
+
+      - tipo: texto
+        html: >
+          Lo único que puede afirmarse en este punto es que, a partir de los documentos compartidos,
+          no es posible establecer la trazabilidad completa de una orden de producción, 
+          bien sea por la ausencia del registro o por la falta de variables clave que permitan
+          identificarla de manera unívoca.
+
+          Cabe resaltar que la orden de producción (OP) no constituye por sí sola una <strong>clave única</strong> 
+          de registro conforme a la lógica de negocio. Para asegurar la unicidad y la integridad de la información, 
+          es indispensable que cada registro, tanto en producción como en calidad, incluya de forma 
+          consistente la OP, el número de bache y al menos otra variable que, en conjunto, 
+          garanticen la identificación inequívoca de cada lote o evento registrado. ¿Por qué? Para garantizar
+          resultados estadísticos robustos que como hipótesis de trabajo requieren la identificación completa
+          del objeto de estudio.
+
+  - titulo: "Medida del tiempo y su efecto en la Eficiencia de la planta"
+    contenido:
+      - tipo: texto
+        html: >
+          ¿Cómo medir tiempos? ¿Cuál es el tiempo real del proceso? ¿Qué tanto varia tomar las medidas con
+          horómetro o diferencias de tiempo de reloj? ¿Qué mide cada uno de estos campos?
+
+      - tipo: imagen
+        src: comp_dist_rendimiento_subplots.png
+        style: "width: 80%;"
+
+      - tipo: texto
+        html: >
+          Dependiendo del instrumento de medición empleado, la interpretación de la variable de negocio 
+          —rendimiento o eficiencia— presenta valores notablemente diferentes, lo que conlleva decisiones
+          operativas distintas.
+
+          Por ejemplo, utilizando el horómetro, se registra aproximadamente un 10% de la eficiencia teórica,
+          mientras que, si se calcula en función de la diferencia de tiempos medidos por reloj,
+          la eficiencia se incrementa hasta un 30%.
+
+          En términos de rendimiento, esta variación evidencia que, según el método de medición aplicado,
+          existe una diferencia significativa en las toneladas peletizadas por hora de trabajo. Quedá entonces
+          la pregunta ¿Cuál de las mediciones representa mejor la realidad de la planta?
+
+  - titulo: "¿El turno afecta el rendimiento?"
+    contenido:
+      - tipo: imagen
+        src: rendimiento_stats.png
+        style: "width: 45%;"
+      - tipo: tabla
+        src: rendimiento_stats.csv
+
+      - tipo: texto
+        html: >
+          Lo anterior corresponde a resultados esperados. Durante los turnos nocturnos se observa un aumento en el 
+          rendimiento, ya que existen órdenes de producción con valores más altos que elevan el promedio general.
+
+          Esto puede interpretarse como un indicio de que, en la noche y la madrugada, el proceso registra menos
+          interrupciones o tiempos de paro, lo que se traduce en un mejor desempeño operativo.
+        
+        
+
+  - titulo: "Tiempo por paros"
+    contenido:
+      - tipo: texto
+        html: >
+          ¿Cómo se mide? ¿Cuál es la referencia?
+
+          Según los datos analizados, puede inferirse que el tiempo de paro está incluido dentro del tiempo
+          total del proceso. De un total de 683 mediciones, únicamente en 15 casos se observa que el 
+          tiempo transcurrido asociado a una causa específica es mayor que el tiempo registrado mediante 
+          horómetros o calculado por diferencia de tiempo.
+      - tipo: imagen
+        src: tiempo_proceso.svg
+        mime: svg
+        style: "width: 20%;"
+
+  - titulo: "Análisis de la proporción de tiempos de paros por día en relación al tiempo del proceso"
+    contenido:
+      - tipo: texto
+        html: >
+          La "proporción de tiempo perdido" (pct_time_lost) se define como:
+          El porcentaje del tiempo total de trabajo medido en un día que fue consumido por paradas o inactividad.
+          Este indicador es fundamental para medir la eficiencia operativa. Un valor alto en pct_time_lost sugiere que 
+          una parte significativa de la jornada laboral se está perdiendo debido a problemas 
+          (fallas de máquina, falta de material, etc.), lo cual impacta directamente la productividad.
+          Para entenderlo, graficamos su distribución.
+
+      - tipo: imagen
+        src: distribucion_pct_tiempo_perdido.png
+        style: "width: 80%;"
+
+      - tipo: texto
+        html: >
+          Con esta gráfica podemos inferir varias cosas, sin importar cuanto sea el tiempo total 
+          de producción en un día de trabajo, <strong>en promedio el 14% del tiempo de ese día fue improductivo 
+          por alguna causa</strong>.
+          ¿Qué significa esto? no importa si en un día se opera 12h o 18h. El 14% del tiempo de operación se va
+          por fallos, aqui nos podemos preguntar los siguiente, ese valor promedio del 14% ¿Con que probabilidad ocurre?.
+          Entendido lo anterior y dado que tenemos un fit de la distribución del comportamiento de la
+          proporción (modelo matemático), podriamos preguntarnos:
+      
+          <strong> ¿Cuál es la probabilidad de tener un día eficiente? o ¿Cuál es la probabilidad que un cierto día 
+          tenga una proporción de tiempo perdido del 10% o del 15%.</strong>
+          La siguiente gráfica en base a la distribución nos permite responder esto:
+
+      - tipo: plotly_html
+        src: probabilidad_perdida_tiempo_sinfondo.html
+        style: "width: 80%;"
+
+      - tipo: texto
+        html: >
+          Esta es una gráfica para pronosticar tiempos perdidos pues no es solo un registro histórico,
+          sino una herramienta de pronóstico en base al pasado, permite calcular la probabilidad de 
+          que la <strong>ineficiencia</strong> de tu planta se mantenga por debajo de un cierto umbral en un día cualquiera.
+          La clave es interpretar la probabilidad de forma acumulativa. Es decir, 
+          la probabilidad que se muestra para una proporción de tiempo perdido del 10% no es la probabilidad de
+          que sea exactamente 10%, sino de que sea 10% o menos.
+           <br><br>
+          Volvamos a la pregunta, ¿Cuál es la probabilidad de tener un día eficiente?, Basado en los datos, una proporción de tiempo
+          perdido del <strong>5%</strong> está asociada a una probabilidad del <strong>89%</strong>. Por tanto, existe 
+          una <strong>certeza del 89%</strong> de que, en un día de trabajo cualquiera, 
+          la proporción de tiempo perdido será del <strong>5% o inferior</strong>. En términos practicos, en una jornada 
+          de 12 horas, esto significa que tienes una probabilidad del 89% de que las paradas totales de ese día
+          sean de <strong>36 minutos o menos</strong>.
+          </trong>Esta es una forma robusta de establecer expectativas realistas para la operación diaria.</strong>
+          <code>12 horas × 5% = 0.6 horas = 36 minutos</code>. 
+           <br><br>
+          
+          Ahora, ¿Cuál es la causa por la que más se realizan paros? ¿Cuál es su tiempo promedio de paro en la historia de la data?
+          ¿Cuál es tipo de paro que más toma  tiempo?
+      - tipo: tabla
+        src: downtime_summary.csv
+
+      - tipo: lista
+        items:
+          - La causa por la cual se interrumpe más los procesos es la FALTA DE PRODUCTO, con un 27% de ocurrencia en los
+            datos revisados.
+          - El tiempo promedio de este tipo de paro toma del orden de 35 min.
+          - DAÑO MECANICO Y REPROCESO DE FIBRAGRASS es la causa que más tiempo ha tomado en la história con un
+            total de 8h, pero solo se ha presentado una vez hasta la congruencia con la realidad.
+
+      - tipo: texto
+        html: >
+          En término de productos peletizados ¿Cuál es el producto con más tiempo de paro promedio por día?
+          ¿Cuál es el tiempo promedio por día que demora el proceso?, ¿Cuántos días se ha realizado?
+
+      - tipo: tabla
+        src: downtime_by_date_product_group_hhmm.csv
+
+      - tipo: texto
+        html: >
+          La tabla representa para cada producto, el tiempo promedio por día que se demora en peletizarse (avg time process)
+          el tiempo de paro promedio por día (avg date downtime), la cantidad de días (count date) que se realizo el producto
+          y la razón o porcentaje de tiempo que el proceso estuvo en paro. La tabla esta ordenada de mayor a menor por el count date.
+          entonces, la dieta que más días lleva peletizandose es CERDO LEVANTE la cual en promedío gasta 20 min por día en tiempo
+          de paro y en promedio por día esa dieta toma 4h en peletizarse, lo cual en tiempo representa un 8% de tiempo en paros.
+          
+
+  - titulo: "Correlacción entre producción y calidad"
+    contenido:
+      - tipo: texto
+        html: >
+          Del total de datos y variables del análisis solo se toman aquellas OP's que están en producción y calidad
+          y por lo menos tienen el 40% de información en sus variables numéricas.
+
+      - tipo: imagen
+        src: correlacion_variables_proceso_calidad.png
+        style: "width: 60%;"
+
+      - tipo: texto
+        html: >
+          Existen correlacciones atipicas como que el pdi es inversamente proporcional al tiempo transcurrido o a batches 
+          largos lo cual no es congruente y no representa la realizadad, y esto en parte se deba a la incompletitud de la
+          data. Para mejorar esto se requiere OP's que sean consistentes en el mundo de producción y calidad.

@@ -1,0 +1,116 @@
+titulo: 'Exploración: comportamiento de las microtoxinas en el producto terminado en el tiempo y su correlación'
+lugar: "Okuo Analytics"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: "texto"
+        html: >
+          Las micotoxinas en producto terminado son un indicador crítico de inocuidad y de la eficiencia
+          del control de calidad en toda la cadena de producción, por tanto, valores cercanos a cero demuestran
+          buen control de insumos y procesos y valores cercanos o superiores a los límites normativos requieren 
+          acciones inmediatas. En este informe solo nos concentraremos en:
+
+      - tipo: "lista"
+        items:
+          - "Revisar el comportamiento de las micotoxinas AFLATOXINA (ppb), ZEARALENONA (ppb), FUMONISINA (ppm) y DON (ppm)
+             en el presente año."
+          - La correlacción existente entre estas en el mes de Septiembre.
+
+  - titulo: Evolución de las micotoxinas en el 2025
+    contenido:
+
+
+      - tipo: plotly_html
+        src: micotoxinas_subplots_evolucion.html
+
+
+      - tipo: "texto"
+        html: >
+          El análisis de la evolución diaria de micotoxinas en producto terminado durante 2025
+          muestra comportamientos diferenciados entre las toxinas evaluadas. La <strong>Aflatoxina</strong>
+          presenta valores relativamente bajos, con picos puntuales cercanos a 15 ppb, aunque la
+          mayoría de las mediciones se mantienen en rangos inferiores, indicando una exposición
+          intermitente pero controlada. La <strong>Zearalenona</strong> exhibe mayor variabilidad, con
+          fluctuaciones que alcanzan picos superiores a 200 ppb, lo que refleja un riesgo más elevado
+          y la necesidad de un control más estricto en las materias primas asociadas. En el caso de
+          la <strong>Fumonisina</strong>, los niveles predominantes oscilan entre 1 y 5 ppm, con un evento
+          aislado que supera los 10 ppm.
+
+      - tipo: "texto"
+        html: >
+          Finalmente, la <strong>DON</strong> presenta concentraciones
+          más bajas en comparación con las otras micotoxinas, en su mayoría por debajo de 1 ppm,
+          con algunos picos transitorios que alcanzan hasta 3 ppm.
+
+      - tipo: "texto"
+        html: >
+          
+          En conjunto, los resultados
+          evidencian que el producto terminado mantiene niveles de micotoxinas variables, con
+          <em>Zearalenona y Fumonisina</em> como los principales factores de riesgo a vigilar de manera
+          prioritaria para asegurar la inocuidad y el cumplimiento normativo. Para ello, se realizará
+          un análisis de correlacción en el ultimo mes con datos.
+
+
+  - titulo: Correlacción por especie de producto terminado entre las micotoxinas en el mes de Septiembre
+    contenido:
+
+      - tipo: plotly_html
+        src: correlacion_micotoxinas_FIN BROILER.html
+
+      - tipo: "texto"
+        html: >
+          El análisis de correlación entre micotoxinas por especie muestra patrones diferenciados
+          que reflejan tanto la dinámica de contaminación como posibles interacciones entre toxinas.
+          En <strong>FIN BROILER</strong>,las micotoxinas <strong>Zearalenona, Fumonisin y  DON</strong> tienen una
+          correlación de 1.00 entre sí. Esto es muy significativo. En la práctica, significa que en tus muestras,
+          estas tres toxinas casi siempre aparecen juntas y sus niveles suben y bajan en perfecta sincronía en
+          septiembre. Probablemente provienen de la misma fuente o se desarrollaron bajo las mismas condiciones.
+
+      - tipo: plotly_html
+        src: correlacion_micotoxinas_POSTURA PONEDORAS.html
+
+      - tipo: "texto"
+        html: >
+          Para <strong>POSTURA PONI</strong>, las correlaciones son más débiles en general.
+          En el caso de <strong>Zearalenona y Fumonisin</strong> se tiene una correlación negativa perfecta. 
+          indicando que para el mes de revisión estos tipos de micotoxinas son mutuamente excluyentes.
+      - tipo: plotly_html
+        src: correlacion_micotoxinas_GANADO LECH..html
+
+      - tipo: "texto"
+        html: >
+          En <strong>GANADO LECH</strong>,presenta un patrón mixto, para Zearalenona se asocia 
+          negativamente con Fumonisina (τ≈−0.67), mientras Fumonisina–DON muestran asociación positiva
+          moderada (τ≈0.45).
+          Señala fuentes parcialmente compartidas para Fumonisina y DON, y fuentes o condiciones
+          diferenciadas para Zearalenona.
+
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: "lista"
+        items:
+          - Los niveles de <strong>Aflatoxina</strong> se mantienen mayormente bajos con picos aislados; 
+            el control es aceptable pero requiere vigilancia para eventos puntuales.
+
+          - '<strong>Zearalenona</strong> es la toxina más inestable: concentra los picos más altos y frecuentes,
+             por tanto puede ser principal factor de riesgo en el año.'
+
+          - 'En Septiembre, <strong>FIN BROILER</strong> posee co-ocurrencia muy fuerte entre Zearalenona,
+             Fumonisina y DON (τ≈1). Implica misma fuente o condiciones compartidas en las materias primas o
+             el proceso. Aflatoxina muestra asociaciones positivas moderadas, pero no al nivel de las anteriores.'
+
+          - 'En Septiembre, <strong>POSTURA PONEDORAS</strong> posee relaciones débiles o nulas en general. 
+             Destaca una correlación negativa 
+             perfecta entre Zearalenona y Fumonisina (τ≈−1): cuando sube una, baja la otra, sugiriendo 
+             rutas de contaminación diferentes o mezclas/suministros distintos en esta especie.
+             DON se asocia débilmente con Zearalenona y negativamente con Fumonisina.'
+
+          - 'En el mismo mes en <strong>GANADO LECH</strong> presenta un patrón mixto: Zearalenona se asocia 
+             negativamente con Fumonisina (τ≈−0.67), mientras Fumonisina–DON muestran asociación positiva moderada (τ≈0.45).
+             Señala fuentes parcialmente compartidas para Fumonisina y DON, y fuentes o condiciones
+             diferenciadas para Zearalenona.'
+

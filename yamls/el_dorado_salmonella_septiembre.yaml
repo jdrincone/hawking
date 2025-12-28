@@ -1,0 +1,195 @@
+titulo: Revisión prevalencia de <em>Salmonella</em> y <em>Campylobacter</em> en Septiembre-Octubre
+lugar: "El Dorado"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: lista
+        items:
+          - Caracterizar las tendencias mensuales de la prevalencia de <em>Salmonella</em> y <em>Campylobacter</em> 
+            por etapa del proceso (Ciegos, Pollo Ext Vísceras, Prechiller, Salida Chiller).
+          - Descuentos de contenidos en buche y su relación con las diferentes prevalencias.
+          - Analizar el último mes (septiembre) para identificar focos de prevalencia de <em>Campylobacter</em> por
+            etapa del proceso y por granja de procedencia.
+          - Describir el comportamiento general de las variables fisicoquímicas medidas en el Chiller.
+          - Evaluar la relación entre ORP, pH y cloro libre con las prevalencias en Chiller mediante análisis de correlación.
+
+
+  - titulo: Evolución de las prevalencia por <em>Salmonella</em> y <em>Campylobacter</em> por mes y etapa
+    contenido:
+      - tipo: texto
+        html: >
+          Se analiza el comportamiento histórico mensual de las prevalencias de <em>Salmonella</em>
+          y <em>Campylobacter</em> por etapa del proceso. En <strong>Pollo Ext Vísceras</strong> se
+          concentra la mayor carga microbiológica, aunque no hay datos para los últimos meses.
+          En <strong>Ciegos</strong> se observa un repunte reciente; no obstante, el control en
+          <strong>Salida Chiller</strong> ha sido efectivo y mantiene las prevalencias por debajo
+          del <strong>10&nbsp;%</strong>.
+          
+          <br><br>
+          La serie en <strong style="color:#c0392b">rojo</strong> muestra el comportamiento 
+          mensual del <strong>descuento total</strong>, calculado como la suma del descuento por <strong>buches</strong> y el
+          <strong>contenido intestinal</strong> en <strong>evisceración</strong>. Aquí podemos ver
+          que entre Febrero y Agosto, se tiene un comportamiento similar al comportamiento de la serie
+          <strong>Pollo Ext Vísceras</strong>.
+      
+
+      - tipo: plotly_html
+        src: salmonella_prevalencia.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+        #style: "width: 100%; height: 500px;"
+
+      - tipo: texto
+        html: >
+          Para <em>Campylobacter</em>, <strong>Pollo Ext Vísceras</strong> muestra los
+          niveles más altos a mitad de año y no cuenta con registros para
+          <strong>septiembre–octubre</strong>. En <strong>Ciegos</strong> se observa
+          una tendencia reciente al alza; aunque <strong>octubre</strong> es
+          preliminar, el incremento persiste y requiere revisión. 
+          En <strong>Salida Chiller</strong> y <strong>Prechiller</strong> las
+          prevalencias son similares en los últimos meses (≈65–75&nbsp;% en
+          agosto–septiembre), con una leve reducción de Prechiller en octubre.
+          Con esto se sugiere priorizar el control en Ciegos y mantener la verificación en 
+          las etapas de enfriamiento.
+          <br><br>
+          La serie en <strong style="color:#c0392b">rojo</strong> muestra el comportamiento mensual del
+          <strong>descuento total</strong>,  aqui se observa un comportamiento similar a 
+          <strong>Pollo Ext Vísceras</strong> en el periodo de Marzo y Julio.
+
+      - tipo: plotly_html
+        src: campy_prevalencia.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+  - titulo: Descuentos de contenidos en buche vs la prevalencia de salmonella y campylobacter por etapa.
+    contenido:
+      - tipo: texto
+        html: >
+          En la sección anterior describimos visualmente el comportamiento de las prevalencias 
+          y de los descuentos por contenido de buches. A partir de ello, nos preguntamos:
+          <strong>¿Ajustar (aumentar o reducir) el contenido de buches durante el eviscerado modifica 
+          la prevalencia en las etapas posteriores?</strong>
+          <br><br>
+          En el eviscerado se observa que las prevalencias se activan:
+          <strong>a mayor descuento, mayor carga microbiológica</strong>.
+          En el prechiller, con los datos disponibles, se evidencia un <strong>pico de 
+          correlación</strong>: aumenta la presencia de microorganismos a medida que crecen
+          los descuentos. No obstante, la evidencia es correlacional; no podemos afirmar causalidad.
+          Sí podemos afirmar que el producto llega al prechiller con alta carga microbiológica y
+          que esta se reduce de forma marcada en la etapa final del chiller, donde la correlación disminuye.
+          Se recomienda continuar el monitoreo y documentar las acciones en prechiller para 
+          evaluar su efecto y confirmar si explican la reducción de prevalencias al final del proceso.
+      - tipo:  plotly_html
+        src: correlacion_descuento_subplots_p1.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          Para relacionar las correlaciones en la etapa de prechiller con las Granjas tenemos el grafico siguiente donde,
+          las fuentes o granjas contribuyen de manera diferente. Solo las Altamira, Doradolandia, El manzano,
+          La experanza son las más afectadas en términos de prevalencia en Campylobacter al tener descuento de buches.
+      - tipo: plotly_html
+        src: mapa_campy.html
+
+      - tipo: texto
+        html: >
+          En Pollilandia II, el descuento de buches es posible que halla incrementado la prevalencia en Salmonella.
+
+      - tipo: plotly_html
+        src: mapa_salmonella.html
+
+
+  - titulo: Prevalencia por <em>Salmonella</em> y <em>Campylobacter</em> en Septiembre-Octubre
+    contenido:
+      - tipo: texto
+        html: >
+          La imagen sintetiza el comportamiento reciente: la carga microbiológica se inicia en
+          <strong>Ciegos</strong>. En <strong>Pollo Ext Vísceras</strong> no hay mediciones
+          recientes, pero por el patrón histórico se esperaría un incremento. En
+          <strong>Prechiller</strong> se observa una contención parcial de la prevalencia
+          proveniente de etapas previas. Finalmente, el control en <strong>Salida Chiller</strong>
+          reduce la carga, mitigando la contaminación cruzada acumulada; este control resulta más
+          efectivo frente a <em>Salmonella</em> que frente a <em>Campylobacter</em>.
+      
+
+      - tipo: plotly_html
+        src: heatmap_sep.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+  - titulo: Prevalencia de <em>Campylobacter</em> en Septiembre-Octubre por Etapa y Granja
+    contenido:
+
+      - tipo: plotly_html
+        src: heatmap_granja_etapa_sep.html
+
+      - tipo: texto
+        html: >
+          La gráfica muestra que los pollos procedentes de distintas granjas ingresan con una
+          alta carga de <em>Campylobacter</em> (≥50%). A lo largo del proceso la prevalencia
+          se reduce de forma parcial, con el mayor efecto de control en la etapa final de
+          <strong>Salida Chiller</strong>.
+  
+  
+
+  - titulo: Medidas físico-químicas (ORP, pH, cloro libre) en el Chiller
+    contenido:
+      - tipo: plotly_html
+        src: cdf_orp.html
+
+      - tipo: plotly_html
+        src: cdf_ph.html
+
+      - tipo: plotly_html
+        src: cdf_cloro.html
+
+      - tipo: texto
+        html: >
+          Las funciones de distribución acumulada (CDF) de los parámetros fisicoquímicos del chiller muestran el comportamiento
+          mensual de estas variables críticas para el control del proceso. En el caso del potencial redox (orp), se observa
+          una distribución relativamente amplia con valores que oscilan principalmente entre <strong>350 y 550 mV</strong>, presentando cierta
+          variabilidad entre meses pero manteniendo rangos operativos similares. Para el pH, las distribuciones son más
+          concentradas y estables, <strong>con valores centrados alrededor de 6.0-6.3</strong>, mostrando un control más estricto de este
+          parámetro a lo largo del período evaluado. El cloro residual presenta distribuciones escalonadas características
+          de mediciones discretas, con concentraciones que varían entre <strong>3.8 y 4.6 ppm</strong> aproximadamente, <strong>evidenciando la
+          dosificación controlada de este desinfectante durante el proceso de enfriamiento</strong>.
+
+    
+
+
+  - titulo: Matriz de Correlación en el Chiller con mediciones Fisicoquimicas
+    contenido:
+      - tipo: plotly_html
+        src: correlacion_prevalencias_fq.html
+      - tipo: texto
+        html: >
+          La matriz de correlación entre las prevalencias microbiológicas y las
+          variables fisicoquímicas promedio mensuales en la salida del chiller indica que,
+          para <strong>Salmonella</strong>, un pH más bajo (medio más ácido) y valores bajos de ORP
+          se asocian a la tendencia de  menor prevalencia. En cambio, para <strong>Campylobacter</strong> no se
+          observa ninguna correlación con las variables fisicoquímicas evaluadas.
+        
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - "Las mayores cargas se concentran históricamente en <strong>Pollo Ext Vísceras</strong> y, recientemente,
+            se observa un repunte en <strong>Ciegos</strong>; ambos son los principales puntos de 
+            ingreso de contaminación."
+          - Se observa que en la etapa de Evicerado, las prevalencias se activan, incrementa la carga microbiológica 
+            cuando se incrementa los descuentos.
+          - "En  la <strong>Salida Chiller</strong> <em>Salmonella</em>
+            se mantiene en torno a ≤10&nbsp;%, mientras que <em>Campylobacter</em> persiste con niveles elevados 
+            en meses recientes, evidenciando un control parcial."
+          - "Las correlaciones indican que <em>Salmonella</em> disminuye con mayor acidez y menor ORP (r≈0.63 y r≈0.60) y
+             se tiene asociación débil con cloro; en <em>Campylobacter</em> no se observan relaciones claras y solo
+             un efecto negativo leve con el cloro (r≈−0.32)."
+
+
+
+
+
+
+
+
+

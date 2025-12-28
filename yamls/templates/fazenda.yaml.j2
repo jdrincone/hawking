@@ -1,0 +1,98 @@
+titulo: "Revisión efecto del Adiflow en el proceso de peletización"
+lugar: "Fazenda"
+descripcion: "{{ descripcion }}"
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          El presente informe se desarrolló mediante la plataforma Okuo Flow,
+          una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+          y <strong>transformación</strong> de datos asociados a la producción 
+          y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+          información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+          variables de producción (toneladas procesadas, 
+          tiempos de producción and sack-off) and de calidad (temperatura, durabilidad del pellet and humedad). 
+          Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+          de calidad, reduciendo la tensión entre los departamentos 
+          de producción y calidad, logrando un proceso más fluido y eficaz.
+
+          <br><br>
+          En este contexto, usaremos Okuo Flow para dar un entendimiento general del proceso de 
+          peletizado en la planta de <strong>Fazenda</strong> en los meses de {{ meses_analisis }}.
+
+  - titulo: Definiciones
+    contenido:
+
+      - tipo: lista
+        items:
+          - Se analizan ordenes de producción producidas en el periodo del {{ fecha_inicio }} al {{ fecha_fin }}.
+          - Una orden de producción peletizada <strong>sin Adiflow</strong> son aquellas donde la dosis de agua <strong>cero</strong>,
+            de lo contrario son ordenes de producción <strong>con Adiflow</strong>.
+          - De las <strong>{{ total_ops }}</strong> órdenes de producción peletizadas con y sin Adiflow, se considera el <strong>{{ percent_used }}%</strong> de ellas,
+            manteniendo únicamente las que se encuentran entre los percentiles <strong>{{ q_low * 100 }}</strong> y <strong>{{ q_high * 100 }}</strong> 
+            (se excluyen valores atípicos en los extremos).
+
+          - 'El  <strong>Sackoff</strong> por grupo de ordenes de produción \( i \) se calcula como:
+            \( s_i = \frac{\text{(Tons Planificadas - Tons Producidas - Tons Anuladas)}_i}{\text{Tons Producidas}_i} \)'
+          - 'Las Toneladas <strong>Recuperadas</strong>: \( r_i = \frac{\text{(Sackoff Con - Sakcoff Sin)}_i \times \text{Ton Prod Con}_i}{\text{100}} \)'
+
+
+  - titulo: "Resumen general de las métricas de producción y calidad en el periodo analizado"
+    contenido:
+      - tipo: tabla
+        src: summary_general.csv
+
+      - tipo: texto
+        html: >
+          En términos generales, en el periodo analizado se observa una mejora de <strong>{{ mejora_sackoff }} p.p.</strong> en el sackoff
+          sobre <strong>{{ toneladas_con_adiflow }}</strong> toneladas producidas con Adiflow, lo que se traduce en un promedio de <strong>~{{ toneladas_recuperadas }} toneladas
+          recuperadas</strong>, asociado a un <strong>incremento de {{ incremento_temp }} °C</strong> en la temperatura del acondicionador, <strong>sin afectar la
+          calidad</strong> en finos ni en durabilidad.
+
+      - tipo: tabla
+        src: summary_recuperadas.csv
+
+  - titulo: "Comportamiento del Sackoff mensual"
+    contenido:
+
+      - tipo: plotly_html
+        src: barras_sackoff_mes.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+      - tipo: tabla
+        src: summary_month.csv
+
+      - tipo: texto
+        html: >
+          Mes a mes, el sackoff muestra un mejor desempeño con el uso de Adiflow, {{ texto_mensual }}.
+
+      - tipo: tabla
+        src: summary_month_table.csv
+
+      - tipo: texto
+        html: >
+          {{ texto_toneladas_recuperadas }}
+  
+
+  - titulo: "Comportamiento del Sackoff entre las dietas peletizados por los dos procesos"
+    contenido:
+
+      - tipo: plotly_html
+        src: barras_sackoff_dieta_both.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: tabla
+        src: summary_dieta.csv
+
+      - tipo: tabla
+        src: summary_dieta_table.csv
+
+      - tipo: texto
+        html: >
+          {{ texto_dietas }}
+
+  - titulo: "Registros con sackoff anómalo"
+    contenido:
+      - tipo: tabla
+        src: data_bad.csv

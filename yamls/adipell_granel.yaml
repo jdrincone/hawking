@@ -1,0 +1,111 @@
+titulo: "Revisión Ensayo Adipell"
+lugar: "Experimento II"
+descripcion: ""
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          El presente informe se desarrolló mediante la plataforma Okuo Flow,
+          una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+          y <strong>transformación</strong> de datos asociados a la producción 
+          y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+          información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+          variables de producción (toneladas procesadas, 
+          tiempos de producción y sack-off) y de calidad (temperatura, durabilidad del pellet y humedad). 
+          Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+          de calidad, reduciendo la tensión entre los departamentos 
+          de producción y calidad, logrando un proceso más fluido y eficaz.
+
+          <br><br>
+          En este contexto, usaremos Okuo Flow para dar un entendimiento de como
+          el <strong>Adipell</strong> impacta de forma significativa el proceso de peletización.
+          
+
+  - titulo: "Impacto de Adipell en Producción y Calidad — Aliengorde 2"
+    contenido:
+      - tipo: texto
+        html: >
+          A continuación se presentan los resultados comparativos de las variables de
+          calidad y producción para la referencia <strong>Aliengorde 2</strong>,
+          elaborada en la planta de Granel. Esta referencia se seleccionó por ser la
+          que cuenta con información disponible para realizar la comparación.
+
+      - tipo: plotly_html
+        src: production_qa.html
+      - tipo: texto
+        html: >
+          Del comparativo para la referencia <strong>Aliengorde 2</strong>  con Adipell el
+          <strong>rendimiento</strong> aumenta ~<strong>58%</strong>
+          y el <strong>PDI</strong> incrementa en calidad en ~<strong>8.5 puntos porcentuales</strong> frente a sin Adipell. El cambio
+          porcentual se calcula como <em>Δ%</em> = ((con − sin) / sin) × 100.
+
+
+      - tipo: plotly_html
+        src: amp_presion_granel.html
+
+      - tipo: texto
+        html: >
+          Con <strong>Adipell</strong> aumentaron el <strong>amperaje</strong> (~5.9%)
+          y la <strong>presión de vapor</strong> (~8.8%), lo que favoreció la
+          gelatinización generando un incremento la productividad y calidad  (<strong>rendimiento</strong>  y  <strong>PDI</strong>)
+          del producto terminado.
+
+
+  #- titulo: "Comportamiento del PDI y Finos en diferentes puntos de control usando Adipell"
+  #  contenido:
+
+  #    - tipo: plotly_html
+  #      src: stripplot_medias_orden.html
+
+  #    - tipo: plotly_html
+  #      src: stripplot_finos_6.html
+
+
+  #    - tipo: plotly_html
+  #      src: stripplot_finos_18.html
+
+
+  #    - tipo: texto
+  #      html:
+  #        "<strong>En las tres gráficas (PDI,  Retención malla 6, Finos malla 18)</strong>:
+  #        se comparan los valores medidos en los puntos del <em>dado</em>, <em>enfriador</em> y <em>envasado</em>."
+
+  #    - tipo: texto
+  #      html:
+  #        'Se encuentra que en el PDI en el <em>envasado</em> esta por encima de la media contrastado
+  #        con sus otros puntos de control, los finos en el envasado, mejora su valor central
+  #        pero hay mayor dispersión y los finos  en malla 18, presentan mejor comportamiento en el <em>enfriador</em>.'
+
+
+
+  #- titulo: "Conclusiones"
+
+  #  contenido:
+  #    - tipo: lista
+  #      items:
+  #        - "<strong>Planta Granel (Aliengorde 2)</strong>: Adipell mostró beneficio claro — el rendimiento incrementa
+  #        hasta un ~58% y la calidad en el PDI mejora en ~10%, apalancado por mayor presión de vapor y carga.
+  #        Mantener setpoints de vapor/humedad en el  acondicionador y cuidar la manipulación en envasado para minimizar
+  #         finos."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

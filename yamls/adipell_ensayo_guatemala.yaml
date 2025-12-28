@@ -1,0 +1,173 @@
+titulo: "Revisión Ensayo Adipell"
+lugar: "CMI"
+descripcion: ""
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          El presente informe se desarrolló mediante la plataforma Okuo Flow,
+          una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+          y <strong>transformación</strong> de datos asociados a la producción 
+          y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+          información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+          variables de producción (toneladas procesadas, 
+          tiempos de producción y sack-off) y de calidad (temperatura, durabilidad del pellet y humedad). 
+          Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+          de calidad, reducciendo la tensión entre los departamentos 
+          de producción y calidad, logrando un proceso más fluido y eficaz.
+
+          <br><br>
+          En este contexto, usaremos Okuo Flow para dar un entendimiento de como
+          el <strong>Adipell</strong> impacta de forma significativa el proceso de peletizado 
+          en las plantas de  Granel (Honduras) y La Sultana (El Salvador).
+          
+
+  - titulo: "Impacto de Adipell en Producción y Calidad — Aliengorde 2 (Planta Granel)"
+    contenido:
+      - tipo: texto
+        html: >
+          A continuación se presentan los resultados comparativos de las variables de
+          calidad y producción para la referencia <strong>Aliengorde 2</strong>,
+          elaborada en la planta de Granel. Esta referencia se seleccionó por ser la
+          que cuenta con información disponible para realizar la comparación.
+
+      - tipo: plotly_html
+        src: pdi_rendimiento_granel.html
+      - tipo: texto
+        html: >
+          Del comparativo para la referencia <strong>Aliengorde 2</strong> en
+          Granel: con Adipell el <strong>rendimiento</strong> aumenta ~<strong>65%</strong>
+          y el <strong>PDI</strong> ~<strong>10%</strong> frente a sin Adipell. El cambio
+          porcentual se calcula como <em>Δ%</em> = ((con − sin) / sin) × 100. Las
+          toneladas mostradas sobre las barras representan la cantidad peletizada en el proceso.
+          En este caso la calidad y la producción se ven afectados positivamente por el uso de Adipell.
+
+
+      - tipo: plotly_html
+        src: amp_presion_granel.html
+
+
+      - tipo: texto
+        html: >
+          Con <strong>Adipell</strong> aumentaron el <strong>amperaje</strong> (~5.9%)
+          y la <strong>presión de vapor</strong> (~8.8%), lo que favoreció la
+          gelatinización y elevó <strong>PDI</strong> y <strong>rendimiento</strong>.
+          Para lograrlo se controlaron, de forma consistente, la presión/calidad del
+          vapor, la dosificación y humedad en el acondicionador, las temperaturas
+          objetivo, la carga del motor, la alimentación y el enfriamiento.
+
+  - titulo: "Comportamiento del PDI y Finos en diferentes puntos de control usando Adipell"
+    contenido:
+      - tipo: texto
+        html: >
+      - tipo: plotly_html
+        src: stripplot_medias_orden.html
+
+      - tipo: plotly_html
+        src: stripplot_finos_18.html
+
+      - tipo: plotly_html
+        src: stripplot_finos_6.html
+
+      - tipo: texto
+        html:
+          "<strong>De las tres gráficas (PDI, Finos malla 18, Retención malla 6)</strong>:
+          se comparan <em>dado pellet</em>, <em>enfriador</em> y <em>envasado</em> con puntos
+          individuales, caja (IQR/mediana), media ± IC95% y línea de media global."
+
+      - tipo: texto
+        html:
+          "<strong>Hallazgos clave</strong>:
+          PDI: <em>envasado</em> por encima de la media; <em>enfriador</em> por debajo y más variable.
+          Finos 18 (↓ mejor): <em>enfriador</em> menor; <em>envasado</em> mayor y variable.
+          Retención malla 6 (↑ mejor): <em>enfriador</em> mayor; <em>envasado</em> menor y variable."
+
+      - tipo: texto
+        html:
+          "<strong>Acciones</strong>:
+          posiblemente estabilizar parámetros del <em>enfriador</em>,
+          junto a mejorar la manipulación en <em>envasado</em> para evitar fracturas desharinas en el producto final."
+
+  - titulo: "Impacto de Adipell en Producción y Calidad (Planta Sultana)"
+    contenido:
+
+      - tipo: plotly_html
+        src: pdi_finos_rendimiento_sultana.html
+
+      - tipo: texto
+        html: >
+          <strong>Planta La Sultana — con vs. sin Adipell</strong>:
+          el Rendimiento aumenta ~<strong>2.4%</strong>, pero las variables de calidad se
+          deterioran (PDI ↓ ~<strong>0.5%</strong>; Finos ↑ ~<strong>60.5%</strong>).
+          El cambio porcentual se calcula como Δ% = ((con − sin) / sin) × 100.
+          Se sugiere  ajustar el variables en el acondicionamiento como el vapor para controlar el porcentaje de humedad;
+          pues como veremos en la siguiente sección, <strong>se presenta una reducción del ~4% en esta variable que
+          puede explicar la caída de calidad.</strong>.
+      
+
+      - tipo: plotly_html
+        src: consumo_energia_carga_sultana.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+         El Adipell, en la prueba realizada, reduce hasta en un 1.8% el gasto energético, aumentando la carga en la misma proporción, en 
+         este caso la presión de vapor fue la misma.
+
+  - titulo: "Comportamiento de la Temperatura y Humedad en diferentes puntos de control"
+    contenido:
+
+
+
+      - tipo: plotly_html
+        src: lineas_temperaturas.html
+
+      - tipo: texto
+        html: >
+          con y sin Adipell las temperaturas son prácticamente iguales
+          (Harina ~31.7 vs 33.2 °C; Acondicionador ~82.2–82.5 °C; Peletizadora ~82.0–82.2 °C).
+          Las diferencias en etapas calientes son ≤0.3 °C, por lo que la temperatura
+          <em>no explica</em> los cambios de calidad/finos. 
+      
+      
+
+      - tipo: plotly_html
+        src: lineas_humedades.html
+      - tipo: texto
+        html: >
+          — con vs. sin Adipell</strong>:
+          Entrada ~12.9% vs 13.0% (similar); <em>Acondicionador</em> 14.7% vs 15.1%
+          (con Adipell −0.4 pp ≈ −2.6%); Producto terminado 12.5% vs 12.6% (similar).
+          La principal brecha está en el <strong>acondicionador</strong>; menor humedad
+          allí puede explicar el PDI levemente menor y los finos mayores.
+
+  - titulo: "Conclusiones"
+
+    contenido:
+      - tipo: lista
+        items:
+          - "<strong>Planta Granel (Aliengorde 2)</strong>: Adipell mostró beneficio claro — rendimiento ↑~65% y PDI ↑~10%, apalancado por mayor presión de vapor y carga. Mantener setpoints de vapor/humedad en el acondicionador y cuidar la manipulación en envasado para minimizar finos; viable para escalar."
+          - "<strong>Planta La Sultana</strong>: impacto productivo pequeño (rendimiento ↑~2.4%, energía ↓~1.8%) pero deterioro de calidad (PDI −~0.5%, finos ↑~60%). Con temperaturas similares, la brecha está en la humedad del acondicionador (−0.4 pp). Ajustar vapor/humedad y repetir
+             el ensayo con volúmenes comparables."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,131 @@
+titulo: "Eficacia de Inhimold 50 CF en control microbiológico"
+lugar: "Comayma - Guatemala"
+descripcion: ""
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          Este informe resume los resultados del ensayo de control microbiológico
+          realizado en la planta Comayma (Guatemala) en dos momentos
+          (25/06/2025 y 16/08/2025). El objetivo fue comparar el desempeño de
+          <b>Inhimold 50 CF</b> a <b>1.5 kg/ton</b> frente a un <b>producto competidor</b>
+          a <b>0.5 kg/ton</b> en condiciones reales de proceso. Para ambos tratamientos
+          se recolectaron muestras en <b>Recepción</b> (sin producto), <b>10 minutos</b>
+          tras la aplicación y en <b>Seguimiento</b>. El análisis se centró en
+          <b>Mohos y Levaduras</b>, <b>Coliformes</b> y
+          <b>Aerobios mesófilos</b>, con condiciones ambientales promedio de
+          <b>22.2–28 °C</b> y <b>80% HR</b>. Los resultados se presentan en
+          <i>unidades log10(UFC)</i> para facilitar la interpretación microbiológica.
+
+  - titulo: Objetivos
+    contenido:
+          - tipo: lista
+            items:
+              - "Comparar la <b>reducción inmediata</b> (Recepción → 10 min) y la <b>reducción residual</b> (Recepción → Seguimiento) entre Inhimold 50 CF y el producto competidor."
+              - "Cuantificar la eficacia de forma <b>global</b> y por <b>microorganismo</b> usando métricas en log10, porcentaje de reducción y ‘veces menos’ razón de eficacia."
+              - "Aportar evidencia para la <b>toma de decisiones operativas</b> sobre control microbiológico bajo las condiciones de la planta."
+
+  - titulo:  "Distribución de las observaciones por etapa"
+    contenido:
+      - tipo: texto
+        html: >
+          A continuación se presenta la distribución de la cantidad de microorganismos
+             (independientes de su tipo) medida en <b>unidades log</b> a lo largo de tres etapas
+             del proceso: <b>Recepción</b>, <b>10 minutos</b> tras la aplicación y <b>Seguimiento</b>,
+             comparando <b>Inhimold 50 CF</b> con un producto <b>competidor</b>.
+
+
+      - tipo: plotly_html
+        src: half_violins_fixed_Inhimold_50_CF_vs_Producto_competidor.html
+
+      - tipo: texto
+        html: >
+          En <b>Recepción</b> ambas formulaciones parten con cargas similares
+              (≈<b>2.5</b> log10(UFC) para Inhimold y ≈<b>2.3</b> para el competidor; mismo
+              orden de magnitud). A los <b>10 min</b>, <b>Inhimold 50 CF</b> desplaza la
+              distribución hacia <b>valores más bajos y concentrados</b>, aparece un segundo
+              modo en la zona baja (señal de acción del tratamiento) y se <b>acorta la cola</b>
+              en valores altos; el competidor permanece <b>más alto y disperso</b>, con solo
+              un leve sesgo a la baja. En <b>Seguimiento</b> —<i>16 días</i> para Inhimold y
+              <i>10 días</i> para el competidor desde la recepción—, Inhimold <b>preserva</b>
+              el descenso (efecto residual), mientras que el competidor mejora de forma
+              modesta sin alcanzar los niveles de Inhimold. Resultado global
+              (Recepción→Seguimiento): <b>Inhimold ≈ 7.6× menos</b> (−86.8%, 0.88 log10)
+              frente al <b>competidor ≈ 1.8×</b> (−45.4%, 0.26 log10). En síntesis, Inhimold
+              ofrece una <b>reducción más rápida y sostenida en el tiempo con un mayor control microbiologico.</b>
+             
+
+  - titulo: "Reducción en Log10 por Etapa y Microorganismo"
+    contenido:
+      - tipo: texto
+        html: >
+          Para cada microorganismo y tratamiento se promediaron las UFC en
+          <i>Recepción</i> y a <i>10 min</i>. La reducción inmediata es
+          <code>L = log10(mean_Recepción) − log10(mean_10min)</code>.
+          Si <code>L>0</code> hay disminución; si <code>L<0</code> hay aumento.
+          Conversión útil: reducción % ≈ <code>1 − 10^{−L}</code>;
+          “× menos” = <code>10^{L}</code>.
+
+      - tipo: plotly_html
+        src: barras_reduccion_10min.html
+
+      - tipo: texto
+        html: >
+          Las Barras de Reducción<b>L (log10)</b> por microorganismo, comparan la capacidad de reduccir microorganismos de
+          los tratamientos <span style="color:#1C8074"><b>Inhimold 50 CF</b></span> vs  <span style="color:#666666"><b>Producto competidor</b></span>.
+
+      - tipo: lista
+        items:
+          - "<b>Mohos y levaduras (MyL)</b> — Inhimold: <b>1.03 log</b> (≈<b>90.7%</b>, ≈<b>10.7×</b> menos);
+             Competidor: <b>0.17 log</b> (≈<b>32%</b>, ≈<b>1.5×</b> menos)."
+          - "<b>Aerobios mesófilos</b> — Inhimold: <b>0.69 log</b> (≈<b>80%</b>, ≈<b>4.9×</b> menos);
+             Competidor: <b>−0.26 log</b> (≈<b>1.8×</b> más; aumento)."
+          - "<b>Coliformes</b> — Inhimold: <b>0.64 log</b> (≈<b>77%</b>, ≈<b>4.4×</b> menos);
+             Competidor: <b>−0.82 log</b> (≈<b>6.6×</b> más; fuerte aumento)."
+
+      - tipo: texto
+        html: >
+          En conclusión, Inhimold 50 CF muestra una <b>reducción inmediata consistente y relevante</b>
+          (0.64–1.03 log) en todos los microorganismos, mientras que el competidor
+          solo reduce levemente en MyL y <b>aumenta</b> la carga en aeróbios mesófilos
+          y coliformes. Operativamente, Inhimold deja <b>mucho menos inóculo temprano</b>,
+          reduciendo el riesgo de crecimiento posterior en el proceso.
+
+
+      - tipo: plotly_html
+        src: barras_reduccion_seguimiento.html
+
+      - tipo: texto
+        html: >
+          Ahora, la Reducción <b>residual</b> en log10 (Recepción → Seguimiento) por microorganismo, presentan
+          un comportamiento similar.
+
+      - tipo: lista
+        items:
+          - "<b>Coliformes</b> — Inhimold: <b>1.55 log</b> ≈ <b>97%</b> (≈<b>35.5×</b> menos);
+             Competidor: <b>−0.12 log</b> ⇒ <b>~32% más</b> (≈<b>1.32×</b> más)."
+          - "<b>Aerobios mesófilos</b> — Inhimold: <b>0.99 log</b> ≈ <b>90%</b> (≈<b>9.8×</b> menos);
+             Competidor: <b>0.14 log</b> ≈ <b>28%</b> (≈<b>1.38×</b> menos)."
+          - "<b>Mohos y Levaduras (MyL)</b> — Inhimold: <b>0.76 log</b> ≈ <b>83%</b> (≈<b>5.8×</b> menos);
+             Competidor: <b>0.51 log</b> ≈ <b>69%</b> (≈<b>3.2×</b> menos)."
+
+      - tipo: texto
+        html: >
+          Inhimold 50 CF mantiene un efecto <b>residual fuerte y consistente</b> en los tres
+          grupos: logra las reducciones más altas y evita el recrecimiento. En contraste,
+          el competidor muestra <b>poca reducción</b> y en coliformes incluso <b>aumenta</b> la carga.
+          Operativamente, Inhimold deja <b>menos inóculo remanente</b> al seguimiento, lo que
+          reduce el riesgo de proliferación posterior.
+
+  - titulo: "Conclusiones"
+    contenido:
+      - tipo: lista
+        items:
+          - "Inhimold 50 CF demostró eficacia antimicrobiana superior con 86.8% de reducción global versus 45.4% del competidor (7.6× más efectivo)."
+          - "Acción inmediata consistente: Inhimold redujo todos los microorganismos a los 10 minutos (0.64-1.03 log), mientras el competidor incrementó aeróbios mesófilos y coliformes."
+          - "Efecto residual prolongado: Inhimold mantuvo reducciones significativas en seguimiento (0.76-1.55 log), especialmente 97% en coliformes, versus eficacia limitada del competidor."
+          - "Amplio espectro antimicrobiano: Inhimold fue efectivo contra los tres grupos microbianos evaluados, mientras el competidor mostró comportamiento inconsistente."
+          - "Ventaja operacional: La reducción sostenida de Inhimold resulta en menor inóculo remanente, reduciendo el riesgo de proliferación posterior en el proceso."
+

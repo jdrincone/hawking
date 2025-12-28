@@ -1,0 +1,76 @@
+titulo: "Microbiología en materias primas y producto terminado: análisis integrado con formulaciones nutricionales"
+
+lugar: "Avipaz"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: "lista"
+        items:
+          - "Analizar la tendencia mensual de la carga microbiológica en <strong>materias primas (MP)</strong> y 
+             <strong>productos terminados (PT)</strong>."
+          - "Evaluar el perfil microbiológico por especie en PT."
+          - "Caracterizar la distribución y el comportamiento de los componentes nutricionales por especie."
+          - "Explorar la relación entre la microbiología en PT y los parámetros nutricionales de los lotes 
+             peletizados correspondientes al mes de agosto."
+
+
+  - titulo: Tendencia mensual de la carga microbiológica por microorganismo en MP y PT
+    contenido:
+      - tipo: texto
+        html: >
+          Se analiza por mes la carga microbiológica expresada en Log10 (UFC/g) por microorganismo en MP y PT.
+          Solo se presentan las familias donde se evidenció carga en al menos un mes: <strong>Flora total</strong>,
+          <strong>Flora coliformes</strong> y <strong>Flora micótica</strong>. Aunque se cuenta con datos para <strong>E. coli</strong> y
+          <strong>Salmonella</strong>, estos no se incluyen en las visualizaciones porque en los meses analizados
+          <strong>no se detectó presencia</strong> en las muestras evaluadas.
+      
+
+      - tipo: plotly_html
+        src: tendencia_mensual_especie.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+           El análisis de la <strong>Flora Total</strong> muestra que la carga microbiológica (Log10 UFC/g)
+           se mantiene en el rango de 2,0–4,8 Log, es decir, <strong>por debajo del límite aceptado de 6 Log</strong>.
+           En la <strong>Flora Coliforme</strong>, las materias primas de los meses de <strong>marzo</strong> y
+           <strong>agosto</strong> presentan valores por encima del límite de 4 Log, indicando posibles desviaciones
+           en higiene o manipulación. Para la <strong>Flora Micótica</strong>, el mes de <strong>agosto</strong> es crítico:
+           se registran muestras tanto en materias primas como en producto terminado con cargas superiores al límite
+           de 4 Logs.
+
+  - titulo: Tendencia mensual de carga microbiológica en MP por especie
+    contenido:
+      - tipo: plotly_html
+        src: log_microbiologia_samples_subplots_2x2.html
+        
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+          Se evidencia que de forma sistemática se realizan más análisis de <strong>Flora Total</strong>,
+          aunque no en todas las especies de producto terminado. En el caso de la <strong>Flora Coliforme</strong>
+          y la <strong>Flora Micótica</strong>, la especie <strong>Gran Can</strong> en el mes de
+          <strong>agosto</strong> presenta una carga microbiológica por cerca del límite permitido,
+          lo que requiere atención. Adicionalmente, en estas dos últimas familias de microorganismos
+          no se cuenta con análisis para todos los meses, lo que limita la evaluación continua del
+          comportamiento microbiológico.
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: "lista"
+        items:
+          - "La <strong>Flora Total</strong> en MP y PT se mantiene dentro de límites aceptables, 
+             mientras que se identifican eventos puntuales de sobrepaso en <strong>Flora Coliforme</strong> y
+             <strong>Flora Micótica</strong> (especialmente en agosto), que requieren seguimiento del procesos
+             para inferir el origen de la carga microbiológica."
+          - "La información disponible presenta <strong>brechas de muestreo</strong> (no todos los meses ni
+             todas las especies tienen análisis completos) y solo se cuenta con <strong>4 referencias</strong>
+            que cruzan microbiología y formulación; esto permite solo análisis descriptivos y resalta la
+            necesidad de fortalecer el registro sistemático para soportar <strong>conclusiones precisas</strong>."
+          - "Las dietas de <strong>cerdos</strong> y <strong>bovinos de leche</strong> muestran mayores 
+            niveles de humedad y fibra, lo que sugiere un potencial mayor riesgo microbiológico;
+            se recomienda integrar de forma rutinaria la información nutricional y microbiológica para priorizar 
+            especies y productos con condiciones más favorables al crecimiento microbiano."

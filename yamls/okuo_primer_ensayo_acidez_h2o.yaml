@@ -1,0 +1,127 @@
+titulo: Estabilidad del pH alcanzado por distintos acidificantes a lo largo de 24 h
+lugar: ""
+descripcion: ""
+
+secciones:
+  - titulo: Objetivo
+    contenido:
+      - tipo: lista
+        items:
+            - Evaluar y comparar la capacidad de cada producto acidificante para
+              mantener estable el nivel de acidez (pH) del medio durante las primeras 24 horas 
+              tras su aplicación, cuantificando la variabilidad mediante la desviación estándar (SD).
+            - Analizar la evolución y la estabilidad del potencial óxido-reducción (ORP) generado por 
+              cada acidificante durante las mismas 24 h, determinando su relación con el descenso de pH
+              y evaluando si los productos que mantienen un pH más estable también sostienen un ORP suficientemente
+              alto.
+
+
+  - titulo: Consideraciones
+    contenido:
+
+      - tipo: tabla
+        src: productos_acidificantes.csv
+      - tipo: texto
+        html: >
+              .
+
+  - titulo: Evolución del nivel de acidez y potencial óxido-reducción por cada producto en función de las horas transcurridas
+    contenido:
+      - tipo: plotly_html
+        src: ph_curva.html
+        #style: "width: 100%; height: 500px;"
+
+      - tipo: plotly_html
+        src: orp_curva.html
+        #style: "width: 100%; height: 700px;"
+
+      - tipo: texto
+        html: >
+          La anterior gráfica compara siete acidificantes para determinar cuál mantiene la acidez (pH) y 
+          el potencial óxido-reducción (ORP) durante 24 h posteriores a la dosificación.
+
+      - tipo: lista
+        items:
+          - '<strong>Rapidez de acción:</strong> Todos los productos bajan el pH a < 4 en menos de 1 h 
+             y elevan el ORP a > 800 mV en las primeras 5 h posteriores a la dosificación, después de este periodo
+             el pH se estabiliza y el ORP empieza a disminuir a niveles inferiores que al momento de aplicar la acidificación.'
+          - '<strong>Sostenimiento de ORP:</strong> Ácido fosfórico conserva el potencial más alto (~770 mV a 24 h), las
+             Mezclas mantienen un ORP > 650 mV y selko ph baja a ~610 mV debido posiblemente a su pH más alto.'
+
+      - tipo: plotly_html
+        src: orp_ph.html
+        #style: "width: 100%; height: 700px;"
+      - tipo: texto
+        html: >
+          El diagrama de dispersión ORP-pH muestra que, partiendo de la condición inicial (pH ≈ 6,5; ORP ≈ 670 mV), 
+          todos los acidificantes desplazan rápidamente el medio hacia un pH ≤ 3,4 y un ORP ≥ 800 mV, pero mientras
+          el ácido fosfórico sostiene el potencial oxidante con baja dispersión, Citroquim Aqua logra la misma 
+          acidez con una variabilidad de ORP mucho mayor, evidenciando reacciones redox más intensas y, 
+          por tanto, menor estabilidad oxidante.
+
+  - titulo: Estabilidad del pH a lo largo del tiempo según cada producto
+
+    contenido:
+      - tipo: plotly_html
+        src: ph_stability.html
+
+      - tipo: texto
+        html: >
+              A partir de la desviación estándar del pH, podemos cuantificar que tanto varia o fluctua la acidez con cada
+              producto en el tiempo, —donde un valor menor indica mayor estabilidad—
+              Citroquim Aqua y selko ph (≈ 0,03) muestran un comportamiento <strong>excelente</strong> con pH casi invariable;
+              Clap (≈ 0,034) se mantiene <strong>muy estable </strong>; los ácidos acético (≈ 0,047) y cítrico (≈ 0,058) ofrecen 
+              una estabilidad <strong>aceptable</strong> con ligeros repuntes; el ácido fosfórico (≈ 0,070) presenta una 
+              variación <strong>moderada</strong> pese a su alta capacidad de acidificación; y Pka en polvo, con la SD más alta (≈ 0,106),
+              revela la menor estabilidad, atribuida a su disolución más lenta.
+
+  - titulo: Comparativa del tipo de producto, dosis aplicada con respeto a las medidas fisicoquímicas
+
+    contenido:
+      - tipo: plotly_html
+        src: zonas_producto.html
+        #style: "width: 100%; height: 100px;"
+
+      - tipo: texto
+        html: >
+          Cada punto representa un <strong>producto acidificante</strong> (con su dosis actual) y refleja 
+          cuánto baja el <em>pH</em> y cuánto aumenta el <em>potencial redox (ORP)</em>. El área 
+          (regiones subjetivas para explicar los datos) del gráfico se divide en tres franjas horizontales:
+
+      - tipo: lista
+        items:
+          - <strong>ÁCIDOS EN LÍQUIDO</strong> &nbsp;(<code>ORP ≥ 740&nbsp;mV</code>)</li>
+          - <strong>ÁCIDOS EN POLVO</strong> &nbsp;(<code>700&nbsp;–&nbsp;740&nbsp;mV</code>)</li>
+          - <strong>MEZCLA DE ÁCIDOS</strong> &nbsp;(<code>&lt; 700&nbsp;mV</code>)</li>
+
+
+      - tipo: texto
+        html: >
+          Existe una correlación clara: <strong>a menor pH, mayor ORP&nbsp;→ mayor poder desinfectante</strong>.
+          Los productos líquidos concentrados&nbsp;(fosfórico&nbsp;85&nbsp;%, acético&nbsp;85&nbsp;%) alcanzan la
+          franja más alta; los polvos llegan solo si la dosis es suficiente, aunque se debe experimentar con otras
+          concentraciones para dar conclusiones asociadas al tema; las mezclas se quedan por debajo
+          de&nbsp;700&nbsp;mV.
+  
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - <strong>Citroquim Aqua y Ácido fosfórico</strong> son los dos acidificantes más eficaces
+            ambos reducen el pH por debajo de 3,4 en menos de una hora; sin embargo, el fosfórico es menos estable
+            en pH mientras el Citroquim Aqua mantiene estabilidad después de aplicarlo en las 24h que duro el experimento.
+
+          - Las mezclas (Citroquim Aqua, selko ph, Clap) ofrecen la mejor estabilidad de pH, 
+             pero su capacidad oxidante depende del nivel de acidez final SD ≈ 0,03–0,04 revela pH prácticamente 
+             plano durante 24 h; no obstante, selko ph—que reduce menos el pH (≈ 3,9)—pierde ORP con mayor rapidez 
+             (~610 mV). Esto confirma que la simple estabilidad de pH no garantiza un ORP suficientemente alto.
+
+
+
+
+
+
+
+
+

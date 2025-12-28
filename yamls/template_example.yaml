@@ -1,0 +1,63 @@
+titulo: "Report Title: Template Example"
+lugar: "Okuo Analytics"
+descripcion: "Report example"
+secciones:
+  - titulo: "Section Title"
+    contenido:
+      - tipo: plotly_html
+        src: gauge_grid.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: plotly_html
+        src: time_heatmap.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+
+      - tipo: plotly_html
+        src: bar.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+
+      - tipo: plotly_html
+        src: strip.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+
+      - tipo: plotly_html
+        src: sunburst.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+
+      - tipo: plotly_html
+        src: corr.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+
+      - tipo: plotly_html
+        src: pie.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+
+      - tipo: "tabla"
+        src: "df_planta.csv"
+
+      - tipo: "texto"
+        html: "Here goes an explanatory summary of the results."
+
+      - tipo: texto
+        html: El análisis de la tendencia temporal (enero-octubre 2025) revela una correlación directa entre
+          las ineficiencias operativas en evisceración (reflejadas en <strong>Descuento Kg</strong>) y el
+          aumento de la carga microbiológica. Durante el periodo crítico de <strong>marzo a mayo</strong>,
+          se observa un pico en los descuentos que alcanzó los <strong>5,480 kg</strong> en abril; este evento
+          coincidió con el máximo histórico de prevalencia de <em>Salmonella</em> en la etapa <strong>Poll
+          Ext Vísceras</strong> (<strong>81.8%</strong>). Dicha carga entrante saturó la capacidad de intervención
+          del sistema, elevando la positividad en la <strong>Salida Chiller</strong> hasta un <strong>37.5%</strong>,
+          muy por encima de los límites de control. Por el contrario, la estabilización del proceso en el
+          segundo semestre (agosto-octubre), con descuentos controlados (promedio <1,000 kg), permitió que
+          las intervenciones químicas y físicas fueran efectivas, reduciendo la prevalencia en la etapa final
+          a niveles óptimos entre <strong>1.3% y 6.8%</strong>.
+
+      - tipo: lista
+        items:
+          - <strong>Impacto de la Calidad de Proceso en la Inocuidad:</strong> Existe un punto de quiebre evidente
+            cuando los descuentos superan los <strong>3,000 kg</strong> (marzo-mayo); bajo estas condiciones,
+            la contaminación cruzada por ruptura de vísceras incrementa drásticamente la prevalencia de <em>Salmonella</em>,
+            inutilizando la barrera sanitaria del Chiller.
+          - <strong>Eficacia del Punto de Control Crítico:</strong> La etapa <strong>Salida Chiller</strong>
+            demuestra ser altamente eficiente solo cuando la carga entrante es moderada. Los datos de agosto
+            (1.3%) y octubre (4.2%) confirman que el sistema es capaz de garantizar la inocuidad siempre que
+            se mantenga la integridad intestinal en las etapas previas.

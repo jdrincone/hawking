@@ -1,0 +1,171 @@
+
+titulo: Análisis de Humedad en los procesos de Peletizado y Extrusión
+lugar: Unidad de nutrición animal de la empresa Gradezco Ltda
+descripcion: ""
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          El presente informe se desarrolló mediante la plataforma Okuo Flow,
+          una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+          y <strong>transformación</strong> de datos asociados a la producción 
+          y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+          información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+          variables de producción (toneladas procesadas, 
+          tiempos de producción y sack-off) y de calidad (temperatura, durabilidad del pellet y humedad). 
+          Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+          de calidad, reducciendo la tensión entre los departamentos 
+          de producción y calidad, logrando un proceso más fluido y eficaz.
+
+          <br><br>
+          En este contexto, usaremos Okuo Flow para dar un entendimiento estadísticos 
+          de los diferentes parámetros
+          medidos en Unidad de nutrición animal de la empresa Gradezco Ltda.
+          
+
+  - titulo: Mediciones en Extrusión y Peletizado
+    contenido:
+      #- tipo: texto
+      #  html: #'<h4 style="text-align: center;">Tal vez algo</h4>'
+      - tipo: texto
+        html:
+
+            "En los procesos de extrusión y peletizado se registran las mediciones totales o promedios del 
+            <strong>%Sackoff</strong>, <strong>%Durabilidad</strong>, <strong>Actividad de Agua (AW)</strong>
+            y <strong>Porcentaje de Humedad</strong> 
+            tanto al inicio como al final de cada etapa, así como de <strong>Temperatura</strong> y <strong>Carga</strong>. 
+            A continuación se presenta la tabla con estos datos, segmentando  cada proceso por máquina de trabajo:"
+
+
+      - tipo: tabla
+        src: "data_pel_group_dep.csv"
+      - tipo: tabla
+        src: "data_extruder_group_dep.csv"
+
+
+  - titulo: Comparacción de Humedad en etapa inicial y final por procesos
+    contenido:
+      - tipo: plotly_html
+        src: "comparativo_humedad.html"
+        #style: "width: 100%; height: 500px;"
+
+      - tipo: texto
+        html: >
+          El gráfico compara el <strong>porcentaje de humedad inicial y final</strong> por máquina en dos procesos distintos: 
+          <strong>extrusión</strong> (izquierda) y <strong>peletización</strong> (derecha).
+          En las <strong>máquinas de extrusión</strong>, se observa una <strong>reducción significativa en la humedad</strong> tras el proceso. 
+          <br><br>
+          En contraste, las <strong>máquinas de peletización</strong> presentan un <strong>ligero aumento en la humedad</strong> 
+          al final del proceso: la "Pelet 1" incrementa 0.6%, y las "Pelet 2 y 3" y "Pelet 4" aumentan 0.4%. 
+          Este comportamiento podría estar asociado a la adición de agua por el proceso de rehumectación.
+
+      #- tipo: imagen
+      #  src: comparacion_humedad_4panel.png
+      #  mime: png
+      #  style: "width: 80%;"
+
+  - titulo: Comportamiento de la actividad de agua por maquinaria
+    contenido:
+      - tipo: plotly_html
+        src: "comparativo_aw_por_maquina.html"
+        #style: "width: 100%; height: 500px;"
+      - tipo: texto
+        html: >
+          La <strong>actividad de agua (Aw)</strong> es <strong>más baja en la extrusión</strong> (0.51–0.52), 
+          indicando mayor estabilidad del producto, mientras que en la <strong>peletización</strong> es más alta (0.67–0.68),
+          sin superar el 0.7.
+
+
+  - titulo: Comportamiento del Sackoff por maquinaria
+    contenido:
+      #- tipo: texto
+      #  html: #'<h4 style="text-align: center;">Tal vez algo</h4>'
+      - tipo: plotly_html
+        src: "comparativos_sackoff_por_maquina.html"
+        #style: "width: 100%; height: 500px;"
+      - tipo: texto
+        html: Se presenta un valor estable del sackoff entre en cada tipo de maquina.
+
+
+  - titulo: Otras medididas en los procesos de peletización #
+    contenido:
+      - tipo: plotly_html
+        src: "metrics_por_maquina.html"
+        #style: "width: 100%; height: 500px;"
+
+      - tipo: texto
+        html: Se ha detectado una notable estabilidad en las mediciones de durabilidad
+          y temperatura, independientemente de la máquina de peletización y si el proceso
+          se realiza con o sin adiflow. En cambio,
+          la carga y la presión presentan variación.
+
+  - titulo: Comparativa en el tiempo para productos peletizados con Adiflow #
+    contenido:
+      - tipo: texto
+        html: A continuación, se presentan los resultados del último informe correspondiente al mes de mayo,
+              en el que se analizaron los productos peletizados con Adiflow. Estos resultados se comparan con
+              los datos más recientes, también obtenidos bajo condiciones de peletización con Adiflow.
+      - tipo: plotly_html
+        src: "aw_comparativa_pel.html"
+        #style: "width: 100%; height: 500px;"
+
+      - tipo: plotly_html
+        src: "pdi_pel.html"
+      - tipo: texto
+        html: >
+          Las medidas de <strong>AW</strong> y <strong>durabilidad</strong> se han mantenido estables
+          en cada una de las peletizadoras durante los periodos de comparación. 
+          Sin embargo, es importante continuar monitoreando el comportamiento de estas variables
+          en las peletizadoras 2 y 3, donde se observa un decremento del <strong>1%</strong>.
+
+      - tipo: plotly_html
+        src: "sackoff_pel.html"
+
+      - tipo: texto
+        html: >
+          En el caso del <strong>sackoff total</strong>, se observa una mejora sistemática en todas las peletizadoras.
+
+
+      - tipo: plotly_html
+        src: "temp_pel.html"
+      - tipo: texto
+        html: >
+          En el caso, la temperatura se ve afectada en las peletizadoras 2 y 3. Un posible efecto de esta reducción 
+          de temperatura puede implicar la reducción el la durabilidad del pellet en la misma maquina.
+
+
+      - tipo: plotly_html
+        src: "humedad_inicial_pel.html"
+
+      - tipo: plotly_html
+        src: "humedad_final_pel.html"
+
+      - tipo: texto
+        html: >
+          En el caso de las humedades al inicio y final destaca el aumento de la humedad al inicio del
+          proceso en las peletizadoras 2 y 3.
+
+  - titulo: Comparativa de métricas por Extruder y tiempo para productos con Adiflow
+    contenido:
+
+      - tipo: plotly_html
+        src: "humedad_inicial_ext.html"
+
+      - tipo: plotly_html
+        src: "humedad_final_ext.html"
+
+      - tipo: plotly_html
+        src: "aw_comparativa_ext.html"
+        #style: "width: 100%; height: 500px;"
+
+      - tipo: plotly_html
+        src: "sackoff_ext.html"
+
+      - tipo: texto
+        html: >
+          En cuanto a las humedades inicial y final, se destaca una reducción en las humedades finales. 
+          La <strong>actividad de agua</strong> se mantiene, en general, estable. 
+          Por su parte, el <strong>sackoff</strong> muestra un aumento en el extrusor 620, 
+          mientras que en el 1020 presenta una reducción.

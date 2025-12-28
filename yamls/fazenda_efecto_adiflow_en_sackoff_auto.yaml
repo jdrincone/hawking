@@ -1,0 +1,98 @@
+titulo: "Revisión efecto del Adiflow en el proceso de peletización"
+lugar: "Fazenda"
+descripcion: "Automatización del reporte de Fazenda para el análisis del efecto de Adiflow en el sackoff."
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          El presente informe se desarrolló mediante la plataforma Okuo Flow,
+          una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+          y <strong>transformación</strong> de datos asociados a la producción 
+          y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+          información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+          variables de producción (toneladas procesadas, 
+          tiempos de producción and sack-off) and de calidad (temperatura, durabilidad del pellet and humedad). 
+          Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+          de calidad, reduciendo la tensión entre los departamentos 
+          de producción y calidad, logrando un proceso más fluido y eficaz.
+
+          <br><br>
+          En este contexto, usaremos Okuo Flow para dar un entendimiento general del proceso de 
+          peletizado en la planta de <strong>Fazenda</strong> en los meses de Septiembre a Diciembre.
+
+  - titulo: Definiciones
+    contenido:
+
+      - tipo: lista
+        items:
+          - Se analizan ordenes de producción producidas en el periodo del 02 de January de 2025 al 16 de December de 2025.
+          - Una orden de producción peletizada <strong>sin Adiflow</strong> son aquellas donde la dosis de agua <strong>cero</strong>,
+            de lo contrario son ordenes de producción <strong>con Adiflow</strong>.
+          - De las <strong>1677</strong> órdenes de producción peletizadas con y sin Adiflow, se considera el <strong>97.9%</strong> de ellas,
+            manteniendo únicamente las que se encuentran entre los percentiles <strong>1.0</strong> y <strong>99.0</strong> 
+            (se excluyen valores atípicos en los extremos).
+
+          - 'El  <strong>Sackoff</strong> por grupo de ordenes de produción \( i \) se calcula como:
+            \( s_i = \frac{\text{(Tons Planificadas - Tons Producidas - Tons Anuladas)}_i}{\text{Tons Producidas}_i} \)'
+          - 'Las Toneladas <strong>Recuperadas</strong>: \( r_i = \frac{\text{(Sackoff Con - Sakcoff Sin)}_i \times \text{Ton Prod Con}_i}{\text{100}} \)'
+
+
+  - titulo: "Resumen general de las métricas de producción y calidad en el periodo analizado"
+    contenido:
+      - tipo: tabla
+        src: summary_general.csv
+
+      - tipo: texto
+        html: >
+          En términos generales, en el periodo analizado se observa una mejora de <strong>160.17 p.p.</strong> en el sackoff
+          sobre <strong>40539.0</strong> toneladas producidas con Adiflow, lo que se traduce en un promedio de <strong>~64931.25 toneladas
+          recuperadas</strong>, asociado a un <strong>incremento de 2.4 °C</strong> en la temperatura del acondicionador, <strong>sin afectar la
+          calidad</strong> en finos ni en durabilidad.
+
+      - tipo: tabla
+        src: summary_recuperadas.csv
+
+  - titulo: "Comportamiento del Sackoff mensual"
+    contenido:
+
+      - tipo: plotly_html
+        src: barras_sackoff_mes.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+      - tipo: tabla
+        src: summary_month.csv
+
+      - tipo: texto
+        html: >
+          Mes a mes, el sackoff muestra un mejor desempeño con el uso de Adiflow, salvo en el mes de noviembre, donde el escenario con Adiflow presenta mayores mermas que el escenario sin el aditivo.
+
+      - tipo: tabla
+        src: summary_month_table.csv
+
+      - tipo: texto
+        html: >
+          En términos de toneladas recuperadas, octubre es el mes con mayor aporte: presenta el mayor volumen de producción con Adiflow y, aunque registra un sackoff ligeramente superior, esto se traduce en la mayor cantidad de toneladas recuperadas.
+  
+
+  - titulo: "Comportamiento del Sackoff entre las dietas peletizados por los dos procesos"
+    contenido:
+
+      - tipo: plotly_html
+        src: barras_sackoff_dieta_both.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: tabla
+        src: summary_dieta.csv
+
+      - tipo: tabla
+        src: summary_dieta_table.csv
+
+      - tipo: texto
+        html: >
+          No se observan dietas con mejora significativa.
+
+  - titulo: "Registros con sackoff anómalo"
+    contenido:
+      - tipo: tabla
+        src: data_bad.csv

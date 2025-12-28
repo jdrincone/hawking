@@ -1,0 +1,104 @@
+
+titulo: Análisis de Humedad en los procesos de Peletizado y Extrusión
+lugar: Unidad de nutrición animal de la empresa Gradezco Ltda
+descripcion: ""
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          El presente informe se desarrolló mediante la plataforma Okuo Flow,
+          una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+          y <strong>transformación</strong> de datos asociados a la producción 
+          y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+          información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+          variables de producción (toneladas procesadas, 
+          tiempos de producción y sack-off) y de calidad (temperatura, durabilidad del pellet y humedad). 
+          Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+          de calidad, reducciendo la tensión entre los departamentos 
+          de producción y calidad, logrando un proceso más fluido y eficaz.
+
+          <br><br>
+          En este contexto, usaremos Okuo Flow para dar un entendimiento estadísticos 
+          de los diferentes parámetros
+          medidos en Unidad de nutrición animal de la empresa Gradezco Ltda.
+          
+
+  - titulo: Mediciones en Extrusión y Peletizado
+    contenido:
+      #- tipo: texto
+      #  html: #'<h4 style="text-align: center;">Tal vez algo</h4>'
+      - tipo: texto
+        html:
+
+            "En los procesos de extrusión y peletizado se registran las mediciones totales o promedios del 
+            <strong>%Sackoff</strong>, <strong>%Durabilidad</strong>, <strong>Actividad de Agua (AW)</strong>
+            y <strong>Porcentaje de Humedad</strong> 
+            tanto al inicio como al final de cada etapa, así como de <strong>Temperatura</strong> y <strong>Carga</strong>. 
+            A continuación se presenta la tabla con estos datos, segmentando  cada proceso por máquina de trabajo:"
+
+
+      - tipo: tabla
+        src: "data_pel_group_dep.csv"
+      - tipo: tabla
+        src: "data_extruder_group_dep.csv"
+
+
+  - titulo: Comparacción de Humedad en etapa inicial y final por procesos
+    contenido:
+      #- tipo: texto
+      #  html: #'<h4 style="text-align: center;">Tal vez algo</h4>'
+      - tipo: imagen
+        src: comp_humedad.png
+        mime: png
+        style: "width: 80%;"
+      - tipo: texto
+        html:
+             En los procesos de <strong>extrusión</strong>, independientemente de 
+             la adición de Adiflow, no se detecta un incremento en el porcentaje de humedad
+             entre la etapa inicial y la final. En cambio, los procesos de <strong>peletización</strong> 
+             sí muestran un aumento de humedad, reflejado en una actividad de agua del orden de 0,4&nbsp;%.
+
+      #- tipo: imagen
+      #  src: comparacion_humedad_4panel.png
+      #  mime: png
+      #  style: "width: 80%;"
+
+  - titulo: Comparacción de actividad de agua por maquinaria y Con/Sin adiflow
+    contenido:
+      #- tipo: texto
+      #  html: #'<h4 style="text-align: center;">Tal vez algo</h4>'
+      - tipo: imagen
+        src: comparacion_aw_adiflow.png
+        mime: png
+        style: "width: 80%;"
+      - tipo: texto
+        html: En extrusión la actividad de agua no supera el 0.6 y en peletizado la actividad de agua no supera el 0.7.
+
+  - titulo: Comparacción de Sackoff por maquinaria y Con/Sin adiflow
+    contenido:
+      #- tipo: texto
+      #  html: #'<h4 style="text-align: center;">Tal vez algo</h4>'
+      - tipo: imagen
+        src: comparacion_sackoff_adiflow.png
+        mime: png
+        style: "width: 80%;"
+      - tipo: texto
+        html: De forma sistematica, independiente del proceso, con adiflow se observa una mejora
+              en el Sackoff.
+
+
+  - titulo: Otras medididas en los procesos de peletización
+    contenido:
+      - tipo: imagen
+        src: metrics_con_sin_adiflow.png
+        mime: png
+        style: "width: 80%;"
+
+      - tipo: texto
+        html: Se ha detectado una notable estabilidad en las mediciones de durabilidad
+          y temperatura, independientemente de la máquina de peletización y si el proceso
+          se realiza con o sin adiflow. En cambio,
+          la carga y la presión presentan variación, existiendo una mayor carga y presión
+          cuando las dietas a procesar se realizan con adiflow.

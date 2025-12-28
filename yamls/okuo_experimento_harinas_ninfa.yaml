@@ -1,0 +1,161 @@
+titulo: "Resultados ensayo rehumectación HCH 2025"
+lugar: "Okuo Analytics"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivo
+    contenido:
+      - tipo: lista
+        items:
+          - Evaluar la evolución temporal de las mediciones fisicoquímicas en los tratamientos aplicados a la 
+            harina de carne y hueso (HCH).
+          - Contrastar las mediciones fisicoquímicas con los resultados microbiológicos (presencia/ausencia de microorganismos).
+          - Revisión de la  oxidación primaria y acidez antes y después de cada tratamiento.
+
+  - titulo: Evolución temporales de las medidas fisicoquímicas en las diferentes tratamientos
+    contenido:
+      - tipo: texto
+        html: >
+          Considerando los tratamientos <strong>Control</strong>, <strong>T1 Adiflow 2%</strong>,
+          <strong>T2 Adiflow 3%</strong> y <strong>T3 Agua 3%</strong>, se graficó la evolución de las 
+          variables fisicoquímicas a lo largo de los días de medición. En términos generales, 
+          la actividad de agua (aW) disminuye con el tiempo en todos los tratamientos, como es esperable por 
+          la pérdida progresiva de humedad y la menor fracción de agua biodisponible para reacciones.
+          <br><br>
+          En <strong>aW</strong>, los tratamientos <strong>T2 Adiflow 3%</strong> y
+          <strong>T3 Agua 3%</strong> presentan trayectorias muy similares: parten del
+          mismo valor y evolucionan casi en paralelo. Al finalizar el experimento,
+          sus valores son comparables y <em>no se aprecia una diferencia significativa</em>
+          entre ambos.
+
+      - tipo: plotly_html
+        src: panel_1x3_tratamientos.html
+        style: "width: 90%; display: block; margin: 0 auto;"
+
+  - titulo: Resultados microorganismos por tratamiento
+    contenido:
+      - tipo: texto
+        html: >
+          Para cada tratamiento y sus <strong>réplicas</strong> se realizaron análisis microbiológicos de:
+          <em>Recuento de E. coli</em>, <em>Recuento de Clostridium sulfito reductor</em>, 
+          <em>Búsqueda de Salmonella spp.</em> y <em>Recuento de Coliformes Totales</em>.
+          De todas las pruebas, únicamente se detectó presencia en el 
+          <strong>Recuento de Clostridium sulfito reductor</strong>; por ello, los resultados
+          y gráficos que se muestran a continuación corresponden a este microorganismo.
+          
+          
+
+      - tipo: plotly_html
+        src: barras_resultado_log_2x2.html
+        style: "width: 90%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          En el tratamiento <strong>Control</strong> se detectó presencia de microorganismos en la
+          <strong>réplica 2</strong>; en las <strong>réplicas 4 y 6</strong> ya no se observaron.
+          En <strong>Adiflow 2%</strong> se evidenció presencia en las <strong>réplicas 4 y 6</strong>,
+          con menor intensidad en la última. En <strong>Adiflow 3%</strong> la presencia apareció
+          únicamente en la <strong>réplica 6</strong>. En el tratamiento con <strong>Agua 3%</strong>
+          no se detectaron microorganismos en ninguna réplica.
+
+
+  - titulo: Recuento de Clostridium sulfito y su correlación con variables fisicoquímicas
+    contenido:
+      - tipo: texto
+        html: >
+          Dado que el único microorganismo observado fue el <strong>Recuento de Clostridium sulfito reductor</strong>,
+          evaluamos la relación entre <strong>log(UFC/g)</strong>, <strong>temperatura</strong> y <strong>actividad de agua (aw)</strong>
+          mediante correlación de <strong>Spearman</strong> (con significancia).
+
+      - tipo: plotly_html
+        src: correlaciones.html
+        style: "width: 90%; display: block; margin: 0 auto;"
+      - tipo: lista
+        items:
+         - "<strong>aw ↔ temperatura:</strong> r<sub>s</sub> ≈ <strong>−0.87</strong> &rarr; relación
+           <em>negativa muy fuerte y significativa</em>: al aumentar la temperatura, la aw disminuye."
+         - "<strong>aw ↔ humedad:</strong> r<sub>s</sub> ≈ <strong>0.61</strong> &rarr; relación positiva normal."
+         - "<strong>log(UFC/g) ↔ aw:</strong> r<sub>s</sub> ≈ <strong>−0.09</strong> (ns) &rarr; <em>no se evidencia
+            asociación</em>."
+         - "<strong>log(UFC/g) ↔ temperatura:</strong> r<sub>s</sub> ≈ <strong>0.17</strong> (ns) &rarr; <em>no se evidencia
+            asociación</em>."
+
+      - tipo: texto
+        html: >
+          En síntesis, en este conjunto de datos <strong>la variación del recuento (log)</strong> de 
+          Clostridium no muestra
+          relación significativa ni con la temperatura ni con la aw; la única asociación clara es la
+          <strong>interdependencia física</strong> entre temperatura y aw. Para confirmar o descartar efectos sutiles,
+          conviene ampliar el tamaño muestral o realizar más experimentos con las mismas condiciones de partida.
+
+  - titulo: Comportamiento del Índice de peróxidos y Acidez por tratamiento
+    contenido:
+      - tipo: texto
+        html: >
+          Partimos de <strong>harina de carne y hueso</strong> en condición inicial,
+          con <strong>peróxidos = 2.52&nbsp;mEq O₂/kg</strong> y
+          <strong>acidez = 13.74&nbsp;g/100&nbsp;g</strong>. Evaluaremos cómo
+          varían estas métricas al aplicar los tratamientos <strong>T1</strong>,
+          <strong>T2</strong> y <strong>T3</strong>, y cómo evoluciona el
+          <strong>control</strong> en el mismo periodo.
+
+      - tipo: plotly_html
+        src: analisis_peroxidos.html
+        style: "width: 90%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          <strong>Índice de peróxidos</strong><br>
+          La barra “Inicial” es el punto de partida (<strong>2.52&nbsp;mEq O₂/kg</strong>).
+          Cada barra “Fin” muestra el valor del tratamiento y su <strong>Δ</strong> (cambio vs Inicial).
+          El <em>Control</em> se mantiene casi igual a la condición inicial;
+          los tratamientos <strong>T1–T3</strong> muestran <strong>incrementos claros</strong> del índice de
+          peróxidos (mayor oxidación primaria) frente al inicio, siendo el  <strong>T3</strong> el que más 
+          se resiste al cambio.
+
+
+      - tipo: plotly_html
+        src: analisis_acidez.html
+        style: "width: 90%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          <strong>Acidez</strong><br>
+          Tanto el <em>Control</em> como los tratamientos
+          <strong>T1–T3</strong> terminan con <strong>acidez claramente alta</strong> que la condición inicial,
+          lo que sugiere mayor presencia de <em>ácidos grasos libres</em> (hidrólisis) durante el periodo evaluado.
+          No hay evidencia de que los tratamientos reduzcan la acidez frente al control, pero se tiene tendencia
+          que en los tratamientos el incremento de acidez se realiza de forma más lenta.
+        
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - La actividad de agua (aW) disminuye con el tiempo en todos los tratamientos (Control, T1 Adiflow 2%, T2 
+            Adiflow 3% y T3 Agua 3%), lo que sugiere que la dinámica observada está dominada por el secado progresivo 
+             más que por diferencias entre tratamientos.
+          - "<strong>No se evidenció un patrón dosis–respuesta del aditivo</strong>: la presencia de <em>Clostridium</em>
+             fue esporádica tanto en <strong>Control</strong> como en <strong>Adiflow 2%</strong> y
+             <strong>Adiflow 3%</strong>. Bajo las condiciones evaluadas, no es posible <strong>atribuir</strong> 
+             dicha presencia al aditivo."
+          - "Se tiene una fuerte relación inversa entre temperatura y aW (r_s≈−0.87)."
+          - Si el objetivo es <strong>minimizar la oxidación primaria</strong>,
+            el tratamiento <strong>T3 (Agua 3%)</strong> mostró el <strong>menor incremento</strong> del índice
+            de peróxidos frente a la línea base y al control. No obstante, la <strong>acidez aumentó</strong> en
+            todos los casos (incluido el control), sin evidencia de reducción atribuible a los tratamientos; por tanto,
+            T3 sería la alternativa <em>más conservadora en peróxidos</em>, pero no resuelve la acidez.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

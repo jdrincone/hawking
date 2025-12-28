@@ -1,0 +1,49 @@
+titulo: How to Improve Production Processes in Feed Plants Using Data?
+lugar: Okuo Analytics
+descripcion: ""
+
+secciones:
+  - titulo: Opportunities for Deepening and Optimization
+    contenido:
+      - tipo: lista
+        items:
+          - "<strong>Set-point optimization</strong>"
+          - "<strong>Temporal validation for model robustness and drift control</strong>"
+          - "<strong>Early quality prediction</strong>"
+          - "<strong>Failure detection</strong>"
+
+  - titulo: Questions That Can Be Answered with Data on Pellet Quality and Production
+    contenido:
+      - tipo: lista
+        items:
+          - "<strong>Production–quality relationship</strong>: Is there a correlation between 
+             production speed (performance) and pellet durability?"
+
+          - "<strong>Impact of moisture (or process variables)</strong>: What is the effect of changing moisture
+             or other critical variables? If I vary moisture by Y%, how does it affect production and product quality?"
+
+          - "<strong>Raw material and formulation</strong>: How do fat, starch, and fiber proportions influence productivity and quality? 
+             What are the ideal ingredient combinations?"
+
+          - "<strong>Motor overload and quality</strong>: At what level of amperage in the conditioner 
+            or pellet mill is quality compromised?"
+
+          - "<strong>Paddle configuration</strong>: What paddle design maximizes efficiency and 
+            either maintains or improves durability?"
+
+          - "<strong>Most influential variable</strong>: Which variable explains the greatest variation 
+            in pellet quality within the plant?"
+
+          - "<strong>Early quality prediction</strong>: What are the key variables and in what range 
+            must they be maintained to ensure durability above X%?"
+
+          - "<strong>Quality limits in long processes</strong>: How do quality variables degrade in long processes 
+            (processes with a considerable number of batches)?"
+
+          - "<strong>Detect equipment failures</strong>: What is the maximum time for replacing the die 
+            (plant consumables) due to wear? What would be the economic loss of not replacing the consumable on time?"
+
+  - titulo: '<h3 style="text-align: center;">With data, we can ask direct questions like: within a certain production range, what quality is obtained? Or inverse questions like: if I want a specific quality value, what range of production parameters should I adjust?</h3>'
+    contenido:
+      - tipo: texto
+        html: ""

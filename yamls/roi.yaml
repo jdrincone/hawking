@@ -1,0 +1,64 @@
+titulo: Análisis del ROI en función del producto Adiflow
+lugar: ""
+descripcion: ""
+
+secciones:
+  - titulo: Consideraciones
+    contenido:
+      - tipo: lista
+        items:
+          - Se consideran las órdenes de producción desde febrero hasta la fecha actual, tanto con Adiflow como sin Adiflow.
+          - Se entiende como “toneladas producidas” el valor registrado en la columna <strong>CONS. CAP</strong> de los registros originales.
+          - Se clasifican como peletizadas con Adiflow aquellas órdenes cuyo peso de agua es mayor que cero.
+          - Los kilos de Adiflow dispensados en el producto se calculan multiplicando las toneladas producidas por 0,75.
+          - El valor promedio general por tonelada producida es de $1.700.000.
+          - El precio de la tonelada de Adiflow se fija en $7.200.
+          - 'Las toneladas recuperadas se definen como: La diferencia de Sackoff (%) x Las tonelasas producidas con Adiflow.'
+
+          
+
+  - titulo: Comportamiento Global
+    contenido:
+      #- tipo: texto
+      #  html: #'<h4 style="text-align: center;">Tal vez algo</h4>'
+      - tipo: texto
+        html:
+            "En el periodo mencionado, el ROI Global por con es uso de Adiflow es:"
+      - tipo: tabla
+        src: "GLOBAL_ROI.csv"
+      - tipo: texto
+        html:
+          "Consolidado general por Dietas:"
+
+      - tipo: tabla
+        src: "datos_roi_por_dieta.csv"
+
+  - titulo: ROI por Dietas
+    contenido:
+      - tipo: plotly_html
+        src: "ROI_by_product.html"
+        style: "width: 100%; height: 500px;"
+
+  - titulo: Toneladas recuperadas por dieta
+    contenido:
+
+      - tipo: plotly_html
+        src: "ton_recuperadas_by_product.html"
+
+
+  - titulo: Comparativa de Sackoff por mes y dietas
+    contenido:
+
+      - tipo: plotly_html
+        src: "comparacion_mes.html"
+        #style: "width: 70%; height: 400px;"
+
+      - tipo: plotly_html
+        src: "comparacion_sackoff.html"
+        #style: "width: 70%; height: 400px;"
+
+
+
+
+
+

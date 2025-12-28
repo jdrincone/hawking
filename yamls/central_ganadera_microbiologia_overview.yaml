@@ -1,0 +1,147 @@
+titulo: "Insight: Comportamiento de la prevalencia"
+lugar: "Central Ganadera"
+descripcion: ""
+
+secciones:
+  - titulo: "Objetivos"
+    contenido:
+      - tipo: "texto"
+        html: >
+          Con base en análisis microbiológicos realizados en la línea de producción de porcinos,
+          se evalúa el comportamiento de la <strong>prevalencia</strong>, definida como la razón entre
+          el número de análisis con presencia de microorganismos y el total de análisis realizados
+          (<em>prevalencia = positivos / total de análisis</em>). Este insight busca traducir las
+          mediciones en información accionable para la gestión del proceso y dejar la puerta abierta
+          para realizar <strong>"forcasting"</strong> como modelo predictivo de prevalencia para un tipo de microorganismo.
+
+      - tipo: "lista"
+        items:
+          - Caracterizar el comportamiento diario de la prevalencia en cada etapa del proceso.
+          - Desagregar la prevalencia por microorganismo a nivel diario y mensual para identificar patrones y anomalías.
+          - Calcular las prevalencias de <strong>transición</strong> por microorganismo entre etapas del proceso y destacar su comportamiento en el mes actual.
+          - Calcular las prevalencias de <strong>transición</strong> por microorganismo entre categorías del proceso y particularizar su comportamiento en el mes actual.
+
+
+  - titulo:  Comportamiento de la prevalencia por día de muestreo en cada etapa del proceso
+    contenido:
+      - tipo: plotly_html
+        src: probabilidad_prevalencia_etapas_linea_roja.html
+
+      - tipo: "texto"
+        html: >
+          En todas las etapas del proceso se observa un patrón similar, con una
+          caída marcada de la prevalencia en junio de 2024. La pregunta es natural:
+          <strong>¿qué ocurrió ese mes?</strong> Si entendemos este cambio con evidencia
+          —no solo con intuición— podremos construir un pronóstico que anticipe la
+          tendencia y nos avise con tiempo qué niveles de prevalencia esperar en los
+          próximos días. Así, el equipo puede <em>actuar antes</em> (ajustar condiciones,
+          reforzar limpieza) y evitar incrementos no deseados.
+
+      - tipo: "texto"
+        html: >
+          Para lograr un modelo de pronóstico útil (y creíble) necesitamos algo más
+          que los valores de prevalencia. En lenguaje simple: contexto. Es decir,
+          <strong>variables que expliquen por qué sube o baja la prevalencia</strong>
+          y que podamos medir de manera consistente, más adelante lo siguiente que mostraremos
+          es en pos de este mindset.
+
+      - tipo: plotly_html
+        src: probabilidad_prevalencia_microorganismo.html
+      - tipo: plotly_html
+        src: probabilidad_prevalencia_microorganismo_mes.html
+
+      - tipo: "texto"
+        html: >
+          El patrón observado al inicio se mantiene al desagregar por <strong>microorganismo</strong> y por
+          <strong>mes</strong>: hay meses con descensos generalizados (p.ej., junio de 2024).
+          Esto sugiere que coexisten factores comunes del proceso.
+
+  - titulo: Comportamiento de la prevalencia por tipo de microorganismo en cada etapa del proceso
+    contenido:
+
+      - tipo: plotly_html
+        src: heatmap_microorganismo_etapa_plotly_con_n.html
+
+      - tipo: "texto"
+        html: >
+          El mapa de calor resume el comportamiento <strong>histórico</strong> de la prevalencia por
+          tipo de microorganismo en cada etapa del proceso de la línea <strong>porcícola</strong>.
+          Las celdas en blanco indican <strong>ausencia de muestreo</strong> en ese cruce
+          (etapa × microorganismo). En las celdas con datos se muestran dos elementos:
+          <strong>n</strong> (cantidad de análisis realizados) y el <strong>porcentaje de
+          prevalencia</strong>. A destacar:
+
+      - tipo: "lista"
+        items:
+        - Producto terminado es la etapa con mayor intensidad de muestreo.
+        - Los microorganismos más analizados son el recuento de <em>Coliformes totales</em> y de <em>E. coli</em>.
+        - Ambos aparecen en todas las etapas, sin un descenso marcado en la etapa final,
+          lo que sugiere persistencia del riesgo a lo largo del proceso.
+
+      - tipo: plotly_html
+        src: heatmap_microorganismo_etapa_plotly_2025-08.html
+
+      - tipo: "texto"
+        html: >
+          El comportamiento histórico muestra variaciones leves respecto al mes actual.
+          Las acciones implementadas en el proceso han evitado incrementos de
+          <em>Coliformes totales</em> en el producto terminado. Además, el análisis de las
+          “transiciones de probabilidad” entre etapas (cómo cambia la prevalencia de una
+          etapa a la siguiente) indica que este patrón aporta señal predictiva relevante,
+          por lo que conviene considerarlo como variable clave en el modelo.
+  
+
+  - titulo: Comportamiento de la prevalencia por categoría en cada etapa del proceso
+    contenido:
+      - tipo: plotly_html
+        src: heatmap_microorganismo_categoria_con_n.html
+
+      - tipo: "texto"
+        html: >
+          La interpretación es similar a la anterior, pero hay un punto llamativo: en las
+          muestras de agua (<strong>n = 268</strong>) no se detectó ningún microorganismo.
+          Con un tamaño muestral así, una ausencia total es inusual salvo que el sistema
+          de agua cuente con una desinfección muy robusta y que el método analítico tenga
+          límites de detección adecuados. <br><br>
+          <strong>¿Qué podría explicarlo?</strong> Conviene revisar el contexto y la
+          calidad de los datos antes de concluir.
+      - tipo: "lista"
+        items:
+          - <strong>Método y sensibilidad:</strong> límite de detección (LOD/LOQ), selectividad del medio, y 
+             recuperación para indicadores como <em>E. coli</em> y <em>Coliformes totales</em>.
+          - <strong>Volumen y preparación de muestra:</strong> volumen filtrado (p. ej., 100&nbsp;mL), 
+            diluciones y preservación adecuada.
+          - <strong>Desinfección:</strong> cloro residual/UV en el punto de muestreo y <em>neutralización del cloro</em> (p. ej., tiosulfato) en el frasco.
+          - <strong>Cadena de frío y tiempos:</strong> temperatura de transporte y tiempo hasta el análisis.
+
+      - tipo: plotly_html
+        src: heatmap_microorganismo_categoria_plotly_2025-08.html
+      - tipo: "texto"
+        html: >
+          En este caso se destaca que los manipuladores otorgan poca carga microbiologica al proceso.
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: "lista"
+        items:
+          - Se confirma un patrón común de prevalencia en todas las etapas con una caída marcada en junio de 2024;
+            la consistencia por microorganismo y por mes sugiere un cambio global contundente,
+            p. ej., cambio operativo,campaña de saneamiento, mantenimiento o variación ambiental
+            más que un fenómeno aislado.
+
+          - 'La serie de “Línea porcinos” (resaltada en rojo) ayuda a visualizar la tendencia global: desde junio de 2024
+            se observa una reducción sostenida que conviene proteger con acciones preventivas (estandarización de
+            set-points, limpieza programada, verificación de prácticas).'
+
+          - El mapa de calor muestra que <strong>Producto terminado</strong> es donde más se muestrea y que
+            <em>Coliformes totales</em> y <em>E. coli</em> aparecen en todas las etapas sin descenso marcado en la 
+            final, lo que apunta a riesgos de re-contaminación o barreras finales insuficientes (enfriado/embalaje).
+
+          - Las “transiciones de probabilidad” entre etapas contienen señal predictiva útil; deben incorporarse como 
+            variables del modelo.
+          - En agua, la ausencia total de detecciones (n=268) es inusual; antes de concluir que es "un comportamiento
+            normal", es importante validar como se realiza el muestreo.
+          - Existen celdas sin datos (blancos) en el heatmap; se recomienda un plan de muestreo mínimo por 
+            (etapa × microorganismo) para evitar sesgos y mejorar la robustez del análisis, esto por que se logra
+            tener un comportamiento en todo un espacio de parámetros.
+

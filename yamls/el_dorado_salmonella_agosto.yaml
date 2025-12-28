@@ -1,0 +1,173 @@
+titulo: Revisión prevalencia de <em>Salmonella</em> y <em>Campylobacter</em> para el mes de Agosto
+lugar: "El Dorado"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: lista
+        items:
+            - Caracterizar las tendencias mensuales de prevalencia de <em>Salmonella</em> y 
+              <em>Campylobacter</em> por etapa (Ciegos, Pollo Ext Vísceras, Prechiller, Salida Chiller).
+            - Revisar último mes (Agosto) y ver focos de prevalencia en <em>Campylobacter</em> por
+              etapa del proceso y granjas de procedencia de los animales.
+            - Revisar comportamiento general de las variables físico-químicas medidas en Chiller.
+            - Evaluar la relación entre variables físico-químicas (ORP, pH, cloro libre) y las prevalencias
+              en Chiller usando correlaciones.
+
+  - titulo: Evolución de las prevalencia por <em>Salmonella</em> y <em>Campylobacter</em> por mes y etapa
+    contenido:
+      - tipo: texto
+        html: >
+          A continuación se analiza el comportamiento histórico mensual de las prevalencias de <em>Salmonella</em>
+          y <em>Campylobacter</em> en cada etapa del proceso productivo. Para <em>Salmonella</em>, se observa un patrón
+          consistente donde la prevalencia aumenta sistemáticamente en la etapa de Pollos Ext Vísceras cada mes,
+          independientemente de los niveles iniciales registrados en la etapa de ciegos. Aunque se presenta un incremento
+          en esta etapa intermedia, es notable el efecto del control implementado en la etapa de chiller, donde se logra
+          una reducción sistemática y efectiva de la carga de <em>Salmonella</em> durante los últimos meses del período
+          evaluado.
+
+      - tipo: plotly_html
+        src: salmonella_prevalencia_mes.html
+        style: "width: 100%; height: 500px;"
+
+      - tipo: texto
+        html: >
+          Para el caso de <em>Campylobacter</em>, el análisis de la gráfica revela un comportamiento diferente al observado
+          con <em>Salmonella</em>. Las prevalencias se mantienen relativamente altas y similares entre las distintas etapas
+          del proceso, oscilando principalmente entre 30% y 90% a lo largo del período evaluado. Se observa que no existen
+          diferencias significativas entre la etapa de Pollo Ext Vísceras y la Salida del Chiller, e incluso en algunos
+          meses como abril y agosto, la prevalencia aumenta en la etapa final del chiller, alcanzando valores de 91% y 54%
+          respectivamente. Este patrón sugiere que los controles aplicados en el chiller no son tan efectivos para la
+          reducción de <em>Campylobacter</em> como lo son para <em>Salmonella</em>, manteniéndose la carga microbiológica
+          relativamente constante o incluso incrementándose en la etapa final del proceso, este incremento es posible que 
+          sea por contaminación cruzada.
+
+      - tipo: plotly_html
+        src: campy_prevalencia.html
+        style: "width: 100%; height: 500px;"
+
+  - titulo: Prevalencia por <em>Salmonella</em> y <em>Campylobacter</em> en Agosto
+    contenido:
+
+
+      - tipo: texto
+        html: >
+          El análisis de las prevalencias correspondientes al mes de agosto muestra claramente las diferencias en el
+          comportamiento de ambos patógenos a lo largo del proceso productivo. Para <em>Salmonella</em>, se observa
+          un comportamiento controlado con prevalencias muy bajas: inicia con 2% en ciegos, aumenta a 20% en la etapa
+          de Pollo Ext Vísceras, pero logra reducirse completamente a 0% en prechiller y mantiene un nivel mínimo de
+          1% en la salida del chiller. En contraste, <em>Campylobacter</em> presenta prevalencias considerablemente
+          más altas y persistentes: comienza con 76% en ciegos, alcanza su pico máximo de 80% en Pollo Ext Vísceras,
+          se mantiene elevado en prechiller y, aunque disminuye en la salida del chiller a 54%, continúa representando
+          un nivel significativo de contaminación. Esta comparación evidencia la mayor efectividad de los controles
+          implementados para <em>Salmonella</em> versus la resistencia de <em>Campylobacter</em> a los procesos de
+          reducción microbiológica aplicados durante el procesamiento. Ahora, precisaremos el mes 
+          de agosto y la prevalencia de <em>Campylobacter</em> como es afectada pro el origen o 
+          procedencia del producto.
+
+      - tipo: plotly_html
+        src: heatmap_agosto.html
+        style: "width: 100%; height: 500px;"
+
+  - titulo: Prevalencia de <em>Campylobacter</em> en Agosto por Etapa y Granja
+    contenido:
+
+      - tipo: plotly_html
+        src: heatmap_granja_etapa_agosto.html
+
+      - tipo: texto
+        html: >
+          El análisis detallado de la prevalencia de <em>Campylobacter</em> por granja de origen durante agosto revela
+          una alta variabilidad en los niveles de contaminación entre diferentes proveedores. Se observa que granjas como
+          Villa Juliana, Tres Esquinas, La Isla, La Esmeralda, Chihuahua y Altamira presentan prevalencias de 100% en la
+          etapa inicial de ciegos, indicando una contaminación severa desde el origen. En contraste, granjas como Pollilandia
+          y Pollilandia II muestran niveles de 0% en ciegos, sugiriendo mejores condiciones sanitarias en estas instalaciones.
+          Es notable que algunas granjas mantienen altas prevalencias a lo largo de todo el proceso (como El Manzano con 100%
+          en todas las etapas evaluadas), mientras que otras logran cierta reducción en las etapas finales. Por ejemplo,
+          Villa Juliana reduce de 100% en prechiller a 67% en salida del chiller, y Bellavista disminuye de 100% en ciegos
+          a 50% en salida del chiller. Las áreas en blanco del mapa de calor indican ausencia de muestras para esas
+          combinaciones específicas de granja y etapa, lo que puede deberse a la programación de muestreo o la disponibilidad
+          de material en determinadas etapas del proceso para cada proveedor.
+          
+
+  - titulo: Medidas físico-químicas (ORP, pH, cloro libre) en el Chiller
+    contenido:
+      - tipo: plotly_html
+        src: cdf_orp.html
+
+      - tipo: plotly_html
+        src: cdf_ph.html
+
+      - tipo: plotly_html
+        src: cdf_cloro.html
+
+      - tipo: texto
+        html: >
+          Las funciones de distribución acumulada (CDF) de los parámetros fisicoquímicos del chiller muestran el comportamiento
+          mensual de estas variables críticas para el control del proceso. En el caso del potencial redox (orp), se observa
+          una distribución relativamente amplia con valores que oscilan principalmente entre 350 y 550 mV, presentando cierta
+          variabilidad entre meses pero manteniendo rangos operativos similares. Para el pH, las distribuciones son más
+          concentradas y estables, con valores centrados alrededor de 6.0-6.3, mostrando un control más estricto de este
+          parámetro a lo largo del período evaluado. El cloro residual presenta distribuciones escalonadas características
+          de mediciones discretas, con concentraciones que varían entre 3.8 y 4.6 ppm aproximadamente, evidenciando la
+          dosificación controlada de este desinfectante durante el proceso de enfriamiento.
+
+      - tipo: plotly_html
+        src: correlacion_prevalencias_fq.html
+
+      - tipo: texto
+        html: >
+          La matriz de correlación de Pearson entre las prevalencias microbiológicas y las variables fisicoquímicas promedio
+          mensuales del chiller revela patrones importantes para el control del proceso. Se observa que la prevalencia de
+          <em>Salmonella</em> presenta correlaciones positivas moderadas con el potencial redox (r=0.52) y el pH (r=0.66),
+          sugiriendo que niveles más altos de estos parámetros podrían estar asociados con mayor prevalencia de este patógeno.
+          En contraste, <em>Campylobacter</em> muestra correlaciones débiles con la mayoría de variables fisicoquímicas,
+          excepto una correlación negativa moderada con el cloro (r=-0.49), indicando que concentraciones más altas de
+          cloro residual están asociadas con menores prevalencias de <em>Campylobacter</em>. Esta diferencia en los patrones
+          de correlación sugiere que ambos patógenos responden de manera distinta a las condiciones fisicoquímicas del
+          chiller, siendo <em>Campylobacter</em> más susceptible al efecto del cloro residual, mientras que <em>Salmonella</em>
+          muestra mayor sensibilidad a las variaciones de pH y potencial redox del sistema.
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - 6 granjas con 100% prevalencia de <em>Campylobacter</em>
+            (Villa Juliana, Tres Esquinas, La Isla, La Esmeralda, Chihuahua, Altamira).
+            Se sugiere indagar y revisar por que en estas granjas ya contienen una alta 
+            carga microbiologíca.
+
+          - <strong>Incrementar cloro en chiller:</strong> Correlación negativa cloro-<em>Campylobacter</em>
+            (-0.49). <strong>Con base en la correlación observada, un incremento de 1.0-1.4 ppm de cloro podría 
+            reducir la prevalencia
+            actual de 54% a aproximadamente 35-40%,</strong> aunque esta estimación requiere validación experimental.
+
+          - <strong>Contaminación cruzada identificada:</strong> <em>Campylobacter</em> aumenta en chiller
+            final.
+
+          - Pollilandia y Pollilandia II tienen 0% prevalencia.
+            Esto sugiere que sus métodos de higiene son optimos y deberian replicarse en las otras granjas.
+
+          - Los controles actuales funcionan para <em>Salmonella</em>
+            pero no para <em>Campylobacter</em>. Se sugiere implementar protocolos específicos
+            anti-<em>Campylobacter</em>.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

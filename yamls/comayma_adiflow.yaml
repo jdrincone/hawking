@@ -1,0 +1,162 @@
+  titulo: "Ensayos Adiflow "
+  lugar: "Planta - COMAYMA"
+  descripcion: ""
+
+  secciones:
+    - titulo: Introducción
+      contenido:
+        - tipo: texto
+          html: >
+            El presente informe se desarrolló mediante la plataforma Okuo Flow,
+            una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+            y <strong>transformación</strong> de datos asociados a la producción 
+            y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+            información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+            variables de producción (toneladas procesadas, 
+            tiempos de producción y mermas) y de calidad (temperatura, durabilidad del pellet y humedad). 
+            Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+            de calidad, reduciendo la tensión entre los departamentos 
+            de producción y calidad, logrando un proceso más fluido y eficaz.
+  
+            <br><br>
+            En este contexto, usaremos Okuo Flow para dar un entendimiento de como
+            <strong>Adiflow</strong> impactó el proceso de peletizado en los ensayos realizados.
+
+    - titulo: "Punto de Partida"
+      contenido:
+        - tipo: "lista"
+          items:
+            - "Con el uso de Adiflow se produjeron <strong>2836</strong> qm y sin Adiflow <strong>31548</strong> qm.
+               Ambos ensayos se realizaron sobre las dietas <strong>383-DESARROLLO CERDO PELLET</strong>;
+               <strong>384-FINALIZADOR CERDOS PELLET</strong>; <strong>312-NUTRIMAYMA DESAR. CERDO PE</strong>;
+               <strong>313-NUTRIMAYMA FINAL CERDO PE</strong>."
+            - "Las métricas para las condiciones <strong>Con</strong> y <strong>Sin</strong> Adiflow se calcularon 
+               como el <strong>promedio</strong> de las observaciones."
+            - "Se tiene en cuenta el tiempo de paro en la dieta 383 con Adiflow, para el calculo del rendimiento."
+        - tipo: imagen
+          src: comayma.svg
+          mime: svg
+          style: "width: 90%;"
+
+        - tipo: tabla
+          src: summary.csv
+
+
+    - titulo: "Resultados Globales del proceso"
+      contenido:
+        - tipo: texto
+          html: >
+            A continuación se resume a nivel visual los resultados globales del experimento.
+            
+
+        - tipo: plotly_html
+          src: subplots_adiflow_mermas_temp.html
+          style: "width: 70%; display: block; margin: 0 auto;"
+        - tipo: texto
+          html: >
+            Las Mermas con <strong>Adiflow</strong> se reducen en promedio a cerca de la mitad frente
+            a la condición sin aditivo, lo que equivale a una mejora de <strong>7.9</strong> qm. 
+            El rendimiento también mejora:
+            se producen en promedio <strong>6.6</strong> qm/h adicionales al usar el rehumectante.
+            En cuanto a la calidad en el producto terminado, aunque se  observa una disminución promedio de
+            <strong>1.5</strong> puntos, el PDI se mantiene por encima del <strong>80%</strong>.
+
+        - tipo: plotly_html
+          src: subplots_adiflow_energia.html
+          style: "width: 70%; display: block; margin: 0 auto;"
+
+        - tipo: texto
+          html: >
+            En <strong>eficiencia energética</strong>, se tiene menor carga del motor. Un ahorro 
+            energético claro. Con Adiflow baja de 11.78 a 8.13 <strong>(−3.65 kWh/T, ≈ −31%)</strong> y
+            frecuencia (Hz): prácticamente igual (38.48 → 38.61, +0.1 Hz, ≈ +0.34%). → Misma velocidad de proceso.
+
+        - tipo: plotly_html
+          src: subplots_adiflow_hum.html
+          style: "width: 70%; display: block; margin: 0 auto;"
+
+        - tipo: texto
+          html: >
+            Adiflow incrementa levemente la humedad en todos los puntos del proceso <strong>(~0.1–0.3 puntos 
+            porcentuales)</strong>,
+            consistente con su efecto de rehumectación y sin cambios bruscos. A su vez se incrementa en promedio
+            2 °C de temperatura en el acondicionador.
+
+    - titulo: "Resultados detallados por dieta peletizada"
+      contenido:
+        - tipo: texto
+          html: >
+            En las siguientes graficas se detalla el comportamiento que se tuvo con 
+            Adiflow en las diferentes dietas peletizadas en cada una de las variables medidas.
+
+        - tipo: plotly_html
+          src: barras_mermas.html
+          style: "width: 70%; display: block; margin: 0 auto;"
+
+        - tipo: texto
+          html: >
+            En general, las <strong>mermas</strong> disminuyen con <strong>Adiflow</strong>.
+            La dieta <strong>383</strong> peletizada con Adiflow registró un incremento de
+            <strong>1.2qm</strong> en la merma, atribuible a paros de proceso, al abrir los
+            equipos se tiro producto, lo que elevó la merma.
+        - tipo: plotly_html
+          src: barras_temp.html
+          style: "width: 70%; display: block; margin: 0 auto;"
+
+        - tipo: plotly_html
+          src: barras_freq.html
+          style: "width: 70%; display: block; margin: 0 auto;"
+
+        - tipo: texto
+          html: >
+            Aunque el promedio de la <strong>temperatura</strong> aumenta a nivel global, el efecto no es uniforme:
+            varía según la <strong>dieta</strong> evaluada en este experimento. En cuanto a la <strong>frecuencia</strong>,
+            el promedio global no muestra diferencias significativas; sin embargo, de forma específica las dietas
+            <strong>383</strong> y <strong>384</strong> presentan una mejor respuesta con <strong>Adiflow</strong>
+            en términos de frecuencia.
+        
+
+        - tipo: plotly_html
+          src: barras_amp_motor.html
+          style: "width: 70%; display: block; margin: 0 auto;"
+
+        - tipo: texto
+          html: >
+            Independiente de la dieta peletizada, el consumo de energía se ve reducido a nivel general.
+
+        - tipo: plotly_html
+          src: pdi_pt.html
+          style: "width: 70%; display: block; margin: 0 auto;"
+
+        - tipo: texto
+          html: >
+            Aunque en las dietas <strong>313</strong> y <strong>383</strong> el <strong>PDI</strong> del producto
+            terminado disminuye, la calidad se mantiene en todas las dietas por encima del <strong>80%</strong>.
+        
+
+        - tipo: plotly_html
+          src: rendimiento.html
+          style: "width: 70%; display: block; margin: 0 auto;"
+
+        - tipo: texto
+          html: >
+            Adiflow baja el rendimiento en 312 y 313, pero mejora de forma marcada en 383 y, sobre todo, en 384.
+            El efecto es dependiente de la fórmula; la ganancia global proviene principalmente de 383–384.
+      
+
+    - titulo: "Conclusiones"
+      contenido:
+            - tipo: "lista"
+              items:
+                - "Eficiencia del proceso: Adiflow mejora la eficiencia con menor carga del motor y ↓
+                  consumo específico (≈ −31% kWh/T), junto con ↓ mermas (~7.9 qm), manteniendo la frecuencia 
+                  de operación estable y un rendimiento promedio superior en 6.5 qm/h."
+                - No se detectaron cambios en la aW del producto final; en consecuencia, no se
+                  anticipan variaciones en la vida de anaquel ni condiciones que favorezcan el 
+                  desarrollo de mohos y levaduras.
+                - "Calidad del producto: Aumenta levemente la humedad (+0.1–0.3 pp) y el PDI cae ~1.5 puntos
+                  pero se mantiene >80%. No se observan cambios en la aW del producto final."
+                - "Dependencia por fórmula y próximos pasos: El efecto en rendimiento es específico de la dieta
+                   (−20.6/−19.4 en 312/313; +24.6/+45.1 en 383/384). Se recomienda seguimiento comparativo 
+                   para consolidar la evidencia."
+
