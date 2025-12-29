@@ -157,3 +157,17 @@ uv.lock
 
 # Reports
 reports/*.html
+
+# Data & Security (ignore everything in raw and data, plus specific extensions)
+raw/
+data/
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.pkl
+*.parquet.gzip
+
+# Quarto
+docs/_site/
+.quarto/
