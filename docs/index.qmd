@@ -1,0 +1,23 @@
+# Galileo: Data Analysis & Insights 🚀
+
+Welcome to the documentation for **Galileo** (also known as Hawking). This platform is designed to transform raw agricultural and production data into actionable business insights through automated report generation.
+
+## Overview
+
+Galileo provides a streamlined workflow for:
+
+- **Data Exploration:** Leveraging Jupyter Notebooks for deep dives into production datasets.
+- **Automated Reporting:** Creating dynamic HTML reports from YAML configurations.
+- **Business Intelligence:** Tracking KPIs like PDI (Pellet Durability Index), Humidity, and Production Efficiency across different species and customers.
+
+## Documentation Structure
+
+- [**Usage**](usage/getting-started.qmd): Learn how to set up the environment and generate your first report.
+- [**Data Science**](data-science/workflow.qmd): Deep dive into the analysis methodology and general insights.
+- [**Business Logic**](business/context.qmd): Understand the core metrics and operational parameters that drive the system.
+- [**Technical Reference**](technical-reference/viz.qmd): Interactive API reference for `viz.py` and `s3.py`.
+
+::: {.callout-tip}
+## Getting Started
+New here? Head over to the [Getting Started](usage/getting-started.qmd) page to set up your environment in minutes.
+:::

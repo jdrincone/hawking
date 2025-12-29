@@ -1,0 +1,66 @@
+# S3 Management Reference (`s3.py`)
+
+The `core.s3` module provides a unified interface for interacting with AWS S3, optimized for Data Science workflows.
+
+## The `S3AssetManager` Class
+
+This class handles session management and common read/write operations for Excel, CSV, and Plotly artifacts.
+
+### Initialization
+
+```python
+from core.s3 import S3AssetManager
+
+# Initialize with a context (subfolder)
+s3 = S3AssetManager(notebook_name="fazenda_production")
+```
+
+## Reading Data
+
+The manager simplifies reading directly into Pandas DataFrames using `awswrangler`.
+
+```python
+# Read from S3 path or inferred bucket key
+df = s3.read_excel("raw/data_2025.xlsx", sheet_name="DATOS")
+df_csv = s3.read_csv("data/processed_metrics.csv")
+```
+
+## Saving Artifacts
+
+Streamlined methods for saving different types of assets.
+
+| Method | Description |
+| :--- | :--- |
+| `save_dataframe` | Saves a DF as CSV to the `data/` folder in S3. |
+| `save_plotly_html` | Saves a Plotly Figure as interactive HTML in `images/`. |
+| `save_plot_static` | Saves a Matplotlib figure as PNG/JPG. |
+| `upload_file` | Uploads any local file to a specified key. |
+
+### Example usage:
+
+```python
+# Save a cleaned dataframe
+s3.save_dataframe(df_cleaned, "cleaned_production.csv")
+
+# Save a visualization
+fig = viz.plot_bar(...)
+s3.save_plotly_html(fig, "monthly_perf.html")
+```
+
+## Internal Folder Structure (S3)
+
+When using `S3AssetManager`, files are organized following this pattern:
+
+```text
+s3://<your-bucket>/
+└── artifacts/
+    └── <notebook_name>/
+        ├── data/    # CSVs and dataframes
+        ├── images/  # HTML visualizations and plots
+        └── reports/ # Generated HTML reports
+```
+
+::: {.callout-note}
+## Credentials
+Make sure your `.env` file contains `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `S3_BUCKET`.
+:::

@@ -71,10 +71,27 @@ The system will:
 5. Automatically open the report in your browser.
 6. Upload the report to S3 (if `S3_BUCKET` is configured).
 
-## Development Workflow
+## Documentation
 
-1. Perform EDA in a notebook within `exploration/`.
-2. Export artifacts (CSVs to `data/`, plots to `images/`).
-3. Define the report structure in a new YAML file in `yamls/`.
-4. Run the report generation script to create the final document.
-# hawking
+This project uses **Quarto** for comprehensive documentation, including business logic, data science workflows, and technical references.
+
+### 0. Install Quarto
+If you don't have Quarto installed yet, you can install it using Homebrew:
+
+```bash
+brew install --cask quarto
+```
+
+### 1. Preview Locally
+To serves and preview the documentation on your local machine with live-reloading:
+
+```bash
+quarto preview docs
+```
+
+### 2. Deploy to S3
+To render and upload the documentation to the configured S3 bucket (loads `S3_BUCKET` from `.env`):
+
+```bash
+./deploy_docs.sh
+```

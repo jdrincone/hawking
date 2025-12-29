@@ -157,3 +157,6 @@ uv.lock
 
 # Reports
 reports/*.html
+
+# raw
+raw/*

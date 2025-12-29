@@ -1,0 +1,29 @@
+# Operational Ranges
+
+Galileo tracks performance against specific targets. These ranges are used in the automated "Compliance" charts.
+
+## Default Targets
+
+Unless otherwise specified in a YAML configuration, the following targets are commonly used:
+
+| Metric | Target Min | Target Max | Unit |
+| :--- | :--- | :--- | :--- |
+| Humidity | 11.5 | 13.0 | % |
+| PDI | 85.0 | 100.0 | % |
+| Temperature | 80.0 | 88.0 | °C |
+
+## Customer-Specific Overrides
+
+### Aliforte
+- **Humidity:** Strict 13% cap for all species.
+- **PDI Targets:**
+    - Broiler: > 90%
+    - Cerdos: > 85%
+
+### Fazenda
+- Uses specialized tracking for the effect of **Adiflow** on *Sack-off* humidity.
+- **Temperature Target:** Aiming for a consistent 85°C to ensure starch gelatinization.
+
+## Data Source Reference
+
+These ranges are extracted from the `resumen_cumplimiento_rango` function logic found in the core analysis notebooks. When updating business logic, ensure these documentation tables match the code implementation in `core/` or the relevant notebooks.

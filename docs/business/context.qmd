@@ -1,0 +1,303 @@
+# Documentación de negocio — Analítica de plantas de alimento peletizado (Galileo)
+
+Este documento define la **lógica de negocio**, los **parámetros** y los **requisitos de datos** 
+para analizar plantas de producción de alimento peletizado y extraer **insights confiables y
+ accionables**. Está pensado para **Operaciones, Calidad, Productividad, BI/Data Science** y
+  para cualquier persona que construya tableros, alertas o modelos.
+
+---
+
+## 1) Propósito y alcance
+
+### Objetivos
+- Estandarizar **definiciones** (KPIs,métricas, eventos, rangos, objetivos) para comparar desempeño
+  entre plantas/líneas independientes del cliente.
+- Especificar el **mínimo de datos** necesario para explicar variabilidad en **rendimiento,
+  calidad y paros**, resultado en base a los datos de clientes analizados.
+- Definir features escenciales de cara al tipo a pregunta a responder.
+- Proveer un **playbook analítico**: qué mirar, cómo responder preguntas a los consultares
+  y cómo interpretar resultados en post del un objetivo global de negocio
+
+### Fuera de alcance (si no se incluye explícitamente)
+- Optimización nutricional (formulación).
+- Planeación de abastecimiento.
+- Desempeño animal (excepto correlaciones con calidad de pellet).
+- Ideal tener features relevantes del negocio, pero solo nos podemos concentrar en los
+  datos que tenemos disponibles.
+
+---
+
+## 2) Proceso de producción y puntos de captura de datos
+
+### Etapas
+1. **Molienda y mezcla (mash):** materia prima → mezcla homogénea.
+2. **Acondicionamiento:** adición de vapor y, en algunos casos, agentes de humedad (p. ej., *Adiflow*).  
+   - Variables clave: **temperatura de acondicionamiento**, **tiempo de acondicionamiento**, **flujo/estado de vapor**, **dosificación de agua/aditivo**.
+3. **Peletizado:** el mash pasa por la **matriz (die)** impulsado por **rodillos**.
+4. **Enfriamiento:** reducción a temperatura ambiente para endurecer y estabilizar.
+
+### Recomendación crítica (modelo de datos)
+Separar la información en **tres niveles**:
+- **Nivel evento/tiempo (timeseries):** señales de sensores (temperatura, amperaje, RPM, vapor, etc.).
+- **Nivel lote (batch/orden):** inicio/fin de lote, especie, dieta, ton, objetivo de rendimiento, cambios de matriz/rodillos, etc.
+- **Nivel calidad (QA):** PDI, finos, humedad, temperatura pellet, granulometría, etc.
+
+Sin esta separación, se mezclan escalas y se generan conclusiones erróneas.
+
+---
+
+## 3) Entidades de negocio y diccionario mínimo de datos
+
+### 3.1 Entidades clave
+- **Planta**: sitio físico.
+- **Línea/Peletizadora**: unidad productiva (Pellet 1, Pellet 2, etc.).
+- **Lote / Orden**: unidad de producción (lo que se corre con una dieta).
+- **Producto**: código / descripción.
+- **Especie**: categoría operativa para objetivos y rangos.
+- **Evento de paro**: intervalo con causa y clasificación.
+- **Evento de mantenimiento**: cambios de matriz, rodillos, limpieza, ajustes.
+- **Medición de calidad**: registro QA asociado a lote y/o timestamp.
+
+### 3.2 Campos mínimos por entidad (recomendado)
+
+#### Lote / Orden
+- `plant_id`, `line_id`
+- `lot_id` (único), `product_id`, `product_name`
+- `start_ts`, `end_ts`, `duration_min`
+- `species` (ver lógica), `customer` (si aplica)
+- `tons_produced` (netas), `tons_target` (si existe)
+- `throughput_tph` (ton/h) *(calculado con definición fija)*
+- `operator_id` (si se quiere análisis humano)
+- `recipe_version` (si existe), `raw_material_lot_ids` (si existe)
+
+#### Acondicionamiento
+- `cond_temp_c` (promedio, p95, min/max por lote)
+- `cond_time_sec` (real, no setpoint)
+- `steam_valve_%` / `steam_flow` / `steam_pressure`
+- `water_flow` / `adiflow_dose_rate` / `adiflow_on_off`
+- `mash_moisture_%` (si existe)
+
+#### Peletizado
+- `die_id`, `die_LD` (L/D), `die_holes`, `die_open_area` (si existe)
+- `roller_id`, `roller_condition`, `gap_setting`
+- `motor_current_a` / `power_kw` (promedio y p95)
+- `rpm`, `feeder_rate`
+
+#### Enfriamiento
+- `cooler_temp_out_c` / `pellet_temp_out_c`
+- `cooling_time` (si existe)
+- `ambient_temp`, `ambient_rh` (si está disponible)
+
+#### Calidad
+- `pdi` (método, equipo, n replicados)
+- `fines_%` (punto de muestreo)
+- `humidity_%`
+- `pellet_temperature_c` (salida y/o empaque)
+- `sample_ts`, `lab_ts`
+- `sampling_point` (post-peletizado, post-enfriamiento, despacho)
+
+#### Paros
+- `downtime_id`
+- `start_ts`, `end_ts`, `duration_min`
+- `downtime_category` (Improductivo / Mantenimiento / Falla sistema)
+- `downtime_reason_code` (catálogo controlado)
+- `comment` (texto libre) + `mapped_reason` (normalizado)
+- `line_state` (running/idle/fault) si proviene de PLC/MES
+
+---
+
+## 4) Lógica de especie (clasificación automática)
+
+### Reglas base (según prefijo del producto)
+- **G-*** → Ganadería
+- **HY-*** → Reproductoras
+- **E-*** → Pollo de engorde
+- **P-*** / **F-*** → Cerdos
+
+### Buenas prácticas
+- Mantener un **catálogo de mapeo** versionado: `product_id → species → subsegmento`.
+- Registrar **excepciones** (productos que rompen la regla por prefijo).
+- Guardar **fecha de vigencia** del mapeo (los códigos cambian con el tiempo).
+
+> Insight crítico: si el mapeo no está versionado, tus comparaciones “antes vs después” pueden ser falsas por cambios de catalogación.
+
+---
+
+## 5) Definiciones de KPIs (con criterios de cálculo)
+
+### 5.1 Rendimiento / Throughput (Ton/h)
+**Definición recomendada**
+- `throughput_tph = tons_produced / running_hours`  
+donde `running_hours` excluye paros (según definición acordada).
+
+**Riesgos típicos**
+- Usar horas calendario en vez de horas corriendo.
+- Tons brutas vs netas (rechazos, reproceso).
+- Lotes con micro-paros no registrados (sesgo).
+
+### 5.2 PDI (Pellet Durability Index)
+Mide resistencia del pellet a degradarse en finos por manejo.
+
+**Parámetros necesarios**
+- Método (equipo, tiempo, rpm), replicados, punto de muestreo.
+- Asociación lote–muestra (o ventana temporal si es continuo).
+
+**Errores comunes**
+- Comparar PDI de metodologías distintas como si fueran iguales.
+- No controlar por **temperatura de pellet**, **humedad**, **matriz** y **enfriamiento**.
+
+### 5.3 Humedad (%)
+**Meta**: típicamente ~12%, pero *debe ser por especie/cliente*.
+
+**Lógica de cumplimiento**
+- `cumple = target_min <= humidity <= target_max` (rango por especie/cliente)
+- Registrar: `delta = humidity - target_center`, y distancia al rango si está fuera.
+
+**Observación crítica**
+La humedad es variable “resultado” y también “palanca”. Si se analiza sola, produce decisiones erradas: debe verse junto a **PDI**, **finos**, **temperatura**, **vapor**, **enfriamiento**.
+
+### 5.4 Paros (Downtime)
+Clasificación base:
+- **Improductivo**: no mecánico (espera producto, falta de materia prima, etc.)
+- **Mantenimiento**: cambios de matriz/rodillos, limpieza, ajustes.
+- **Falla de sistema**: elevadores, sensores, energía, PLC, etc.
+
+**Regla de oro**
+Los paros deben ser **intervalos**, no “conteos”. Conteos sin duración engañan.
+
+---
+
+## 6) Parámetros de negocio que deben estar “controlados” (catálogos)
+
+Sin catálogos y reglas, no hay ciencia de datos: hay anécdotas.
+
+### Catálogos imprescindibles
+- Catálogo de **motivos de paro** (códigos normalizados + sinónimos).
+- Catálogo de **equipos** (line_id, die_id, roller_id, versiones).
+- Catálogo de **productos** (species, cliente, objetivos PDI/humedad).
+- Catálogo de **puntos de muestreo** de calidad.
+- Catálogo de **turnos** y **operadores** (si se usa).
+
+### Parámetros operativos a versionar
+- Rangos objetivo por especie/cliente (humedad, PDI, finos).
+- Objetivo de rendimiento por línea y especie.
+- Políticas de clasificación (paros, reproceso, rechazo).
+
+---
+
+## 7) Calidad de datos (lo que un estratega científico de datos exige)
+
+Si estos checks no pasan, **se prohíbe** sacar conclusiones.
+
+### 7.1 Integridad temporal
+- `start_ts < end_ts` siempre.
+- No debe haber lotes “sin fin” o con duración absurda.
+- Zona horaria única (y guardada). Evitar timestamps “naive”.
+
+### 7.2 Unicidad y trazabilidad
+- `lot_id` único por línea.
+- Muestras QA deben tener `sample_id` único.
+- Relación lote–muestra documentada (por lote o por ventana).
+
+### 7.3 Consistencia física (validaciones por plausibilidad)
+- Temperaturas imposibles (ej. 300°C) → sensores mal escalados.
+- Humedad 0% o 50% en pellet → error de unidad/registro.
+- Toneladas negativas o throughput extremo → error de cálculo o tiempos mal.
+
+### 7.4 Compleción y sesgo de muestreo
+- QA no es continuo: validar si muestras se toman solo cuando “hay problema”.
+- Paros manuales: validar subregistro (comparar PLC vs reportes humanos).
+
+### 7.5 Normalización y texto libre
+- Motivos de paro en texto libre deben pasar por:
+  - limpieza (typos)
+  - diccionario de sinónimos
+  - mapeo a categorías controladas
+  - auditoría de “otros/no clasificado” (no debe superar umbral)
+
+---
+
+## 8) Cómo analizar para obtener insights realmente útiles
+
+### 8.1 Segmentar correctamente (sin mezclar peras con manzanas)
+Siempre comparar dentro de:
+- misma **línea**
+- misma **especie**
+- misma **matriz/rodillos** (o al menos estado)
+- mismo **punto de muestreo** (QA)
+- condiciones ambientales similares (si aplica)
+
+### 8.2 Diseños analíticos recomendados
+
+#### A) Antes vs después (Adiflow / cambio de matriz / cambio de receta)
+- Ventanas simétricas (ej. 2 semanas antes y 2 después).
+- Control por mix de especies y productos.
+- Medir: throughput, PDI, finos, humedad, energía (kWh/ton), paros.
+- Reportar tamaño de muestra y confianza (no solo promedios).
+
+#### B) Análisis causal operativo (lo más cercano a causalidad)
+- Modelos con covariables: especie, die_id, operator, shift, temp, vapor, humedad.
+- Evitar conclusiones si la intervención coincide con cambios de receta o mantenimiento.
+
+#### C) Pareto de pérdidas
+- Pareto de minutos de paro (no conteos).
+- Pareto de pérdidas de calidad (lotes fuera de rango ponderados por toneladas).
+- Pareto de reproceso y rechazos (si existe dato).
+
+#### D) Sensibilidad / palancas
+- ¿Qué variables mueven PDI y finos?
+  - cond_temp, cond_time, vapor, humedad, pellet_temp_out, cooler performance, die condition.
+- ¿Qué variables mueven throughput?
+  - amperaje, feeder rate, die condition, micro-paros, receta, humedad.
+
+### 8.3 Señales de alerta (insights accionables)
+- Lotes “post-paro” con cambios sistemáticos de rendimiento o calidad.
+- “Sin producto” recurrente → problema de planificación o flujo upstream (no mecánico).
+- Caída de PDI con humedad dentro de rango → sospechar enfriamiento, temperatura, matriz desgastada.
+- Alta variabilidad (no el promedio) → inestabilidad de proceso.
+
+---
+
+## 9) Métricas avanzadas (para pasar de descriptivo a estratégico)
+
+### Métricas de estabilidad
+- CV (coeficiente de variación) de throughput y PDI por especie/línea.
+- % de tiempo en régimen estable vs transitorio (arranques, después de paro).
+
+### Métricas de calidad ponderadas por impacto
+- `%ton_fuera_rango_humedad`
+- `%ton_bajo_PDI`
+- `fines_weighted = Σ(tons_lote * fines_%)/Σ(tons_lote)`
+
+### Eficiencia energética (si hay potencia/energía)
+- `kWh/ton` por especie y estado de matriz.
+- Correlación energía ↔ throughput ↔ calidad (trade-offs).
+
+---
+
+## 10) Entregables recomendados (dashboards y reportes “de verdad”）
+
+### Tablero operativo diario (línea)
+- Throughput vs objetivo (con horas corriendo)
+- Minutos de paro por categoría y top motivos
+- PDI/humedad/finos (últimas n muestras + estado vs rango)
+- Alertas: fuera de rango y variabilidad
+
+### Tablero táctico semanal (planta)
+- Pareto de pérdidas (paro + calidad ponderada)
+- Comparativos por especie y línea
+- Efecto de intervenciones (mantenimiento, aditivo, cambio de matriz)
+
+### Tablero estratégico mensual (gerencia)
+- Tendencias y estabilidad (variabilidad)
+- Ahorros / oportunidades: ton recuperadas por reducir paros, mejoras en finos
+- Prioridades de inversión (equipos, sensores, capacitación)
+
+---
+
+## 11) Principios críticos (para evitar “insights basura”)
+1. **No comparar sin segmentar** (especie/matriz/muestreo).
+2. **Sin calidad de datos no hay conclusiones** (checks obligatorios).
+3. **La variabilidad importa más que el promedio**.
+4. **Paros por duración, no por conteo**.
+5. **QA es sesgada** si el muestreo no es representativo: medir ese sesgo.

@@ -1,0 +1,97 @@
+# Visualization Reference (`viz.py`)
+
+The `core.viz` module is a suite of Plotly-based functions designed for high-level data storytelling.
+
+```{python}
+import sys
+import os
+import pandas as pd
+import numpy as np
+
+# Adjust path to find core module
+sys.path.append(os.path.abspath('../..'))
+from core import viz
+```
+
+## Bar Charts (`plot_bar`)
+
+Advanced bar chart with support for stacking, clustering, and performance indicators ($ \Delta $).
+
+### Expected Data Schema
+
+| Column | Type | Description |
+| :--- | :--- | :--- |
+| `x_col` | Category / Date | Time series or groups. |
+| `y_col` | Numeric | Values to plot. |
+| `color_col` | Category (Optional) | For stacking or clustering. |
+
+### Example
+
+```{python}
+df_bar = pd.DataFrame({
+    'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'Jan', 'Feb', 'Mar', 'Apr'],
+    'Factory': ['Sitio A', 'Sitio A', 'Sitio A', 'Sitio A', 'Sitio B', 'Sitio B', 'Sitio B', 'Sitio B'],
+    'Production': [120, 150, 140, 165, 110, 130, 125, 140]
+})
+
+viz.plot_bar(
+    df=df_bar,
+    x_col='Month',
+    y_col='Production',
+    group_col='Factory',
+    title="Monthly Production by Site",
+    barmode='group'
+)
+```
+
+## Heatmaps (`plot_heatmap`)
+
+Ideal for matrix comparisons, such as performance across different categories or time blocks.
+
+### Expected Data Schema
+
+Values are typically pivot tables or long-format data that gets aggregated.
+
+### Example
+
+```{python}
+df_heat = pd.DataFrame({
+    'Shift': ['Morning', 'Afternoon', 'Night'] * 4,
+    'Day': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] * 2,
+    'Efficiency': np.random.uniform(80, 95, 12)
+})
+
+viz.plot_heatmap(
+    df=df_heat,
+    x_col='Day',
+    y_col='Shift',
+    value_col='Efficiency',
+    title="Operational Efficiency Matrix (%)"
+)
+```
+
+## Gauge Charts (`plot_gauge_grid`)
+
+Used to compare current values against a target or percentage.
+
+### Example
+
+```{python}
+df_gauge = pd.DataFrame({
+    'Indicator': ['PDI', 'Humidity', 'Temperature'],
+    'Value': [88.5, 12.2, 82.4]
+})
+
+viz.plot_gauge_grid(
+    df=df_gauge,
+    group_col='Indicator',
+    value_col='Value',
+    target_ranges=(85.0, 95.0),
+    title_prefix="Real-time"
+)
+```
+
+::: {.callout-tip}
+## Interactive Charts
+All charts generated with Galileo are interactive. You can hover over points, zoom in, and toggle categories in the legend.
+:::

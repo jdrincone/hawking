@@ -1,0 +1,46 @@
+# Getting Started
+
+Follow these steps to set up your environment and start using Galileo.
+
+## Prerequisites
+
+- **Python 3.12+**
+- **uv:** A fast Python package installer and resolver.
+- **Quarto:** Required to render this documentation.
+- **Jupyter & nbclient:** Required for interactive code execution.
+
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/jdrincone/hawking.git
+   cd hawking
+   ```
+
+2. **Setup the environment with `uv`:**
+   Galileo uses `uv` for dependency management. To sync all dependencies:
+   ```bash
+   uv sync
+   ```
+
+3. **Configure Environment Variables:**
+   Create a `.env` file in the root directory with your AWS credentials if you plan to use S3 integration:
+   ```env
+   AWS_ACCESS_KEY_ID=your_key
+   AWS_SECRET_ACCESS_KEY=your_secret
+   S3_BUCKET=your_bucket_name
+   ```
+
+## Rendering Documentation
+
+To view this documentation locally:
+
+1. Install Quarto (if not already installed):
+   - Mac: `brew install quarto`
+   - Linux/Windows: Download from [quarto.org](https://quarto.org/docs/get-started/)
+
+2. Preview the site:
+   ```bash
+   cd docs
+   quarto preview
+   ```

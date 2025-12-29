@@ -1,0 +1,33 @@
+# General Insights
+
+Through the different analyses performed in Galileo, several recurring insights and patterns have been identified across production sites.
+
+## 1. Production Efficiency (OEE)
+
+Analyzing downtime triggers is critical. Common bottlenecks include:
+- **Sin Producto:** Logistical delays in raw material supply.
+- **Cambio de Dado/Rodillo:** Planned maintenance that can be optimized by batching similar products.
+- **Tolva Llena:** Backpressure from the packaging line.
+
+## 2. Quality Indicators
+
+### Humidity Management
+Maintaining humidity within the **11.5% - 13.0%** range is vital for pellet stability and shelf life. 
+- High humidity (>13%) leads to mold growth.
+- Low humidity (<11.5%) reduces production yields and increases brittle breakage.
+
+### PDI (Pellet Durability Index)
+The target PDI is usually **> 85%**. 
+- Insights show a strong correlation between PDI and the conditioning temperature (targeting **80°C - 85°C**).
+- Adjusting the "Gap" between rollers and die significantly improves PDI in difficult diets.
+
+## 3. Species-Specific Performance
+
+Different animal species require different production parameters:
+- **Broiler/Ponedora:** High throughput required, sensitive to fine particles (fines).
+- **Cerdos:** Specific PDI requirements depending on the growth stage.
+- **Experimental Diets:** Often show more variance in production throughput due to novel ingredients.
+
+::: {.callout-note}
+These insights are derived from the consolidated data across customers like Aliforte and Fazenda.
+:::

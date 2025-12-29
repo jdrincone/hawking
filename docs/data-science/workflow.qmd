@@ -1,0 +1,55 @@
+# Data Science Workflow
+
+This page describes the standard procedure for starting a new analysis within the Galileo ecosystem.
+
+## 1. Environment Initialization
+
+Always start your work in a Jupyter Notebook. We recommend using the `exploration/` directory for this purpose.
+
+```python
+import sys
+import os
+import pandas as pd
+
+# Add the root project directory to the path to import core modules
+sys.path.append(os.path.abspath('..'))
+
+from core.s3 import S3AssetManager
+from core.viz import plot_bar, plot_heatmap # etc.
+```
+
+## 2. Data Loading
+
+Use the `S3AssetManager` to load raw data from S3 or read local files from the `raw/` directory.
+
+```python
+s3 = S3AssetManager(notebook_name="my_new_analysis")
+df = s3.read_excel("raw/customer/data.xlsx", sheet_name="DATOS")
+```
+
+## 3. Standardization and Categorization
+
+Standardize column names and categorize data (e.g., merging species, cleaning dates). Many reusable functions are available in existing notebooks (see `aliforte_production.ipynb`).
+
+Common steps:
+- **Canonization:** Cleaning strings and replacing special characters.
+- **Species Classification:** Mapping feed types to standard species names.
+- **Operational Grouping:** Grouping downtime reasons into standard categories (Improductive, Maintenance, etc.).
+
+## 4. Visualization and Artifact Export
+
+Generate interactive visualizations using the `core.viz` module (built on Plotly).
+
+```python
+fig = plot_bar(df, x="date", y="production_tm", title="Weekly Production")
+# The visualize method often used in core.report handles the display/save logic
+```
+
+Export cleaned data and final plots:
+- Cleaned CSVs to `data/`
+- Figures to `images/`
+
+::: {.callout-important}
+## Reproducubility
+Ensure all external data dependencies are either in the `raw/` folder or synced from S3 to guarantee the notebook can be run by others.
+:::

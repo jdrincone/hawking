@@ -1,0 +1,49 @@
+# Creating Reports
+
+Galileo uses a YAML-based configuration system to generate rich HTML reports automatically.
+
+## Workflow Overview
+
+1. **Explore:** Work in a Jupyter Notebook (`exploration/`) to perform your analysis.
+2. **Export:** Save your dataframes as CSVs to `data/` and your plots as HTML/PNG to `images/`.
+3. **Configure:** Create a `.yaml` file in the `yamls/` directory.
+4. **Generate:** Run the report engine to produce the final HTML.
+
+## YAML Configuration
+
+A report YAML defines the metadata and the sections (images, tables, etc.) of the report.
+
+Example `yamls/my_report.yaml`:
+
+```yaml
+report_name: "Monthly Production Analysis"
+customer: "Aliforte"
+date: "2025-12"
+
+sections:
+  - type: header
+    title: "Executive Summary"
+  
+  - type: chart
+    title: "PDI Trends"
+    path: "images/pdi_trend.html"
+    description: "Evolution of Pellet Durability Index over the last month."
+
+  - type: table
+    title: "Key Metrics"
+    path: "data/metrics_summary.csv"
+```
+
+## Running the Report Engine
+
+To generate the report, use the following command:
+
+```bash
+uv run python -m core.build_report --name my_report.yaml
+```
+
+The system will:
+1. Load the configuration.
+2. Render the HTML using the base template.
+3. Save the result in the `reports/` directory.
+4. Auto-upload to S3 if configured.

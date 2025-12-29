@@ -1,0 +1,46 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Galileo Documentation"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: usage/getting-started.qmd
+        text: Usage
+      - href: data-science/workflow.qmd
+        text: Data Science
+      - href: business/context.qmd
+        text: Business Logic
+      - href: technical-reference/viz.qmd
+        text: Technical Reference
+
+  sidebar:
+    - title: "Usage"
+      contents:
+        - usage/getting-started.qmd
+        - usage/creating-reports.qmd
+    - title: "Data Science"
+      contents:
+        - data-science/workflow.qmd
+        - data-science/insights.qmd
+    - title: "Business Logic"
+      contents:
+        - business/context.qmd
+        - business/operational-ranges.qmd
+    - title: "Technical Reference"
+      contents:
+        - technical-reference/viz.qmd
+        - technical-reference/s3.qmd
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    toc: true
+    code-fold: show
+    code-copy: true
+    highlight-style: github
