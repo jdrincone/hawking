@@ -2083,7 +2083,7 @@ def plot_cdf(
     xaxis_title: Optional[str] = None,
     yaxis_title: Optional[str] = None,
     output_path: Optional[str] = None, 
-    custom_colors: Optional[List[str]] = None
+    custom_colors: Optional[List[str]] = DEFAULT_COLORS,
 ) -> go.Figure:
     """
     Generates a Cumulative Distribution Function (CDF) plot for numeric data.
@@ -2275,5 +2275,116 @@ def create_subplot_grid(
 
     if output_path:
         fig.write_html(output_path, include_plotlyjs="cdn")
+
+    return fig
+
+def plot_distribution(
+    df: pd.DataFrame,
+    value_col: str,
+    group_col: str = None,
+    # --- Parámetros Estadísticos ---
+    nbins: int = None,          # Número de barras (bins). Si es None, Plotly decide.
+    histnorm: str = None,       # 'percent', 'probability', 'density', o None (conteo puro)
+    marginal: str = "box",      # 'box', 'violin', 'rug', o None (para quitarlo)
+    opacity: float = 0.6,       # Transparencia para ver superposiciones
+    
+    # --- Parámetros de Estilo y Dimensiones ---
+    width: int = 1000,
+    height: int = 600,
+    title: str = None,
+    xaxis_title: str = None,
+    yaxis_title: str = None,
+    custom_colors: list = DEFAULT_COLORS,
+    
+    # --- Salida ---
+    output_path: str = None
+):
+    """
+    Grafica la distribución de una variable numérica (Histograma + Marginal)
+    manteniendo el estilo corporativo estricto.
+
+    Parámetros:
+    -----------
+    marginal : str
+        Gráfico pequeño arriba del histograma ('box', 'violin', 'rug').
+    histnorm : str
+        Si es 'percent', el eje Y muestra %. Si es None, muestra conteo (n).
+    """
+
+    # Copia para no afectar original
+    data = df.copy()
+
+    # Gestión de Colores
+    if custom_colors is None:
+        custom_colors = px.colors.qualitative.Plotly
+
+    # Títulos Automáticos
+    if title is None:
+        title = f"Distribución de {value_col}"
+        if group_col:
+            title += f" por {group_col}"
+    
+    if xaxis_title is None:
+        xaxis_title = value_col
+    
+    if yaxis_title is None:
+        yaxis_title = "Porcentaje" if histnorm == 'percent' else "Frecuencia (n)"
+
+    # --- Construcción del Gráfico (Usando px por su potencia con histogramas) ---
+    fig = px.histogram(
+        data,
+        x=value_col,
+        color=group_col,
+        nbins=nbins,
+        histnorm=histnorm,
+        marginal=marginal, # El gráfico pequeño de arriba
+        barmode='overlay', # Superponer grupos en lugar de apilar (stack)
+        opacity=opacity,
+        color_discrete_sequence=custom_colors,
+        category_orders={group_col: sorted(data[group_col].dropna().unique())} if group_col else None
+    )
+
+    # --- Aplicación del Estilo (Idéntico a tu plot_cdf) ---
+    fig.update_layout(
+        width=width,
+        height=height,
+        title=dict(
+            text=title,
+            font=dict(size=20)
+        ),
+        xaxis=dict(
+            title=xaxis_title,
+            title_font=dict(size=20),
+            tickfont=dict(size=20),
+            showgrid=True,
+            zeroline=False,
+            showline=True,
+            mirror=True,
+            linecolor='black',
+            linewidth=2
+        ),
+        yaxis=dict(
+            title=yaxis_title,
+            title_font=dict(size=20),
+            tickfont=dict(size=20),
+            showgrid=True,
+            zeroline=False,
+            showline=True,
+            mirror=True,
+            linecolor='black',
+            linewidth=2
+        ),
+        legend_title=dict(
+            text=group_col if group_col else "Grupo",
+            font=dict(size=20)
+        ),
+        legend=dict(font=dict(size=20)),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        hovermode="x unified"
+    )
+
+    if output_path:
+        fig.write_html(output_path, include_plotlyjs='cdn', full_html=True)
 
     return fig
