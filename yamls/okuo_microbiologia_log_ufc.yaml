@@ -1,0 +1,312 @@
+titulo: "Overview: Microbiología"
+lugar: "Okuo Analytics"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivos
+    contenido:
+      - tipo: "lista"
+        items:
+          - Revisar la carga microbiológica a partir la métrica <strong>Log(UFC/g)</strong> en las diferentes etapas del
+            proceso (materias primas <strong>MP</strong>, agua, superficies y producto terminado <strong>PT</strong>) 
+            en en diferentes centros productivos durante un trimeste.
+          - Identificar <strong>patrones de similitud</strong> por quintiles de <strong>Log(UFC/g)</strong> entre plantas y microorganismos,
+            determinando agrupaciones.
+          - Analizar los cambios en <strong>Log(UFC/g)</strong> a lo largo de las etapas del proceso,
+            destacando posibles incrementos o reducciones que indiquen <strong>eficiencia o riesgo de contaminación cruzada</strong>.
+          - Visualizar de forma integral las <strong>fuentes de contaminación y focos
+            críticos</strong>, facilitando la toma de decisiones interpretabilidad en los datos.
+          - Analizar en <strong>PT</strong> el comportamiento de la <strong>carga microbiológica</strong> en
+            función del <strong>volumen de producto producido</strong>, la <strong>actividad de agua
+            (aW)</strong> y la <strong>especie de microorganismo</strong>.
+
+  - titulo: Materias Primas
+    contenido:
+      - tipo: texto
+
+  - titulo: Porcentaje de análisis y carga microbiológica por tipo de microorganismos y origen procedencia de harinas en MP
+    contenido:
+      - tipo: texto
+        html: >
+          Se presentan dos <strong>diagramas de torta</strong> (solo para <strong>materias primas — MP</strong>) que muestran la
+          <strong>distribución de análisis</strong> por <strong>microorganismo</strong> y por <strong>origen de harina</strong>.
+          Cada diagrama indica el <strong>porcentaje de análisis</strong> por categoría y la <strong>carga microbiológica</strong> asociada a cada
+          segmento.
+          <br><br>
+          En el primero, la <strong>distribución de análisis por microorganismo</strong> es bastante equilibrada; no obstante,
+          la <strong>carga micribiológica</strong> mes mayor en <strong>mesófilos</strong> (~<strong>3Log(UFC/g)</strong>).
+          En el segundo, más del <strong>80 %</strong> de los análisis provienen de <strong>harinas de origen animal</strong>;
+          que representan en promedio, una carga microbiológica de ~<strong>0.8Log(UFC/g)</strong>.
+
+
+      #- tipo: plotly_html
+      #  src: distibucion_analysis_origen.html
+      #  style: "width: 90%; display: block; margin: 10 auto;"
+
+      #- tipo: plotly_html
+      #  src: distibucion_por_micro_mp.html
+      #  style: "width: 90%; display: block; margin: 10 auto;"
+      - tipo: plotly_html
+        src: pies_origen_micro_mp.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+  - titulo: Distribución de la carga microbiológica promedio a lo largo de diferentes puntos de control en MP
+    contenido:
+      - tipo: texto
+        html: >
+          Este gráfico de <strong>anillos concéntricos (sunburst)</strong> muestra la
+          <strong>carga microbiológica global en todos los centros productivos</strong> y cómo se distribuye a través de los niveles:
+          <strong>planta</strong> → <strong>proveedor</strong> → <strong>origen de harina</strong>.
+          Cada aro descompone el nivel anterior; el <strong>tamaño de cada sector</strong> representa su participación dentro del
+          <strong>nodo padre</strong> y, en el recuadro emergente, también su contribución al <strong>total global</strong>.
+           <br><br>
+          La grafica es interactiva: <strong>doble clic</strong> en cualquier sector para hacer
+          <strong>zoom</strong> y seguir esa rama; <strong>clic en el centro</strong> para regresar al nivel anterior.
+          Para cada segmento se informa: <strong>Log(UFC) promedio</strong> y <strong>n</strong> (total de análisis),
+          Con esto puedes identificar dónde se concentra el <strong>riesgo</strong> y su <strong>procedencia</strong>.
+
+      - tipo: plotly_html
+        src: subplot_distribuciones_mp.html
+        #style: "width: 90%; display: block; margin: 10 auto;"
+
+  - titulo: Grupos de similitud en carga microbiológica por plantas y microorganismos en MP
+    contenido:
+      - tipo: texto
+        html: >
+          A partir de la gráfica anterior surge una pregunta: en términos de <strong>Log(UFC) promedio</strong> ,
+          ¿qué combinaciones <strong>planta × microorganismo</strong> muestran
+          <strong>comportamientos similares</strong>? Es decir, ¿existen grupos con un
+          patrón de carga microbiológica comparable al analizar por planta y microorganismo.
+          La respuesta es <strong>sí</strong>. A continuación se presentan los
+          <strong>grupos de similitud</strong> y su resumen.
+
+      - tipo: imagen
+        src: 2.svg
+        mime: svg
+        style: "width: 60%; margin: 100px auto; display: block;"
+
+      - tipo: "texto"
+        html: >
+          La gráfica agrupa plantas por <strong>bandas de Log(UFC/g) promedio en MP</strong> y muestra a la derecha
+          los <strong>microorganismos asociados</strong> en cada nivel. En las bandas más altas se concentran
+          <strong>Mesófilos</strong>, lo que sugiere <strong>mayor actividad microbiológica</strong> en esos sitios.
+          Al descender de banda, aparecen con más frecuencia <strong>coliformes</strong> (totales)
+          y <strong>hongos/levaduras</strong>.
+
+      - tipo: "lista"
+        items:
+          - "Bandas altas (4.09–4.99): plantas con mayor carga — Centro Productivo A, Centro Productivo B, Centro Productivo C,
+           Centro Productivo F.
+             Microorganismo predominante: <strong>Mesófilos</strong>."
+          - "Intermedio–alto (2.73–4.09): Centro Productivo B, Centro Productivo F, Centro Productivo H. Predominan <strong>Mesófilos</strong>;
+             también <strong>Coliformes Totales</strong> y <strong>Hongos y Levaduras</strong>."
+          - "Intermedio (1.94–2.65): Centro Productivo A, Centro Productivo B y Centro Productivo H.
+             Presencia de <strong>Coliformes Totales</strong>, <strong>Clostridium sulfitorreductor</strong> y <strong>Hongos y Levaduras</strong>."
+          - "Bajo (0.13–0.86): Centro Productivo A, Centro Productivo B, Centro Productivo F. 
+             Detecciones esporádicas de <strong>E. coli</strong>, <strong>Hongos y Levaduras</strong> y <strong>Coliformes Totales</strong>."
+          - "Cero: Sin evidencia en los datos de <strong>Salmonella</strong>."
+
+
+  - titulo: Producto Terminado
+    contenido:
+      - tipo: texto
+
+  - titulo: Porcentaje de análisis y carga microbiológica por tipo de microorganismos y tipo de alimento en PT
+    contenido:
+      - tipo: plotly_html
+        src: subplot_distribuciones_pt.html
+        #style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+          Similar a <strong>MP</strong>, la <strong>distribución de análisis por microorganismo</strong> es uniforme; sin embargo,
+          la carga microbiológica se sigue concentrando en <strong>mesófilos</strong> (~<strong>3.77Log(UFC/g)</strong>), lo que
+          supone un aumento de ~<strong>0.77Log(UFC/g)</strong> en promedio en el mes al contrastarlo con <strong>MP</strong>.
+          Por <strong>tipo de alimento</strong>, alrededor del <strong>50%</strong> de los análisis en <strong>BIOS</strong>
+          corresponden a <strong>pellet</strong>.
+
+  - titulo: Distribución de la carga microbiológica a lo largo de diferentes puntos de control en PT
+    contenido:
+      - tipo: plotly_html
+        src: sunburst_planta_muestra_presentacion_micro_pt_result.html
+        #style: "width: 70%; display: block; margin: 10 auto;"
+
+
+  - titulo: Grupos de similitud en carga microbiológica para plantas y microorganismos en PT
+    contenido:
+
+
+      - tipo: imagen
+        src: 1.svg
+        mime: svg
+        style: "width: 60%; margin: 100px auto; display: block;"
+
+
+      - tipo: "lista"
+        items:
+          - "Bandas altas (3.20–5.21): casi todas las plantas — dominan Mesófilos y Hongos/Levaduras."
+          - "Intermedio–alto (1.47–2.93): Centro Productivo A, Centro Productivo B, Centro Productivo F — Clostridium, Coliformes, Hongos/Levaduras."
+          - "Bajo (0.21–1.00): Centro Productivo A, Centro Productivo B, Centro Productivo F — más Hongos/Levaduras y algo de Clostridium."
+          - "Cero: Sin evidencia."
+      - tipo: "texto"
+        html: >
+          Frente a <strong>MP</strong>, en <strong>PT</strong> la carga promedio sube y se hace más
+          <strong>generalizada</strong> entre plantas. Los protagonistas del aumento son
+          <strong>Mesófilos</strong> y <strong>Hongos/Levaduras</strong>; Coliformes y <strong>Clostridium</strong> se
+          mantienen en bandas intermedias.
+
+  - titulo: Muestras de Agua en el proceso
+    contenido:
+      - tipo: texto
+
+  - titulo: Distribución de la carga microbiológica a lo largo de diferentes puntos de control en muestras de agua
+    contenido:
+      - tipo: texto
+        html: >
+          En este caso, el muestreo se realiza en las plantas de <strong>Centro Productivo B</strong> y <strong>Centro Productivo F</strong>.
+          En promedio, en <strong>Centro Productivo B</strong> se observa una carga de <strong>Mesófilos</strong> de
+          <strong>1.83 Log(UFC/g)</strong>.
+
+      - tipo: plotly_html
+        src: sunburst_agua_process_results.html
+        #style: "width: 90%; display: block; margin: 10 auto;"
+
+  - titulo: Muestras de Superficies en el proceso
+    contenido:
+      - tipo: texto
+
+  - titulo: Distribución de la carga microbiológica a lo largo de diferentes puntos de control en muestras de superficie
+    contenido:
+      - tipo: texto
+          En las <strong>superficies del proceso</strong>, la carga microbiológica promedio fue de
+          <strong>0.27 Log(UFC/g)</strong>, con los valores más altos en <strong>Centro Productivo B (0.85)</strong>
+          y <strong>Centro Productivo F (0.69)</strong>.
+          En general, las cargas en superficies son <strong>bajas</strong> frente a las observadas
+          en <strong>MP</strong> y <strong>PT</strong>, lo que refleja un buen control higiénico
+          en esta etapa.
+
+      - tipo: plotly_html
+        src: sunburst_superficie_process_result.html
+        #style: "width: 90%; display: block; margin: 10 auto;"
+
+
+      - tipo: texto
+        html: >
+          En este gráfico tipo <strong>sunburst</strong> se muestra la <strong>carga microbiológica promedio</strong>
+          (<strong>Log(UFC/g)</strong>) en las <strong>superficies del proceso</strong>.
+          El valor central representa el promedio global de todas las plantas (<strong>0.27 Log(UFC/g)</strong>),
+          calculado a partir de <strong>14 análisis</strong>.
+          Solo se identificaron registros en <strong>Centro Productivo A</strong>, con una carga media de <strong>0.85 Log(UFC/g)</strong>.
+          
+
+  - titulo: Carga microbiológica por etapas del proceso por planta y microorganismos
+    contenido:
+      - tipo: plotly_html
+        src: resultado_log_etapa_planta_.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+          Este gráfico compara el <strong>promedio de Log(UFC/g)</strong> y el número de análisis (<strong>n</strong>) 
+          realizados en cada <strong>etapa del proceso</strong> por planta: materias primas (MP), agua, superficies y producto terminado (PT).  
+          En general, se observa que las <strong>mayores cargas microbiológicas</strong> ocurren en las etapas de 
+          <strong>MP</strong> y <strong>PT</strong>, con valores entre <strong>3.2 y 4.4 Log(UFC/g)</strong>, 
+          mientras que en <strong>agua</strong> y <strong>superficies</strong> las cargas son 
+          significativamente menores (<strong>0–1.5 Log(UFC/g)</strong>), reflejando un mejor control en estas áreas.  
+          <br><br>
+          Las plantas <strong>Centro Productivo D</strong> y <strong>Centro Productivo C</strong> destacan por su alto número de análisis 
+          (n > 150), lo que fortalece la confiabilidad de sus promedios.  
+          <strong>Centro Productivo A</strong>, <strong>Centro Productivo B</strong> e <strong>Centro Productivo F</strong> muestran los valores más altos 
+          en MP y PT, lo que sugiere <strong>mayor persistencia microbiológica</strong> a lo largo del proceso, 
+          mientras que <strong>Centro Productivo C</strong> mantiene los niveles más bajos en agua y superficie.
+      
+
+      - tipo: texto
+        html: >
+          Como caso particular revisaremos la carga microbiológica por tipo de microorganismo y etapa
+          para Centro Productivo D y Centro Productivo E.
+
+      - tipo: plotly_html
+        src: resultado_log_etapa_Centro Productivo D_.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+          En <strong>Mosquera</strong>, los resultados muestran diferencias claras entre microorganismos.
+          <strong>Mesófilos</strong> presentan las cargas más altas, pasando de <strong>3.92 Log(UFC/g)</strong> en 
+          materias primas (<strong>MP</strong>) a <strong>4.66 Log(UFC/g)</strong> en producto terminado (<strong>PT</strong>),
+          lo que indica un aumento en el proceso.  
+          Por el contrario, <strong>Clostridium Sulfitoreductor</strong> disminuye de <strong>1.55</strong> a 
+          <strong>0.22 Log(UFC/g)</strong>, reflejando un control efectivo.  
+          <strong>Coliformes Totales</strong> y <strong>Hongos y Levaduras</strong> muestran incrementos moderados 
+          (de ~1.0 a ~2.4 Log(UFC/g)), mientras que <strong>E. coli</strong> y <strong>Salmonella</strong> no se detectaron.  
+          <br><br>
+          En conjunto, Mosquera mantiene una <strong>carga baja a moderada</strong> en la mayoría de microorganismos, 
+          con mejoras evidentes en <strong>Clostridium</strong> pero un ligero aumento general en el resto al llegar a PT.
+
+
+
+      - tipo: plotly_html
+        src: resultado_log_etapa_Centro Productivo E_.html #resultado_log_etapa_Mosquera_
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+          En <strong>Cartago</strong>, las cargas microbiológicas se mantienen <strong>estables o ligeramente menores</strong> 
+          entre las etapas del proceso. Los <strong>mesófilos</strong> muestran valores similares en <strong>MP</strong> y <strong>PT</strong> 
+          (~4.0&nbsp;Log(UFC/g)), mientras que <strong>Coliformes Totales</strong> mantienen una carga constante 
+          alrededor de <strong>2.3&nbsp;Log(UFC/g)</strong>.  
+          <strong>Clostridium Sulfitoreductor</strong> disminuye de <strong>1.64</strong> a <strong>1.17&nbsp;Log(UFC/g)</strong>, 
+          evidenciando <strong>control microbiológico</strong> a lo largo del proceso. 
+
+  - titulo: Comportamiento de la carga microbiológica (Log UFC/g) en función de la actividad de agua y del tipo de microorganismo
+    contenido:
+
+
+      - tipo: plotly_html
+        src: log_kg_micro.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+      - tipo: plotly_html
+        src: log_aw_micro.html
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          En <strong>PT</strong>, al analizar la <strong>carga microbiológica (Log<sub>10</sub> UFC/g)</strong> frente a la
+          <strong>actividad de agua (aW)</strong> y los <strong>kilogramos producidos</strong>, se observa que las
+          mayores cargas corresponden a <strong>mesófilos</strong> y <strong>hongos y levaduras</strong>.
+          Estos niveles elevados aparecen a lo largo de todo el rango de <strong>aW</strong> y de <strong>producción</strong>,
+          sin una tendencia clara con respecto a estas variables; es decir, el incremento de carga parece
+          <strong>independiente</strong> de la aW y del volumen producido. En general, para estos dos
+          grupos se registran valores iguales o superiores a ~<strong>1.5 unidades logarítmicas</strong>, mientras
+          que el resto de microorganismos presentan cargas más bajas o puntuales.
+
+
+  - titulo: Conclusiones
+    contenido:
+          - tipo: "lista"
+            items:
+                - Las <strong>materias primas (MP)</strong> presentaron las <strong>mayores cargas microbiológicas</strong>
+                  iniciales, con valores promedio <strong>~3.0Log(UFC/g)</strong>, dominadas por <strong>Mesófilos</strong>,
+                  <strong>Coliformes Totales</strong> y <strong>Hongos y Levaduras</strong>.
+                - En <strong>producto terminado (PT)</strong>, la carga promedio aumentó ligeramente (~<strong>0.7 Log(UFC/g)</strong>),
+                  con respecto a las materias primas, el incremento se debe principalmente a <strong>Hongos y Levaduras</strong>.
+                - Las <strong>muestras de agua y superficies</strong> evidenciaron <strong>valores bajos</strong> de contaminación
+                  (≤ 1.5 Log(UFC/g)).
+                - En <strong>Mosquera</strong> se observó una <strong>reducción significativa</strong> de <strong>Clostridium
+                  Sulfitoreductor</strong> (de 1.55 a 0.22 Log), mientras que otros microorganismos presentaron <strong>ligeros incrementos</strong> hacia PT.
+                - En <strong>Cartago</strong>, las cargas se mantuvieron <strong>estables o menores</strong> entre etapas,
+                  indicando <strong>eficiencia en control microbiológico</strong>.
+                - Las plantas con <strong>mayor carga promedio</strong> en MP y PT fueron <strong>Centro Productivo D</strong>,
+                  <strong>Centro Productivo E</strong> e <strong>Centro Productivo C</strong>.
+                - No se detectó <strong>Salmonella</strong> en ninguna etapa, lo que confirma <strong>ausencia de 
+                  contaminación crítica</strong> en las muestras analizadas.
+                - En conjunto, los resultados reflejan un <strong>proceso controlado</strong> con focos específicos de mejora,
+                  principalmente en el manejo de <strong>Mesófilos</strong> y <strong>Coliformes Totales</strong> en la transición de MP a PT.
+
+
+
+
+
+

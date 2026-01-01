@@ -49,8 +49,8 @@ secciones:
       - tipo: plotly_html
         src: box_coliformes.html
 
-      - tipo: plotly_html
-        src: box_rat.html
+      #- tipo: plotly_html
+      #  src: box_rat.html
 
       - tipo: texto
         html: >

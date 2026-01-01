@@ -1,0 +1,384 @@
+titulo: "Revisión general proceso de peletización"
+lugar: "Okuo Analytics"
+descripcion: ""
+
+secciones:
+  - titulo: Introducción
+    contenido:
+      - tipo: texto
+        html: >
+          El presente informe se desarrolló mediante la plataforma Okuo Flow,
+          una herramienta enfocada en la <strong>centralización</strong>, <strong>integración</strong> 
+          y <strong>transformación</strong> de datos asociados a la producción 
+          y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
+          información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
+          variables de producción (toneladas procesadas, 
+          tiempos de producción y sack-off) y de calidad (temperatura, durabilidad del pellet y humedad). 
+          Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
+          de calidad, reduciendo la tensión entre los departamentos 
+          de producción y calidad, logrando un proceso más fluido y eficaz.
+
+          <br><br>
+          En este contexto, utilizaremos Okuo Flow para analizar el proceso de 
+          peletizado en la planta de <strong>Aliforte</strong> en las órdenes de producción 
+          elaboradas entre el <strong>4 de agosto</strong> y el <strong>28 de noviembre</strong>.
+  - titulo: "Objetivo"
+    contenido:
+      - tipo: lista
+        items:
+          - 'Analizar el <strong>comportamiento global</strong> de las principales métricas de peletización por peletizadora: 
+             temperatura de acondicionamiento, rendimiento operacional, humedad del 
+             producto terminado y durabilidad del pellet (PDI).'
+          - 'Evaluar el <strong>rendimiento</strong> y la <strong>calidad</strong> por peletizadora y especie peletizada,
+             identificando <strong>diferencias operativas entre líneas</strong>.'
+          - 'Identificar las <strong>principales causas</strong> y la <strong>duración de los paros</strong> en cada 
+             peletizadora para detectar <strong>oportunidades de mejora en la disponibilidad operativa</strong>.'
+
+  - titulo: "Descripción Global por Peletizadora"
+    contenido:
+      - tipo: texto
+        html: >
+          Durante el periodo analizado se procesaron <strong>9,257 toneladas</strong>, 
+          de alimento distribuidas de la siguiente manera:
+
+      - tipo: tabla
+        src: summary.csv
+
+      - tipo: texto
+        html: >
+          Los valores medios resumen la tendencia central del periodo analizado para cada peletizadora. Para evitar que los
+          resultados se distorsionen por eventos extremos, <strong>el rendimiento se calcula usando el 95% central de los datos
+          (valores entre los percentiles 3 y 98)</strong> y más adelante se detallarán y analizarán los registros considerados anómalos.
+
+  - titulo: "Cumplimiento de rendimiento por peletizadora"
+    contenido:
+      - tipo: texto
+        html: >
+          
+          Más allá del promedio, lo relevante es que los equipos operen dentro de sus rangos objetivo. Por ello,
+          es clave evaluar en el mes de operación:
+          <strong>¿cuántos lotes —y qué porcentaje del total— mantuvieron sus parámetros de operación dentro del rango óptimo
+          en cada peletizadora?</strong>
+      
+
+      - tipo: plotly_html
+        src: gauge_pellet_rend.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+          Las pellets  alcanzan un cumplimiento de rendimiento superior al <strong>70%</strong>
+          frente a su objetivo. En contraste, la <strong>Pellet 2</strong> dado que esta máquina aporta cerca del 
+          <strong>40%</strong> de la producción total, concentra el <strong>mayor potencial de mejora</strong>. 
+          Más adelante se precisará, para la <strong>Pellet 2</strong>,  <strong>qué dietas priorizar</strong>,
+          <strong>qué paros y causas están reduciendo su rendimiento</strong>.
+  
+
+  - titulo: "Detalle de posibles valores anómalos"
+    contenido:
+      - tipo: texto
+
+        html: >
+          El <strong>5% de los registros extremos</strong> se resume en las siguientes tablas. En la primera se presentan los
+          resultados globales de este subconjunto, donde valores atípicamente bajos reducen el rendimiento promedio observado
+          frente a lo esperado para cada peletizadora. En la segunda se describen en detalle los <strong>34 lotes</strong>
+          identificados.
+          <br><br>
+          Se destacan como <strong>dietas de menor rendimiento</strong>:
+          <strong>E-1, E-2, E-3, PF01, PF02, F1, F1/F2 PREMEX, F-3, BAI, BCC, ACP y G-5PR K</strong>.
+          Además, se observa que <strong>25 de estos lotes</strong> corresponden a dietas con
+          <strong>bajo volumen producido (&lt; 10 Ton peletizadas)</strong>, las cuales tienden a presentar rendimientos
+          inferiores a los objetivos por máquina.
+      
+
+      - tipo: tabla
+        src: prod_pel_bad.csv
+
+      - tipo: tabla
+        src: detalle_bad.csv
+
+  - titulo: "Cumplimiento en calidad del pellet  por peletizadora"
+    contenido:
+
+      - tipo: plotly_html
+        src: gauge_pellet_pdi.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 70%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+          En <strong>PDI</strong> se observan porcentajes de cumplimiento superiores al <strong>99%</strong> en todas las pellets.
+          Este nivel de cumplimiento indica que, durante el periodo analizado, la durabilidad del pellet se mantuvo
+          <strong>estable</strong> y no presenta diferencias relevantes entre máquinas ni entre dietas.
+          En otras palabras, existe <strong>uniformidad en la calidad del pellet</strong>.
+          Solo se identificó <strong>un lote</strong> en la <strong>Pellet 1</strong> que no alcanzó el objetivo, el cual se
+          detalla a continuación.
+      
+
+      - tipo: tabla
+        src: pdi_bad.csv
+
+
+
+  - titulo: "Cumplimiento de Temperaturas en el acondicionador por especie"
+    contenido:
+      - tipo: texto
+        html: >
+          A continuación se presenta el porcentaje de lotes por especie que fueron peletizados y
+          estuvieron dentro de los rangos óptimos en temperatura en el acondicionador.
+
+      - tipo: tabla
+        src: summary_temp.csv
+
+      - tipo: texto
+        html: >
+          En todas las especies peletizadas se alcanza la temperatura objetivo de operación.
+
+  - titulo: "Cumplimiento de Humedades en producto terminando por especie"
+    contenido:
+
+      - tipo: tabla
+        src: summary_hum.csv
+
+      - tipo: texto
+        html: >
+          La mayoría de las especies, cumplen la <strong>humedad promedio del producto terminado</strong> 
+          estando por encima del 86 % del<strong>rango objetivo definido</strong>.
+        #<br><br>
+          #Es importante tener en cuenta que, aunque en algunas especies (por ejemplo, <strong>maquila</strong>, <strong>broiler</strong> y
+          #<strong>cuyes</strong>) el valor promedio se encuentra dentro del rango objetivo, el <strong>cumplimiento</strong> puede seguir siendo
+          #bajo. Esto ocurre porque una proporción significativa de lotes queda por fuera del rango (tanto <strong>por encima</strong> como
+          #<strong>por debajo</strong>) y, aun así, el promedio agregado termina cayendo dentro del objetivo.
+          #<br><br>
+          #Por esta razón, a continuación se presenta el análisis a nivel de <strong>dieta</strong>, con el fin de identificar, para cada
+          #peletizadora, <strong>qué dietas (dentro de cada especie) sí alcanzan el objetivo</strong>.
+
+
+  - titulo: "Comportamiento de la humedad promedio por dieta en cada peletizadora"
+    contenido:
+      - tipo: plotly_html
+        src: pellet_heatmap_hum_pellet1.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 0 auto;"
+      - tipo: texto
+        html: >
+          En la <strong>Pellet 1</strong>, únicamente la dieta <strong>C-1</strong> se encuentra dentro
+          del <strong>rango objetivo de humedad</strong>.
+
+      - tipo: plotly_html
+        src: pellet_heatmap_hum.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 0 auto;"
+      - tipo: texto
+        html: >
+          La imagen muestra las dietas procesadas en la <strong>Pellet 2</strong> y la <strong>Pellet 3</strong>.
+          Se observa que la dieta <strong>BAI</strong>, independientemente de la peletizadora, presenta una humedad promedio
+          <strong>por debajo del rango objetivo</strong>. En la <strong>Pellet 2</strong>, adicionalmente, las dietas
+          <strong>BCE (11.41)</strong> y <strong>CE2 (12.85)</strong> también se encuentran fuera del rango.
+          En la <strong>Pellet 3</strong>, la única dieta fuera del rango es <strong>E3 (11.32)</strong>.
+  
+  
+
+  - titulo: "Dietas con rendimiento promedio por debajo del rendimiento de la pellet"
+    contenido:
+
+      - tipo: plotly_html
+        src: rendimiento_pellet_especie_decil.html #rendimiento_pellet_especie.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 10 auto;"
+      - tipo: texto
+        html: >
+          La gráfica muestra, para cada peletizadora, las <strong>5 dietas cuyo rendimiento
+          promedio</strong> quedó por debajo del
+          <strong>promedio global</strong> de la máquina correspondiente. En la <strong>Pellet 1</strong> (3.0 Ton/h) 
+          destacan <strong>BAI, AIP-PREMEX,
+          APP, E-1 y HY-3</strong>. En la <strong>Pellet 2</strong> (4.7 Ton/h) se observan <strong>AIP,
+          PF02, E1, BAI y BCC</strong>,
+          y en la <strong>Pellet 3</strong>  (4.8 Ton/h) <strong>BCC, CE2, BCG, P2 y CE1</strong>. Se destaca 
+          que en la pellet 3 presenta un mejor rendimiento que la pellet 2 en las dietas que resultan más 
+          difíciles de peletizar.
+
+  - titulo: "Rendimiento de las diferentes dietas producidas en la pellet 1"
+    contenido:
+
+      - tipo: plotly_html
+        src: pellet_heatmap_rendimiento_pellet.html #rendimiento_pellet_especie.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 10 auto;"
+      - tipo: texto
+        html: >
+          La gráfica ordena las dietas según su rendimiento. Las cinco primeras
+          corresponden a las dietas más difíciles de peletizar, con resultados por debajo
+          del rendimiento promedio global de la pellet 1; las restantes se ubican por encima
+          de ese valor de referencia.
+
+  - titulo: "Rendimiento de las diferentes dietas producidas en la pellet 2 y 3 por tipo de tiraje"
+    contenido:
+      - tipo: texto
+        html: >
+          Con el fin de comparar únicamente las <strong>dietas que se peletizan tanto en la pellet
+          2 como en la pellet 3</strong>, se clasificó cada lote según su <strong>tipo de tiraje</strong> en
+          función del volumen producido: <strong>tiraje corto</strong> para lotes de <strong>hasta 15 
+          toneladas</strong> y <strong>tiraje largo</strong> para lotes de <strong>más de 15 toneladas</strong>.
+          <br><br>
+          Con lo anterior, se presenta el comportamiento del rendimiento promedio por cada dietas en tirajes cortos que se
+          realizaron en las pellet 2 y 3:
+      #- tipo: plotly_html
+      #  src: pellet_heatmap_rendimiento_pellet23.html #rendimiento_pellet_especie.html
+      #  #style: "width: 70%; height: 500px;"
+      #  style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: plotly_html
+        src: pellet_heatmap_rendimiento_pellet23_corto.html #rendimiento_pellet_especie.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+          Comportamiento del rendimiento promedio por cada dieta en tirajes largos que se
+          realizaron en las pellet 2 y 3:
+
+      - tipo: plotly_html
+        src: pellet_heatmap_rendimiento_pellet23_largo.html #rendimiento_pellet_especie.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: texto
+        html: >
+          De ambas gráficas se deduce que en <strong>tirajes cortos</strong>, pellet 2 supera a pellet 3 
+          en <strong>C-1, P2, P3, BCE, CG1, E-2 y E-4</strong>, mientras que pellet 3 es mejor en <strong>CR2, CF, P4 y E-3</strong>.
+        
+          En <strong>tirajes largos</strong>, pellet 3 es superior en <strong>BCC, CE1, F4 PREMEX, P3, CG1, E-2 y BAF</strong> 
+          (empate en <strong>CE2</strong>), y pellet 2 es más eficiente en <strong>E-3, E-4 y CF</strong>.
+       
+          En las dietas comunes (<strong>P3, CG1, E-2, E-3, E-4 y CF</strong>), solo <strong>E-4</strong> mantiene ventaja
+          en <strong>pellet 2</strong>.
+        
+
+
+  - titulo: "Efecto de los paros en el Rendimiento de cada Pellet"
+    contenido:
+      - tipo: texto
+        html: >
+          Para comprender el comportamiento del <strong>rendimiento por peletizadora</strong>,
+          planteamos la siguiente pregunta: <strong>¿el rendimiento promedio de los lotes que
+          experimentaron un paro se mantiene igual antes y después del evento?</strong>
+      
+
+      - tipo: plotly_html
+        src: barras_paros_rend.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          Los datos muestran que el <strong>rendimiento cambia cuando hay paros</strong>.
+          En las <strong>peletizadoras 2 y 3</strong>, los lotes producidos
+          <em>después</em> de un paro tienen en promedio <strong>mayor rendimiento</strong>
+          que los lotes <em>sin</em> paro. Si el paro <strong>no</strong> se debe a un
+          <strong>cambio de insumos</strong>, esta diferencia no debería ocurrir, por lo que
+          es clave <strong>revisar las causas de los paros</strong> y <strong>cómo se opera tras un reinicio</strong>.
+          <br><br>
+          En la <strong>peletizadora 2</strong>, si todos los lotes se produjeran con la
+          misma eficiencia observada después de un paro, el <strong>rendimiento promedio por lote</strong>
+          podría incrementar en aproximadamente <strong>1.4&nbsp;Ton/h</strong>.
+      
+
+  - titulo: "Tiempos tiempos productivos y de paro por pellet"
+    contenido:
+      - tipo: texto
+        html: >
+          Del total de tiempo que una peletizadora esta trabajando por día ¿Qué porcentaje es tiempo productivo? y que 
+          porcentaje es tiempo de paro?
+
+      - tipo: plotly_html
+        src: avg_time_pellet_stack.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 70%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          La gráfica muestra que, en un día promedio de producción, las tres peletizadoras
+          operan alrededor del <strong>84% del tiempo</strong>. La
+          <strong>Pellet 1</strong> es la referencia, con solo
+          <strong>8%</strong> del tiempo en paro; la <strong>Pellet 3</strong>
+          alcanza <strong>10%</strong>; y la <strong>Pellet 2</strong> registra
+          el mayor tiempo detenido (<strong>~15%</strong>). La <strong>prioridad de mejora</strong>
+          debe centrarse en la <strong>Pellet 2</strong>, revisando causas de paro y ajustando organización,
+          setup y mantenimiento.
+
+  - titulo: "Proporción de causas de paro"
+    contenido:
+      - tipo: plotly_html
+        src: downtime_pie_time.html #downtime_pie.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          La gráfica muestra el <strong>peso de cada causa de paro sobre el tiempo total detenido</strong>.
+          En el periodo analizado, <strong>Sin Producto (36%)</strong> y <strong>Atasque (28.7%)</strong> concentran cerca del
+          <strong>65%</strong> del tiempo de paro, por lo que son las <strong>prioridades de mejora</strong>.
+          El resto de causas aporta participaciones individuales menores. El hover detalla <strong>tiempo total</strong>,
+          <strong>promedio por evento</strong> y <strong>número de eventos</strong>.
+  
+  
+
+  - titulo: "Tiempo promedio de paros por tipo y peletizadora"
+    contenido:
+      - tipo: plotly_html
+        src: pellet_heatmap_notes_time.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 90%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          La figura muestra el <strong>tiempo promedio de paro</strong> por tipo y peletizadora.
+          El paro por <strong>“Sin Producto”</strong> es una causa controlable y resulta
+          especialmente crítico en la <strong>Pellet 2</strong> (≈1&nbsp;h promedio por evento), seguido
+          de las Pellet 1 y 3. Reducir estos tiempos tendría un impacto directo en la
+          <strong>eficiencia global de la planta</strong>.
+
+  - titulo: "Producción por Operario y Peletizadora"
+    contenido:
+      - tipo: plotly_html
+        src: pellet_heatmap_ton_pel_op.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 60%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          En el periodo analizado, existe poca uniformidad en las toneladas producidas  por operario.
+    
+
+      - tipo: plotly_html
+        src: pellet_heatmap_rendimiento_pel_op.html
+        #style: "width: 70%; height: 500px;"
+        style: "width: 60%; display: block; margin: 0 auto;"
+
+      - tipo: texto
+        html: >
+          En cada <strong>pellet</strong>, una escala de color uniforme indica que el
+          <strong>rendimiento promedio</strong> es similar entre operarios; cuando el color
+          cambia, el rendimiento sí depende de quién opera.
+          Estandarizar las prácticas de operación en esta línea permitiría
+          <strong>homogeneizar el peletizado</strong> e <strong>incrementar el rendimiento</strong>.
+  
+
+  - titulo: "Conclusiones"
+    contenido:
+      - tipo: lista
+        items:
+          - 'La <strong>Pellet 2</strong> concentra el mayor margen de mejora: aporta cerca del 
+             <strong>40%</strong> de la producción y presenta más tiempo en paro y más lotes fuera del
+            rango óptimo de rendimiento.'
+          - Lotes que tienen asociados menos de 10 Toneladas, tienen problemas en términos de rendimiento,
+            dado que su rendimiento esta por debajo del rendimiento objetivo de la maquina en que se
+            realiza.
+          - 'En varias especies, especialmente <strong>ganadería</strong>, <strong>reproductoras</strong>
+             y <strong>ponedoras</strong>, la <strong>humedad promedio del producto terminado</strong> está
+             por debajo del rango objetivo.'
+          - 'El paro por <strong>“Sin Producto”</strong> es una causa frecuente y controlable, particularmente 
+             crítica en la <strong>Pellet 2</strong>.'
+          - 'Lotes producidos después de un paro tienen en promedio mayor rendimiento que los lotes sin paro.'
