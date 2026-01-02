@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 from typing import List, Dict
 
 class FazendaConfig(BaseModel):
-    notebook_name: str = "fazenda_efecto_adiflow_en_sackoff"
+    notebook_name: str = "fazenda_efecto_adiflow_en_sackoff_auto"
     q_low: float = 0.01
     q_high: float = 0.99
     exclude_ops: List[str] = ["21944", "21864"]

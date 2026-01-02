@@ -1,6 +1,6 @@
 titulo: "Revisión efecto del Adiflow en el proceso de peletización"
 lugar: "Fazenda"
-descripcion: "Automatización del reporte de Fazenda para el análisis del efecto de Adiflow en el sackoff."
+descripcion: ""
 
 secciones:
   - titulo: Introducción
@@ -13,25 +13,25 @@ secciones:
           y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
           información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
           variables de producción (toneladas procesadas, 
-          tiempos de producción and sack-off) and de calidad (temperatura, durabilidad del pellet and humedad). 
+          tiempos de producción y sack-off) y de calidad (temperatura, durabilidad del pellet y humedad). 
           Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
           de calidad, reduciendo la tensión entre los departamentos 
           de producción y calidad, logrando un proceso más fluido y eficaz.
 
           <br><br>
           En este contexto, usaremos Okuo Flow para dar un entendimiento general del proceso de 
-          peletizado en la planta de <strong>Fazenda</strong> en los meses de Septiembre a Diciembre.
+          peletizado en la planta de <strong>Fazenda</strong> en los meses de Septiembre a Noviembre.
 
   - titulo: Definiciones
     contenido:
 
       - tipo: lista
         items:
-          - Se analizan ordenes de producción producidas en el periodo del 02 de January de 2025 al 30 de December de 2025.
+          - Se analizan ordenes de producción producidas en el periodo del 01 de September de 2025 al 30 de December de 2025.
           - Una orden de producción peletizada <strong>sin Adiflow</strong> son aquellas donde la dosis de agua <strong>cero</strong>,
             de lo contrario son ordenes de producción <strong>con Adiflow</strong>.
-          - De las <strong>1677</strong> órdenes de producción peletizadas con y sin Adiflow, se considera el <strong>97.9%</strong> de ellas,
-            manteniendo únicamente las que se encuentran entre los percentiles <strong>1.0</strong> y <strong>99.0</strong> 
+          - De las <strong>542</strong> órdenes de producción peletizadas con y sin Adiflow, se considera el <strong>98%</strong> de ellas,
+            manteniendo únicamente las que se encuentran entre los percentiles <strong>1</strong> y <strong>99</strong> 
             (se excluyen valores atípicos en los extremos).
 
           - 'El  <strong>Sackoff</strong> por grupo de ordenes de produción \( i \) se calcula como:
@@ -41,58 +41,67 @@ secciones:
 
   - titulo: "Resumen general de las métricas de producción y calidad en el periodo analizado"
     contenido:
+      - tipo: imagen
+        src: infografia_desempeno_fazenda.svg
+        style: "width: 90%; display: block; margin: 10 auto;"
+        mime: svg
+
       - tipo: tabla
-        src: summary_general.csv
+        src: desempeno_global_adiflow.csv
 
       - tipo: texto
         html: >
-          En términos generales, en el periodo analizado se observa una mejora de <strong>160.17 p.p.</strong> en el sackoff
-          sobre <strong>40539.0</strong> toneladas producidas con Adiflow, lo que se traduce en un promedio de <strong>~64931.25 toneladas
-          recuperadas</strong>, asociado a un <strong>incremento de 2.4 °C</strong> en la temperatura del acondicionador, <strong>sin afectar la
-          calidad</strong> en finos ni en durabilidad.
+          En términos generales, en el periodo analizado se observa una mejora de <strong>0.27 p.p.</strong>
+          en el sackoff sobre <strong>22297.14</strong> toneladas producidas con Adiflow, lo que se traduce
+          en un promedio de <strong>~62 toneladas recuperadas</strong>, asociado a un <strong>incremento de
+          2.5 °C</strong> en la temperatura del acondicionador, <strong>sin afectar la calidad</strong> en
+          finos ni en durabilidad.
 
       - tipo: tabla
-        src: summary_recuperadas.csv
+        src: ahorro_economico_estimado_recuperacion.csv
 
   - titulo: "Comportamiento del Sackoff mensual"
     contenido:
 
       - tipo: plotly_html
-        src: barras_sackoff_mes.html
+        src: grafico_evolucion_mensual_sackoff.html
         style: "width: 90%; display: block; margin: 10 auto;"
       - tipo: tabla
-        src: summary_month.csv
+        src: tabla_comparativa_mensual_adiflow.csv
 
       - tipo: texto
         html: >
-          Mes a mes, el sackoff muestra un mejor desempeño con el uso de Adiflow, salvo en el mes de noviembre, donde el escenario con Adiflow presenta mayores mermas que el escenario sin el aditivo.
+          Mes a mes, el sackoff muestra un mejor desempeño con el uso de Adiflow, manteniendo una 
+          consistencia positiva en todos los meses analizados.
 
       - tipo: tabla
-        src: summary_month_table.csv
+        src: evolucion_mensual_sackoff.csv
 
       - tipo: texto
         html: >
-          En términos de toneladas recuperadas, octubre es el mes con mayor aporte: presenta el mayor volumen de producción con Adiflow y, aunque registra un sackoff ligeramente superior, esto se traduce en la mayor cantidad de toneladas recuperadas.
+          En términos de toneladas recuperadas, octubre es el mes con mayor aporte: presenta el mayor volumen
+          de producción con Adiflow y, aunque registra un sackoff ligeramente superior, esto se traduce en la
+          mayor cantidad de toneladas recuperadas.
   
 
   - titulo: "Comportamiento del Sackoff entre las dietas peletizados por los dos procesos"
     contenido:
 
       - tipo: plotly_html
-        src: barras_sackoff_dieta_both.html
+        src: grafico_comparativo_dietas_both.html
         style: "width: 90%; display: block; margin: 10 auto;"
 
-      - tipo: tabla
-        src: summary_dieta.csv
+  - titulo: "Detalles del comportamiento por dietas peletizadas"
+    contenido:
 
       - tipo: tabla
-        src: summary_dieta_table.csv
-
-      - tipo: texto
-        html: >
-          No se observan dietas con mejora significativa.
+        src: desempeno_por_dieta_adiflow.csv
+  - titulo: "Toneladas recuperadas por dieta"
+    contenido:
+      - tipo: tabla
+        src: mejores_resultados_por_dieta.csv
 
   - titulo: "Registros con sackoff anómalo"
     contenido:
       - tipo: tabla
-        src: data_bad.csv
+        src: registros_excluidos_rango_anomalos.csv
