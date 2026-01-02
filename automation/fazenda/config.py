@@ -9,6 +9,10 @@ class FazendaConfig(BaseModel):
     descripcion: str = "Automatización del reporte de Fazenda para el análisis del efecto de Adiflow en el sackoff."
     cut_date_ensayo: str = "2025-09-01"
 
+    # Report Automation Paths
+    report_yaml_template: str = "yamls/templates/fazenda.yaml.j2"
+    report_yaml_output: str = "yamls/fazenda_efecto_adiflow_en_sackoff_auto.yaml"
+
     # S3 Input Paths
     path_base: str = "raw/fazenda/"
     sap_file: str = "sackoff_fazenda_n8n.xlsx"

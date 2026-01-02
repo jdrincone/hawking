@@ -5,11 +5,14 @@ Orchestration logic for the Fazenda automation report.
 import pandas as pd
 import numpy as np
 import logging
+import os
 from typing import Dict, Any, List, Optional, Tuple
+from jinja2 import Template
 
 from core.s3 import S3AssetManager
 from core.viz import plot_bar
 from core.render_svg import generate_sackoff_svg
+from core.build_report import generar_reporte_okuo
 
 from automation.fazenda.config import FazendaConfig
 from automation.fazenda.data import load_and_clean_data
@@ -39,9 +42,12 @@ class FazendaReportOrchestrator:
 
         logger.info("Step 3: Building reports and visualizations...")
         self._build_bad_records_report(df_bad)
-        self._build_global_performance_report(df_cut)
+        summary_general, global_metrics = self._build_global_performance_report(df_cut, df_raw)
         self._build_monthly_evolution_report(df_cut)
         self._build_diet_performance_report(df_both_cut, df_both_diet)
+
+        logger.info("Step 4: Automating YAML report rendering and HTML generation...")
+        self._build_artifact_automated_report(df_cut, global_metrics)
 
         logger.info("Fazenda automation completed.")
 
@@ -101,7 +107,7 @@ class FazendaReportOrchestrator:
         df_bad_dep = df_bad[cols].round(2).rename(columns=bad_rename_map).sort_values(["date"], ascending=False)
         self.s3.save_dataframe(df_bad_dep, self.config.artifact_bad_records_csv)
 
-    def _build_global_performance_report(self, df_cut: pd.DataFrame) -> pd.DataFrame:
+    def _build_global_performance_report(self, df_cut: pd.DataFrame, df_raw: pd.DataFrame) -> Tuple[pd.DataFrame, Dict[str, Any]]:
         """Processes global performance metrics and generates related artifacts."""
         summary = compute_sackoff(df_cut, cols=[])
         
@@ -130,7 +136,17 @@ class FazendaReportOrchestrator:
         )
         self.s3.save_svg_content(svg_content, self.config.artifact_performance_infographic_svg)
         
-        return summary_dep
+        # Collect metrics for the automated report
+        metrics = {
+            "total_ops": len(df_raw),
+            "percent_used": round(len(df_cut) / len(df_raw) * 100, 1),
+            "mejora_sackoff": savings["Diferencia Sackoff"].iloc[0],
+            "toneladas_con_adiflow": savings["Toneladas Producidas Con Adiflow"].iloc[0],
+            "toneladas_recuperadas": savings["Toneladas Recuperadas"].iloc[0],
+            "incremento_temp": round(svg_params["delta_temp"], 1)
+        }
+        
+        return summary_dep, metrics
 
     def _build_monthly_evolution_report(self, df_cut: pd.DataFrame):
         """Processes monthly evolution data and charts."""
@@ -221,3 +237,60 @@ class FazendaReportOrchestrator:
             width=1000,
         )
         self.s3.save_plotly_html(fig, self.config.artifact_diet_comparison_chart_html)
+
+    def _build_artifact_automated_report(self, df_cut: pd.DataFrame, global_metrics: Dict[str, Any]):
+        """Renders the YAML template with dynamic metrics and triggers HTML generation."""
+        logger.info(f"Rendering report template: {self.config.report_yaml_template}")
+        
+        # Load template
+        with open(self.config.report_yaml_template, "r", encoding="utf-8") as f:
+            template_str = f.read()
+        
+        template = Template(template_str)
+        
+        # Prepare context for Jinja2
+        meses = sorted(df_cut["date"].dt.strftime("%B").unique())
+        meses_analisis = f"{meses[0]} a {meses[-1]}" if len(meses) > 1 else meses[0]
+        
+        context = {
+            "descripcion": self.config.descripcion,
+            "meses_analisis": meses_analisis,
+            "fecha_inicio": df_cut["date"].min().strftime("%d de %B de %Y"),
+            "fecha_fin": df_cut["date"].max().strftime("%d de %B de %Y"),
+            "total_ops": global_metrics["total_ops"],
+            "percent_used": global_metrics["percent_used"],
+            "q_low": self.config.q_low,
+            "q_high": self.config.q_high,
+            "mejora_sackoff": global_metrics["mejora_sackoff"],
+            "toneladas_con_adiflow": global_metrics["toneladas_con_adiflow"],
+            "toneladas_recuperadas": global_metrics["toneladas_recuperadas"],
+            "incremento_temp": global_metrics["incremento_temp"],
+            "texto_mensual": "manteniendo una consistencia positiva en todos los meses analizados",
+            "texto_toneladas_recuperadas": "En términos de toneladas recuperadas, se observa un aporte significativo en los meses con mayor volumen de producción con Adiflow.",
+            "texto_dietas": "A continuación se presenta el detalle del comportamiento por dietas peletizadas.",
+            
+            # Artifact Artifacts (Parameterized)
+            "artifact_performance_infographic_svg": self.config.artifact_performance_infographic_svg,
+            "artifact_global_performance_csv": self.config.artifact_global_performance_csv,
+            "artifact_economic_savings_csv": self.config.artifact_economic_savings_csv,
+            "artifact_monthly_evolution_chart_html": self.config.artifact_monthly_evolution_chart_html,
+            "artifact_monthly_comparison_table_csv": self.config.artifact_monthly_comparison_table_csv,
+            "artifact_monthly_evolution_csv": self.config.artifact_monthly_evolution_csv,
+            "artifact_diet_comparison_chart_html": self.config.artifact_diet_comparison_chart_html,
+            "artifact_diet_performance_csv": self.config.artifact_diet_performance_csv,
+            "artifact_diet_comparison_table_csv": self.config.artifact_diet_comparison_table_csv,
+            "artifact_bad_records_csv": self.config.artifact_bad_records_csv,
+        }
+        
+        # Render YAML
+        rendered_yaml = template.render(**context)
+        
+        # Save rendered YAML
+        with open(self.config.report_yaml_output, "w", encoding="utf-8") as f:
+            f.write(rendered_yaml)
+        
+        logger.info(f"Rendered YAML saved to: {self.config.report_yaml_output}")
+        
+        # Trigger HTML report generation
+        logger.info("Triggering final HTML report generation...")
+        generar_reporte_okuo(os.path.basename(self.config.report_yaml_output))

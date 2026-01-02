@@ -13,7 +13,7 @@ secciones:
           y la calidad en plantas de concentrados. Gracias a esta plataforma, es posible extraer
           información valiosa que facilita la toma de decisiones, al analizar de manera simultánea
           variables de producción (toneladas procesadas, 
-          tiempos de producción and sack-off) and de calidad (temperatura, durabilidad del pellet and humedad). 
+          tiempos de producción y sack-off) y de calidad (temperatura, durabilidad del pellet y humedad). 
           Esto permite <strong>optimizar el rendimiento</strong> a la vez que se mantienen altos estándares
           de calidad, reduciendo la tensión entre los departamentos 
           de producción y calidad, logrando un proceso más fluido y eficaz.
@@ -41,8 +41,13 @@ secciones:
 
   - titulo: "Resumen general de las métricas de producción y calidad en el periodo analizado"
     contenido:
+      - tipo: imagen
+        src: {{ artifact_performance_infographic_svg }}
+        style: "width: 90%; display: block; margin: 10 auto;"
+        mime: svg
+
       - tipo: tabla
-        src: summary_general.csv
+        src: {{ artifact_global_performance_csv }}
 
       - tipo: texto
         html: >
@@ -52,23 +57,23 @@ secciones:
           calidad</strong> en finos ni en durabilidad.
 
       - tipo: tabla
-        src: summary_recuperadas.csv
+        src: {{ artifact_economic_savings_csv }}
 
   - titulo: "Comportamiento del Sackoff mensual"
     contenido:
 
       - tipo: plotly_html
-        src: barras_sackoff_mes.html
+        src: {{ artifact_monthly_evolution_chart_html }}
         style: "width: 90%; display: block; margin: 10 auto;"
       - tipo: tabla
-        src: summary_month.csv
+        src: {{ artifact_monthly_comparison_table_csv }}
 
       - tipo: texto
         html: >
           Mes a mes, el sackoff muestra un mejor desempeño con el uso de Adiflow, {{ texto_mensual }}.
 
       - tipo: tabla
-        src: summary_month_table.csv
+        src: {{ artifact_monthly_evolution_csv }}
 
       - tipo: texto
         html: >
@@ -79,14 +84,14 @@ secciones:
     contenido:
 
       - tipo: plotly_html
-        src: barras_sackoff_dieta_both.html
+        src: {{ artifact_diet_comparison_chart_html }}
         style: "width: 90%; display: block; margin: 10 auto;"
 
       - tipo: tabla
-        src: summary_dieta.csv
+        src: {{ artifact_diet_performance_csv }}
 
       - tipo: tabla
-        src: summary_dieta_table.csv
+        src: {{ artifact_diet_comparison_table_csv }}
 
       - tipo: texto
         html: >
@@ -95,4 +100,4 @@ secciones:
   - titulo: "Registros con sackoff anómalo"
     contenido:
       - tipo: tabla
-        src: data_bad.csv
+        src: {{ artifact_bad_records_csv }}
