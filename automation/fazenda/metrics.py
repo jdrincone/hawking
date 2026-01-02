@@ -47,7 +47,7 @@ def compute_sackoff(df: pd.DataFrame, group_cols: List[str] = []) -> pd.DataFram
     
     # Calculate derived metrics
     res["diferencia"] = res["production"] - res["reales"] - res["anulation"]
-    res["sackoff"] = res.apply(lambda x: (x["diferencia"] / x["reales"] * 100) if x["reales"] > 0 else 0, axis=1)
+    res["sackoff"] = np.where(res["reales"] > 0, res["diferencia"] / res["reales"] * 100, 0.0)
     
     return res
 
@@ -60,9 +60,7 @@ def filter_outliers(
     """
     Filters data points based on sack_off quantiles and manual exclusions.
     """
-    if df.empty:
-        return df
-        
+    
     low_val = df["sackoff_op"].quantile(q_low)
     high_val = df["sackoff_op"].quantile(q_high)
     
@@ -84,9 +82,6 @@ def build_summary_comparison(df_summary: pd.DataFrame) -> pd.DataFrame:
     """
     Creates a high-level summary table comparing 'Con Adiflow' vs 'Sin Adiflow'.
     """
-    if df_summary.empty:
-        return pd.DataFrame()
-
     df = df_summary.copy()
     df["Tiene Adiflow"] = df["Tiene Adiflow"].apply(norm_adiflow)
     

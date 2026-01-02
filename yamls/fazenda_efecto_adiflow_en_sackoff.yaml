@@ -27,10 +27,10 @@ secciones:
 
       - tipo: lista
         items:
-          - Se analizan ordenes de producción producidas en el periodo del 1 de Septiembre al 16 de Dicciembre del 2025.
+          - Se analizan ordenes de producción producidas en el periodo del 01 de September de 2025 al 30 de December de 2025.
           - Una orden de producción peletizada <strong>sin Adiflow</strong> son aquellas donde la dosis de agua <strong>cero</strong>,
             de lo contrario son ordenes de producción <strong>con Adiflow</strong>.
-          - De las <strong>464</strong> órdenes de producción peletizadas con y sin Adiflow, se considera el <strong>98%</strong> de ellas,
+          - De las <strong>542</strong> órdenes de producción peletizadas con y sin Adiflow, se considera el <strong>98%</strong> de ellas,
             manteniendo únicamente las que se encuentran entre los percentiles <strong>1</strong> y <strong>99</strong> 
             (se excluyen valores atípicos en los extremos).
 
@@ -43,17 +43,17 @@ secciones:
     contenido:
       - tipo: imagen
         src: fazenda_sackoff.svg
+        style: "width: 90%; display: block; margin: 10 auto;"
         mime: svg
-        style: "width: 90%;"
 
       - tipo: tabla
         src: summary_general.csv
 
       - tipo: texto
         html: >
-          En términos generales, en el periodo analizado se observa una mejora de <strong>0.45 p.p.</strong>
+          En términos generales, en el periodo analizado se observa una mejora de <strong>0.27 p.p.</strong>
           en el sackoff sobre <strong>22297.14</strong> toneladas producidas con Adiflow, lo que se traduce
-          en un promedio de <strong>~100 toneladas recuperadas</strong>, asociado a un <strong>incremento de
+          en un promedio de <strong>~62 toneladas recuperadas</strong>, asociado a un <strong>incremento de
           2.5 °C</strong> en la temperatura del acondicionador, <strong>sin afectar la calidad</strong> en
           finos ni en durabilidad.
 
@@ -71,11 +71,8 @@ secciones:
 
       - tipo: texto
         html: >
-          Mes a mes, el sackoff muestra un mejor desempeño con el uso de Adiflow, salvo en el mes de noviembre,
-          donde el escenario con Adiflow presenta mayores mermas que el escenario sin el aditivo. Al analizar 
-          otras variables de proceso, todas las órdenes presentan una temperatura promedio del acondicionador 
-          superior a 74 °C y un PDI por encima del 91%, sin diferencias relevantes entre usar o no Adiflow.
-          En cuanto al nivel de finos, estos se mantienen por debajo del 8%. 
+          Mes a mes, el sackoff muestra un mejor desempeño con el uso de Adiflow, manteniendo una 
+          consistencia positiva en todos los meses analizados.
 
       - tipo: tabla
         src: summary_month_table.csv
@@ -96,27 +93,13 @@ secciones:
 
   - titulo: "Detalles del comportamiento por dietas peletizadas"
     contenido:
+
       - tipo: tabla
         src: summary_dieta.csv
-
-      - tipo: texto
-        html: >
-          En términos generales, el sackoff es menor en la dieta de <strong>Gestación</strong>, lo que se traduce
-          en un promedio de <strong>~100 toneladas recuperadas</strong>, asociado a un <strong>incremento de
-          2.5 °C</strong> en la temperatura del acondicionador, <strong>sin afectar la calidad</strong> en finos
-          ni en durabilidad.
-
   - titulo: "Toneladas recuperadas por dieta"
     contenido:
       - tipo: tabla
         src: summary_dieta_table.csv
-
-      - tipo: texto
-        html: >
-          Analizando las dietas procesadas por ambos métodos, la referencia de <strong>Gestación</strong> es la que
-          muestra el mayor beneficio con el uso de Adiflow frente a las demás, y la que más contribuye a la mejora
-          global observada en el sackoff.
-
 
   - titulo: "Registros con sackoff anómalo"
     contenido:

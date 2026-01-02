@@ -75,8 +75,8 @@ class SAPLoader(DataLoader):
         
         # Calculate derived metrics
         df["diff"] = df["code_101"] - df["Producción (Ton)"] - df["Anulación (Ton)"]
-        df["sackoff_op"] = df["diff"] / df.apply(lambda x: x["Producción (Ton)"] if x["Producción (Ton)"] > 0 else np.nan, axis=1) * 100
-        df["sackoff_op"] = df["sackoff_op"].replace([np.inf, -np.inf], 0).fillna(0)
+        den = df["Producción (Ton)"]
+        df["sackoff_op"] = np.where(den > 0, df["diff"] / den * 100, 0.0)
         
         return df[list(rename_map.values()) + ["month", "diff", "sackoff_op"]]
 

@@ -1,6 +1,7 @@
+
+
 from pydantic import BaseModel, Field
-from typing import List, Optional
-from datetime import date
+from typing import List
 
 class FazendaConfig(BaseModel):
     notebook_name: str = "fazenda_efecto_adiflow_en_sackoff"
@@ -10,12 +11,14 @@ class FazendaConfig(BaseModel):
     descripcion: str = "Automatización del reporte de Fazenda para el análisis del efecto de Adiflow en el sackoff."
     cut_date_ensayo: str = "2025-09-01"
     
+    skip_report: bool = Field(False, description="Si es True, salta la generación del HTML final")
+
     # S3 Paths
     path_base: str = "raw/fazenda/"
-    sap_file: str = "SACK OFF FAZENDA.xlsx"
+    sap_file: str = "sackoff_fazenda_n8n.xlsx"
     sap_sheet: str = "SAP"
     cap_sheet: str = "CAP"
-    quality_file: str = "Base Fazenda.xlsx"
+    quality_file: str = "bd_fazenda_n8n.xlsx"
     quality_agro_sheet: str = "CALIDAD AGROINDUSTRIA"
     quality_control_sheet: str = "3_control_prod_peletizado"
     

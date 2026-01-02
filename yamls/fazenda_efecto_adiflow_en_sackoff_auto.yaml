@@ -27,7 +27,7 @@ secciones:
 
       - tipo: lista
         items:
-          - Se analizan ordenes de producción producidas en el periodo del 02 de January de 2025 al 16 de December de 2025.
+          - Se analizan ordenes de producción producidas en el periodo del 02 de January de 2025 al 30 de December de 2025.
           - Una orden de producción peletizada <strong>sin Adiflow</strong> son aquellas donde la dosis de agua <strong>cero</strong>,
             de lo contrario son ordenes de producción <strong>con Adiflow</strong>.
           - De las <strong>1677</strong> órdenes de producción peletizadas con y sin Adiflow, se considera el <strong>97.9%</strong> de ellas,
