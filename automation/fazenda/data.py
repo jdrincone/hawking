@@ -186,4 +186,6 @@ if __name__ == "__main__":
     cfg = FazendaConfig()
     df = load_and_clean_data(s3, cfg)
     print(df.head())
+    print(df.shape)
+    print(df["sackoff_op"].mean())
     print(f"Loaded {len(df)} rows.")
