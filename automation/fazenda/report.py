@@ -128,7 +128,7 @@ class FazendaReportOrchestrator:
             df=summary_dep,
             fecha_ini=df_cut["date"].min().strftime("%d-%b"),  
             fecha_fin=df_cut["date"].max().strftime("%d-%b"),
-            pct_datos=98
+            pct_datos=self.config.q_high-self.config.q_low
         )
         svg_content = generate_sackoff_svg(
             template_path=self.config.svg_template_path, 
@@ -249,12 +249,8 @@ class FazendaReportOrchestrator:
         template = Template(template_str)
         
         # Prepare context for Jinja2
-        meses = sorted(df_cut["date"].dt.strftime("%B").unique())
-        meses_analisis = f"{meses[0]} a {meses[-1]}" if len(meses) > 1 else meses[0]
-        
         context = {
             "descripcion": self.config.descripcion,
-            "meses_analisis": meses_analisis,
             "fecha_inicio": df_cut["date"].min().strftime("%d de %B de %Y"),
             "fecha_fin": df_cut["date"].max().strftime("%d de %B de %Y"),
             "total_ops": global_metrics["total_ops"],
