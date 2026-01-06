@@ -1,4 +1,4 @@
-titulo: "Revisión de calidad y consistencia de datos para el cálculo de Sackoff"
+titulo: "Revisión de calidad y consistencia de datos para el cálculo estimado del Sackoff"
 lugar: "Nutrinor"
 descripcion: ""
 
@@ -7,30 +7,29 @@ secciones:
     contenido:
       - tipo: texto
         html: >
-          Este informe evalúa la <strong>calidad</strong> y <strong>consistencia</strong> de los datos que alimentan el cálculo de
-          <strong>Sackoff</strong>, una métrica clave para cuantificar <strong>mermas</strong> y su impacto en el costo y la eficiencia
-          de la planta. Dado que la información proviene de <strong>múltiples fuentes</strong>, es crítico asegurar que los campos
+          Este informe evalúa la <strong>calidad</strong> y <strong>consistencia</strong> de los
+          datos que alimentan el cálculo de <strong>Sackoff</strong>, una métrica que cuantifica las
+          <strong>mermas</strong> de alimento peletizado en las plantas de producción de alimento balanceada
+          Dado que la información proviene de <strong>múltiples fuentes</strong>, es crítico asegurar que los campos
           esenciales estén <strong>alineados</strong> y sean <strong>trazables</strong> a nivel de lote.
 
       - tipo: lista
         items:
           - >
-            <strong>Objetivo:</strong> Garantizar un cálculo de Sackoff <strong>confiable</strong> y comparable por <strong>lote</strong>.
+            <strong>Objetivo:</strong> Definir y unificar la fuente de datos para garantizar que el cálculo del Sackoff
+            refleje con fidelidad el comportamiento real de esta métrica.
           - >
-            <strong>Fuentes:</strong> (1) <strong>producción/rendimientos</strong> por lote y (2) <strong>histórico de Sackoff</strong>
-            (teóricas vs reales y Sackoff reportado).
+            Bajo un acuerdo de "fuente de la verdad", se explora el comportamiento diario del Sackoff y sus tendencias
+            en diferentes ventanas de tiempo, con el fin de entender la evolución de la métrica por máquina a nivel operativo y de negocio.
           - >
-            <strong>Validación clave:</strong> Las <strong>toneladas planificadas</strong> deben coincidir entre fuentes para el mismo
-            <strong>lote</strong> (y fecha/producto homologables).
+            <strong>Validación:</strong> Verificación de la consistencia de las <strong>toneladas planificadas</strong> entre fuentes
+            para el mismo <strong>lote</strong> (asegurando la homologación de fecha y producto).
           - >
             <strong>Definición:</strong>
-            \( s_i = \frac{\left(\text{Tons Planificadas} - \text{Tons Producidas}\right)_i}{\text{Tons Planificadas}_i} \times 100 \)
+            \( s_i = \frac{(\text{Tons Planificadas} - \text{Tons Producidas})_i}{\text{Tons Planificadas}_i} \times 100 \)
           - >
-            <strong>Hallazgo general:</strong> Se observan <strong>inconsistencias</strong> y <strong>datos incompletos</strong> que
-            impiden consolidar un Sackoff <strong>único</strong> y <strong>trazable</strong> por lote.
-          - >
-            <strong>Alcance del informe:</strong> Medir consistencia entre fuentes, listar registros con fallas y proponer criterios
-            de depuración/validación, incluyendo revisión de las <strong>hojas</strong> del histórico de Sackoff.
+            <strong>Alcance del informe:</strong> Medir la consistencia entre fuentes, listar registros con discrepancias y proponer criterios
+            de depuración y validación, incluyendo una revisión exhaustiva de las <strong>hojas</strong> del histórico de Sackoff.
 
   - titulo: "Panorama general: Comportamiento del Sackoff"
     contenido:

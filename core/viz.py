@@ -2458,7 +2458,7 @@ def plot_dynamic_trends(
                 x=df_subset[date_col], 
                 y=df_subset[col_ma_name],
                 mode='lines',
-                name=f'Media Móvil ({w} per)',
+                name=f'Media Móvil ({w} días)',
                 line=dict(color=color_actual, width=2.5)
             ))
 

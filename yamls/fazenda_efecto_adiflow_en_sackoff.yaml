@@ -69,6 +69,23 @@ secciones:
       - tipo: tabla
         src: summary_month.csv
 
+  - titulo: "Tendencia del Sackoff diario calculado en diferentes ventanas de tiempo"
+    contenido:
+      - tipo: plotly_html
+        src: fazenda_sackoff_con_adiflow.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+      - tipo: plotly_html
+        src: fazenda_sackoff_sin_adiflow.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+  - titulo: "Comparacción de tendencias con y sin Adiflow"
+    contenido:
+      - tipo: plotly_html
+        src: fazenda_efecto_adiflow_en_sackoff_tendencia_comparativa.html
+        style: "width: 90%; display: block; margin: 10 auto;"
+
+
       - tipo: texto
         html: >
           Mes a mes, el sackoff muestra un mejor desempeño con el uso de Adiflow, manteniendo una 
@@ -103,5 +120,9 @@ secciones:
 
   - titulo: "Registros con sackoff anómalo"
     contenido:
+      - tipo: texto
+        html: >
+          Existen 9 ordenes de producción con sackoff anómalo, es decir, con un valor
+          que se encuentra del 98% de los valores típicos de esta métrica.
       - tipo: tabla
         src: data_bad.csv
