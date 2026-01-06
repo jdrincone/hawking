@@ -2388,3 +2388,107 @@ def plot_distribution(
         fig.write_html(output_path, include_plotlyjs='cdn', full_html=True)
 
     return fig
+
+
+
+
+def plot_dynamic_trends(
+    df, 
+    date_col, 
+    value_col, 
+    category_col=None, 
+    windows=[7, 15, 30], 
+    title_prefix="Análisis de Tendencia",
+    y_label="Valor",
+    color_palette=None,
+    width=None,   
+    height=None
+):
+    """
+    Genera gráficos de series de tiempo con medias móviles dinámicas.
+    Permite controlar el tamaño (ancho y alto).
+
+    Parámetros:
+    - width: Ancho del gráfico en píxeles (ej. 1000). Si es None, es automático.
+    - height: Altura del gráfico en píxeles (ej. 600). Si es None, es automático.
+    """
+    
+    # 1. Configuración de Colores Corporativos (Default)
+    if color_palette is None:
+        color_palette = DEFAULT_COLORS
+    
+    # 2. Preparación de datos
+    df_proc = df.copy()
+    df_proc[date_col] = pd.to_datetime(df_proc[date_col])
+    
+    if category_col:
+        items = df_proc[category_col].unique()
+        df_proc = df_proc.sort_values(by=[category_col, date_col])
+    else:
+        items = ["Total"]
+        df_proc[category_col] = "Total"
+        df_proc = df_proc.sort_values(by=[date_col])
+
+    # 3. Iteración y Graficación
+    for item in items:
+        if category_col and category_col in df_proc.columns:
+            df_subset = df_proc[df_proc[category_col] == item].copy()
+        else:
+            df_subset = df_proc.copy()
+            
+        fig = go.Figure()
+
+        # A. Datos Crudos
+        fig.add_trace(go.Scatter(
+            x=df_subset[date_col], 
+            y=df_subset[value_col],
+            mode='markers+lines',
+            name='Dato Real (Diario)',
+            line=dict(color='lightgrey', width=1),
+            opacity=0.9
+        ))
+
+        # B. Ventanas Móviles
+        for i, w in enumerate(windows):
+            col_ma_name = f"MA_{w}"
+            df_subset[col_ma_name] = df_subset[value_col].rolling(window=w, min_periods=1).mean()
+            color_actual = color_palette[i % len(color_palette)]
+            
+            fig.add_trace(go.Scatter(
+                x=df_subset[date_col], 
+                y=df_subset[col_ma_name],
+                mode='lines',
+                name=f'Media Móvil ({w} per)',
+                line=dict(color=color_actual, width=2.5)
+            ))
+
+        # C. Layout con Width y Height
+        item_title = f": {item}" if item != "Total" else ""
+        
+        fig.update_layout(
+            title={
+                'text': f"<b>{title_prefix}{item_title}</b>",
+                'y':0.9,
+                'x':0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'
+            },
+            xaxis_title="Tiempo",
+            yaxis_title=y_label,
+            hovermode="x unified",
+            template="plotly_white",
+            
+            # --- DIMENSIONES ---
+            width=width,   # Aplica el ancho
+            height=height, # Aplica la altura
+            
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1
+            )
+        )
+        
+        return fig

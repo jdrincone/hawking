@@ -1,0 +1,249 @@
+titulo: "Revisión de calidad y consistencia de datos para el cálculo de Sackoff"
+lugar: "Nutrinor"
+descripcion: ""
+
+secciones:
+  - titulo: "Introducción"
+    contenido:
+      - tipo: texto
+        html: >
+          Este informe evalúa la <strong>calidad</strong> y <strong>consistencia</strong> de los datos que alimentan el cálculo de
+          <strong>Sackoff</strong>, una métrica clave para cuantificar <strong>mermas</strong> y su impacto en el costo y la eficiencia
+          de la planta. Dado que la información proviene de <strong>múltiples fuentes</strong>, es crítico asegurar que los campos
+          esenciales estén <strong>alineados</strong> y sean <strong>trazables</strong> a nivel de lote.
+
+      - tipo: lista
+        items:
+          - >
+            <strong>Objetivo:</strong> Garantizar un cálculo de Sackoff <strong>confiable</strong> y comparable por <strong>lote</strong>.
+          - >
+            <strong>Fuentes:</strong> (1) <strong>producción/rendimientos</strong> por lote y (2) <strong>histórico de Sackoff</strong>
+            (teóricas vs reales y Sackoff reportado).
+          - >
+            <strong>Validación clave:</strong> Las <strong>toneladas planificadas</strong> deben coincidir entre fuentes para el mismo
+            <strong>lote</strong> (y fecha/producto homologables).
+          - >
+            <strong>Definición:</strong>
+            \( s_i = \frac{\left(\text{Tons Planificadas} - \text{Tons Producidas}\right)_i}{\text{Tons Planificadas}_i} \times 100 \)
+          - >
+            <strong>Hallazgo general:</strong> Se observan <strong>inconsistencias</strong> y <strong>datos incompletos</strong> que
+            impiden consolidar un Sackoff <strong>único</strong> y <strong>trazable</strong> por lote.
+          - >
+            <strong>Alcance del informe:</strong> Medir consistencia entre fuentes, listar registros con fallas y proponer criterios
+            de depuración/validación, incluyendo revisión de las <strong>hojas</strong> del histórico de Sackoff.
+
+  - titulo: "Panorama general: Comportamiento del Sackoff"
+    contenido:
+      - tipo: texto
+        html: >
+          A continuación se muetra el comportamiento del Sackoff mes a mes partiendo desde las distintas
+          fuentes con información disponible de esta métrica.
+
+      - tipo: plotly_html
+        src: sackoff_hojas.html
+        style: "width: 100%; margin: 20px auto; display: block;" 
+      - tipo: plotly_html
+        src: sackoff_hojas_resumen.html
+        style: "width: 100%; margin: 20px auto; display: block;" 
+
+      - tipo: texto
+        html: >
+            A la izquierda se presenta el comportamiento del <strong>Sackoff</strong> mes a mes consolidando las
+            <strong>hojas rotuladas por mes</strong>. A la derecha se muestra el mismo análisis a partir del consolidado existente en la
+            <strong>hoja “total”</strong>.
+            <br><br>
+            En términos generales, la tendencia mensual es similar en ambas fuentes; sin embargo, al segmentar la métrica por
+            <strong>pellets</strong> se evidencian diferencias. Esto sugiere que el consolidado por hojas mensuales ofrece una
+            <strong>mayor completitud</strong> de información, lo que mejora la trazabilidad del resultado.
+
+  - titulo: "Detalle del Sackoff por linea de producción"
+    contenido:
+      - tipo: texto
+        html: >
+          Ahora se detalla el Sackoff mes a mes para cada linea de producción, revisando las tendencias del sackoff por periodos 
+          temporales.
+
+      - tipo: plotly_html
+        src: sackoff_harina.html
+        style: "width: 90%; margin: 20px auto; display: block;" 
+
+      - tipo: texto
+        html: >
+          El gráfico presenta el comportamiento histórico del <strong>Sackoff para la línea de Harina</strong>, suavizado mediante
+          <strong>medias móviles de 15 y 30 días</strong> para aislar el ruido diario y revelar la tendencia real.
+          <br><br>
+          Se evidencia un <strong>cambio de régimen operativo</strong> drástico a mediados de Abril de 2025. El proceso pasó de una fase
+          crítica con pérdidas sistemáticas (cercanas al <strong>-2%</strong> a inicios de año) a una fase de recuperación acelerada, 
+          cruzando a <strong>sackoff positivo</strong> en mayo.
+          Durante el segundo semestre, la métrica se estabilizó alrededor del <strong>+1%</strong>, lo que sugiere que las correcciones 
+          implementadas (calibración o humedad o alguna acción a descubrir) lograron revertir estructuralmente la tendencia de pérdida.
+
+      
+      - tipo: plotly_html
+        src: sackoff_granel.html
+        style: "width: 90%; margin: 20px auto; display: block;" 
+
+
+      - tipo: texto
+        html: >
+          El análisis del <strong>Sackoff a Granel</strong> revela una alta <strong>inestabilidad operativa</strong>, 
+          caracterizada por un patrón de "dientes de sierra" (Volatilidad) con
+          caídas críticas en <strong>junio y octubre</strong> (alcanzando sackoff críticos de hasta <strong>-2.5%</strong>).
+          <br><br>
+          Este comportamiento cíclico confirma un fenómeno de <strong>"Corrección y Relajación"</strong>: tras una 
+          caída crítica se aplican controles estrictos <strong>¿Cuáles?</strong> (calibración, ajuste de humedad, limpiezas)
+          que recuperan la métrica temporalmente, pero dichos controles se <strong>degradan o "relajan" progresivamente</strong> 
+          con el paso de las semanas hasta detonar el siguiente desplome.
+          <br><br>
+          Aunque la tendencia anual (30 días) es positiva, la volatilidad de corto plazo indica que las mejoras dependen 
+          de intervenciones puntuales y no de un <strong>estándar de proceso consolidado</strong>,
+          haciendo a la operación vulnerable ante cualquier cambio en la materia prima o el entorno.
+
+      - tipo: plotly_html
+        src: sackoff_pellet_420.html
+        style: "width: 90%; margin: 20px auto; display: block;" 
+
+      - tipo: texto
+        html: >
+          El comportamiento del <strong>Pellet 420</strong> se distingue por una mayor <strong>coherencia operativa</strong> 
+          en comparación con otras líneas. Las tres curvas de tendencia 
+          (7, 15 y 30 días) se mueven sincronizadas y con poca separación entre ellas, lo que indica un proceso con <strong>poco
+           "ruido" diario</strong> y mayor control sobre las variables inmediatas.
+          <br><br>
+          Sin embargo, se observan <strong>ciclos de Drift</strong> de larga duración. Tras un pico de eficiencia en 
+          <strong>marzo</strong> (donde el sackoff rozó el 0%), 
+          la métrica sufrió un deterioro lento pero constante durante 5 meses hasta agosto, <strong> ¿Qué paso? ¿Qué se hizo?</strong> . 
+          A partir de septiembre, se retoma una <strong>tendencia de recuperación sólida</strong>, cerrando el año 
+          en los mejores niveles operativos (-0.5%).
+      
+      - tipo: plotly_html
+        src: sackoff_pellet_520.html
+        style: "width: 90%; margin: 20px auto; display: block;" 
+
+      - tipo: texto
+        html: >
+          El comportamiento del <strong>Pellet 520</strong> revela un proceso de <strong>alta inestabilidad crítica</strong>. 
+          A diferencia de otras líneas, aquí las curvas de corto plazo (7 días)
+          se desacoplan violentamente de la tendencia mensual, generando picos de pérdida que menores al <strong>-2.0%</strong>.
+          <br><br>
+          Se observa un patrón recurrente de <strong>"medidas reactivas"</strong>: el proceso sufre caídas abruptas
+           de eficiencia seguidas de correcciones inmediatas, pero incapaces de sostenerse en el tiempo.
+          Aunque el segundo semestre de 2025 muestra una mejora en el "piso" de pérdida (estabilizándose cerca de -1.5%),
+           la volatilidad extrema persiste, lo que indica que las variables de control
+          (humedad/temperatura, limpieza o calibración de balanzas),
+
+      - tipo: plotly_html
+        src: sackoff_pellet_350.html
+        style: "width: 100%; margin: 20px auto; display: block;" 
+
+
+      - tipo: texto
+        html: >
+          El comportamiento del <strong>Pellet 350</strong> se caracteriza por una <strong>alta ciclicidad</strong> sin una tendencia
+           definida de mejora o deterioro a largo plazo.
+          La métrica oscila constantemente alrededor de una media de <strong>-1.2%</strong>, alternando periodos de "buen desempeño"
+           (cercanos a -0.5%) con caídas operativas
+          (cercanas a -1.8%) en intervalos casi bimestrales.
+          <br><br>
+          A diferencia de las otras pellets analizadas, donde las crisis son puntuales, aquí la inestabilidad es <strong>estructural y rítmica</strong>.
+           Las curvas de corto (7 días) y largo plazo (30 días)
+          se cruzan repetidamente, lo que indica que la operación no logra sostener ningún nivel de eficiencia por más de 3 o 4
+           semanas antes de volver a desviarse.
+          Esto sugiere que las condiciones de producción para este pellet varían estacionalmente o dependen de lotes
+           de materia prima que rotan con alta frecuencia.
+
+
+  - titulo: "Contraste del Sackoff con otras fuentes"
+    contenido:
+      - tipo: texto
+        html: >
+          Al contrastar los lotes comunes entre las fuentes de <strong>Sackoff</strong> y <strong>rendimiento</strong>, se identifican
+          diferencias relevantes. A continuación se presentan los resultados de <strong>Sackoff por día</strong> y por <strong>número de dado</strong>
+          para las <strong>peletizadoras</strong> (o procesos) en los que se observan discrepancias significativas.
+
+      - tipo: plotly_html
+        src: dado_sackoff_harina.html
+        style: "width: 70%; margin: 20px auto; display: block;" 
+
+      - tipo: texto
+        html: >
+          ¿Tiene sentido un número de dado para la producción de harinas? Los mejores dados es el 6 y 7 en terminos de harinas para reducir el sackoff.
+
+      - tipo: plotly_html
+        src: dado_sackoff_granel.html
+        style: "width: 70%; margin: 20px auto; display: block;" 
+
+      - tipo: texto
+        html: >
+         En granel los mejores dados es el 5, 6 y 7 en terminos de harinas para reducir el sackoff.
+
+
+  - titulo: "Consistencia en la información"
+    contenido:
+      - tipo: texto
+        html: >
+          Tenemos dos fuentes de información asociados a los lotes producidos en la planta de Nutrinor, fuente del archivo
+          de rendimiento y fuente de archivo de Sackoff  <strong>¿Cuál de estas fuentes es la más confiable a la realidad: A los lotes producidos
+          en un periodo de tiempo?</strong>
+          <br><br>
+          En el periodo de tiempo 2025-02 a 2025-12 se tiene en el archivo de rendimiento <strong>3140</strong> Lotes reportados, mientras que en el archivo
+           de Sackoff se tiene <strong>4138</strong> Lotes reportados. Los cuales presentan la siguiente distribución:
+
+      - tipo: plotly_html
+        src: merge_status_pie.html
+        style: "width: 30%; margin: 0px auto; display: block;"
+
+      - tipo: texto
+        html: >
+          De un total de <strong>2.421 lotes</strong> que hacen match entre ambas fuentes de datos (aprox. <strong>50%</strong> del universo),
+          evaluamos la consistencia de las <strong>toneladas planificadas / a producir</strong> entre fuentes, una variable clave para la
+          estimación del <strong>Sackoff</strong>.
+          <br><br>
+          La variable de toneladas planificadas (<strong>tons_fuente</strong>) coincide en <strong>1.276 lotes</strong>, lo que representa
+          el <strong>52%</strong> de los lotes emparejados. El <strong>48%</strong> restante corresponde a lotes con discrepancias entre fuentes,
+          los cuales se detallan en la siguiente tabla.
+
+      #- tipo: plotly_html
+      #  src: subplots_lotes_faltantes.html
+      #  style: "width: 70%; margin: 20px auto; display: block;"
+
+      - tipo: "tabla"
+        src: "datos_bad_tons.csv"
+
+  - titulo: "¿Cómo se distribuyen la diferencia en pesos medidos entre fuentes?"
+    contenido:
+
+      - tipo: plotly_html
+        src: subplots_lotes_faltantes_pellets.html
+        style: "width: 70%; margin: 20px auto; display: block;" 
+
+      - tipo: texto
+        html: >
+          En promedio se observa una discrepancia de <strong>280 kg por lote</strong> entre las fuentes de datos, sin depender de la
+          línea de producción analizada. El hecho de que las distribuciones sean consistentemente <strong>negativas</strong> indica que la
+          variable <strong>Diferencia Ton</strong> (Toneladas en Rendimiento − Toneladas en Sackoff) tiende a ser menor que cero; es decir,
+          en general, el archivo de <strong>rendimiento</strong> reporta menos toneladas que las registradas en el archivo de <strong>Sackoff</strong>.
+
+      - tipo: plotly_html
+        src: subplots_lotes_faltantes_mes.html
+        style: "width: 70%; margin: 20px auto; display: block;" 
+
+      - tipo: texto
+        html: >
+          El mismo comportamiento se repite por mes del año. 
+
+
+        
+          
+
+
+
+
+
+        
+
+
+        
+
+
+

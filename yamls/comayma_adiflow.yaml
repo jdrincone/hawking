@@ -34,7 +34,7 @@
                como el <strong>promedio</strong> de las observaciones."
             - "Se tiene en cuenta el tiempo de paro en la dieta 383 con Adiflow, para el calculo del rendimiento."
         - tipo: imagen
-          src: comayma.svg
+          src: comayma_adiflow.svg
           mime: svg
           style: "width: 90%;"
 
@@ -55,7 +55,8 @@
         - tipo: texto
           html: >
             Las Mermas con <strong>Adiflow</strong> se reducen en promedio a cerca de la mitad frente
-            a la condición sin aditivo, lo que equivale a una mejora de <strong>7.9</strong> qm. 
+            a la condición sin aditivo, lo que equivale a una mejora de <strong>7.9</strong> qm, lo que
+            representa en 720 qm planeados un incremento de <strong>1.09%</strong>.
             El rendimiento también mejora:
             se producen en promedio <strong>6.6</strong> qm/h adicionales al usar el rehumectante.
             En cuanto a la calidad en el producto terminado, aunque se  observa una disminución promedio de
