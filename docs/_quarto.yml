@@ -10,6 +10,8 @@ website:
         text: Home
       - href: usage/getting-started.qmd
         text: Usage
+      - href: reports/efficiency.qmd
+        text: Reports
       - href: data-science/workflow.qmd
         text: Data Science
       - href: business/context.qmd
@@ -22,6 +24,11 @@ website:
       contents:
         - usage/getting-started.qmd
         - usage/creating-reports.qmd
+    - title: "Reports"
+      contents:
+        - reports/efficiency.qmd
+        - reports/microbiology.qmd
+        - reports/h2o.qmd
     - title: "Data Science"
       contents:
         - data-science/workflow.qmd

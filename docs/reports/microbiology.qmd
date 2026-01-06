@@ -1,0 +1,43 @@
+# Informes de Microbiología
+
+Estos informes documentan la carga microbiológica en materias primas y productos terminados, asegurando que se cumplan los estándares de inocuidad.
+
+## Enfoque de los Informes
+El enfoque está en la vigilancia sanitaria y el control de puntos críticos. Se analizan principalmente tres familias: Flora Total (Mesófilos), Flora Coliforme y Flora Micótica (Mohos y Levaduras), además de la detección de patógenos como Salmonella y E. coli.
+
+## Metodología de Análisis
+1.  **Cuantificación Logarítmica:** Transformación de UFC/g a Log10 para facilitar el análisis de tendencias y variabilidad.
+2.  **Análisis por Especie y Mes:** Comparación de la carga microbiológica entre diferentes líneas de producto (e.g., cerdos, bovinos, mascotas) a lo largo del tiempo.
+3.  **Cruce Nutricional:** Integración de parámetros como humedad y fibra del reporte nutricional para identificar condiciones favorables al crecimiento microbiano.
+4.  **Evaluación frente a Límites:** Comparación sistemática contra los límites máximos permitidos (e.g., 6 Log para Flora Total).
+
+## Análisis Avanzado de Inocuidad
+Basado en `bios_microbiologia_log_ufc.ipynb` y `avipaz_microbiology_overview.ipynb`, el análisis se profundiza en la caracterización de riesgos:
+
+### Clasificación de Riesgos por Origen de Materia Prima
+El análisis profundo de prevalencias revela disparidades críticas en la carga microbiológica según la naturaleza del insumo:
+*   **Origen Animal:** Es la categoría con mayor volumen de muestreo. Presenta una prevalencia significativa de Flora Coliforme y es el principal vector de riesgo para patógenos entéricos.
+*   **Origen Vegetal:** Mayor incidencia de Flora Micótica (Mohos y Levaduras) correlacionada con condiciones de almacenamiento y Actividad de Agua (Aw).
+*   **Misceláneas (Galletas, Saborizantes):** Presentan prevalencias moderadas (~34%) pero volúmenes menores de análisis, lo que puede enmascarar riesgos puntuales en lotes específicos.
+
+### Indicadores de Higiene de Proceso
+Más allá del Producto Terminado, se monitorea el ecosistema de la planta:
+*   **Superficies y Ambiente:** Mapeo de puntos calientes (e.g., salida de enfriador, descarga de MP) para detectar recontaminación tras el peletizado (punto de control térmico).
+*   **Garantía de Inocuidad:** El análisis demuestra que recuentos aceptables de Flora Total no garantizan la ausencia de patógenos específicos (Salmonella), reforzando la necesidad de pruebas dirigidas.
+
+### Dinámica de Microorganismos
+*   **Flora Total vs. Específicos:** Se ha observado que niveles aceptables de Flora Total (< 6 Log) no garantizan la ausencia de patógenos específicos en ciertas matrices de origen animal.
+*   **Relación Aw-Crecimiento:** Se utiliza la actividad de agua (Aw) como indicador preventivo; muestras con Aw > 0.65 presentan un riesgo exponencial de crecimiento micótico a los 15 días de almacenamiento.
+
+## Inocuidad en la Cadena de Proteína
+Basado en el monitoreo histórico de largo plazo (2018-2025) en plantas de beneficio (e.g., Central Ganadera), el alcance se extiende a la seguridad alimentaria humana:
+*   **Vigilancia de Patógenos Críticos:** Detección sistemática de *E. coli O157:H7*, *Salmonella spp.* y parásitos como *Trichinella* en líneas de Porcinos y Bovinos.
+*   **Control de Higiene Operativa (POES):** Monitoreo de superficies de contacto (ganchos, mesas, sierras) y manos de manipuladores para validar los Procedimientos Operativos Estandarizados de Saneamiento.
+*   **Trazabilidad de Proveedores:** Evaluación de la carga microbiológica por origen de granja, permitiendo un enfoque de "granja a la mesa" en la gestión de riesgos.
+
+## Reportes de Referencia (YAML)
+Los insights presentados se basan en los siguientes archivos de configuración:
+*   [Microbiología Avipaz Overview](../../yamls/avipaz_microbiology_overview.yaml)
+*   [Microbiología Bios Log UFC](../../yamls/bios_microbiologia_log_ufc.yaml)
+*   [Central Ganadera Microbiology Overview](../../yamls/central_ganadera_microbiology_overview.yaml)
+*   [Comayma Microbiología](../../yamls/comayma_microbiologia.yaml)

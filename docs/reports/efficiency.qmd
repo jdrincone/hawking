@@ -1,0 +1,67 @@
+# Informes de Eficiencia de Producción
+
+Los informes de eficiencia se centran en optimizar el rendimiento de las plantas de producción mediante el análisis de variables críticas y el impacto de aditivos como Adipell.
+
+## Enfoque de los Informes
+El objetivo principal es entender cómo las variables de proceso (presión de vapor, amperaje, temperatura) afectan tanto la capacidad de producción (Ton/h) como la calidad del producto final (PDI, humedad, finos). Se busca encontrar el "punto dulce" donde se maximiza la producción sin comprometer los estándares de calidad.
+
+## Metodología de Análisis
+La metodología se basa en la comparación estadística de lotes de producción bajo diferentes condiciones:
+1.  **Centralización de Datos:** Integración de datos de producción (tiempos, toneladas) y calidad (laboratorio).
+2.  **Comparación Con vs. Sin Aditivo:** Análisis de grupos para determinar deltas (%) en rendimiento y PDI.
+3.  **Análisis de Correlación:** Estudio de cómo el aumento en la presión de vapor o la carga del motor impacta el PDI.
+4.  **Visualización Comparativa:** Uso de subplots para mostrar múltiples métricas (Rendimiento, PDI, Energía) simultáneamente.
+
+## Análisis Profundo de Variables de Proceso
+El análisis avanzado en notebooks como `aliforte_production.ipynb` y `exp_raza_historia_eficiencia.ipynb` revela una estructura compleja de eficiencia:
+
+### Recategorización de Tiempos Improductivos (Downtime)
+No todos los paros son iguales. Se ha implementado una metodología de recategorización para priorizar acciones:
+*   **Improductivos Críticos:** Sin Producto, Atasques, Tolva Llena, Falla Caldero, Falla Eléctrica.
+*   **Mantenimiento Operativo:** Cambio de Dado/Rodillo, Limpieza de Máquina.
+*   **Calidad/Experimental:** Pausas para validación de nuevos productos o ajustes de proceso.
+
+### Correlaciones de Calidad y Rendimiento
+*   **Punto Dulce de Peletizado:** Se analiza la relación entre el Amperaje (carga del motor) y la estabilidad del PDI. Aumentar la presión de vapor facilita la gelatinización, reduciendo el amperaje pero mejorando el PDI, permitiendo aumentar las Ton/h.
+*   **Cumplimiento de Rangos:** Se evalúa el % de cumplimiento de humedad y temperatura por especie. Las dietas de cerdos y aves tienen rangos estrechos (e.g., 11.5% - 12.5% humedad) que impactan directamente en la merma y la calidad.
+
+### Análisis Histórico y Estacionalidad
+El seguimiento histórico (semanal/mensual) permite identificar patrones de eficiencia:
+*   **Efecto de Dietas Específicas:** Ciertas referencias (e.g., Alientech, Engorde 3) presentan mayor variabilidad en Ton/h debido a su composición física.
+*   **Curvas de Aprendizaje:** Identificación de mejores operadores por turno basados en la relación Ton/h vs Consumo Energético.
+
+## Casos de Estudio por Planta y Aditivo
+
+### Fazenda: Recuperación por Sackoff con Adiflow
+En Fazenda, el uso de Adiflow se centra en el **Sackoff** (balance de masa).
+*   **Toneladas Recuperadas:** El análisis permite cuantificar las "Toneladas Recuperadas" al comparar el Sackoff promedio con y sin aditivo. Adiflow permite una inclusión de agua más estable, reduciendo la merma invisible.
+*   **Calidad Sostenida:** A pesar de la humedad adicional, los parámetros de PDI y dureza se mantienen dentro de los estándares de Agroindustria.
+
+### Comayma: Rendimiento y Quintales/Hora
+El experimento en Comayma demuestra el impacto directo en la capacidad de planta:
+*   **Rendimiento (QQ/h):** Se observa un incremento significativo en Quintales/Hora (rendimiento) con el uso de Adiflow.
+*   **Eficiencia de Acondicionamiento:** La gelatinización mejorada permite operar con frecuencias de alimentador más altas sin disparar el amperaje del motor.
+
+### Bios (Contegral): Eficiencia Energética y Mecánica
+El seguimiento en Bios es el más técnico en términos de ingeniería:
+*   **kWh/Ton:** Se monitorea el consumo eléctrico por tonelada producida. El uso de rehumectantes reduce la fricción en el dado, bajando el consumo específico.
+*   **Parámetros de Vapor:** Se analiza la Presión de Vapor (Promedio Ponderado) vs Amperaje. El "punto dulce" se alcanza con mayor facilidad, reduciendo el riesgo de atasques.
+*   **Uso de Datos:** Se cruzan datos de OP, Opel (orden de peletizado), tolvas de origen y destino para un trazabilidad total del costo energético.
+
+### Adipell en Centroamérica (Honduras y Guatemala)
+El benchmarking de Adipell se enfoca en la reducción de finos y el incremento de capacidad:
+*   **Aumento de Rendimiento:** En los ensayos de Guatemala, se registró un incremento del rendimiento (kg/h) superior al 50% en dietas Aliengorde, manteniendo la estabilidad operativa.
+*   **Mejora de PDI:** Se observó un salto cualitativo en el PDI (de 86.8% a 95.3%), lo que implica una mayor resistencia física del alimento ante el transporte y manejo.
+*   **Reducción de Finos:** Evaluación de PDI y % de Finos desde la salida del dado, pasando por el enfriador hasta el empacado, demostrando la eficacia del aglomerante.
+
+### Raza: Estabilidad de Humedad y Sackoff
+El seguimiento en Raza (mayo vs junio) destaca la consistencia del sistema Adiflow:
+*   **Control de Merma:** El Sackoff se mantuvo en niveles cercanos a cero (ej. 0.06% en Pelet 1), lo que valida la precisión del ajuste de humedad en tiempo real.
+*   **Consistencia entre Máquinas:** A pesar de las diferencias mecánicas entre prensas (Pelet 1 vs Pelet 4), la Humedad Final y la Actividad de Agua (Aw) se mantuvieron estables (~11.1-11.5% H, ~0.67-0.68 Aw).
+
+## Reportes de Referencia (YAML)
+Los insights presentados se basan en los siguientes archivos de configuración:
+*   [Revisión Ensayo Adipell (Guatemala)](../../yamls/adipell_ensayo_guatemala.yaml)
+*   [Producción Aliforte](../../yamls/aliforte_production.yaml)
+*   [Hacienda Production](../../yamls/hacienda_production.yaml)
+*   [Nutrinor Production Overview](../../yamls/nutrinor_production_overview.yaml)

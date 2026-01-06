@@ -13,6 +13,7 @@ Galileo provides a streamlined workflow for:
 ## Documentation Structure
 
 - [**Usage**](usage/getting-started.qmd): Learn how to set up the environment and generate your first report.
+- [**Reports**](reports/efficiency.qmd): Detailed documentation of Efficiency, Microbiology, and H2O reports.
 - [**Data Science**](data-science/workflow.qmd): Deep dive into the analysis methodology and general insights.
 - [**Business Logic**](business/context.qmd): Understand the core metrics and operational parameters that drive the system.
 - [**Technical Reference**](technical-reference/viz.qmd): Interactive API reference for `viz.py` and `s3.py`.

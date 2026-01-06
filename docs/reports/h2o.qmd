@@ -1,0 +1,36 @@
+# Informes de H2O (Acidificación)
+
+Informes técnicos sobre la eficacia y estabilidad de productos acidificantes utilizados para el tratamiento de agua y control de pH.
+
+## Enfoque de los Informes
+Evaluar la capacidad de diferentes productos (ácidos líquidos, polvos y mezclas) para reducir el pH de forma rápida y mantenerlo estable, además de su impacto en el potencial óxido-reducción (ORP), que es el indicador real de poder desinfectante.
+
+## Metodología de Análisis
+1.  **Ensayos de Cinética:** Medición de pH y ORP en intervalos de tiempo durante 24 horas tras la dosificación.
+2.  **Cálculo de Estabilidad (SD):** Uso de la desviación estándar del pH a lo largo del tiempo como métrica principal de estabilidad (SD baja = alta estabilidad).
+3.  **Diagramas de Dispersión pH-ORP:** Visualización de la relación entre la acidez y el potencial oxidante para clasificar productos.
+4.  **Categorización por Tipo:** Clasificación de productos en franjas (Líquidos, Polvos, Mezclas) según su rango de ORP alcanzado.
+
+## Hallazgos de Cinética y Estabilidad
+El `okuo_segundo_ensayo_acidez_h2o.ipynb` introduce métricas avanzadas de benchmarking de productos:
+
+### Evaluación en Condición Inicial Crítica
+Se analizan productos bajo dos escenarios:
+1.  **Condición Normal:** pH inicial ≈ 6.5.
+2.  **Condición de pH Bajo:** Simulación de aguas previamente acidificadas para evaluar el efecto buffer o de saturación.
+
+### Métricas de Benchmarking (Stability Table)
+Se comparan productos usando indicadores estadísticos robustos:
+*   **SD de pH (Desviación Típica):** Cuantifica la fluctuación real. Productos con SD < 0.04 se consideran de "Alta Estabilidad".
+*   **CV% (Coeficiente de Variación):** Permite comparar la estabilidad entre productos con diferentes niveles de acidez promedio.
+*   **Rango de pH:** Diferencia entre el pH máximo y mínimo en 24h, crucial para procesos que requieren acidez constante.
+
+### Relación Dinámica pH-ORP
+*   **Eficiencia de Oxidación:** Se identifican productos que, aunque no logran el pH más bajo, sostienen el ORP por encima de 750 mV por más tiempo. Esto es vital para el control de biopelículas en tuberías.
+*   **Dispersión ORP vs pH:** Los diagramas de dispersión muestran que los ácidos orgánicos puros tienen una relación lineal más predecible que las mezclas complejas, facilitando la automatización de la dosificación.
+
+## Reportes de Referencia (YAML)
+Los insights presentados se basan en los siguientes archivos de configuración:
+*   [Primer Ensayo Acidez H2O](../../yamls/okuo_primer_ensayo_acidez_h2o.yaml)
+*   [Segundo Ensayo Acidez H2O](../../yamls/okuo_segundo_ensayo_acidez_h2o.yaml)
+*   [Seguimiento ORP El Dorado](../../yamls/el_dorado_seguimiento_orp.yaml)
