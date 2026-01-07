@@ -1,0 +1,73 @@
+# Métricas Clave y Guía de Análisis
+
+Este documento detalla las métricas fundamentales que guían los informes de Galileo, explicando no solo su definición técnica, sino también su interpretación de negocio y las consideraciones estadísticas necesarias para evitar conclusiones erróneas.
+
+---
+
+## 1. Eficiencia y Rendimiento Operativo
+
+En una planta de peletizado, la eficiencia no se mide solo por "cuánto se produjo", sino por la relación entre lo real y lo teórico bajo condiciones controladas.
+
+### 1.1 Rendimiento (Throughput - Ton/h)
+Es la métrica primaria de capacidad. 
+*   **Cálculo:** `Toneladas Producidas / Horas de Operación Real`.
+*   **Nota Crítica:** Es vital descontar los paros (downtime) para obtener el "throughput neto". Si incluimos los paros en el denominador, estamos midiendo disponibilidad, no rendimiento de la máquina.
+
+### 1.2 Eficiencia de Peletizado (%)
+Compara el desempeño real frente a la capacidad nominal o estándar de la máquina para una dieta específica.
+*   **Cálculo:** `(Rendimiento Real [Ton/h]) / (Rendimiento Teórico de la Máquina [Ton/h]) * 100`.
+*   **Uso:** Permite identificar si una línea está subutilizada debido a problemas mecánicos, ajustes incorrectos o limitaciones en el acondicionamiento (vapor/temperatura).
+
+### 1.3 Calidad Física (PDI - Pellet Durability Index)
+Mide la capacidad del pellet para resistir el transporte sin romperse.
+*   **Trade-off:** Típicamente, a mayor rendimiento (Ton/h), el PDI tiende a bajar porque el tiempo de residencia en la matriz es menor. El reto analítico es encontrar el **"punto dulce"** (sweet spot) donde se maximiza el rendimiento manteniendo el PDI por encima del límite comercial (ej. >90%).
+
+---
+
+## 2. Gestión de Merma y Retorno de Inversión (ROI)
+
+Uno de los mayores impactos económicos de soluciones como *Adiflow* es la recuperación de humedad y la reducción de la merma.
+
+### 2.1 Sackoff y Toneladas Recuperadas
+El **Sackoff** es la diferencia porcentual entre la materia prima que entra al proceso y el producto terminado que sale.
+*   **Sackoff (%)** = `(Materia Prima - Producto Terminado) / Materia Prima * 100`.
+*   **Toneladas Recuperadas:** Si el uso de un aditivo reduce el Sackoff (ej. de 1.0% a 0.5%), la ganancia neta son esas toneladas adicionales que ahora se venden como alimento en lugar de perderse por evaporación.
+
+### 2.2 Cálculo del ROI (Return on Investment)
+El ROI nos dice cuántos dólares ganamos por cada dólar invertido en el programa de hidratación.
+*   **Definición:** `(Valor de las Toneladas Recuperadas - Costo del Aditivo) / Costo del Aditivo`.
+*   **Ejemplo:**
+    1.  Calculamos la **Diferencia de Sackoff** (Sackoff Sin Aditivo - Sackoff Con Aditivo).
+    2.  `Toneladas Recuperadas = Producido Con Adiflow * (Diferencia de Sackoff / 100)`.
+    3.  `Ganancia Bruta = Toneladas Recuperadas * Precio de Venta de la Dieta`.
+    4.  `Costo Total = Toneladas Producidas * Costo de Aplicación del Aditivo`.
+    5.  `ROI = (Ganancia Bruta - Costo Total) / Costo Total`.
+
+---
+
+## 3. Análisis Estadístico y Distribuciones
+
+Los datos industriales rara vez siguen una campana de Gauss perfecta (distribución normal).
+
+### 3.1 Distribuciones Sesgadas (Skewed)
+Es común encontrar sesgos en variables como el Amperaje o el Rendimiento.
+*   **¿Qué hacer?** 
+    - No confiar solo en el **Promedio**, ya que es sensible a valores extremos (outliers). 
+    - Utilizar la **Mediana** y los **Percentiles (p5, p95)** para entender el comportamiento real del 90% de la operación.
+    - Si el sesgo es muy fuerte, realizar limpiezas de datos basadas en rangos lógicos de operación (ej. eliminar datos donde la máquina está prendida pero con flujo cero).
+
+### 3.2 Eficiencia de Operarios y Máquinas
+El análisis por peletizador permite benchmarking interno.
+*   **Operarios:** Al cruzar los turnos con el rendimiento, podemos identificar si ciertos operarios logran estabilizar la máquina más rápido o si operan con niveles de vapor más conservadores que afectan el PDI.
+*   **Peletizadores:** Permite detectar desgaste prematuro de matrices o rodillos si una máquina rinde sistemáticamente menos que su gemela con el mismo producto.
+
+---
+
+## 4. ¿Qué significa realmente un "Sigma"?
+
+En Six Sigma, un "sigma" mide qué tan lejos está un proceso de generar defectos. 
+*   **Contexto en Alimentos:** Si decimos que el PDI tiene un Sigma de 3, significa que la variabilidad es lo suficientemente baja para que casi todos los lotes cumplan la meta.
+*   **¿Tiene sentido en nuestros datos?**
+    - **A veces no:** Muchos procesos de plantas son "no-estacionarios" (cambian drásticamente entre productos). Calcular un Sigma global de toda la planta no tiene sentido.
+    - **Cuándo sí usarlo:** Tiene sentido para **una sola dieta crítica** en **una sola máquina**. Ahí el Sigma nos dice qué tan estable es el control de vapor y humedad. 
+    - **Alternativa:** En lugar de Sigma, en Galileo preferimos el **Coeficiente de Variación (CV%)**, que es más fácil de interpretar para los gerentes de planta: `(Desviación Estándar / Promedio) * 100`. Un CV < 5% suele indicar un proceso bajo control.

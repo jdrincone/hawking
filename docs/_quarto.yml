@@ -36,6 +36,7 @@ website:
     - title: "Business Logic"
       contents:
         - business/context.qmd
+        - business/metrics.qmd
         - business/operational-ranges.qmd
     - title: "Technical Reference"
       contents:
