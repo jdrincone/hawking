@@ -1,0 +1,60 @@
+---
+title: "Entendimiento del Sack-off"
+subtitle: "Análisis de Merma Técnica y Balance de Humedad"
+format:
+  html:
+    toc: true
+---
+
+## Flujo de Proceso y Puntos de Medición
+
+El siguiente diagrama detalla el flujo de producción, desde la entrada de materias primas hasta la salida de producto terminado, identificando los puntos críticos de recolección de datos (**Data Points**) para el cálculo del Sack-off y el análisis de merma.
+
+![Flujo de Producción y Puntos de Control](../images/feed_production_process.svg)
+
+## ¿Qué es el Sack-off?
+
+El **Sack-off** es la diferencia entre la cantidad de materia prima que entra al proceso y la cantidad de producto terminado que se factura o se contabiliza a la salida. Se divide principalmente en dos componentes:
+
+1.  **Sack-off Bruto**: Diferencia total de inventario (Entrada vs. Salida).
+2.  **Merma Técnica**: Pérdida de peso esperada debido a la evaporación de humedad durante las etapas de acondicionamiento y enfriamiento.
+
+---
+
+## Preguntas Clave según las Mediciones
+
+A continuación, se presentan las preguntas fundamentales que debemos responder utilizando los datos recolectados en cada punto:
+
+### 1. Balance de Masa (Sack-off Bruto)
+*Basado en DP2 (Entrada Mezcladora) vs DP5A/B (Salida Ensacadora/Granel)*
+
+*   **¿Cuánto peso "desapareció" en total?**: ¿Existe una discrepancia mayor a la esperada según la merma técnica?
+*   **¿El conteo de sacos coincide con el granel reportado?**: (DP5A) Verificación de inventario físico vs. teórico.
+
+### 2. Análisis de Humedad y Ganancia de Peso
+*Basado en DP2 (% Humedad Inicial) y DP3 (Flujo de Vapor)*
+
+*   **¿Estamos agregando la cantidad correcta de agua/vapor?**: (DP3) ¿El flujo de vapor es consistente con el lote/OP para lograr la gelatinización adecuada?
+*   **¿Cuál es el punto de partida (El Cero)?**: (DP2) Sin un % de humedad inicial preciso, no podemos calcular cuánto peso debemos perder o ganar.
+
+### 3. Eficiencia de Secado y Enfriamiento
+*Basado en DP3 (Vapor) vs DP4 (% Humedad Final)*
+
+*   **¿El producto sale con la humedad óptima?**: (DP4) Un producto muy seco es pérdida de dinero (merma excesiva); un producto muy húmedo tiene riesgo biológico.
+*   **¿La pérdida de peso en el enfriador es la esperada?**: Comparación entre la humedad ganada en el acondicionador y la perdida en el enfriador/secador.
+
+### 4. Precisión de Despacho
+*Basado en DP5A (Peso Promedio Real)*
+
+*   **¿Estamos regalando producto o entregando de menos?**: ¿El peso promedio real del saco está dentro de la tolerancia permitida?
+*   **¿Cuál es la variabilidad del proceso de ensaque?**: Impacto del pesaje aleatorio en el cálculo global del Sack-off.
+
+---
+
+## Resumen de Análisis
+
+| Análisis | Origen de Datos | Objetivo |
+| :--- | :--- | :--- |
+| **Cálculo Sack-off Bruto** | DP2 + DP5A + DP5B | Control de inventario y pérdidas desconocidas. |
+| **Análisis de Merma Técnica**| DP2 + DP4 | Balance hídrico y eficiencia energética. |
+| **Control de Proceso** | DP3 | Estabilidad térmica y calidad del pellet. |

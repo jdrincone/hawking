@@ -38,6 +38,7 @@ website:
         - business/context.qmd
         - business/metrics.qmd
         - business/operational-ranges.qmd
+        - business/sackoff-analysis.qmd
     - title: "Technical Reference"
       contents:
         - technical-reference/viz.qmd

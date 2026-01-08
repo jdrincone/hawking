@@ -1,0 +1,54 @@
+
+titulo: Revisión datos de sensores de granja
+lugar: okuo analytics
+descripcion: ""
+
+secciones:
+  - titulo: Comportamiento de los datos de PH y ORP por instrumento y día de medición
+    contenido:
+      - tipo: plotly_html
+        src: time_ph_orp.html
+        style: "width: 90%; margin: 20px auto; display: block;"
+
+      - tipo: texto
+        html: A partir del 28 de noviembre se observa un patrón claro donde los 
+          <strong>valores más bajos de pH</strong> coinciden simultáneamente con 
+          <strong>valores más altos de ORP</strong>, validando la relación inversa esperada 
+          en el proceso (pH vs ORP). Sin embargo, el análisis destaca un <strong>offset (desplazamiento) 
+          sistemático</strong> entre las medidas de ambos segmentos durante todo el periodo. 
+          Esta diferencia constante de magnitud entre la lectura en sitio y la telemetría indica 
+          que, aunque ambos detectan los cambios, operan con una calibración base distinta.
+
+  - titulo: Comportamiento del PH y ORP a lo largo del día
+    contenido:
+      - tipo: plotly_html
+        src: by_moment_ph_orp.html
+        style: "width: 90%; margin: 20px auto; display: block;"
+
+      - tipo: texto
+        html: El análisis segmentado por horas revela que la discrepancia entre instrumentos no es constante en el día, 
+          sino que presenta una <strong>dependencia temporal</strong>. Se identifica una "brecha matutina" 
+          entre las <strong>06:00 AM y las 10:00 AM</strong>, donde la Telemetría reporta un <strong>ORP 
+          excesivamente alto (+140 mV de diferencia)</strong> frente a la Granja, correlacionado con un pH más bajo. 
+          A medida que avanza el día, hacia la franja de <strong>12:00 PM - 03:00 PM</strong>, las lecturas de pH 
+          convergen casi a la perfección (diferencia ~0.00), aunque el offset en el ORP se mantiene. Esto sugiere 
+          que el error de calibración podría estar amplificado por factores ambientales o de estabilización de los 
+          sensores.
+
+  - titulo: Correlacción entre el pH y ORP por instrumento
+    contenido:
+
+      - tipo: plotly_html
+        src: ph_orp_relacion.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+
+      - tipo: texto
+        html: 'El análisis de regresión valida la relación físico-química inversa (a mayor pH, menor ORP) 
+          en ambos sistemas, pero expone una <strong>inconsistencia en la sensibilidad de los sensores</strong>. 
+          Mientras que la medición en <strong>Granja</strong> reacciona agresivamente a los cambios de pH 
+          (con una pendiente pronunciada de <strong>-72.8</strong>), la <strong>Telemetría</strong> muestra una 
+          respuesta mucho más suave o plana (pendiente de <strong>-36.3</strong>). Esto indica que los 
+          sensores tiene calibraciones diferentes <strong> que se traduce en una interpretación diferente de
+          la magnitud del cambio en ORP ante la misma variación de pH </strong>. '
+
+        
