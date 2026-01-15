@@ -12,10 +12,10 @@ def generate_process_diagram():
 
     # Define Styles
     styles = {
-        'input': {'fillcolor': '#e1f5fe', 'color': '#01579b', 'style': 'filled', 'shape': 'box'},
-        'process': {'fillcolor': '#fff3e0', 'color': '#e65100', 'style': 'filled', 'shape': 'box'},
-        'output': {'fillcolor': '#e8f5e9', 'color': '#1b5e20', 'style': 'filled', 'shape': 'box'},
-        'dataPoint': {'fillcolor': '#ffeb3b', 'color': '#fbc02d', 'style': 'filled,dashed', 'shape': 'note'}
+        'input': {'fillcolor': '#E9F3F1', 'color': '#248374', 'style': 'filled', 'shape': 'box'},
+        'process': {'fillcolor': '#F2F2F2', 'color': '#333333', 'style': 'filled', 'shape': 'box'},
+        'output': {'fillcolor': '#D3E6E3', 'color': '#248374', 'style': 'filled', 'shape': 'box'},
+        'dataPoint': {'fillcolor': '#EFF4EF', 'color': '#9CB79A', 'style': 'filled,dashed', 'shape': 'note'}
     }
 
     # Helper to apply styles
@@ -25,7 +25,7 @@ def generate_process_diagram():
     # --- Bloque 1: Entradas Macro ---
     with dot.subgraph(name='cluster_ENTRADAS_MACRO') as c:
         c.attr(label='PUNTO 1: ENTRADAS AL SISTEMA', style='dotted', color='grey')
-        c.node('A', 'Báscula Camionera\nMaterias Primas')
+        c.node('A', 'Báscula \nMaterias Primas')
         c.node('B', 'Silos de Almacenaje', shape='cylinder')
         c.edge('A', 'B')
         

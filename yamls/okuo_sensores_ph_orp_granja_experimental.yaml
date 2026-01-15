@@ -35,6 +35,34 @@ secciones:
           que el error de calibración podría estar amplificado por factores ambientales o de estabilización de los 
           sensores.
 
+
+
+
+  - titulo: Comportamiento del PH y ORP por rango de operación
+    contenido:
+      - tipo: texto
+        html: 'A continuación se presenta la diferencia de medición entre los valores obtenidos en granja y por telemetría,
+              evaluada en distintos rangos de operación. Se observa que el método en granja no registra mediciones por debajo
+              de un pH de 4. En el rango de pH 4–5 se evidencia la mayor discrepancia entre ambos métodos, con diferencias
+              superiores a 0.4 unidades. Para valores de pH mayores a 5, el desfase entre los métodos es menor a 0.09, lo cual
+              se encuentra dentro de la incertidumbre del instrumento.'
+
+      - tipo: plotly_html
+        src: by_rango_ph.html
+        style: "width: 70%; margin: 20px auto; display: block;" 
+
+      - tipo: texto
+        html: 'En el caso del ORP se observa una se observan diferencias en la medición de ORP por medidas en granja y telemetría. Se observa
+               mayor discrepancia en el rango de ORP entre 700-850 mV, pero la discrepancia no supera los 20mV. Por lo cual se puede decir que 
+               es la misma magnitud en medidas.'
+
+      - tipo: plotly_html
+        src: by_rango_orp.html
+        style: "width: 70%; margin: 20px auto; display: block;" 
+
+
+        
+
   - titulo: Correlacción entre el pH y ORP por instrumento
     contenido:
 
@@ -49,6 +77,65 @@ secciones:
           (con una pendiente pronunciada de <strong>-72.8</strong>), la <strong>Telemetría</strong> muestra una 
           respuesta mucho más suave o plana (pendiente de <strong>-36.3</strong>). Esto indica que los 
           sensores tiene calibraciones diferentes <strong> que se traduce en una interpretación diferente de
-          la magnitud del cambio en ORP ante la misma variación de pH </strong>. '
+          la magnitud del cambio en ORP ante la misma variación de pH </strong>.'
+
+
+  - titulo: Análisis funcional del pH a lo largo de cada día
+    contenido:
+
+      - tipo: texto
+        html: 'Sobre los datos de pH medidos entre Noviembre y Diciembre de 2025 en la Granja, se observa el rango de operación a 
+              lo largo de cada día.
+              La línea negra representa el comportamiento típico. El pH suele mantenerse estable alrededor de 4.4, sube un poco al 
+              mediodía (posible dosificación o cambio de turno) y se estabiliza cerca de 5.0. La banda gris representa el 50% de los
+              datos que caen dentro de esta sombra gris.'
+
+      - tipo: plotly_html
+        src: boxplot_funcional_final.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+
+
+      - tipo: plotly_html
+        src: modos_analisis_variacional_completo.html
+        style: "width: 90%; margin: 20px auto; display: block;"
+
+      - tipo: texto
+        html: 'Se han identificado <b>3 modos de funcionamiento</b> en la adquisición de medidas:
+          <br><br>
+          <b>• Modo 1 (Desplazamiento de Nivel):</b> Es el patrón predominante. Indica que el pH se mantiene estable 
+          pero desplazado (consistentemente muy alto o muy bajo) durante todo el día.
+          <br><br>
+          <b>• Modo 2 (Evento Crítico):</b> Representa una anomalía dinámica. El día inicia con comportamiento nominal, 
+          pero presenta una caída drástica en los valores de pH hacia el mediodía (franja 10:00 - 12:00 h), 
+          indicando un evento operativo puntual.
+          <br><br>
+          <b>• Modo 3 (Variabilidad Continua):</b> Corresponde a días de alta inestabilidad, donde el pH 
+          fluctúa constantemente a lo largo de toda la jornada sin establecerse en un punto de operación fijo.'
+              
+
+      - tipo: plotly_html
+        src: modos_analisis_variacional.html
+        style: "width: 90%; margin: 20px auto; display: block;"
+
+      - tipo: texto
+        html:
+          El <b>Modo 1 - 68.3%</b> es el escenario más común (verde) indica estabilidad. Casi el 70% de los días el proceso 
+          funciona sin sobresaltos, en un mismo día y 
+          el pH tanto bajo como alto poseen la misma variabilidad, indicando que el instrumento esta bien calibrado.
+          <br><br>
+          El <b>Modo 2 - 20%</b> indica que 1 de cada 5 días el proceso sufre la caída abrupta identificada al mediodía.
+          <br><br>
+          El <b>Modo 3 - 11.7%</b> indica que una minoría de días (naranja) presenta fluctuaciones o picos de ajuste en el mismo horario, 
+          representando una transición menos severa que cambia por todo el día, lo que indica que el instrumento esta bien calibrado.
+
+      - tipo: plotly_html
+        src: pie_chart_ph_orp.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+      - tipo: texto
+        html:
+          En los días del Modo 1, la mitad de los días mantienen a un pH alto o un pH bajo, lo cual es critico si el objetivo de la
+          medición es mantener un pH estable en un rango alto o un rango bajo.
+
+        
 
         
