@@ -13,7 +13,7 @@ secciones:
               desglosando la prevalencia por microorganismo para cuantificar la reducción en prevalencia  
               a través de las etapas de Ciegos, Prechiller y Salida Chiller.
             - Identificar el origen de la contaminación mediante el desglose de prevalencia por 
-              <strong>Granja de procedencia</strong> en el último mes.
+              <strong>granja de procedencia</strong> en el último mes.
             - Evaluar el impacto del control operativo sobre la inocuidad mediante el análisis de 
               correlación estadística y la estabilidad funcional de las variables (Cloro, pH, ORP) en Diciembre.
   - titulo: "Comportamiento mensual de la prevalencia de <em>Salmonella</em> y <em>Campylobacter</em> por etapa del proceso"
@@ -35,9 +35,9 @@ secciones:
 
       - tipo: "texto"
         html: |
-              Para <strong>Campylobacter</strong>, el desafío fue mayor: se confirma la correlación
+              Para <em>Campylobacter</em>, el desafío fue mayor: se confirma la correlación
               crítica en Abril-Mayo donde el descontrol en Eviscerado y Salida Chiller disparó los Kilos de Descuento.
-              A diferencia de Salmonella, la barrera del Chiller mostró inestabilidad severa a mitad de año (picos en
+              A diferencia de <em>Salmonella</em>, la barrera del Chiller mostró inestabilidad severa a mitad de año (picos en
               Julio y Octubre). Sin embargo, el cierre de <strong>Diciembre</strong> marca una recuperación
               operativa clara: se logró revertir la carga crítica de Noviembre en Ciegos y Visceras, y junto
               al control fisicoquímico en chiller, se logró una disminución sustancial de la prevalencia final en
@@ -53,12 +53,15 @@ secciones:
         html: |
               El cierre de <strong>Diciembre 2025</strong> confirma la eliminación efectiva de <em>Salmonella</em>, 
               cayendo del 12.8% a un <strong>mínimo histórico del 1.4% en Salida Chiller</strong>. 
-              Para <strong>Campylobacter</strong>, pese a la crítica carga inicial (76.9%), se logró reducir la 
+              Para <em>Campylobacter</em>, pese a la crítica carga inicial (76.9%), se logró reducir la 
               salida al <strong>48.0%</strong>. 
-              Este descenso marca una recuperación operativa clara frente a meses previos y prueba la acción  
-              del tratamiento fisicoquímico en el chiller, cuyo mecanismo se detalla más adelante.
+              Los resultados de diciembre confirman la efectividad del tratamiento fisicoquímico en el chiller. 
+              Cabe destacar que este descenso en la carga microbiológica posee un alto grado de confianza estadística,
+              dado que el volumen de analíticas realizadas fue superior al de meses anteriores, descartando 
+              así que la mejora operativa sea atribuible a una reducción en la intensidad del monitoreo que veremos más
+              adelante.
 
-  - titulo: "Prevalencias por granjes de donde provienen los animales"
+  - titulo: "Prevalencias por granjas de procedencia"
     contenido:
 
       - tipo: "plotly_html"
@@ -66,7 +69,7 @@ secciones:
         style: "width: 100%;"
       - tipo: lista
         items:
-          - <strong>Salmonella (Quiebres Puntuales):</strong> Aunque el sistema funcionó para la mayoría,
+          - <strong><em>Salmonella</em> (Quiebres Puntuales):</strong> Aunque el sistema funcionó para la mayoría,
             la granja <strong>El Tablón</strong> fue la única que falló en garantizar producto inocuo,
             cerrando con un <strong>20% de positividad</strong> en Salida Chiller. Por otro lado, 
             <strong>La Isla</strong> sufrió una contaminación cruzada masiva a mitad de proceso (100% en Prechiller),
@@ -78,7 +81,7 @@ secciones:
 
       - tipo: lista
         items:
-          - <strong>Campylobacter (Falla Sistémica en Proveedores):</strong> El tratamiento químico colapsó ante
+          - <strong><em>Campylobacter</em> (Falla Sistémica en Proveedores):</strong> El tratamiento químico colapsó ante
             la alta carga de un grupo crítico de granjas. <strong>Chihuahua, Doradolandia, El Triunfo y La Isla</strong>
             saturaron la barrera sanitaria, manteniendo una prevalencia del <strong>100%</strong> desde la entrada 
             hasta la salida, demostrando que el proceso actual no puede mitigar lotes con tal nivel de contaminación de origen.
@@ -96,15 +99,15 @@ secciones:
 
       - tipo: lista
         items:
-          - '<strong>Campylobacter (0.28):</strong> Se observa una correlación 
+          - '<em>Campylobacter</em> (0.28):</strong> Se observa una correlación 
              positiva moderada. Esto indica un <strong>comportamiento reactivo</strong> del sistema: 
              ante picos de carga bacteriana, se inyectó más cloro, lo cual posiblemente ocasionó la 
              reducción de la prevalencia en Salida Chiller contrastada con meses anteriores, más adelante
              realizaremos el analisis comparativo entre los últimos meses.'
           - '<strong>Validación del ORP (-0.20):</strong> A diferencia del cloro, el ORP muestra la 
              relación inversa correcta. Un mayor Potencial de Oxidación-Reducción se correlaciona con 
-             una menor presencia de Campylobacter, confirmando que el ORP.'
-          - '<strong>Salmonella:</strong> Las correlaciones son prácticamente nulas
+             una menor presencia de <em>Campylobacter</em>, confirmando que el ORP.'
+          - '<strong><em>Salmonella</em>:</strong> Las correlaciones son prácticamente nulas
              (cercanas a 0). Esto es técnicamente positivo, puesto que la prevalencia fue baja en el mes.'
           - '<strong>pH:</strong> Con valores cercanos a cero (-0.02), con los datos de Diciembre el pH no 
              fue un factor determinante. Es por esto que solo analizaremos los datos de los sensores a lo largo del día.'
@@ -130,7 +133,7 @@ secciones:
             desinfección suficiente.
           - <strong>Diciembre (Control Activo):</strong> La variabilidad controlada en el grafico derecho, 
             se mantiene en la franja horaria de mayor trabajo y a una dosis por encima de 4.2 ppm de cloro, lo que representa
-            un ambiente de mayor control que posibilita la reducción de Campylobacter en el mes.
+            un ambiente de mayor control que posibilita la reducción de <em>Campylobacter</em> en el mes.
 
 
       - tipo: "plotly_html"
@@ -150,7 +153,7 @@ secciones:
              dosificación errática que no pudo anticiparse a la carga, creando las ventanas de vulnerabilidad donde 
              la inocuidad falló.
           - <strong>Diciembre (Amortiguación Exitosa):</strong> La línea naranja demuestra por qué mejoró 
-            el control de Campylobacter.
+            el control de <em>Campylobacter</em>  .
 
       - tipo: "plotly_html"
         src: "boxplot_funcional_orp_chiller.html"

@@ -32,4 +32,5 @@ dependencies = [
     "statsmodels>=0.14.6",
     "graphviz>=0.20.3",
     "scikit-fda>=0.10.1",
+    "pyxlsb>=1.0.10",
 ]
