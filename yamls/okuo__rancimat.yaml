@@ -1,0 +1,125 @@
+titulo: "Cinética de Degradación Oxidativa en harina de carne y hueso (HCH) y harina de viceras de pollo (HVP) "
+lugar: "Okuo Analytics"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivo
+    contenido:
+      - tipo: lista
+        items:
+          - Evaluar la evolución temporal de las mediciones fisicoquímicas en los tratamientos aplicados a la 
+            harina de carne y hueso (HCH).
+          - Contrastar las mediciones fisicoquímicas con los resultados microbiológicos (presencia/ausencia de microorganismos).
+          - Revisión de la  oxidación primaria y acidez antes y después de cada tratamiento.
+
+  - titulo: Métodos
+    contenido:
+      - tipo: tabla
+        src: okuo__rancimat.csv 
+
+      - tipo: texto
+        html: >
+            Los resultados revelan una brecha de calidad crítica: mientras el <b>HVP</b> 
+            garantiza estabilidad a largo plazo (~6 meses), el <b>HCH</b> sufre una degradación 
+            acelerada en menos de 4 días. Se detectó una ineficiencia
+            en el producto de HCH en <b>Amagá</b>, que presenta una paradoja: 
+            ingresa la materia prima más fresca de todas (TVN 2.94) pero entrega el producto 
+            final más oxidado (Anisidina 28.98), evidenciando que el proceso térmico actual 
+            está destruyendo la calidad.
+
+      - tipo: plotly_html
+        src: inducción_100_°c_box.html
+        #style: "width: 80%; margin: 20px auto; display: block;" 
+      - tipo: texto
+        html: >
+           El gráfico confirma visualmente la disparidad estructural: el <b>HVP</b> es 
+           robusto con una inducción promedio superior a <b>11 horas</b>, mientras que el <b>HCH</b> 
+           colapsa sistemáticamente por debajo de las <b>2 horas</b>. La brecha es tal que el peor lote 
+           de HVP sigue siendo muy superior al mejor lote de HCH, ratificando su inestabilidad.
+
+      - tipo: plotly_html
+        src: dias_box.html
+      - tipo: texto
+        html: >
+          Aunque el gráfico presenta una distorsión visual severa por un único valor atípico extremo
+          en HCH (>3000 días), la inmensa mayoría de los lotes de <b>HCH</b>
+          tienen una vida útil cercana a cero. 
+          En contraste, el <b>HVP</b> demuestra una consistencia robusta con rangos funcionales que superan los 6 meses.
+
+      - tipo: plotly_html
+        src: tv_planta_productos.html
+      
+
+      
+      - tipo: plotly_html
+        src: peróxidos_box.html
+      
+      - tipo: texto
+        html: >
+          Peróxidos (Oxidación Primaria):
+          Aunque los promedios globales parecen similares (~8.8), el gráfico expone la falta de estandarización en el <b>HCH</b>,
+          cuya alta dispersión indica un proceso fuera de control donde lotes muy limpios conviven con otros altamente oxidados. 
+          El <b>HVP</b> muestra un comportamiento más agrupado y predecible.</p>
+
+      
+
+      
+
+      - tipo: plotly_html
+        src: anisidina_box.html
+
+
+
+      - tipo: texto
+        html: >
+          Anisidina (Oxidación Secundaria - Rancidez):
+          Este es el punto crítico de dolor. El <b>HCH</b> presenta niveles alarmantes con una mediana superior
+          a 22 y picos extremos de 50, confirmando que el producto llega frecuentemente rancio al final de la línea. 
+          En contraste, el <b>HVP</b> mantiene un perfil sensorial mucho más limpio y controlado, sin exceder 
+          límites de riesgo.
+      - tipo: plotly_html
+        src: tvn_box.html
+      - tipo: texto
+        html: >
+          TVN (Frescura de Materia Prima):
+          Se observa una variabilidad extrema en <b>HCH</b> (desde muy fresco hasta degradado).
+          Curiosamente, el <b>HVP</b> muestra niveles consistentemente más altos (regular frescura) pero estables,
+          reforzando la teoría de que su estabilidad química se logra gracias a un buen proceso y antioxidantes,
+          no a una materia prima superior.
+
+      - tipo: plotly_html
+        src: correlacion_HCH.html
+
+      - tipo: plotly_html
+        src: correlacion_HVP.html
+
+      - tipo: lista
+        items:
+          - HVP muestra una correlación matemática casi perfecta (-0.96) entre Inducción y Anisidina con las muestras reportadas.
+            Esto convierte al HVP en un producto altamente predecible, una sola métrica permite proyectar
+            con exactitud el comportamiento de las demás.
+
+          - HCH evidencia una desconexión crítica entre variables, donde la prueba de Inducción no 
+            logra predecir la rancidez real (-0.32).
+
+      - tipo: plotly_html
+        src: tiempo_vida_media_por_anisidina_en_hch.html
+        
+      - tipo: texto
+        html: >
+          El Modelo de Predicción de Vida Útil revela una verdad operativa crítica
+          el producto tiene un <b>umbral de tolerancia cero</b> por encima de 18 unidades de Anisidina. 
+          Pasado este punto, la vida útil colapsa de 7 días a prácticamente cero.
+
+      - tipo: plotly_html
+        src: tiempo_vida_media_por_anisidina_en_hvp.html
+
+      - tipo: texto
+        html: >
+          'Aunque el HVP es el producto más estable, este gráfico expone su "Talón de Aquiles" la vida útil no decae 
+          linealmente, sino que se desploma. Un incremento marginal en la Anisidina (pasando de 10 a 12 unidades) 
+          provoca que la vida útil caiga drásticamente de <b>~13.5 meses</b> a menos de <b>4 meses</b>.'
+        
+
+
+      

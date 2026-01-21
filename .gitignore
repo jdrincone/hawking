@@ -167,6 +167,7 @@ data/
 *.parquet
 *.pkl
 *.parquet.gzip
+images/
 
 # Quarto
 docs/_site/

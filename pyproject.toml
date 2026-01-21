@@ -33,4 +33,5 @@ dependencies = [
     "graphviz>=0.20.3",
     "scikit-fda>=0.10.1",
     "pyxlsb>=1.0.10",
+    "bestdist>=0.1.0",
 ]

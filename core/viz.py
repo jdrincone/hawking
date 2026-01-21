@@ -1953,6 +1953,112 @@ def corporate_colorscale() -> List[List[Union[float, str]]]:
 
 
 def plot_corr_triangle(
+    df: pd.DataFrame, 
+    value_cols: Union[str, List[str]], 
+    method: str = "pearson",
+    width: int = 1000,
+    height: int = 600,
+    title: Optional[str] = None,
+    xaxis_title: Optional[str] = None,
+    yaxis_title: Optional[str] = None,
+    output_path: Optional[str] = None, 
+    custom_colors: Optional[List[str]] = DEFAULT_COLORS,
+) -> go.Figure:
+    """
+    Genera un Heatmap de correlación de Pearson optimizado que visualiza únicamente el triángulo 
+    superior de la matriz para evitar redundancia de datos.
+
+    Args:
+        df (pd.DataFrame): Conjunto de datos fuente.
+        value_cols (Union[str, List[str]]): Nombre de la columna o lista de columnas numéricas 
+            a correlacionar (e.g., ['Induccion_100C', 'Anisidina', 'TVN']).
+        method (str, optional): Correlation method.
+        width (int): Ancho de la figura en píxeles.
+        height (int): Alto de la figura en píxeles.
+        title (Optional[str]): Título principal del gráfico.
+        xaxis_title (Optional[str]): Título para el eje X.
+        yaxis_title (Optional[str]): Título para el eje Y.
+        output_path (Optional[str]): Ruta local para exportar el gráfico como archivo HTML.
+        custom_colors (Optional[List[str]]): Escala de colores personalizada. Si es None, 
+            se utiliza la escala divergente 'RdBu_r'.
+
+    Returns:
+        go.Figure: Objeto de figura de Plotly con el heatmap procesado.
+
+    Raises:
+        ValueError: Si 'value_cols' no contiene al menos dos columnas numéricas válidas.
+    """
+    
+    # --- 1. Preparación y Limpieza de Datos ---
+    # Convertimos a lista si se recibe un único string y aseguramos que sean datos numéricos
+    cols = [value_cols] if isinstance(value_cols, str) else value_cols
+    d = df[list(cols)].apply(pd.to_numeric, errors="coerce").dropna(how="all")
+
+    if d.shape[1] < 2:
+        raise ValueError("Se requieren al menos dos columnas numéricas para calcular una correlación.")
+
+    # --- 2. Cálculos Estadísticos ---
+    # Calculamos la matriz de correlación de Pearson
+    corr = d.corr(method=method)
+    corr_vals = corr.values.astype(float)
+    
+    # Creamos máscaras booleanas para separar los triángulos de la matriz
+    mask_upper = np.triu(np.ones_like(corr_vals, dtype=bool)) # Triángulo superior e identidad
+    mask_lower = np.tril(np.ones_like(corr_vals, dtype=bool), k=-1) # Triángulo inferior estricto
+
+    # Preparamos las matrices de visualización (NaN no se renderiza en el heatmap)
+    z_upper = corr_vals.copy()
+    z_upper[~mask_upper] = np.nan
+
+    z_lower = np.zeros_like(corr_vals, dtype=float)
+    z_lower[~mask_lower] = np.nan
+
+    # --- 3. Construcción de Capas Visuales (Plotly) ---
+    # Capa de fondo: Cuadros blancos para el triángulo inferior
+    heat_lower = go.Heatmap(
+        z=z_lower, x=corr.columns, y=corr.index,
+        colorscale=[[0, "#FFFFFF"], [1, "#FFFFFF"]],
+        showscale=False, hoverinfo="skip", xgap=1, ygap=1
+    )
+
+    # Capa de datos: Triángulo superior con escala de color y etiquetas
+    heat_upper = go.Heatmap(
+        z=z_upper, x=corr.columns, y=corr.index,
+        zmin=-1, zmax=1, # Rango fijo de correlación de Pearson
+        colorscale=custom_colors if custom_colors else "RdBu_r",
+        # SOLUCIÓN API: El título de la barra de color ahora requiere estructura de diccionario anidado
+        colorbar=dict(title=dict(text="r", side="right")), 
+        text=np.vectorize(lambda x: f"{x:.2f}" if not np.isnan(x) else "")(z_upper),
+        texttemplate="%{text}",
+        textfont=dict(size=12, color="#0b2530"),
+        hovertemplate="Variable X: %{x}<br>Variable Y: %{y}<br>Correlación (r): %{z:.3f}<extra></extra>",
+        xgap=1, ygap=1
+    )
+
+    # --- 4. Configuración del Layout ---
+    fig = go.Figure(data=[heat_lower, heat_upper])
+
+    fig.update_xaxes(title=xaxis_title, showgrid=False, tickangle=0)
+    fig.update_yaxes(title=yaxis_title, showgrid=False, autorange="reversed") # Invierte para lectura natural
+
+    fig.update_layout(
+        template="plotly_white",
+        title=dict(text=title if title else "Matriz de Correlación", x=0.5, xanchor="center"),
+        width=width,
+        height=height,
+        margin=dict(l=60, r=80, t=80, b=40),
+        plot_bgcolor="#000000", # Color de la rejilla (visible a través de xgap/ygap)
+        paper_bgcolor="#FFFFFF",
+    )
+
+    # --- 5. Exportación ---
+    if output_path:
+        pio.write_html(fig, output_path, include_plotlyjs="cdn", full_html=True)
+
+    return fig
+
+
+def plot_corr_triangle_(
     df: pd.DataFrame,
     value_cols: Sequence[str],
     *,
