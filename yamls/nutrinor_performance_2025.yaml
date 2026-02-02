@@ -108,9 +108,9 @@ secciones:
           • Mayor caída de Ton/mes: <b>PROBIOLECHE</b> (<b>-40.914</b>) y <b>CERDOS</b> (<b>-12.800</b>).
 
       - tipo: tabla
-        src: diagnostico_critico_pellet_420.csv
+        src: reporte_diagnostico_pellet_420.csv
 
-  - titulo: Pellet 20 | familias de productos mayormente peletizados
+  - titulo: Pellet 520 | familias de productos mayormente peletizados
     contenido:
 
       - tipo: plotly_html
@@ -125,7 +125,7 @@ secciones:
            • <b>PDI (%):</b> se mantiene <b>estable</b> (≈96.2–97.2) sin deterioros fuertes; Porcicultura tiende a estar ligeramente por encima en varios meses.<br>
   
   
-  - titulo:  <b>Pellet 420 | Matriz desempeño 1S vs 2S 2025 (Producto)</b><br>
+  - titulo:  <b>Pellet 520 | Matriz desempeño 1S vs 2S 2025 (Producto)</b><br>
     contenido:
       - tipo: plotly_html
         src: matriz_estrategica_pellet_520.html
@@ -152,8 +152,8 @@ secciones:
              y PDI (-0.2 a -0.5 pp). El quiebre operativo de mitad de
              año (↓carga) coincide con mayor variabilidad y productos críticos.'
           - En 420, los productos con mayor afectación de PDI se asocian mayormente a ↓carga
-            (Hz) y/o “rendimiento alto” (producto realizado a la carrera) (casos como CERDOS y LECHONES), lo que sugiere ajustes
-             mecánicos/operativos (dado-rodillos, setpoints, acondicionamiento) como palanca principal.
+            (Hz) y/o “rendimiento alto” (producto realizado a la carrera) (casos como CERDOS y LECHONES),
+            lo que sugiere ajustes mecánicos/operativos (dado-rodillos, acondicionamiento) como palanca principal.
           - En 520, el PDI se mantiene estable en la mayoría de productos; los pocos casos con caída
             (INICIACION SUPERCERDO, LEVANTE BR 454 NUT, MARRANAS GESTACION EB 454 SCP) no siguen el
             patrón de ↓carga, por lo que el diagnóstico apunta a factores externos
