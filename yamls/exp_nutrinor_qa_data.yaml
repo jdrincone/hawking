@@ -31,29 +31,29 @@ secciones:
             <strong>Alcance del informe:</strong> Medir la consistencia entre fuentes, listar registros con discrepancias y proponer criterios
             de depuración y validación, incluyendo una revisión exhaustiva de las <strong>hojas</strong> del histórico de Sackoff.
 
-  - titulo: "Panorama general: Comportamiento del Sackoff"
-    contenido:
-      - tipo: texto
-        html: >
-          A continuación se muetra el comportamiento del Sackoff mes a mes partiendo desde las distintas
-          fuentes con información disponible de esta métrica.
+  #- titulo: "Panorama general: Comportamiento del Sackoff"
+  #  contenido:
+  #    - tipo: texto
+  #      html: >
+  #        A continuación se muetra el comportamiento del Sackoff mes a mes partiendo desde las distintas
+  #        fuentes con información disponible de esta métrica.  
 
-      - tipo: plotly_html
-        src: sackoff_hojas.html
-        style: "width: 100%; margin: 20px auto; display: block;" 
-      - tipo: plotly_html
-        src: sackoff_hojas_resumen.html
-        style: "width: 100%; margin: 20px auto; display: block;" 
+  #    - tipo: plotly_html
+  #      src: sackoff_hojas.html
+  #      style: "width: 100%; margin: 20px auto; display: block;" 
+  #    - tipo: plotly_html
+  #      src: sackoff_hojas_resumen.html
+  #      style: "width: 100%; margin: 20px auto; display: block;" 
 
-      - tipo: texto
-        html: >
-            A la izquierda se presenta el comportamiento del <strong>Sackoff</strong> mes a mes consolidando las
-            <strong>hojas rotuladas por mes</strong>. A la derecha se muestra el mismo análisis a partir del consolidado existente en la
-            <strong>hoja “total”</strong>.
-            <br><br>
-            En términos generales, la tendencia mensual es similar en ambas fuentes; sin embargo, al segmentar la métrica por
-            <strong>pellets</strong> se evidencian diferencias. Esto sugiere que el consolidado por hojas mensuales ofrece una
-            <strong>mayor completitud</strong> de información, lo que mejora la trazabilidad del resultado.
+  #    - tipo: texto
+  #      html: >
+  #          A la izquierda se presenta el comportamiento del <strong>Sackoff</strong> mes a mes consolidando las
+  #          <strong>hojas rotuladas por mes</strong>. A la derecha se muestra el mismo análisis a partir del consolidado existente en la
+  #          <strong>hoja “total”</strong>.
+  #          <br><br>
+  #          En términos generales, la tendencia mensual es similar en ambas fuentes; sin embargo, al segmentar la métrica por
+  #          <strong>pellets</strong> se evidencian diferencias. Esto sugiere que el consolidado por hojas mensuales ofrece una
+  #          <strong>mayor completitud</strong> de información, lo que mejora la trazabilidad del resultado.
 
   - titulo: "Detalle del Sackoff por linea de producción"
     contenido:

@@ -517,8 +517,282 @@ def plot_bar(
 
 
 
-
 def plot_heatmap(
+        df: pd.DataFrame,
+        x_col: str,
+        y_col: str,
+        value_col: str,
+        # --- Métrica Secundaria (Opcional) ---
+        secondary_col: Optional[str] = None,
+        secondary_aggfunc: str = "sum",
+        
+        # [NUEVO] Formato para métrica secundaria (Retro-compatible: por defecto vacíos)
+        secondary_unit: str = "",          # Ej: "%", " $", " Ton" para el valor pequeño
+        secondary_unit_position: str = "suffix", # "suffix" (10 %) o "prefix" ($ 10)
+
+        # --- Agregación y Orden ---
+        aggfunc: str = "mean",
+        x_order: Optional[List[str]] = None,
+        y_order: Optional[List[str]] = None,
+        
+        # [NUEVO] Títulos de Ejes Personalizados (Retro-compatible: por defecto None usa el nombre de col)
+        x_title: Optional[str] = None,     
+        y_title: Optional[str] = None,
+
+        # --- Formato de Valores (Principal) ---
+        value_unit: str = "",  # Ej: "%", " $", " Ton"
+        unit_position: str = "suffix",  # "suffix" (10 %) o "prefix" ($ 10)
+        decimals_value: int = 2,
+        decimals_secondary: int = 1,
+        secondary_prefix: str = "",  # Ej: "N=" para que se vea "N=150"
+
+        # --- Colores ---
+        colorscale: Union[str, List[Tuple[float, str]]] = DEFAULT_COLORS,  # Nombre (str) o Lista Personalizada
+        zmin: Optional[float] = None,
+        zmax: Optional[float] = None,
+        zmid: Optional[float] = None,  # Para centrar la escala (ej: en 0 para desviaciones)
+
+        # --- Diseño y Textos ---
+        title: str = "",
+        show_secondary_labels: bool = True,
+        secondary_position: str = "bottom",  # 'top', 'bottom', 'left', 'right'
+        font_color: str = "black",  # Color base de los textos
+        center_font_size: int = 14,
+        secondary_font_size: int = 10,
+        width: int = 800,
+        height: int = 500,
+        transparent_bg: bool = True,
+        output_path: Optional[str] = None
+) -> go.Figure:
+    """
+    Generates a high-detail Heatmap with optional double labeling per cell.
+
+    Ideal for matrix comparisons (e.g., Performance vs Category). Supports showing
+    a primary value (centered) and a secondary helper value (e.g., sample size)
+    in a corner of each cell.
+
+    Args:
+        df (pd.DataFrame): Input data in tidy format.
+        x_col (str): Column for horizontal axis categories.
+        y_col (str): Column for vertical axis categories.
+        value_col (str): Column for the primary metric (color intensity and large label).
+        secondary_col (Optional[str], optional): Metric for the minor label (e.g., 'N').
+        secondary_aggfunc (str, optional): Aggregation for the secondary metric.
+        secondary_unit (str, optional): [NEW] Unit suffix/prefix for the secondary label.
+        secondary_unit_position (str, optional): [NEW] 'suffix' or 'prefix' for secondary unit.
+        aggfunc (str, optional): Aggregation for the primary metric ('mean', 'sum', etc.).
+        x_order (Optional[List[str]], optional): Sequence for X categories.
+        y_order (Optional[List[str]], optional): Sequence for Y categories.
+        x_title (Optional[str], optional): [NEW] Custom title for X axis. Defaults to column name.
+        y_title (Optional[str], optional): [NEW] Custom title for Y axis. Defaults to column name.
+        value_unit (str, optional): Unit suffix/prefix for the primary label.
+        unit_position (str, optional): Where to place the unit ('suffix' or 'prefix').
+        decimals_value (int, optional): Decimal precision for primary label.
+        decimals_secondary (int, optional): Decimal precision for secondary label.
+        secondary_prefix (str, optional): Static prefix for secondary label (e.g., "n=").
+        colorscale (Union[str, list], optional): Plotly colorscale name or custom list.
+        zmin/zmax/zmid (Optional[float]): Manual overrides for the color intensity range.
+        title (str, optional): Heatmap title.
+        show_secondary_labels (bool, optional): Toggle visibility of minor labels.
+        secondary_position (str, optional): Placement of minor labels ('top', 'bottom', etc.).
+        font_color (str, optional): Color for all labels.
+        center_font_size (int, optional): Size of the main cell label.
+        secondary_font_size (int, optional): Size of the minor cell label.
+        width (int, optional): Figure width.
+        height (int, optional): Figure height.
+        transparent_bg (bool, optional): Use a clear background.
+        output_path (Optional[str], optional): HTML save destination.
+
+    Returns:
+        go.Figure: The rendered Heatmap.
+    """
+
+    # --- 1. Helper interno para formateo de números (Unificado) ---
+    def _fmt_value(v: float, decimals: int, unit: str, pos: str) -> str:
+        """Formatea un valor con decimales y su unidad en prefijo o sufijo."""
+        if pd.isna(v): return ""
+        formatted_num = f"{v:.{decimals}f}"
+        if not unit: return formatted_num
+        
+        # Espacio fino (\u202F) para sufijos, nada para prefijos
+        sep = "\u202F" if pos == "suffix" else ""
+        
+        if pos == "prefix": return f"{unit}{formatted_num}"
+        return f"{formatted_num}{sep}{unit}"
+
+    # --- 2. Creación de Tablas Dinámicas (Pivot) ---
+    # Tabla Principal (Color y Texto Central)
+    pt_val = pd.pivot_table(df, index=y_col, columns=x_col, values=value_col, aggfunc=aggfunc)
+
+    # Tabla Secundaria (Texto pequeño), si aplica
+    if secondary_col:
+        pt_sec = pd.pivot_table(df, index=y_col, columns=x_col, values=secondary_col, aggfunc=secondary_aggfunc)
+    else:
+        # Crear estructura vacía idéntica para evitar errores
+        pt_sec = pd.DataFrame(index=pt_val.index, columns=pt_val.columns)
+
+    # --- 3. Ordenamiento de Ejes ---
+    # Si no se da orden, se usa el alfanumérico o el existente
+    if x_order is None: x_order = sorted(pt_val.columns.astype(str).tolist())
+    if y_order is None: y_order = sorted(pt_val.index.astype(str).tolist())
+
+    # Reindexar para asegurar que la matriz de datos coincida con el orden visual
+    pt_val = pt_val.reindex(index=y_order, columns=x_order)
+    pt_sec = pt_sec.reindex(index=y_order, columns=x_order)
+
+    # Convertir a matrices Numpy para Plotly
+    z_main = pt_val.values.astype(float)
+    z_sec = pt_sec.values.astype(float)
+
+    # --- 4. Generación de Matrices de Texto ---
+    # A. Texto Central (Principal)
+    text_center = np.empty(z_main.shape, dtype=object)
+    for i in range(z_main.shape[0]):
+        for j in range(z_main.shape[1]):
+            text_center[i, j] = _fmt_value(z_main[i, j], decimals_value, value_unit, unit_position)
+
+    # B. Texto Secundario (Helper Value)
+    text_secondary = np.empty(z_sec.shape, dtype=object)
+    if secondary_col and show_secondary_labels:
+        for i in range(z_sec.shape[0]):
+            for j in range(z_sec.shape[1]):
+                val = z_sec[i, j]
+                # Lógica combinada: Formato numérico + Unidad opcional + Prefijo estático
+                if pd.notna(val):
+                    # Primero aplicamos decimales y unidad (nuevo parametro)
+                    val_formatted = _fmt_value(val, decimals_secondary, secondary_unit, secondary_unit_position)
+                    # Luego anteponemos el prefijo estático (parametro legacy "N=")
+                    text_secondary[i, j] = f"{secondary_prefix}{val_formatted}"
+                else:
+                    text_secondary[i, j] = ""
+    else:
+        text_secondary[:] = ""
+
+    # --- 5. Configuración de Escala de Color ---
+    # Calcular min/max automáticos si no se proveen, ignorando NaNs
+    if zmin is None and np.nanmin(z_main) is not np.nan: zmin = np.nanmin(z_main)
+    if zmax is None and np.nanmax(z_main) is not np.nan: zmax = np.nanmax(z_main)
+
+    # --- 6. Construcción de la Figura Base (Heatmap) ---
+    # Definición de títulos para hover (Tooltip)
+    # Usa el titulo custom (x_title) si existe, sino usa el nombre de columna (x_col)
+    tooltip_x = x_title if x_title else x_col
+    tooltip_y = y_title if y_title else y_col
+    
+    # Template para el tooltip (hover)
+    hover_lines = [
+        f"<b>{tooltip_x}:</b> %{{x}}",
+        f"<b>{tooltip_y}:</b> %{{y}}",
+        f"<b>{value_col}:</b> %{{text}}",  # Usa el texto formateado con unidad
+    ]
+    if secondary_col:
+        # Se usa customdata crudo para que el usuario vea el valor exacto si lo desea,
+        # o formateado. Aquí mantengo el standard con decimales.
+        hover_lines.append(f"<b>{secondary_col}:</b> %{{customdata:.{decimals_secondary}f}}")
+
+    fig = go.Figure(data=go.Heatmap(
+        z=z_main,
+        x=x_order,
+        y=y_order,
+        colorscale=colorscale,
+        zmin=zmin, zmax=zmax, zmid=zmid,
+        text=text_center,  # Se usa para display en hover
+        customdata=z_sec,  # Datos extra para hover
+        hovertemplate="<br>".join(hover_lines) + "<extra></extra>",
+        colorbar=dict(
+            title=value_unit if value_unit else value_col,
+            title_font=dict(color=font_color),  # Título de la barra de color
+            tickfont=dict(color=font_color),  # Números de la barra de color
+            thickness=15,
+            outlinecolor=font_color,
+            outlinewidth=1
+        ),
+        xgap=1, ygap=1  # Pequeño espacio blanco entre celdas para limpieza visual
+    ))
+
+    # --- 7. Añadir Anotaciones de Texto (Layers) ---
+    annotations = []
+
+    # Mapa de desplazamientos para el texto secundario
+    pos_map = {
+        "top": (0, 15, "center", "bottom"),
+        "bottom": (0, -15, "center", "top"),
+        "left": (-20, 0, "right", "middle"),
+        "right": (20, 0, "left", "middle")
+    }
+    sec_x_s, sec_y_s, sec_x_anc, sec_y_anc = pos_map.get(secondary_position, (0, -15, "center", "top"))
+
+    # Iterar sobre cada celda para poner los textos
+    for i, yy in enumerate(y_order):
+        for j, xx in enumerate(x_order):
+            # A. Texto Central
+            if text_center[i, j]:
+                annotations.append(dict(
+                    x=xx, y=yy,
+                    text=str(text_center[i, j]),
+                    showarrow=False,
+                    font=dict(color=font_color, size=center_font_size, family="Arial")
+                ))
+
+            # B. Texto Secundario
+            if text_secondary[i, j]:
+                annotations.append(dict(
+                    x=xx, y=yy,
+                    text=str(text_secondary[i, j]),
+                    showarrow=False,
+                    xshift=sec_x_s, yshift=sec_y_s,  
+                    xanchor=sec_x_anc, yanchor=sec_y_anc,
+                    font=dict(color=font_color, size=secondary_font_size)
+                ))
+
+    fig.update_layout(annotations=annotations)
+
+    # --- 8. Configuración Final del Layout y Ejes ---
+    axis_style = dict(
+        showline=True,
+        linecolor=font_color,  
+        linewidth=1.5,
+        mirror=True,
+        tickfont=dict(color=font_color, size=11), 
+        title_font=dict(color=font_color), 
+        ticks="outside",
+        ticklen=5,
+        gridcolor="rgba(0,0,0,0)" 
+    )
+
+    # Aplicación de títulos personalizados si existen, si no, usa los nombres de columnas
+    final_x_title = x_title if x_title else x_col
+    final_y_title = y_title if y_title else y_col
+
+    fig.update_xaxes(**axis_style, title=final_x_title, side="bottom")
+    fig.update_yaxes(**axis_style, title=final_y_title, autorange="reversed")
+
+    layout_updates = dict(
+        title=dict(
+            text=f"<b>{title}<b>",
+            x=0.5,
+            font=dict(color=font_color, size=18)
+        ),
+        margin=dict(l=60, r=60, t=80, b=60),
+        width=width,
+        height=height,
+        font=dict(family="Inter, Arial, sans-serif", color=font_color),
+    )
+
+    if transparent_bg:
+        layout_updates.update(dict(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)"))
+
+    fig.update_layout(**layout_updates)
+    
+    if output_path:
+        fig.write_html(output_path, include_plotlyjs="cdn")
+
+    return fig
+
+
+
+
+def plot_heatmap_back(
         df: pd.DataFrame,
         x_col: str,
         y_col: str,
@@ -762,8 +1036,154 @@ def plot_heatmap(
     return fig
 
 
-
 def plot_line(
+    df: pd.DataFrame,
+    x_col: str,
+    y_col: str,
+    group_col: Optional[str] = None,
+    order_x: Optional[List[str]] = None,
+    order_groups: Optional[List[str]] = None,
+    
+    # --- Dual Axis Logic ---
+    secondary_y_col: Optional[str] = None,
+    secondary_y_title: Optional[str] = None,
+
+    # --- Line Specifics ---
+    line_width: int = 3,
+    marker_size: int = 8,
+    show_markers: bool = True,
+    interpolation: str = "linear",
+
+    # --- Extra Data ---
+    hover_data_cols: Optional[List[str]] = None,
+
+    # --- Esthetics ---
+    title: str = "",
+    x_title: Optional[str] = None,
+    y_title: Optional[str] = None,
+    text_format: str = ".1f",
+    y_as_pct: bool = False,
+    line_colors: Union[List[str], Dict[str, str], None] = None,
+    font_family: str = "Inter, Arial, sans-serif",
+    height: int = 500,
+    width: int = 1000,
+    show_legend: bool = True,
+    output_path: Optional[str] = None
+) -> go.Figure:
+    
+    d = df.copy()
+
+    # --- Sorting Logic ---
+    if order_x:
+        d[x_col] = pd.Categorical(d[x_col], categories=order_x, ordered=True)
+    if group_col and order_groups:
+        d[group_col] = pd.Categorical(d[group_col], categories=order_groups, ordered=True)
+
+    sort_criteria = [x_col]
+    if group_col: sort_criteria.append(group_col)
+    d = d.sort_values(by=sort_criteria)
+
+    # --- Color Configuration ---
+    if group_col:
+        unique_groups = d[group_col].cat.categories if hasattr(d[group_col], 'cat') else sorted(d[group_col].unique())
+        if isinstance(line_colors, dict): color_map = line_colors
+        else:
+            colors = line_colors if isinstance(line_colors, list) else DEFAULT_COLORS
+            color_map = {g: colors[i % len(colors)] for i, g in enumerate(unique_groups)}
+    else:
+        group_col = "_dummy_group_"
+        d[group_col] = y_col
+        unique_groups = [y_col]
+        color_map = {y_col: (line_colors[0] if isinstance(line_colors, list) and line_colors else DEFAULT_COLORS[0])}
+
+    # --- INITIALIZE FIGURE WITH SECONDARY Y SUPPORT ---
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+    groups_to_plot = [g for g in unique_groups if g in d[group_col].values]
+
+    for g in groups_to_plot:
+        subset = d[d[group_col] == g]
+        if subset.empty: continue
+
+        is_secondary = (str(g) == str(secondary_y_col))
+
+        # --- Lógica del Hover mejorada ---
+        customdata = None
+        hovertemplate_extras = ""
+        
+        if hover_data_cols:
+            # Apilamos los datos extra
+            custom_values = [subset[c].values for c in hover_data_cols]
+            customdata = np.stack(custom_values, axis=-1)
+            
+            for i, col_name in enumerate(hover_data_cols):
+                # Añadimos el dato extra. 
+                # Nota: Quitamos saltos de línea innecesarios para que quede compacto
+                hovertemplate_extras += f"<br><b>{col_name}:</b> %{{customdata[{i}]:,}}"
+
+        mode = "lines+markers" if show_markers else "lines"
+
+        # --- Construcción del Template ---
+        # 1. Quitamos {x_col} porque 'hovermode=x unified' ya lo pone en el título.
+        # 2. Quitamos {str(g)} (nombre del grupo) porque Plotly ya lo pone a la izquierda del valor.
+        # 3. Solo dejamos el valor Y y los datos extra.
+        
+        htemplate = (
+            f"<b>%{{y:{text_format}}}</b>"  # El valor principal en negrita
+            f"{hovertemplate_extras}"       # Los datos extra (quantity_tm) debajo
+            f"<extra></extra>"              # Oculta la caja lateral secundaria
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                name=str(g),
+                x=subset[x_col],
+                y=subset[y_col],
+                mode=mode,
+                line=dict(color=color_map.get(g, "#666666"), width=line_width, shape=interpolation),
+                marker=dict(size=marker_size, color=color_map.get(g, "#666666")),
+                customdata=customdata,
+                hovertemplate=htemplate 
+            ),
+            secondary_y=is_secondary
+        )
+
+    # --- Layout Update ---
+    fig.update_layout(
+        title={'text': f"<b>{title}<b>", 'y': 0.95, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'},
+        font=dict(family=font_family, color="black"),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        margin=dict(l=40, r=40, t=80, b=40),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1) if show_legend else dict(visible=False),
+        height=height, width=width,
+        # 'x unified' agrupa todo bajo una sola etiqueta en el eje X
+        hovermode="x unified" 
+    )
+
+    fig.update_xaxes(title_text=x_title or x_col, showline=True, linecolor="black", linewidth=1, ticks="outside")
+    
+    fig.update_yaxes(
+        title_text=y_title or y_col, showline=True, linecolor="black", linewidth=1,
+        showgrid=True, gridcolor="rgba(0,0,0,0.1)", tickformat=".1%" if y_as_pct else None,
+        secondary_y=False
+    )
+
+    if secondary_y_col:
+        fig.update_yaxes(
+            title_text=secondary_y_title or secondary_y_col,
+            showline=True, linecolor="black", linewidth=1,
+            showgrid=False,
+            secondary_y=True
+        )
+
+    if output_path:
+        fig.write_html(output_path, include_plotlyjs="cdn")
+
+    return fig
+
+
+def plot_line_back(
     df: pd.DataFrame,
     x_col: str,
     y_col: str,

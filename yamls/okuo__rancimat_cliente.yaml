@@ -1,0 +1,93 @@
+titulo: "Cinética de Degradación Oxidativa en harina de carne y hueso y harina de vísceras de pollo"
+lugar: "Okuo Analytics"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivo
+    contenido:
+      - tipo: lista
+        items:
+          - Mostrar los resultados de peróxidos y anisidina por planta y muestras de Harina de
+             Carne y Hueso (HCH) y harina de vísceras de pollo (HVP).
+          - Desglosar los resultados de todos los análisis realizados para cada muestra.
+          - Correlación entre las variables medidas e inferidas.
+
+  - titulo: Resumen de Resultados
+    contenido:
+      - tipo: tabla
+        src: okuo__rancimat_sin_tvn.csv 
+
+      - tipo: texto
+        html: >
+            Los resultados revelan una brecha de calidad crítica: mientras el <b>HVP</b> 
+            garantiza estabilidad a largo plazo (~6 meses -184 días), el <b>HCH</b> sufre una degradación 
+            acelerada en menos de 4 días.
+
+      - tipo: plotly_html
+        src: inducción_100_°c_box.html
+        #style: "width: 80%; margin: 20px auto; display: block;" 
+
+      
+
+      - tipo: plotly_html
+        src: iniducción_120_°c_box.html
+      
+      - tipo: texto
+        html: >
+          De las dos anteriores graficas, la Harina de Vísceras (HVP) tiene una dinámica de oxidación totalmente 
+          distinta y más inestable que la Harina de Carne y Hueso (HCH). Se observa disparidad estructural:
+          el <b>HVP</b> es robusto con una inducción promedio superior a <b>11 horas</b>, mientras que el <b>HCH</b> 
+          colapsa sistemáticamente por debajo de las <b>2 horas</b>. La brecha es tal que el peor lote 
+          de HVP sigue siendo muy superior al mejor lote de HCH, ratificando su inestabilidad.
+
+      - tipo: plotly_html
+        src: dias_box.html
+
+      - tipo: texto
+        html: >
+          Mientras la Harina de Carne y Hueso (HCH) tiene tiempos de vida útil casi nulos, 
+          la Harina de Vísceras (HVP) presenta tiempos muy altos (promedio ~200 días).
+
+  - titulo: Peroxidos y Anisidinas
+    contenido:
+      - tipo: plotly_html
+        src: peróxidos_box.html
+      
+      - tipo: texto
+        html: >
+          Peróxidos (Oxidación Primaria):
+          Aunque los promedios globales parecen similares (~8.8), el gráfico expone la falta de estandarización en el <b>HCH</b>,
+          cuya alta dispersión indica un proceso fuera de control donde lotes muy limpios conviven con otros altamente oxidados. 
+
+      - tipo: plotly_html
+        src: anisidina_box.html
+
+      - tipo: texto
+        html: >
+          Anisidina (Oxidación Secundaria - Rancidez):
+          Este es el punto crítico de dolor. El <b>HCH</b> presenta niveles alarmantes con una mediana superior
+          a 22 y picos extremos de 50, confirmando que el producto llega frecuentemente rancio al final de la línea. 
+          En contraste, el <b>HVP</b> mantiene un perfil más limpio y resultados más controlados.
+      
+
+  - titulo: Correlaciones por muestra y planta
+    contenido:
+
+      - tipo: plotly_html
+        src: correlacion_AMAGÁ-HCH_sin_tvn.html
+
+      - tipo: plotly_html
+        src: correlacion_AMAGÁ-HVP_sin_tvn.html
+
+     
+      
+      - tipo: plotly_html
+        src: correlacion_SIBATÉ-HCH_sin_tvn.html
+
+      - tipo: texto
+        html: >
+          En las muestras tomadas se observa una correlación consistente entre la vida útil de la muestra
+          y el comportamiento de los peroxidos y anisidina. En el caso de la correlacción entre anisidinas y los tiempos 
+          inducción a 120°C se observa una posible inconsistencia en la muestas de HCH, estas son positivas cuando en 
+          principio se esperaría una relación negativa.
+

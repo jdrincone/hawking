@@ -1,0 +1,91 @@
+titulo: "Harina de camarón"
+lugar: "Okuo Analytics"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivo
+    contenido:
+      - tipo: lista
+        items:
+          - Factores implicados en el color de la harina de camarón
+           
+  - titulo: "Similitud en el proceso para obtener el color en la planta 1"
+    contenido:
+      #- tipo: "texto"
+      #  html: |
+      #        La
+      
+      #- tipo: tabla
+      # src: summary_pl1.csv
+
+      - tipo: tabla
+        src: plant1_summary_group.csv
+
+      - tipo: "plotly_html"
+        src: componentes_planta1.html
+
+
+      - tipo: "plotly_html"
+        src: pl1_boxplot_color_HUM.html
+
+      - tipo: "plotly_html"
+        src: pl1_boxplot_color_PROTEINA.html
+
+      - tipo: "plotly_html"
+        src: pl1_boxplot_color_GRANULOMETRIA.html
+
+      - tipo: "plotly_html"
+        src: pl1_boxplot_color_TEMP.html
+
+      #- tipo: "plotly_html"
+      #  src: pl1_boxplot_color_PT_TON.html
+
+      #- tipo: "plotly_html"
+      #  src: pl1_boxplot_color_ANTIOXIDANTE_FIN_KG.html
+
+      #- tipo: "plotly_html"
+       # src: pl1_boxplot_color_ANTIOXIDANTE_INICIO_KG.html
+
+      #- tipo: "plotly_html"
+      #  src: pl1_boxplot_color_INIMHOL_INICIO_KG.html
+
+      - tipo: "plotly_html"
+        src: pl1_boxplot_color_PPM.html
+
+
+  - titulo: "Similitud en el proceso para obtener el color en la planta 2"
+    contenido:
+      #- tipo: "texto"
+      #  html: |
+            
+
+
+      - tipo: tabla
+        src: plant2_summary_group.csv
+
+      - tipo: "plotly_html"
+        src: componentes_planta2.html
+
+      - tipo: "plotly_html"
+        src: pl2_boxplot_grupo_color_PROTEINA.html
+
+      - tipo: "plotly_html"
+        src: pl2_boxplot_grupo_color_HUMEDAD.html
+
+      - tipo: "plotly_html"
+        src: pl2_boxplot_grupo_color_TEMP.ºC.html
+
+      - tipo: "plotly_html"
+        src: pl2_boxplot_grupo_color_GRANUL MALLA 40.html
+
+      - tipo: "plotly_html"
+        src: pl2_boxplot_grupo_color_CENIZA.html
+
+      - tipo: "plotly_html"
+        src: pl2_boxplot_grupo_color_ACIDO.html
+
+
+
+
+
+    

@@ -109,6 +109,29 @@ secciones:
           que en la pellet 3 presenta un mejor rendimiento que la pellet 2 en las dietas que resultan más 
           difíciles de peletizar.
 
+
+  - titulo: "Rendimiento por tamaño de pellet"
+    contenido:
+        
+      - tipo: plotly_html
+        src: rendimiento_pellet_tamano_pellet.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+      - tipo: texto
+        html: >
+          A mayor tamaño de pellet, mayor rendimiento,  y esto se debe a la <b>reducción de fricción</b>.
+          Al aumentar el diámetro, el material encuentra menor resistencia al atravesar los orificios.
+          En consecuencia, el motor requiere menos esfuerzo para impulsar la misma masa y la producción en
+          Toneladas/Hora aumenta.
+          <i>En términos de tiempo de máquina, fabricar pellets grandes suele ser más “económico”.</i>
+
+          <br><br>
+          En particular, el pellet de <b>3.2 mm</b> muestra rendimientos consistentemente superiores al promedio
+          en las pellets 2 y 3.
+          Esto sugiere una condición cercana al óptimo en la relación <b>número de orificios vs. superficie efectiva
+          del dado</b>, hay suficiente área de paso disponible para sostener un alto flujo sin 
+          penalizar excesivamente la compresión, lo que se traduce en un mejor desempeño global de la planta.
+
+
   - titulo: "Rendimiento de las diferentes dietas producidas en la pellet 1"
     contenido:
 
@@ -249,6 +272,10 @@ secciones:
         src: pellet_heatmap_ton_pel_op.html
         style: "width: 70%; margin: 20px auto; display: block;"
 
+      - tipo: plotly_html
+        src: reproceso_pellet.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+
       - tipo: texto
         html: >
           En el periodo analizado, existe poca uniformidad en las toneladas producidas  por operario.
@@ -263,6 +290,8 @@ secciones:
           cambia, el rendimiento sí depende de quién opera.
           Estandarizar las prácticas de operación en esta línea permitiría
           <strong>homogeneizar el peletizado</strong> e <strong>incrementar el rendimiento</strong>.
+
+     
 
   - titulo: "Detalle de posibles valores anómalos en el rendimiento por lote"
     contenido:
@@ -367,7 +396,6 @@ secciones:
           <strong>por debajo del rango objetivo</strong>. En la <strong>Pellet 2</strong>, adicionalmente, las dietas
           <strong>BCE (11.41)</strong> y <strong>CE2 (12.85)</strong> también se encuentran fuera del rango.
           En la <strong>Pellet 3</strong>, la única dieta fuera del rango es <strong>E3 (11.32)</strong>.
-  
 
   - titulo: "Conclusiones"
     contenido:

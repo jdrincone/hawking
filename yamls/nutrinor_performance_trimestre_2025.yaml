@@ -1,0 +1,164 @@
+titulo: "Overview: Productos que han degradado su calidad en el 2025"
+lugar: "NUTRINOR - Alimentación Completa para Animales"
+descripcion: ""
+
+secciones:
+  - titulo: Objetivo
+    contenido:
+       - tipo: lista
+         items:
+           - Evaluar la evolución de la producción total de planta y el cambio de capacidad desde Mar-2025.
+           - 'Comparar por peletizadora (420, 520, 350) las variables clave de desempeño: Producción,
+              Carga (Hz), Rendimiento (TPH) y PDI.'
+           - Identificar las familias de productos (especies) dominantes por línea y sus diferencias de desempeño.
+           - Determinar, por producto, cuáles degradaron su PDI y/o rendimiento al comparar 1S vs 2S de 2025, y proponer la causa más probable con la evidencia disponible.
+
+
+  - titulo: Evolución de la capacidad productiva en la planta
+    contenido:
+      - tipo: plotly_html
+        src: prod_planta.html
+        style: "width: 70%; margin: 20px auto; display: block;"
+
+      - tipo: texto
+        html: >
+          <b>Producción mensual (Ton) | Abr-2024 a Ene-2026</b><br>
+          • <b>Abr-2024–Feb-2025:</b> producción estable con variaciones (≈6.4k–7.2k Ton).<br>
+          • <b>Desde Mar-2025</b> (línea punteada): cambio de nivel y <b>tendencia al alza</b>.<br>
+          • <b>Pico:</b> Oct-2025 (~8.6k Ton) y luego baja, pero se mantiene alta (≈7.5k–7.7k)
+           hacia Dic-2025/Ene-2026.<br>
+          • A continuación se detallara la producción mensual en la planta por peletizadora y productos
+            principales producidos.
+           <br>
+
+  - titulo: Evolución de las variables de control y proceso en cada peletizadora
+    contenido:
+
+      - tipo: plotly_html
+        src: group_pellet.html
+        style: "width: 100%; margin: 20px auto; display: block;"
+      
+      - tipo: texto
+        html: >
+          <b>Pellet 420 (gris)</b><br>
+          • <b>Rendimiento:</b> 1S-2025 más alto (≈5.5–6.0 Ton/h) vs 2S-2025 más bajo (≈4.7–5.1 Ton/h) → <b>baja ~10–20%</b>.<br>
+          • <b>PDI:</b> leve deterioro en 2S (valle ≈96.2–96.4%) vs 1S (≈96.6–97.0%) → <b>-0.2 a -0.5 pp</b> aprox.<br><br>
+
+          <b>Pellet 520 (naranja)</b><br>
+          • <b>Rendimiento:</b> cae del 1S (≈7.2–9.2 Ton/h) de forma progresiva, el 2S (≈6.8–8.0) mejora el rendimiento.<br>
+          • <b>PDI:</b> se mantiene alto y estable (≈96.5–97.1%), con picos en mitad de año.<br><br>
+
+          <b>Pellet 350 (verde) – entra en 2025</b><br>
+          • <b>Rendimiento:</b> estable (≈2.6–2.9 Ton/h) sin cambios grandes entre semestres.<br>
+          • <b>PDI:</b> mejora progresiva durante el año (≈95.8 → ≈96.6–96.7) → <b>+0.7 a +0.9 pp</b>.<br><br>
+      
+          Tras establecer el comportamiento basal de cada peletizadora, se procede al análisis detallado 
+          de los <b>productos críticos</b> en las líneas de mayor volumen, con el fin de identificar 
+          oportunidades específicas de optimización.
+
+  - titulo: Pellet 420 | familias de productos mayormente peletizados
+    contenido:
+           
+      - tipo: plotly_html
+        src: group_especie_pellet420_premium.html
+        style: "width: 90%; margin: 20px auto; display: block;"
+
+      - tipo: texto
+        html: >
+          En esta línea, los productos se agrupan principalmente en <b>Ganadería</b> (verde) y <b>Porcicultura</b> (gris).<br><br>
+
+          • <b>Producción:</b> <b>Ganadería</b> domina el volumen todo el periodo (≈1.9k–2.5k Ton/mes).
+          <b>Porcicultura</b> es menor y cae fuerte en 2025, con meses del 2S-2025 por debajo de ≈300 Ton.<br><br>
+
+          • <b>Carga (Hz):</b> ambas especies muestran un quiebre en <b>jul-2025</b>: la carga baja de ~28–34 Hz a ~<b>20 Hz</b>.
+          En <b>Porcicultura</b> la caída continúa hasta ~<b>17 Hz</b> hacia ene-2026 (más marcada que Ganadería).<br><br>
+
+          • <b>Rendimiento (Ton/h):</b> pico en 1S-2025 (Ganadería ~6.1; Porcicultura ~6.4) y luego descenso en 2S-2025.
+          <b>Porcicultura</b> termina cerca de ~<b>4.0</b> Ton/h (baja fuerte), mientras <b>Ganadería</b> se sostiene ~4.5–5.2.<br><br>
+
+          • <b>PDI (%):</b> <b>Ganadería</b> es consistentemente más alto (≈96.5–97.5%).
+          <b>Porcicultura</b> es más bajo y presenta una <b>anomalía</b> en 2S-2025 con caída hasta ~<b>94.7%</b>,
+          recuperando de manera progresiva hacia ene-2026 (~96%).<br><br>
+
+          Algunos cambios operativos de mitad de 2025 entre ellos bajar la carga coinciden con menor rendimiento
+          y mayor inestabilidad de calidad, especialmente en <b>Porcicultura</b>. Ganadería mantiene volumen 
+          y PDI más robustos pero existen algunos productos que deterioran el performance general de lo producido
+          en la linea, por tanto se procede a la identificación de estos productos.
+
+      #- tipo: plotly_html
+       # src: fig_vol_pellet420.html #fig_ejecutiva_pellet420.html
+       # style: "width: 90%; margin: 20px auto; display: block;"
+
+  - titulo:  <b>Pellet 420 | Matriz desempeño 1S vs 2S 2025 (Producto)</b><br>
+    contenido:
+      - tipo: plotly_html
+        src: matriz_estrategica_pellet_420.html
+        style: "width:100%; margin: 20px auto; display: block;"
+
+      - tipo: texto
+        html: >
+         
+          Los dispersogramas muestran <b>ΔPDI</b> vs cambios en <b>Ton/mes</b> y vs <b>ΔTPH</b>.
+          En rojo quedan los productos con <b>caída fuerte de PDI</b> (2S peor que 1S).<br><br>
+
+          <b>causa probable con lo disponible)</b><br>
+          • El patrón dominante es <b>↓Carga (Hz)</b> en 2S-2025 (varios productos con <b>-7 a -9 Hz</b>) asociado a <b>↓PDI</b>.<br>
+          • En <b>CERDOS</b> y <b>LECHONES</b>, el PDI cae <i>aunque</i> sube el Rendimiento → señal de mejor acondicionamiento en la temperatura,
+           cambio o ajuste de dados dado/rodillos. <br><br>
+          • Mayor caída de Ton/mes: <b>PROBIOLECHE</b> (<b>-40.914</b>) y <b>CERDOS</b> (<b>-12.800</b>).
+
+      - tipo: tabla
+        src: diagnostico_critico_pellet_420.csv
+
+  - titulo: Pellet 20 | familias de productos mayormente peletizados
+    contenido:
+
+      - tipo: plotly_html
+        src: group_especie_pellet520_premium.html
+        style: "width: 90%; margin: 20px auto; display: block;"
+
+      - tipo: texto
+        html: >
+           • <b>Producción:</b> la 520 está dominada por <b>Porcicultura</b> (≈3.2k–4.0k Ton/mes). <b>Ganadería</b> es marginal (≈150–250 Ton/mes) y estable.<br>
+           • <b>Carga (Hz):</b> <b>Ganadería</b> opera con carga mayor y más variable (≈17–21 Hz). <b>Porcicultura</b> se mantiene más baja (≈14.5–18.5 Hz) con leve recuperación hacia fin de 2025.<br>
+           • <b>Rendimiento (Ton/h):</b> pico en 1S-2025 (~9–9.5) y caída en 2S-2025 (~6.8–7.5). Hay un <b>bache marcado</b> en Ganadería (~6) hacia 2S-2025 y posterior recuperación parcial.<br>
+           • <b>PDI (%):</b> se mantiene <b>estable</b> (≈96.2–97.2) sin deterioros fuertes; Porcicultura tiende a estar ligeramente por encima en varios meses.<br>
+  
+  
+  - titulo:  <b>Pellet 420 | Matriz desempeño 1S vs 2S 2025 (Producto)</b><br>
+    contenido:
+      - tipo: plotly_html
+        src: matriz_estrategica_pellet_520.html
+        style: "width: 100%; margin: 20px auto; display: block;"
+        
+      - tipo: tabla
+        src: reporte_diagnostico_pellet_520.csv
+
+      - tipo: texto
+        html: >
+          En general, la mayoría de productos quedan en <b>mejora/estabilidad</b> de PDI (zona verde).
+          Los casos críticos (rojo) son pocos y están identificados abajo.<br><br>
+          • La <b>caída de PDI</b> en estos productos <b>no coincide</b> con una baja de carga (en 2 de 3 la carga sube / en 1 se mantiene).<br>
+          • Por eso el diagnóstico apunta a <b>factor externo</b>: cambios en formulación/materia prima, finos, humedad/vapor/condicionamiento, o variación de control de calidad/medición (más que un límite mecánico de la peletizadora).<br>
+
+  - titulo: Conclusiones
+    contenido:
+      - tipo: lista
+        items:
+          - El aumento de producción desde Mar-2025 se explica principalmente por la entrada
+            de la línea 350 y el mayor aporte agregado al volumen total; la planta se sostiene 
+            en niveles superiores durante 2S-2025.
+          - 'En 2025, la línea 420 muestra deterioro frente al 1S: caída de rendimiento (~10–20%)
+             y PDI (-0.2 a -0.5 pp). El quiebre operativo de mitad de
+             año (↓carga) coincide con mayor variabilidad y productos críticos.'
+          - En 420, los productos con mayor afectación de PDI se asocian mayormente a ↓carga
+            (Hz) y/o “rendimiento alto” (producto realizado a la carrera) (casos como CERDOS y LECHONES), lo que sugiere ajustes
+             mecánicos/operativos (dado-rodillos, setpoints, acondicionamiento) como palanca principal.
+          - En 520, el PDI se mantiene estable en la mayoría de productos; los pocos casos con caída
+            (INICIACION SUPERCERDO, LEVANTE BR 454 NUT, MARRANAS GESTACION EB 454 SCP) no siguen el
+            patrón de ↓carga, por lo que el diagnóstico apunta a factores externos
+            (formulación, MP, finos, humedad/vapor/condicionamiento o medición).
+
+
+
+     
